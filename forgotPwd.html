@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>更改密码</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			 <link rel="shortcut icon" href="img/home/logo-s.png">
+		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+	     <link rel="stylesheet" href="css/index.css" />
+	     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/md5.js" ></script>
+		<script type="text/javascript" src="js/layer.js" ></script>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+      <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+      <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   <![endif]-->
+
+		<style>
+			.container{
+				height:800px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="logo">
+			<div>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+			</div>
+
+
+		</div>
+		<!-- header -->
+		<div class="container">
+			<div class="header-bottom">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="top-menu">
+					<ul class="header_nav">
+						<li>
+							<a class="home" href="home.html">首页</a>
+						</li>
+						
+						<li>
+							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+						</li>
+						<li>
+							<a class="AJGL">案件管理</a>
+						</li>
+						<li>
+							<a class="KZFW"  href="KZFW.html">扩展服务</a>
+						</li>
+						<li>
+							<a href="home.html#news">新闻公告</a>
+						</li>
+						<li>
+							<a class="FJLS"  href="FJLS.html">附近律所</a>
+						</li>
+
+						<li>
+							<a href="Abou.html" target="_blank">关于我们</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+
+	  <br />
+      <h2 class="text-info col-lg-offset-4" style="font-family:'宋体';">找回密码</h1><br /><br />
+				<form class="form-horizontal" role="form" id="app">
+					<div class="form-group">
+						<label for="userNum" class="col-sm-2 control-label">手机号：</label>
+						<div class="col-sm-8">
+							<input type="text"  id="Phone" class="form-control" placeholder="请输入手机号" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userPhone" class="col-sm-2 control-label">验证码：</label>
+						<div class="col-md-8">
+							<input id="yzCode" type="text"  class="form-control" placeholder="验证码" />
+							
+						</div>
+
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-default getYzCode" id="get_code" type="button" style="cursor:pointer;" value="免费获取验证码" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="NewPwd" class="col-sm-2 control-label">新密码：</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="NewPwd" placeholder="请输入新密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="PwdAgain" class="col-sm-2 control-label">确认密码：</label>
+						<div class="col-sm-6">
+							<input type="password"  class="form-control" id="PwdAgain" placeholder="请确认密码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" id="lo1" class="btn btn-default">提交</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
+
+		</div>
+	</body>
+
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	
+    <script>
+		//$(":file").filestyle();
+		$('.modal').modal({ backdrop: 'static', show: false });
+
+	
+
+
+
+   
+// function changePwd(){
+// 		var pwd = $("#NewPWD").val();
+//	    pwd2 = $("#PWDAgain").val();
+//	    phone=$("#Phone").val()
+//	  		var index = layer.load(0, {
+//				shade: [0.6, '#000'] //0.1透明度的白色背景
+//			});
+//	    $.ajax({
+//				type: 'POST',
+//				url: 'https://www.ls186.cn/api/public/law/',
+//				data:{
+//					service:"User.change_password",
+//					time:cur_timestamp,
+//					token:md_token,
+//					phone:phone,
+//					password:pwd2
+//				},
+//				success: function(data) {
+//					layer.close(index);
+//					if(data.ret == 200) {
+//						if(data.data==0){
+//							layer.msg('密码未修改', {
+//							icon: 1
+//						       });
+//						}
+//						//$(".cover").hide();
+//						layer.msg('修改成功', {icon: 1});
+//    
+//					} else {
+//
+//						layer.msg("修改失败"+data.msg, {icon: 2})
+//						
+//					     }
+//				},
+//				error:function(data){
+//					layer.msg(data);
+//				}
+//			});
+// }
+   
+  var cur_timestamp = Date.parse(new Date()) / 1000;
+	  md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+        
+	var countdown=60;
+function settime() { 
+	//$("#get_code").val(countdown +"s后重新发送");
+    if (countdown==0) { 
+     
+       $("#get_code").val("免费获取验证码"); 
+       $("#get_code").attr("disabled",false);    
+       }else{
+    	$("#get_code").attr("disabled", true); 
+    	$("#get_code").val(countdown +"s后重新发送"); 
+        countdown-=1; 
+        //console.log(countdown);
+        
+        
+    } 
+   // setTimeout("settime()",1000) 
+}
+function change_pwd(phone,pwd){
+	
+	 var   index=layer.load(1,{shade:[0.1,'gray']});
+	$.ajax({
+		type:"post",
+		url:'https://www.ls186.cn/api/public/law/',
+		data:{
+			service:'User.change_password',
+			time:cur_timestamp,
+			token:md_token,
+			phone:phone,
+			password:pwd
+		},
+		success:function(data){
+			layer.close(index);
+			if(data.ret==200){
+				if(data.data==0){
+					layer.msg("密码未改变");
+				}else{
+					layer.msg("修改成功");
+					$("input[type=text]").val("");
+				}
+				
+			}else{
+				layer.msg(data.msg)
+			}
+			console.log(data);
+		},
+		error:function(status){
+			console.log(status);
+		}
+	});
+}
+
+function pwdTest(){
+	var flag;
+	testPwd=/^[a-zA-Z]\w{8,}$/;
+	if(testPwd.test($("#NewPwd").val())&&$("#NewPwd").val()!=""){
+		flag=true;
+	}else{
+		layer.msg("密码格式不正确,至少8位字母开头的字母数字组合",{time:700});
+		flag=false;
+	}
+	return flag;
+};
+function pwdAgain(){
+	var flag;
+	var pwd1=$("#NewPwd").val();
+	if(pwd1==$("#PwdAgain").val()&&$("#PwdAgain").val()!=""){
+		flag=true;
+	}else{
+		layer.msg("密码不一致",{time:700});
+		 flag=false;
+	}
+	return flag;
+};
+$("#NewPwd").blur(function(){pwdTest()});
+$("#PwdAgain").blur(function(){pwdAgain()});
+
+
+var ttt=$("#get_code").on("click",function(){
+
+	var phone=$("#Phone").val();
+	var reg=/^1[3|4|5|7|8][0-9]\d{8}$/;
+	if(phone!=""&&reg.test(phone)){
+  setInterval("settime()",1000);
+   
+     var index=layer.load(2,{shade:[0.1,'green']});
+    $.ajax({
+		        type: 'POST',
+				url: 'https://www.ls186.cn/api/public/law/',
+				data:{
+					service:"User.get_code",
+					time:cur_timestamp,
+					token:md_token,
+					phone:phone,
+				},
+				success:function(data){
+					layer.close(index);
+					if(data.ret==200){
+						layer.msg("发送成功");
+					//console.log(data.data)
+				  var PCCode=String(data.data);
+				  $("#lo1").click(function(){
+	           var PhoneCode=String(hex_md5("law_"+$("#yzCode").val()));
+	             var  phone=$("#Phone").val();
+				      password=$("#PwdAgain").val();
+	             if(pwdAgain()&&pwdTest()){
+	                if(PhoneCode!=""&&PCCode==PhoneCode){
+	                 	 // layer.msg("验证码正确");
+	                       	   change_pwd(phone,password);
+	                       	   
+	                       	 }else{
+				  	             layer.msg("验证码错误");
+				         }
+	                  }else{
+	                       layer.msg("密码格式不正确")
+	                 }
+	                  
+				 
+                 })
+				
+					
+				  }else{
+				  	console.log(data.msg);
+				  }
+				
+			},
+			error:function(data,status){
+				console.log(data+status);
+				
+			}
+	});
+			
+	}else{
+		layer.msg("手机号不正确");
+	}
+	
+  
+  
+})
+	</script>
+
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>扩展服务</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			 <link rel="shortcut icon" href="img/home/logo-s.png">
+		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/animate.css" />
+		<link rel="stylesheet" href="css/fql_lb.css" />
+		<link rel="stylesheet" href="css/kzfw.css" />
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/md5.js" ></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+          <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+          <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+		<style>
+			.LzBox {
+				font: bold 15px "微软雅黑";
+			}
+		</style>
+
+	</head>
+
+	<body>
+       	<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
+					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
+       	</span>
+		<div class="logo">
+			<div>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+				<span class="login pull-right">
+							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size: 1.1em;">注册</a>
+			   </span>
+				<span class="login1 pull-right">
+							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
+				</span>
+				<span class="pull-right Ylogin hide">
+				            <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+								   <span class="fa fa-user-o"></span>
+				                 <b>User</b>已登录
+				           </a>
+				           <a id="clearUser" class="btn  btn-primary"  style="height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+								 <b>注销</b>
+				           </a>
+				</span>
+
+
+			</div>
+			<!--
+	作者：fql
+	时间：2017-03-07
+	描述：登录弹窗
+-->
+			<div class="modal fade" id="myLogin">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content" id="app">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">登录界面</h4>
+						</div>
+						<form @submit.prevent="submit">
+							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="userID" class="control-label">请输入用户名：</label>
+									<input type="text" class="form-control" id="userID" v-model="user.username" required/>
+								</div>
+								<div class="form-group">
+									<label class="control-label">请输入密码：</label>
+									<input type="password" class="form-control" id="userPwd" v-model="user.password" required/>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
+								<div class="btn-group">
+									<button class="btn btn-default">
+										<span class="fa fa-wechat info" style="color:#449D44;"></span>微信登录
+									</button>
+								</div>
+
+								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!--
+            	作者：fql
+            	时间：2017-03-07
+            	描述：注册弹窗
+            	  -->
+			<div class="modal fade" id="myRegs">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
+						</div>
+						<form>
+							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="j_phone" class="control-label">手机号：</label>
+									<input type="text"  class="form-control phone" id="j_phone" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPhone" class="control-label">验证码：</label>
+									<div class="input-group">
+										<input type="text"  class="form-control" placeholder="" />
+										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">请输入您的密码：</label>
+									<input type="password" class="form-control" id="userPWD" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">请再次输入你的密码：</label>
+									<input type="password" class="form-control" id="userPWD2" required/>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label">你的身份：</label>
+									<select class="custom-select-sm form-control">
+										<option>主任律师</option>
+										<option>正式律师</option>
+										<option>实习律师</option>
+										<option>律所内勤</option>
+										<option>法律工作者</option>
+										<option>当事人</option>
+									</select>
+								</div>
+								<div class="form-check">
+									<input type="checkbox" />
+									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
+
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " data-dismiss="modal" value="注册">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- header -->
+		<div class="container">
+			<div class="header-bottom">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="top-menu">
+					<ul class="header_nav">
+						<li>
+							<a class="home" href="home.html">首页</a>
+						</li>
+						
+						<li>
+							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+						</li>
+						
+						<li>
+							<a class="AJGL" >案件管理</a>
+						</li>
+						<li>
+							<a class="KZFW" href="KZFW.html">扩展服务</a>
+						</li>
+						<li>
+							<a href="home.html#news">新闻公告</a>
+						</li>
+						<li>
+							<a class="FJLS" href="FJLS.html">附近律所</a>
+						</li>
+                       <li>
+							<a href="Abou.html" target="_blank">关于我们</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+
+			<article style="width: 90%;margin:40px auto;">
+				<div class="text-danger"><b>公告：</b>微服务法律市场，本平台将开展扩展服务栏目，对外征求合作</div>
+				<hr />
+				<ol class="LzBox">
+					<li id="proBox">
+						<span data-toggle="modal" data-target="#Myupload1">
+							<a class="fa fa-group fa-4x"></a>
+							<a href="#">专家辅助人咨询服务</a></span>
+						<div class="modal animated fadeIn" id="Myupload1">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header" style="background-color:#3B97D6;border-top-left-radius:5px;border-top-right-radius:5px;">
+										<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				                </button>
+										<h4 class="modal-title text-center" id="myModalLabel">专家辅助人咨询服务</h4>
+									</div>
+
+									<form>
+										<div class="modal-body">
+											<article class="fql_banner h300">
+												<div class="fql_container">
+													<img class="img_item" id="img" src="img/1f507848abd9237deba37dc9079bba68.jpg"  />
+													<img class="img_item" src="img/feed/image2.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image3.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image4.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image5.jpg" alt="图片不存在" />
+												</div>
+
+											</article>
+											<div>
+												<h4 class="text-left"><strong>简介:</strong></h4>
+												<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
+											</div>
+											<hr />
+											<div class="professor">
+												<h4 class="text-left"><strong>专家库:</strong></h4>
+												<br />
+												<div class="professor_imgKu">
+													<span><img src="img/professor/pro01.png" title="刘律师"/></span>
+													<span><img src="img/professor/pro02.png" title="李律师"/></span>
+													<span><img src="img/professor/pro03.png" title="张律师"/></span>
+													<span><img src="img/professor/pro04.png" title="王律师"/></span>
+													<span><img src="img/professor/pro03.png" title="陈律师"/></span>
+													<span><img src="img/professor/pro01.png" title="方律师"/></span>
+													
+												</div>
+												<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>
+											</div>
+											<hr />
+											<div id="" class="text-center">
+												<h4>合作单位：河南司法辅助人咨询中心</h4>
+												<div style="text-indent: 2em;">
+													<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
+												</div>
+											</div>
+											<hr />
+											<div class="form-group">
+												<label for="name" class="control-label">案件题目：</label>
+												<input type="text" class="form-control" id="name" />
+											</div>
+											<div class="form-group">
+												<label for="userName" class="control-label">联系人：</label>
+												<input type="text" class="form-control" id="userName" />
+											</div>
+											<div class="form-group">
+												<label for="userNum" class="control-label">联系电话：</label>
+												<input type="text" class="form-control" id="userNum" />
+											</div>
+											<div class="form-group">
+												<label class="control-label">案件说明：</label>
+												<span class="btn-group"><input type="file" multiple  id="userFile"></span>
+											</div>
+											<textarea cols="100" rows="10" wrap="hard">
+									
+								            </textarea>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary" data-dismiss="modal" value="提交案件">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+
+					<li id="FxproBox">
+						<span data-toggle="modal" data-target="#Myupload2">
+							<a class="fa fa-user-circle fa-4x"></a>
+							<a href="#">法学专家疑难案件论证</a></span>
+						<div class="modal animated fadeIn" id="Myupload2">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header" style="background-color:#3B97D6;border-top-left-radius:5px;border-top-right-radius:5px;">
+										<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				                </button>
+										<h4 class="modal-title text-center" id="myModalLabel">法学专家疑难案件论证</h4>
+									</div>
+
+									<form>
+										<div class="modal-body">
+											<article class="fql_banner h300">
+												<div class="fql_container">
+													<img class="img_item" id="img" src="img/1f507848abd9237deba37dc9079bba68.jpg"  />
+													<img class="img_item" src="img/feed/image2.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image3.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image4.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image5.jpg" alt="图片不存在" />
+												</div>
+
+											</article>
+											<div>
+												<h4 class="text-left"><strong>简介:</strong></h4>
+												<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
+											</div>
+											<hr />
+											<div class="professor">
+												<h4 class="text-left"><strong>专家库:</strong></h4>
+												<br />
+												<div  class="professor_imgKu">
+													<span><img src="img/professor/pro01.png" title="刘律师"/></span>
+													<span><img src="img/professor/pro02.png" title="李律师"/></span>
+													<span><img src="img/professor/pro03.png" title="张律师"/></span>
+													<span><img src="img/professor/pro04.png" title="王律师"/></span>
+													<span><img src="img/professor/pro03.png" title="陈律师"/></span>
+													<span><img src="img/professor/pro01.png" title="方律师"/></span>
+												>
+												</div>
+												<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>
+											</div>
+											<hr />
+											<div id="" class="text-center">
+												<h4>合作单位：河南司法辅助人咨询中心</h4>
+												<div style="text-indent: 2em;">
+													<a class="text-info" href="http://www.hnsfzx.cn" >http://www.hnsfzx.cn</a>
+												</div>
+											</div>
+											<hr />
+											<div class="form-group">
+												<label for="name" class="control-label">案件题目：</label>
+												<input type="text" class="form-control" id="name" />
+											</div>
+											<div class="form-group">
+												<label for="userName" class="control-label">联系人：</label>
+												<input type="text" class="form-control" id="userName" />
+											</div>
+											<div class="form-group">
+												<label for="userNum" class="control-label">联系电话：</label>
+												<input type="text" class="form-control" id="userNum" />
+											</div>
+											<div class="form-group">
+												<label class="control-label">案件说明：</label>
+												<span class="btn-group"><input type="file" multiple  id="userFile"></span>
+											</div>
+											<textarea cols="100" rows="10" wrap="hard">
+									
+								            </textarea>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary" data-dismiss="modal" value="提交案件">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+					<li id="FlBox">
+						<span data-toggle="modal" data-target="#Myupload3">
+							<a class="fa fa-gavel fa-4x"></a>
+							<a href="#">法律金融</a></span>
+						<div class="modal animated fadeIn" id="Myupload3">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header" style="background-color:#3B97D6;border-top-left-radius:5px;border-top-right-radius:5px;">
+										<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				                </button>
+										<h4 class="modal-title text-center" id="myModalLabel">法律金融</h4>
+									</div>
+
+									<form>
+										<div class="modal-body">
+											<article class="fql_banner h300">
+												<div class="fql_container">
+													<img class="img_item" id="img" src="img/1f507848abd9237deba37dc9079bba68.jpg"  />
+													<img class="img_item" src="img/feed/image2.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image3.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image4.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image5.jpg" alt="图片不存在" />
+												</div>
+
+											</article>
+											<div>
+												<h4 class="text-left"><strong>简介:</strong></h4>
+												<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
+											</div>
+											<hr />
+											<div class="professor">
+												<h4 class="text-left"><strong>专家库:</strong></h4>
+												<br />
+												<div class="professor_imgKu">
+													<span><img src="img/professor/pro01.png" title="刘律师"/></span>
+													<span><img src="img/professor/pro02.png" title="李律师"/></span>
+													<span><img src="img/professor/pro03.png" title="张律师"/></span>
+													<span><img src="img/professor/pro04.png" title="王律师"/></span>
+													<span><img src="img/professor/pro03.png" title="陈律师"/></span>
+													
+												</div>
+												<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>
+											</div>
+											<hr />
+											<div id="" class="text-center">
+												<h4>合作单位：河南司法辅助人咨询中心</h4>
+												<div style="text-indent: 2em;">
+													<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
+												</div>
+											</div>
+											<hr />
+											<div class="form-group">
+												<label for="name" class="control-label">案件题目：</label>
+												<input type="text" class="form-control" id="name" />
+											</div>
+											<div class="form-group">
+												<label for="userName" class="control-label">联系人：</label>
+												<input type="text" class="form-control" id="userName" />
+											</div>
+											<div class="form-group">
+												<label for="userNum" class="control-label">联系电话：</label>
+												<input type="text" class="form-control" id="userNum" />
+											</div>
+											<div class="form-group">
+												<label class="control-label">案件说明：</label>
+												<span class="btn-group"><input type="file" multiple  id="userFile"></span>
+											</div>
+											<textarea cols="100" rows="10" wrap="hard">
+									
+								            </textarea>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary" data-dismiss="modal" value="提交案件">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr/>
+					<li id="YdplaceBox">
+						<span data-toggle="modal" data-target="#Myupload4">
+							<a class="fa fa-handshake-o fa-4x"></a>
+							<a>异地互助办案</a></span>
+						<div class="modal animated fadeIn" id="Myupload4">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header" style="background-color:#3B97D6;border-top-left-radius:5px;border-top-right-radius:5px;">
+										<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				                </button>
+										<h4 class="modal-title text-center" id="myModalLabel">异地互助办案</h4>
+									</div>
+
+									<form>
+										<div class="modal-body">
+											<article class="fql_banner h300">
+												<div class="fql_container">
+													<img class="img_item" id="img" src="img/1f507848abd9237deba37dc9079bba68.jpg"  />
+													<img class="img_item" src="img/feed/image2.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image3.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image4.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image5.jpg" alt="图片不存在" />
+												</div>
+
+											</article>
+											<div>
+												<h4 class="text-left"><strong>简介:</strong></h4>
+												<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
+											</div>
+											<hr />
+											<div class="professor">
+												<h4 class="text-left"><strong>专家库:</strong></h4>
+												<br />
+												<div class="professor_imgKu">
+													<span><img src="img/professor/pro01.png" title="刘律师"/></span>
+													<span><img src="img/professor/pro02.png" title="李律师"/></span>
+													<span><img src="img/professor/pro03.png" title="张律师"/></span>
+													<span><img src="img/professor/pro04.png" title="王律师"/></span>
+													<span><img src="img/professor/pro03.png" title="陈律师"/></span>
+												
+													<span><img src="img/professor/pro01.png" title="方律师"/></span>
+													<span><img src="img/professor/pro02.png" title="周律师"/></span>
+												</div>
+												<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>
+											</div>
+											<hr />
+											<div id="" class="text-center">
+												<h4>合作单位：河南司法辅助人咨询中心</h4>
+												<div style="text-indent: 2em;">
+													<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
+												</div>
+											</div>
+											<hr />
+											<div class="form-group">
+												<label for="name" class="control-label">案件题目：</label>
+												<input type="text" class="form-control" id="name" />
+											</div>
+											<div class="form-group">
+												<label for="userName" class="control-label">联系人：</label>
+												<input type="text" class="form-control" id="userName" />
+											</div>
+											<div class="form-group">
+												<label for="userNum" class="control-label">联系电话：</label>
+												<input type="text" class="form-control" id="userNum" />
+											</div>
+											<div class="form-group">
+												<label class="control-label">案件说明：</label>
+												<span class="btn-group"><input type="file" multiple  id="userFile"></span>
+											</div>
+											<textarea cols="100" rows="10" wrap="hard">
+									
+								            </textarea>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary" data-dismiss="modal" value="提交案件">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</li>
+					<hr />
+
+					<li id="SsBox">
+						<span data-toggle="modal" data-target="#Myupload5">
+							<a class="fa fa-asl-interpreting fa-4x"></a>
+							<a>诉讼担保保险</a></span>
+						<div class="modal animated fadeIn" id="Myupload5">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header" style="background-color:#3B97D6;border-top-left-radius:5px;border-top-right-radius:5px;">
+										<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				                </button>
+										<h4 class="modal-title text-center" id="myModalLabel">诉讼担保保险</h4>
+									</div>
+
+									<form>
+										<div class="modal-body">
+											<article class="fql_banner h300">
+												<div class="fql_container">
+													<img class="img_item" id="img" src="img/1f507848abd9237deba37dc9079bba68.jpg"  />
+													<img class="img_item" src="img/feed/image2.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image3.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image4.jpg" alt="图片不存在" />
+													<img class="img_item" src="img/feed/image5.jpg" alt="图片不存在" />
+												</div>
+
+											</article>
+											<div>
+												<h4 class="text-left"><strong>简介:</strong></h4>
+												<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它;  ——爱因斯坦</div>
+											</div>
+											<hr />
+											<div class="professor">
+												<h4 class="text-left"><strong>专家库:</strong></h4>
+												<br />
+												<div class="professor_imgKu">
+													<span><img src="img/professor/pro01.png" title="刘律师"/></span>
+													<span><img src="img/professor/pro02.png" title="李律师"/></span>
+													<span><img src="img/professor/pro03.png" title="张律师"/></span>
+													<span><img src="img/professor/pro04.png" title="王律师"/></span>
+													<span><img src="img/professor/pro03.png" title="陈律师"/></span>
+													<span><img src="img/professor/pro01.png" title="方律师"/></span>
+												
+												</div>
+												<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>
+											</div>
+											<hr />
+											<div id="" class="text-center">
+												<h4>合作单位：河南司法辅助人咨询中心</h4>
+												<div style="text-indent: 2em;">
+													<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
+												</div>
+											</div>
+											<hr />
+											<div class="form-group">
+												<label for="name" class="control-label">案件题目：</label>
+												<input type="text" class="form-control" id="name" />
+											</div>
+											<div class="form-group">
+												<label for="userName" class="control-label">联系人：</label>
+												<input type="text" class="form-control" id="userName" />
+											</div>
+											<div class="form-group">
+												<label for="userNum" class="control-label">联系电话：</label>
+												<input type="text" class="form-control" id="userNum" />
+											</div>
+											<div class="form-group">
+												<label class="control-label">案件说明：</label>
+												<span class="btn-group"><input type="file" multiple  id="userFile"></span>
+											</div>
+											<textarea cols="100" rows="10" wrap="hard">
+									
+								            </textarea>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary" data-dismiss="modal" value="提交案件">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</li>
+					<hr/>
+				</ol>
+
+				<br />
+
+				
+
+			</article>
+
+			
+
+			
+		</div>
+		
+	</body>
+
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/fql_lb.js"></script>
+	<script>
+		//$(":file").filestyle();
+		var thisLeft=400;
+	
+		$('.modal').modal({ backdrop: 'static', show: false });
+		$(".pro_btn").click(function() {
+			$(".professor_imgKu").animate({
+				left:-thisLeft,
+			}, 1000)
+		})
+	</script>
+
+</html>

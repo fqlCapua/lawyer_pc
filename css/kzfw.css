@@ -1,0 +1,65 @@
+.container{
+	border-bottom: none;
+}
+/*专家库*/
+.professor_imgKu{
+	position: absolute;
+	top:20;
+	width:10000px;
+	overflow: hidden;
+	height:90px;
+	text-indent:2em;
+	
+}
+.professor{
+	width: 100%;
+	overflow: hidden;
+	height:180px;
+	position: relative;
+}
+.professor_imgKu span{
+	text-indent: 0;
+	width:85px;
+	text-align: center;
+	display: inline-block;
+	
+}
+.pro_btn{
+	position:absolute;
+	top:60px;
+	right:0;
+	z-index:10;
+	height:80px;
+	display:inline-block;
+	line-height:80px;
+}
+.professor_imgKu span img{
+	width:80%;
+	border-radius:50%;
+}
+.LzBox .fa{
+	width:80px;
+	height:70px;
+	
+}
+/*.LzBox{
+	display: flex;
+}
+.LzBox li{
+	text-align: center;
+	width: 25%;
+}
+.LzBox li span{
+	text-align: center;
+}
+.LzBox li span a{
+	margin:0 auto;
+	text-align: center;
+	display: block;
+}*/
+@media only screen and (max-width: 640px) {
+ .professor{
+	height:140px;
+	position: relative;
+}
+}

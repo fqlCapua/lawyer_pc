@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>附近律所</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="img/home/logo-s.png">
+		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/flzx.css" />
+	    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	    <script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/md5.js" ></script>
+			
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+      <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+      <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   <![endif]-->
+	</head>
+
+	<body>
+          	<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
+					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
+          	</span>
+		<div class="logo">
+			<div>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+				       <span class="login pull-right">
+							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size: 1.1em;">注册</a>
+				       </span>
+				       <span class="login1 pull-right">
+							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
+				    </span>
+				    <span class="pull-right Ylogin hide">
+				          <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;font-size:1.2em;font-weight: bold;">
+								   <span class="fa fa-user-circle-o"></span>
+				                 <b>User</b>已登录
+				           </a>
+				           <a id="clearUser" class="btn  btn-primary"  style="height:40px;font-size:1.2em;font-weight: bold;">
+								 <b>注销</b>
+				           </a>
+				     </span>
+
+			</div>
+			<!--
+	作者：fql
+	时间：2017-03-07
+	描述：登录弹窗
+-->
+			<div class="modal fade" id="myLogin">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content" id="app">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">登录界面</h4>
+						</div>
+						<form @submit.prevent="submit">
+							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="userID" class="control-label">请输入用户名：</label>
+									<input type="text" class="form-control" id="userID" v-model="user.username" required/>
+								</div>
+								<div class="form-group">
+									<label class="control-label">请输入密码：</label>
+									<input type="password" class="form-control" id="userPwd" v-model="user.password" required/>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
+								<div class="btn-group">
+									<button class="btn btn-default">
+										<span class="fa fa-wechat info" style="color:#449D44;"></span>微信登录
+									</button>
+								</div>
+
+								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：fql
+            	时间：2017-03-07
+            	描述：注册弹窗
+            	  -->
+			<div class="modal fade" id="myRegs">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
+						</div>
+						<form>
+							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="j_phone" class="control-label">手机号：</label>
+									<input type="text"  class="form-control phone" id="j_phone" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPhone" class="control-label">验证码：</label>
+									<div class="input-group">
+										<input type="text"  class="form-control" placeholder="" />
+										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">请输入您的密码：</label>
+									<input type="password" class="form-control" id="userPWD" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">请再次输入你的密码：</label>
+									<input type="password" class="form-control" id="userPWD2" required/>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label">你的身份：</label>
+									<select class="custom-select-sm form-control">
+										<option>主任律师</option>
+										<option>正式律师</option>
+										<option>实习律师</option>
+										<option>律所内勤</option>
+										<option>法律工作者</option>
+										<option>当事人</option>
+									</select>
+								</div>
+								<div class="form-check">
+									<input type="checkbox" />
+									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
+
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " data-dismiss="modal" value="注册">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- header -->
+		<div class="container">
+			<div class="header-bottom">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="top-menu">
+						<ul class="header_nav">
+						<li>
+							<a class="home" href="home.html">首页</a>
+						</li>
+						<li>
+							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+						</li>
+						<li>
+							<a class="FaLvFG" href="home.html#FLFG">法律法规</a>
+						</li>
+						<li>
+							<a class="AJGL" >案件管理</a>
+						</li>
+						<li>
+							<a class="KZFW" target="_blank" href="KZFW.html">扩展服务</a>
+						</li>
+						<li>
+							<a href="home.html#news">新闻公告</a>
+						</li>
+						<li >
+							<a class="FJLS"  href="javascript:void(0)">附近律所</a>
+						</li>
+
+						<li>
+							<a href="Abou.html" target="_blank">关于我们</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<!--
+            	作者：13523450460@sina.cn
+            	时间：2017-03-30
+            	描述：内容开始
+            -->
+            <article>
+            	<ol id="content">
+					<li class="blog">
+						<section class="userMsg">
+							<div class="blog_id hide">1</div>
+							<div class="user_header_img"><img src="img/professor/pro01.png" /></div>
+							<div class="user_name">执法</div>
+						</section>
+						<section class="userMsg2">
+							<div class="blog_img"></div>
+							<div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁
+							</div>
+						</section>
+						<section class="userMsg3">
+							<div class="blog_create_time text-muted">2017-03-30</div>
+							<div class="like_num fa fa-thumbs-o-up">2</div>
+							<div class="is_like hide">0</div>
+							<div class="comment_num fa fa-commenting-o">2</div>
+						</section>
+
+					</li>
+
+				</ol>
+            </article>
+
+	
+		</div>
+	</body>
+<script type="text/javascript" src="js/layer.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/index.js" ></script>
+     <script>
+		//$(":file").filestyle();
+		$('.modal').modal({ backdrop: 'static', show: false });
+	</script>
+
+</html>

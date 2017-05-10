@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>当事人案件管理</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="img/home/logo-s.png">
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/AJGL.css" />
+		<link rel="stylesheet" href="css/fileinput.min.css" />
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/getSession.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/fileinput.min.js"></script>
+
+		<script type="text/javascript" src="js/layer.js"></script>
+	</head>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+ <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+ <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+	</head>
+
+	<body>
+
+		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
+					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
+		<div class="logo">
+			<div id="app">
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+				<span class="pull-right Ylogin">
+				           <a class="btn  btn-primary"  style="text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+								   <span class="fa fa-user-circle-o"></span>
+				<b>User</b>已登录
+				</a>
+
+				</span>
+
+			</div>
+
+		</div>
+		<!-- header -->
+		<div class="container">
+			<div class="header-bottom">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="top-menu">
+					<ul class="header_nav">
+						<li>
+							<a class="home" href="home.html">首页</a>
+						</li>
+						<li>
+							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+						</li>
+						<li>
+							<a class="AJGL">案件管理</a>
+						</li>
+						<li>
+							<a class="KZFW" href="KZFW.html">扩展服务</a>
+						</li>
+						<li>
+							<a href="home.html#news">新闻公告</a>
+						</li>
+						<li>
+							<a class="FJLS" href="FJLS.html">附近律所</a>
+						</li>
+
+						<li>
+							<a href="Abou.html" target="_blank">关于我们</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+			<article style="width: 90%;margin:40px auto;">
+				<div style="border-bottom:1px solid #EEEEEE;padding:0 0 20px 0" class="text-danger"><b>提示：</b> 某某诉某某伤害案定于2017年3月10日某某法院第*法庭开庭。</div>
+
+				<section>
+					<ul class="AJBox" id='style-7'>
+						<!--<li style="" class="caseSingle">
+							  <div class="case_tit show_tit">张三起诉李四案</div>
+							  <div class="case_id">8</div>
+							  <div class="case_uid">71</div>
+								<div class="case_reason">1</div>
+								<div class="case_process">3</div>
+								<div class="case_ctime">1489396344</div>
+								<div class="case_type">1</div>
+								<div class="case_status">1</div>
+						
+							<div class="userMSG">
+								<div class="AJName">张三起诉李四案</div>
+								<div class="userName">张三</div>
+								<div class="tel">13727829121</div>
+								<div class="userByuser">0</div>
+								<div class="thingType">3</div>
+								<div class="regTime">1490059507</div>
+							</div>
+						</li>-->
+					</ul>
+				</section>
+
+				<!--
+                        	作者：offline
+                        	时间：2017-03-10
+                        	描述：登记模块
+                        -->
+				<article class="show_cont">
+					<div class="modal fade " id="myCaseDetail">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+		 					               <span>&times;</span>
+		 				           </button>
+									<h4 class="modal-title" id="myModalLabel">案件详情</h4>
+								</div>
+								<form>
+									<div class="modal-body">
+										<div class="form-group ">
+											<label class="control-label">姓名：</label>
+											<div class="form-control-static" id="case_uname"></div>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label">电话：</label>
+											<div id="case_tel" class="form-control-static"></div>
+										</div>
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>当事人身份：</label>
+											<select id="case_utype" class="custom-select form-control">
+												<option>原告</option>
+												<option>被告</option>
+												<option>第三人</option>
+												<option>申请人</option>
+												<option>被申请人</option>
+												<option>上诉人</option>
+												<option>被上诉人</option>
+												<option>其他</option>
+											</select>
+										</div>
+                                       <div class="form-group">
+											<label class="control-label">案件类型：</label>
+											<select id="case_type" class="custom-select form-control">
+												<option>民事案件</option>
+												<option>刑事案件</option>
+												<option>行政案件</option>
+												<option>法律咨询</option>
+												<option>仲裁案件</option>、
+												<option>执行案件</option>
+											</select>
+										</div>
+										<!--<div class="form-group">
+											<label  class="control-label">案件名称：</label>
+											<input type="text" class="form-control" id="case_title" placeholder="单行输入" value="" />
+										</div>-->
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>案件诉由：</label>
+											<select id="case_reason" class="custom-select form-control">
+												<option>合同纠纷</option>
+												<option>侵权案件</option>
+												<option>交通肇事</option>
+												<option>医疗纠纷</option>
+												<option>婚姻家庭</option>、
+												<option>其他</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label><a class="text-danger"></a>情况音频(mp3)：</label>
+											<div class="form-control-file">
+												<audio id="case_mp3" controls  src="">
+											<div>
+												<a class="text-danger">*</a><b>情况文字说明：</b></div>
+											<textarea class="form-control"  col="10" rows="3" id="case_explain" style="resize:none;"></textarea>
+										</div>
+										<div class="form-group">
+											<label><a class="text-danger">*</a>初步证据材料(图片jpg/png/jpeg)：</label>
+											<div class="form-control-file layer-photos-demo">
+												<img id="case_img" src="" width="150" height="150" />
+											</div>
+											<!--<input id="file-2" type="file" accept="image/png,image/jpeg">-->
+										</div>
+										<div class="form-group">
+											<label>
+                                               	   <input  type="checkbox" id="to_bbs">
+                                               </label>
+
+											<label><b>同步到论坛：</b></label>
+
+										</div>
+
+
+                                  </div>
+										<div class="modal-footer">
+											<input id="save" type="button" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " data-dismiss="modal" value="提交保存">
+										</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+                  </div>
+					<br />
+
+					
+					<div class="modal fade" id="myDJ">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+		 					          <span>&times;</span>
+		 				      </button>
+									<h4 class="modal-title" id="myModalLabel">登记案件</h4>
+								</div>
+								<form role="form">
+									<div class="modal-body">
+
+										<!--<div class="form-group">
+											<label class="control-label">接待记录：</label><input class="filestyle" id="djbtn" type="file" multiple/>
+											<br />
+											<textarea type="text" cols="30" rows="4" wrap="hard" class="form-control" id="aqsm" placeholder="案情说明"></textarea>
+										</div>-->
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>真实姓名：</label>
+											<input id="djcase_uname" type="text" class="form-control" />
+										</div>
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>联系电话：</label>
+											<div class="input-group">
+												<input id="djcase_tel" type="text" class="form-control" placeholder="" />
+												<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>案件名称：</label>
+											<input id="djcase_name" type="text" class="form-control" />
+										</div>
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>当事人身份：</label>
+											<select id="djcase_utype" class="custom-select form-control">
+												<option>原告</option>
+												<option>被告</option>
+												<option>第三人</option>
+												<option>申请人</option>
+												<option>被申请人</option>
+												<option>上诉人</option>
+												<option>被上诉人</option>
+												<option>其他</option>
+											</select>
+										</div>
+
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>案件类型：</label>
+											<select id="djcase_type" class="custom-select form-control">
+												<option>民事案件</option>
+												<option>刑事案件</option>
+												<option>行政案件</option>
+												<option>法律咨询</option>
+												<option>仲裁案件</option>、
+												<option>执行案件</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label class="control-label"><a class="text-danger"></a>案件诉由：</label>
+											<select id="djcase_reason" class="custom-select form-control">
+												<option>合同纠纷</option>
+												<option>侵权案件</option>
+												<option>交通肇事</option>
+												<option>医疗纠纷</option>
+												<option>婚姻家庭</option>
+												<option>其他</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label><a class="text-danger"></a>情况音频(mp3)：</label>
+											<input  id="file-4" type="file" >
+										</div>
+										<div class="form-group">
+											<div>
+												<a class="text-danger">*</a><b>情况文字说明：</b></div>
+											<textarea class="form-control  case_explain" cols="10" rows="3" id="case_explain" style="resize:none;"></textarea>
+										</div>
+										<div class="form-group">
+											<label><a class="text-danger">*</a>初步证据材料(图片jpg/png/jpeg)：</label>
+											<input id="file-3" type="file" accept="image/png,image/jpeg">
+										</div>
+										<div class="form-group">
+											<label>
+                                               	   <input  type="checkbox" id="to_bbs">
+                                               </label>
+
+											<label><b>同步到论坛：</b></label>
+
+										</div>
+
+									</div>
+									<div class="modal-footer">
+										<input type="button" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--登记案件模态框结束-->
+
+				
+				
+				<div>
+						<select id="SortBox" onchange="" class="form-control">
+							<option name='SortBytime'>按时间排序</option>
+							<option name='SortBytype'>按类型排序</option>
+							<option name='SortByprocess'>按进度排序</option>
+							<option name='SortBytag'>按身份排序</option>
+							<option name='SortByreason'>按诉由排序</option>
+
+						</select>
+						<!--<span class="pagination">
+                           <li class="prevPage"><a href="#">上一页</a></li>
+                           <li class="nextPage"><a href="#">下一页</a></li>
+                       </span>-->
+						<span class="pull-right pagination">
+					    			<input type="button" id="case_sync" style="width:130px;"  class="btn btn-primary" value="同步到手机"/>
+					    			<input type="button" style="font-size:14px;font-weight: normal;color:#FFFFFF;" data-toggle="modal"  data-target="#myDJ" class="btn  btn-info"  value="登记案件">
+					   </span>
+
+					</div>
+				</article>
+
+		</div>
+
+	</body>
+
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/casefile_user.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script>
+		$(".fa-search-plus").click(function() {
+			$(this).css("border", "20px solid red")
+		})
+		$("#file-2").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary btn-lg",
+			fileType: "image",
+			previewFileIcon: "<i class='fa fa-file-image-o fa-lg'></i>",
+		});
+		$("#file-1").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary btn-lg",
+			fileType: "audio",
+			previewFileIcon: "<i class='fa fa-microphone fa-lg'></i>",
+		});
+		$("#file-3").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary btn-lg",
+			fileType: "image",
+			previewFileIcon: "<i class='fa fa-file-image-o fa-lg'></i>",
+		});
+		
+		$("#file-4").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary btn-lg",
+			fileType: "audio",
+			previewFileIcon: "<i class='fa fa-microphone fa-lg'></i>",
+		});
+	</script>
+
+</html>
