@@ -22,7 +22,7 @@
 	width:85px;
 	text-align: center;
 	display: inline-block;
-	
+	border: 1px solid red;
 }
 .pro_btn{
 	position:absolute;
@@ -33,9 +33,14 @@
 	display:inline-block;
 	line-height:80px;
 }
+.professor_imgKu span{
+	
+	
+}
 .professor_imgKu span img{
 	width:80%;
 	border-radius:50%;
+	border:2px solid #BABABA;
 }
 .LzBox .fa{
 	width:80px;
@@ -48,15 +53,10 @@
 .LzBox li{
 	text-align: center;
 	width: 25%;
-}
-.LzBox li span{
-	text-align: center;
-}
-.LzBox li span a{
-	margin:0 auto;
-	text-align: center;
-	display: block;
 }*/
+
+	border: 1px solid red;
+
 @media only screen and (max-width: 640px) {
  .professor{
 	height:140px;
