@@ -3,26 +3,24 @@
 }
 /*专家库*/
 .professor_imgKu{
-	position: absolute;
-	top:20;
-	width:10000px;
-	overflow: hidden;
-	height:90px;
-	text-indent:2em;
 	
+	display: flex;
+	width:200%;
+
 }
 .professor{
 	width: 100%;
 	overflow: hidden;
-	height:180px;
-	position: relative;
+	
+	/*position:relative;*/
 }
 .professor_imgKu span{
-	text-indent: 0;
-	width:85px;
-	text-align: center;
+	width:110px;
+	height:5.7em;
+	text-align:center;
 	display: inline-block;
-	border: 1px solid red;
+	
+	
 }
 .pro_btn{
 	position:absolute;
@@ -38,7 +36,7 @@
 	
 }
 .professor_imgKu span img{
-	width:80%;
+	width:90%;
 	border-radius:50%;
 	border:2px solid #BABABA;
 }
