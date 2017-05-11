@@ -134,46 +134,7 @@
 
 
 
-   
-// function changePwd(){
-// 		var pwd = $("#NewPWD").val();
-//	    pwd2 = $("#PWDAgain").val();
-//	    phone=$("#Phone").val()
-//	  		var index = layer.load(0, {
-//				shade: [0.6, '#000'] //0.1透明度的白色背景
-//			});
-//	    $.ajax({
-//				type: 'POST',
-//				url: 'https://www.ls186.cn/api/public/law/',
-//				data:{
-//					service:"User.change_password",
-//					time:cur_timestamp,
-//					token:md_token,
-//					phone:phone,
-//					password:pwd2
-//				},
-//				success: function(data) {
-//					layer.close(index);
-//					if(data.ret == 200) {
-//						if(data.data==0){
-//							layer.msg('密码未修改', {
-//							icon: 1
-//						       });
-//						}
-//						//$(".cover").hide();
-//						layer.msg('修改成功', {icon: 1});
-//    
-//					} else {
-//
-//						layer.msg("修改失败"+data.msg, {icon: 2})
-//						
-//					     }
-//				},
-//				error:function(data){
-//					layer.msg(data);
-//				}
-//			});
-// }
+
    
   var cur_timestamp = Date.parse(new Date()) / 1000;
 	  md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
@@ -189,11 +150,9 @@ function settime() {
     	$("#get_code").attr("disabled", true); 
     	$("#get_code").val(countdown +"s后重新发送"); 
         countdown-=1; 
-        //console.log(countdown);
-        
-        
+    
     } 
-   // setTimeout("settime()",1000) 
+
 }
 function change_pwd(phone,pwd){
 	
