@@ -141,7 +141,7 @@
         
 	var countdown=60;
 function settime() { 
-	//$("#get_code").val(countdown +"s后重新发送");
+	
     if (countdown==0) { 
      
        $("#get_code").val("免费获取验证码"); 
@@ -150,7 +150,6 @@ function settime() {
     	$("#get_code").attr("disabled", true); 
     	$("#get_code").val(countdown +"s后重新发送"); 
         countdown-=1; 
-    
     } 
 
 }
