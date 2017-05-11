@@ -61,7 +61,7 @@ function toDesktop(sUrl, sName) {
 
 
 
-/*侧边工具栏*/
+
 
 function getVerifyCode(options) {
 
@@ -232,8 +232,7 @@ $("#clearUser").click(function() {
 
 /*写入存储*/
 $(".AJGL").click(function() {
-
-	if(ls.getItem('law_sign')) {
+ if(ls.getItem('law_sign')) {
 		if(getSession(2) == 6) {
 			window.location.href = 'AJGL_user.html';
 		} else {
