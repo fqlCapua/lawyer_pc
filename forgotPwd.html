@@ -162,7 +162,6 @@ function change_pwd(phone,pwd){
 			password:pwd
 		},
 		success:function(data){
-			clearInterval(timer1);
 			$("#get_code").val("免费获取验证码"); 
 			layer.close(index);
 			if(data.ret==200){
@@ -215,7 +214,7 @@ var ttt=$("#get_code").on("click",function(){
 	var phone=$("#Phone").val();
 	var reg=/^1[3|4|5|7|8][0-9]\d{8}$/;
 	if(phone!=""&&reg.test(phone)){
- var timer1= setInterval("settime()",1000);
+ var timer1=setInterval("settime()",1000);
    
      var index=layer.load(2,{shade:[0.1,'green']});
     $.ajax({
@@ -239,7 +238,7 @@ var ttt=$("#get_code").on("click",function(){
 				      password=$("#PwdAgain").val();
 	             if(pwdAgain()&&pwdTest()){
 	                if(PhoneCode!=""&&PCCode==PhoneCode){
-	                	 
+	                	  clearInterval(timer1);
 	                 	 // layer.msg("验证码正确");
 	                       	   change_pwd(phone,password);
 	                       	   
