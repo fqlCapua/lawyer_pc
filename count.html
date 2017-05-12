@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>新页面</title>
+		<title>计算工具</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
@@ -22,13 +22,68 @@
    <![endif]-->
     <style>
     	.detailCopy tr td{
-    		padding-left:10px;
+    		padding:0 10px;
     	}
     	tr{
     		height:50px;
     		line-height: 50px;
     		
     	}
+    	.countBox {
+    		padding-top: 20px;
+    	   
+    	}
+    	.countBox div{
+    		margin:10px  0;
+    		padding:0 10px;
+    		
+    		width:24.7%;
+    		border-radius:5px;
+    		display: inline-block;
+    		height:225px;
+    		
+    	}
+    	
+    	
+    	.countBox div span{
+    		width:100%;
+    		background-color:rgba(51,122,183,0.8);
+    		display: inline-block;
+    		border:1px solid #BABABA;
+    		color: #FFFFFF;
+    		
+    		border-radius:10px;
+    		padding:2px 15px;
+    		box-shadow:5px 5px 10px  #BABABA;
+    	}
+    /*	@media only screen and (max-width:600px ) {
+    	 .countBox{
+    		padding-top:20px;
+    		
+    	}
+      
+     	.countBox div{
+    		padding:15px 10px;
+    		margin:0 auto;
+    	    border-radius:5px;
+    		display: block;
+    		width:90%;
+    	}
+    	}*/
+    	/*@media only screen and (min-width:600px )  and (min-width:800px ){
+    	.countBox{
+    		padding-top:20px;
+    		margin-bottom: 20px;
+    	}
+      
+     	.countBox div{
+    		padding:15px 10px;
+    		margin:0 auto;
+    	    border-radius:5px;
+    		display: block;
+    		width:90%;
+    	}
+    	}*/
     </style>
 	</head>
 
@@ -51,13 +106,14 @@
 							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
 				</span>
 				<span class="pull-right Ylogin hide">
-				          <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;font-size:1.2em;font-weight: bold;">
+				           <a id="YloginBtn" class="btn  btn-primary"  style="height:40px; line-height:20px;font-size:1.2em;font-weight: bold;">
 								   <span class="fa fa-user-circle-o"></span>
-				                 <b>User</b>已登录
-				           </a>
-				           <a id="clearUser" class="btn  btn-primary"  style="height:40px;font-size:1.2em;font-weight: bold;">
-								 <b>注销</b>
-				           </a>
+				                   <b>User</b>已登录
+				          </a>
+				<a id="clearUser" class="btn  btn-primary" style="height:40px;font-size:1.2em;font-weight: bold;">
+					<b>注销</b>
+				</a>
+
 				</span>
 
 
@@ -185,7 +241,7 @@
 						</li>
 						
 						<li>
-							<a class="AJGL" target="_blank">案件管理</a>
+							<a class="AJGL" >案件管理</a>
 						</li>
 						<li>
 							<a class="KZFW" target="_blank" href="KZFW.html">扩展服务</a>
@@ -215,106 +271,58 @@
 								<!---->
 								<tr>
 									<td>
-										<table width="100%" >
-											<form name="formsuan">
-												<tr class="form-inline">
-													<td>输入案件诉讼标的：
+										<section width="100%" >
+											<form class="countBox" name="formsuan">
+												<div class="">
+													<span class="">诉讼标的：
 														<input type="text" class="form-control" name="textfieldshurushou" />&nbsp;
-														<input type="button" class="btn btn-info" name="buttonshou" value="计算诉讼费用" onclick="shou()" />&nbsp;&rArr;
-														计算结果&nbsp;
+														<input type="button" class="btn btn-info btn-sm" name="buttonshou" value="计算" onclick="shou()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
 														<input type="text" class="form-control" name="textfieldsuanshou" />&nbsp;
-													    <input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除">
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入案件保全标的：
+													  
+													</span>
+												</div>
+												<div class="">
+													<span>保全费标的：
 														<input class="form-control" type="text" name="textfieldshurubao" />&nbsp;
-														<input type="button" class="btn btn-info" name="buttonshou" value="计算保全费用" onclick="bao()" />&nbsp;&rArr;
-														计算结果&nbsp;
-														    <input class="form-control" type="text" name="textfieldsuanbao" />&nbsp;
-															<input  class='btn1 btn btn-primary' type="reset" name="Submit" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入案件执行标的：
+														<input type="button" class="btn btn-info btn-sm" name="buttonshou" value="计算" onclick="bao()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
+														<input class="form-control" type="text" name="textfieldsuanbao" />&nbsp;
+															
+													</span>
+												</div>
+												<div class="">
+													<span>执行费标的：
 														<input class="form-control" type="text" name="textfieldshuruzhi" />&nbsp;
-														<input class="btn btn-info" type="button" name="buttonshou" value="计算执行费用" onclick="zhi()" />&nbsp;&rArr;
-														计算结果&nbsp;
+														<input class="btn btn-info btn-sm" type="button" name="buttonshou" value="计算" onclick="zhi()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
 														<input class="form-control" type="text" name="textfieldsuanzhi" />&nbsp;
-														<input class='btn1 btn btn-primary' name="Submit" type="reset" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入离婚案件标的：
+													
+													</span>
+												</div>
+												<div class="">
+													<span>离婚标的：
 														<input class="form-control"  type="text" name="textfieldshurulihun" />&nbsp;
-														<input class="btn btn-info" type="button" name="buttonshou" value="计算离婚费用" onclick="lihun()" />&nbsp;&rArr;
-													  计算结果:&nbsp;
+														<input class="btn btn-info btn-sm" type="button" name="buttonshou" value="计算" onclick="lihun()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
 													  <input class="form-control" type="text" name="textfieldsuanlihun" />&nbsp;
-													  <input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入人格权纠纷标的：
+													
+													</span>
+												</div>
+												<div class="">
+													<span>人格权纠纷标的：
 														<input class="form-control" type="text" name="textfieldshururenge" />&nbsp;
-														<input class="btn btn-info"  type="button" name="buttonshou" value="计算人格权纠纷费用" onclick="renge()"/>&nbsp;&rArr;
-														计算结果&nbsp;
+														<input class="btn btn-info btn-sm"  type="button" name="buttonshou" value="计算" onclick="renge()"/>
 														<input class="form-control" type="text" name="textfieldsuanrenge" />&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除"/>
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td class="text-center text-warning" style="font-size: 22px; line-height: 34px;border-bottom: 1px solid #BABABA;padding:20px;"><b>财产案件<a>反算</a>诉讼请求数额（单位为元，保留两位小数）</b></td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入案件诉讼费用：
-														<input class="form-control" type="text" name="textfieldshurushouc" />&nbsp;
-														<input class="btn btn-info" type="button" name="buttonshou" value="反算诉讼标的" onclick="shouc()" />&nbsp;&rArr;
-														计算结果&nbsp;
-														<input class="form-control" type="text" name="textfieldfanshouc" >&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除">
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入案件保全费用：
-														  <input class="form-control" type="text" name="textfieldshurubaoc" />&nbsp;
-														  <input class="btn btn-info"  type="button" name="buttonshou" value="反算保全标的" onclick="baoc()"/>&nbsp;&rArr;
-													计算结果&nbsp;
-													    <input class="form-control" type="text" name="textfieldfanbaoc" />&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入案件执行费用：
-														<input  class="form-control" type="text" name="textfieldshuruzhic" />&nbsp;
-														<input  class="btn btn-info"  type="button" name="buttonshou" value="反算执行标的" onclick="zhic()" />&nbsp;&rArr;
-														计算结果&nbsp;
-														<input class="form-control" type="text" name="textfieldfanzhic" />&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入离婚案件费用：
-														<input class="form-control" type="text" name="textfieldshurulihunc" />&nbsp;
-														<input class="btn btn-info"  type="button" name="buttonshou" value="反算离婚标的" onclick="lihunc()" />&nbsp;&rArr;
-														计算结果&nbsp;
-														<input class="form-control" type="text" name="textfieldfanlihunc" />&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除"/>
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td>输入人格权纠纷费用：
-														<input class="form-control" type="text" name="textfieldshururengec" />&nbsp;
-														<input class="btn btn-info"  type="button" name="buttonshou" value="反算人格权纠纷标的" onclick="rengec()" />&nbsp;&rArr;
-														计算结果&nbsp;
-														<input class="form-control" type="text" name="textfieldfanrengec" />&nbsp;
-														<input class='btn1 btn btn-primary' type="reset" name="Submit" value="清除" />
-													</td>
-												</tr>
-												<tr class="form-inline">
-													<td class="text-center text-warning" style="font-size: 22px; line-height: 34px;"><b>非财产案件诉讼费用</b></td>
-												</tr>
-												<tr>
-													<td>
+													</span>
+												</div>
+										      
+											</form>
+													<div class="">
+													<div class="text-center text-warning" style="font-size: 22px; line-height: 34px;"><b>非财产案件诉讼费用</b></div>
+												</div>
+												<div>
+													<span>
 														<table class="table table-success">
 															<tr class="success">
 																<td>一、非财产案件按照下列标准交纳：</td>
@@ -350,13 +358,13 @@
 																<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 															</tr>
 														</table>
-														<td>
-												</tr>
-												<tr>
-													<td class="text-center text-warning" style="font-size: 22px; line-height: 34px;"><b>申请费用</b></td>
-												</tr>
-												<tr>
-													<td>
+														</span>
+												</div>
+												<div>
+													<div class="text-center text-warning" style="font-size: 22px; line-height: 34px;"><b>申请费用</b></div>
+												</div>
+												<div>
+													<span>
 														<table class="table table-hover">
 															<tr class="success">
 																<td style="line-height:16px">一、申请执行人民法院发生法律效力的判决、裁定、调解书，仲裁机构依法作出的裁决和调解书，公证机关依法赋予强制执行效力的<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;债权文书，申请承认和执行外国法院判决、裁定以及国外仲裁机构裁决，没有执行金额或者价额的，每件交纳50元至500元。
@@ -393,18 +401,17 @@
 																<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.申请共同海损理算的，每件交纳1000元。</td>
 															</tr>
 														</table>
-													</td>
-												</tr>
-											</form>
-										</table>
-										</td>
+													</span>
+												</div>
+										</section>
+									</td>
 								</tr>
 							</table>
 
-							</td>
+							</span>
 					</tr>
 				</table>
-
+                
 			</article>
 
 		
@@ -414,6 +421,7 @@
 	</body>
 
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/getSession.js" ></script>
 	<script type="text/javascript" src="js/index.js"></script>
 
 	<script>
