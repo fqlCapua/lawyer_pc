@@ -129,6 +129,7 @@ $(document).on("click", "#del_case", function() {
 	var del_case_id = $(this).parent().parent().siblings(".case_id");
 	
 	layer.confirm('确定要删除么？',{btn:['是','否'],time:1500},function(){
+		var index=layer.load(1,{shade:[0.1,'yellow']});
        
 		$.ajax({
 				type: "post",
@@ -140,6 +141,7 @@ $(document).on("click", "#del_case", function() {
 					id: del_case_id.html()
 				},
 				success: function(data) {
+					layer.close(index);
 					if(data.ret == 200) {
 				      layer.msg("已删除！", {
 							icon: 1,
