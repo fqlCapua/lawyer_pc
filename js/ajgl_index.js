@@ -13,6 +13,7 @@ var ruleName = 'type';
 var pageNum=1;
 var index = layer.load(2, {
 	shade: [0.1, '#337AB7'],
+	offset:['50%','50%']
 	
 });
 
