@@ -67,40 +67,58 @@ $(function() {
 			
 	});
 /*表单验证*/
-//			function TestBlank(name) {
-//				var flag;
-//				if($(name).val() != "") {
-//					flag = true;
-//				} else {
-//					layer.msg("不能为空", {
-//						time: 700
-//					});
-//					flag = false;
-//				}
-//				return flag;
-//			};
-//
-//			function PhoneTest(name) {
-//				var flag;
-//				testPwd = /^1[3|5|7|8]\d{9}$/;
-//				if(testPwd.test($(name).val()) && $(name).val() != "") {
-//					flag = true;
-//				} else {
-//					layer.msg("格式不正确", {
-//						time: 700
-//					});
-//					flag = false;
-//				}
-//				return flag;
-//			};
-//         function checkALl() {
-//               alert("OK")
-//			}
-        
+			function TestBlank(name) {
+				var flag;
+				if($(name).val() != "") {
+					flag = true;
+				} else {
+					
+					flag = false;
+
+				}
+				return flag;
+			};
+			
+			
+			
+
+			function TestPhone(name) {
+				var flag;
+				testPwd = /^1[3|5|7|8]\d{9}$/;
+				if(testPwd.test($(name).val()) && $(name).val() != "") {
+					flag = true;
+				} else {
+					layer.msg("手机格式不正确", {
+						time: 700
+					});
+					flag = false;
+				}
+				return flag;
+			};
+           
+        $("#userNum").blur(function(){
+        	if($(this).val()!=""){
+        		TestPhone($(this))
+        	}else{
+        		TestBlank($(this))
+        	}
+        	
+        	})
+        $("#userName").blur(function(){
+        	TestBlank($(this))
+        })
+          $("#case_explain").blur(function(){
+        	TestBlank($(this))
+        })
+            $("#name").blur(function(){
+        	TestBlank($(this))
+        })
 			/*提交论证*/
 
 			$("#submit_serviceBtn").on("click", function() {
+					if(TestBlank("#userName")&&TestBlank("#userNum")&&TestBlank("#name")&&TestBlank("#case_explain")&&TestPhone("#userNum")){
 					
+			
 						var index = layer.load(1, {
 							shade: [0.1, '#000']
 						});
@@ -121,7 +139,7 @@ $(function() {
 						formData.append("case_mp3", case_mp3);
 						formData.append("case_img", case_img);
 						formData.append("case_explain", case_explain);
-
+                      
 						$.ajax({
 							type: 'POST',
 							url: 'https://www.ls186.cn/api/public/law/',
@@ -142,7 +160,9 @@ $(function() {
 							},
 						});
 
-				
+					}else{
+						layer.msg("填写信息不正确");
+					}
 			})
 	
 
