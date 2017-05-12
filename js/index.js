@@ -297,9 +297,10 @@ new Vue({
 		submit: function() {
 
 			//加载层
-			var index = layer.load(0, {
-				shade: [0.6, '#000'] //0.1透明度的白色背景
-			});
+			var index = layer.load(1, {
+		  shade: [0.1, "#EEEEEE"],
+		 
+	     });
 			$("#myLogin").modal('hide')
 
 			// jquery ajax
@@ -308,7 +309,11 @@ new Vue({
 				url: 'https://www.ls186.cn/api/public/law/',
 				data: this.user,
 				success: function(data) {
+					layer.close(index);
 					if(data.ret == 200) {
+						 layer.msg('登录成功', {
+							icon: 1
+						});
 						var userlist = {
 							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag,
 
@@ -329,11 +334,9 @@ new Vue({
 							var carousel=$("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
      	                      $("#slider").html(carousel);
 						}
-						layer.close(index); // 关闭layer 加载层
+						 // 关闭layer 加载层
 						//$(".cover").hide();
-						layer.msg('登录成功', {
-							icon: 1
-						});
+						
 
 						$("#clearUser").show();
 
