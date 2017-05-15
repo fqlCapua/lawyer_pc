@@ -5,7 +5,7 @@
 .professor_imgKu{
 	display: flex;
 	width:200%;
-	height: 5em;
+	height:6em;
 
 }
 .professor{
@@ -32,7 +32,7 @@
 }
 
 .professor_imgKu span img{
-	height: 5em;
+	height:6em;
 	border-radius:50%;
 	border:2px solid #BABABA;
 }
@@ -48,9 +48,59 @@
 	text-align: center;
 	width: 25%;
 }*/
+.LzBox{
+	display: flex;
+	flex-wrap:wrap;
+}
+.LzBox li{
+	background-color:#92B8B1;
+    border:2px solid #EEEEEE;
+	width:25%;
+	text-align:center;
+	
+}
 
-	border: 1px solid red;
 
+.LzBox li:hover{
+  background: url(../img/btnBj.jpg);
+}
+.LzBox li dd{
+	width:70%;
+	margin:0 auto;
+	
+}
+.LzBox li dt{
+	line-height: 30px;
+	color: #F1F1F1;
+}
+#proBox dd{
+	background:url(../img/Service/proBox.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	height:10em;
+	
+}
+#FxproBox dd{
+	background:url(../img/Service/FxproBox.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	height: 10em;
+	
+}
+#FlBox dd{
+	background:url(../img/Service/FLBox.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	height: 10em;
+	
+}
+#YdplaceBox dd{
+	background:url(../img/Service/YdplaceBox.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	height: 10em;
+}
+#SsBox dd{
+	background:url(../img/Service/YdplaceBox.png) no-repeat 0 0;
+	background-size:100% 100%;
+	height: 10em;
+}
 @media only screen and (max-width: 640px) {
  .professor{
 	height:140px;
