@@ -315,7 +315,7 @@
                                  <div class="form-group">
 							  		<div>
 										<a class="text-danger">*</a><b>情况文字说明：</b></div>
-									<textarea class="form-control  case_explain" cols="10" rows="3" id="case_explain" style="resize:none;"></textarea>
+									   <textarea class="form-control  case_explain" cols="10" rows="3" id="case_explain" style="resize:none;"></textarea>
 								</div>
 								
 							</div>
@@ -339,21 +339,12 @@
 	<script type="text/javascript" src="js/getSession.js"></script>
 	<script>
 		//$(":file").filestyle();
-		var thisLeft = 400;
-
+	
 		$('.modal').modal({
 			backdrop: 'static',
 			show: false
 		});
-		$(".pro_btn").click(function() {
-			$(".professor_imgKu").animate({
-				left: -100,
-			}, 1000)
-			var left1 = $(".professor_imgKu").offset().left;
-
-			left1 -= 100;
-			$(".professor_imgKu").css("left", left1);
-		})
+		
 			$("#file-3").fileinput({
 			showUpload: false,
 			showCaption: false,

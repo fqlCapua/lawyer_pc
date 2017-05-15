@@ -318,12 +318,12 @@ new Vue({
 							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag,
 
 						};
-                     window.location.reload();
+                 setTimeout("ajaxreload()",1000);
 						//check user_type
 						if(data.data.user_tag == 6) {
 							$("#showBox_tit b").html("附近律所");
 							$("#showBox").children("iframe").attr("src", "visitor.html");
-							var time2 = window.setTimeout("reinitIframe()", 200);
+							var time2 = window.setTimeout("reinitIframe()",200);
 							var carousel=$("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
    	                            $("#slider").html(carousel);
    	                            
@@ -360,4 +360,9 @@ new Vue({
 	}
 })
 
-/*注册*/
+/*刷新*/
+function ajaxreload(){
+	window.location.reload();
+}
+	
+

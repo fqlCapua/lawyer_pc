@@ -93,11 +93,7 @@ $(".nextPage").click(function() {
 /*获取案件详情*/
 
 $(".AJBox").delegate("li .show_tit", "click", function() {
-	
-	
-	alert($(this).siblings(".case_id").html())//案件id
-	
-	
+	alert($(this).siblings(".case_id").html())//案件
 	var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
 	var case_id = $(this).siblings(".case_id").html();

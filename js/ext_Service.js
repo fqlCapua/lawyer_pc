@@ -1,18 +1,14 @@
 var pro_index = 0;
 
 function startPro() {
-	if(pro_index < 6) {
+	if(pro_index <window.innerWidth) {
 
-		pro_index += 1;
-		var lLength = -pro_index * 80 + 'px';
-		$(".professor_imgKu").animate({
-			marginLeft: lLength
-		}, 1000);
+		pro_index++;
+		var lLength = -pro_index  + 'px';
+		$(".professor_imgKu").css("margin-left",lLength);
 	} else {
 		pro_index = 0;
-		$(".professor_imgKu").animate({
-			marginLeft: 0
-		}, 0);
+		$(".professor_imgKu").css("margin-left",0);
 
 	}
 
@@ -36,15 +32,16 @@ $(function() {
 			if(data.ret == 200) {
 				var i = data.data.length;
 				//console.log(i);
-				setInterval("startPro()", 6000)
+		
 
 				var proList = data.data;
 				$.each(proList, function(i, ele) {
-					var singlePro = $("<span class='img_" + ele.user_id + "'><img id='pro' src='img/professor/pro01.png' alt='图片加载出错' title='" + ele.user_name + "," + ele.user_phone + "'/></span>")
+					var singlePro = $("<span class='img_" + ele.user_id + "'><img  src='img/professor/pro01.png' alt='图片加载出错' title='" + ele.user_name + " " + ele.user_phone + "'/></span>")
 					$(".professor_imgKu").append(singlePro);
 
 				})
-
+				
+	setInterval("startPro()",50)
 			} else {
 				layer.msg("加载出错");
 			}
@@ -66,6 +63,9 @@ $(function() {
 			/*专家轮播*/
 			
 	});
+	
+	
+	
 /*表单验证*/
 			function TestBlank(name) {
 				var flag;
@@ -150,7 +150,8 @@ $(function() {
 							success: function(data) {
 								layer.close(index); // 关闭layer 加载层
 								if(data.ret == 200) {
-									console.log(data.data);
+									layer.msg("提交论证成功");
+								//	console.log(data.data);
 									 $("input[type=text]").val("");
 							    	 $("textarea").val("");
 							   	     $("input[type=file]").attr("src","");
