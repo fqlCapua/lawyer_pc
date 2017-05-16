@@ -55,7 +55,7 @@
 .LzBox li{
 	background-color:#92B8B1;
     border:2px solid #EEEEEE;
-	width:25%;
+	width:20%;
 	text-align:center;
 	
 }
@@ -67,39 +67,39 @@
 .LzBox li dd{
 	width:70%;
 	margin:0 auto;
-	
+	height:10em;
 }
 .LzBox li dt{
-	line-height: 30px;
+	line-height:30px;
 	color: #F1F1F1;
 }
 #proBox dd{
 	background:url(../img/Service/proBox.png) no-repeat 0 0;
 	background-size: 100% 100%;
-	height:10em;
+	
 	
 }
 #FxproBox dd{
 	background:url(../img/Service/FxproBox.png) no-repeat 0 0;
 	background-size: 100% 100%;
-	height: 10em;
+	
 	
 }
 #FlBox dd{
 	background:url(../img/Service/FLBox.png) no-repeat 0 0;
 	background-size: 100% 100%;
-	height: 10em;
+	
 	
 }
 #YdplaceBox dd{
 	background:url(../img/Service/YdplaceBox.png) no-repeat 0 0;
 	background-size: 100% 100%;
-	height: 10em;
+	
 }
 #SsBox dd{
 	background:url(../img/Service/YdplaceBox.png) no-repeat 0 0;
 	background-size:100% 100%;
-	height: 10em;
+	
 }
 @media only screen and (max-width: 640px) {
  .professor{

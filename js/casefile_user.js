@@ -106,15 +106,7 @@ var index = layer.load(1, {
 
 })
 $("#case_img").on("click",function(){
-//layer.open({
-//type:1,
-//title:false,
-//closeBtn:0,
-//area:'200px',
-//skin: 'layui-layer-nobg', //没有背景色
-//shadeClose:true,
-//content:$('#case_img')
-//});
+
 
 layer.photos({
 	photos:'.layer-photos-demo',
@@ -169,45 +161,89 @@ $(document).on("click", "#del_case", function() {
 	})
 
 });
+/*发表新帖子*/
 
-//function imgUpload(id,i){
-//	var imgStr="";
-//	for (var j = 0; j < i; j++) {
-//	var cur_timestamp = Date.parse(new Date()) / 1000;
-//  var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
-//  var formData=new FormData();
-//	    formData.append("service","Index.upload_img");
-//	    formData.append("time",cur_timestamp);
-//      formData.append("token",md_token);
-//      formData.append("img",$(id).get(0).files[j]);
-//	$.ajax({
-//		type:"post",
-//		url:"https://www.ls186.cn/api/public/law/",
-//		data:formData,
-//		success:function(data){
-//			if(data.ret==200){
-//				layer.alert("图片上传完成");
-//				var url=data.data+",";
-//				imgStr+=url;
-//				return imgStr;
-//			}else{
-//				layer.alert("图片失败”")
-//			}
-//			
-//		}
-//	});
-//	}
-//
-//}
 
+/*图片上传*/
+  var uploadImgStr="";
+function imgUpload(){
+	
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var formData=new FormData();
+	    formData.append("service","Index.upload_img");
+	    formData.append("time",cur_timestamp);
+        formData.append("token",md_token);
+        formData.append("img",$("#file-3").get(0).files[0]);
+       
+	$.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/api/public/law/",
+		async:false,
+		cache: false,
+        processData: false,
+        contentType: false,
+		data:formData,
+		success:function(data){
+			if(data.ret==200){
+			  uploadImgStr=data.data;
+			 
+			}else{
+				layer.msg("上传图片失败")
+				
+			}
+			
+		},
+		error:function(data,status){
+			console.log(data+status);			
+		}		
+	});
+
+}
+
+/*发布于bbs*/
+$("#to_bbs").change(function(){
+if($(this).is(":checked")){
+	if(imgUpload()){
+		var cur_timestamp = Date.parse(new Date()) / 1000;
+        var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+            userid=getSession(0);
+            typeid=$("#djcase_reason").children("option:selected").index()+1;
+            title=$("#djcase_name").val();
+            content=$(".case_explain").val();;
+		$.ajax({
+			type:"post",
+			url:"https://www.ls186.cn/api/public/law/",
+			data:{
+				service:'BBS.publish_post',
+				time:cur_timestamp,
+				token:md_token,
+				userid:userid,
+				typeid:typeid,
+				title:title,
+				content:content,
+				img:uploadImgStr
+				
+			},
+			success:function(data){
+				if(data.ret==200){
+				   layer.msg("已发表到论坛");
+				}else{
+					layer.msg("同步到论坛失败")
+				}
+				
+			},error:function(data){
+				layer.msg(data);
+			}
+		});
+	}
+}
+})
 /*当事人登记新案件*/
 
 
-$("#to_bbs").change(function(){
 
-})
-
-$("#DjSubBtn").click(function(bbsflag){
+$("#DjSubBtn").click(function(){
 	
 	var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
@@ -258,10 +294,8 @@ $("#DjSubBtn").click(function(bbsflag){
 									layer.msg("登记成功")
 									$(".AJBox").empty();
 									loadCase();
-									bbsflag=$("#to_bbs").is("check");
-									console.log(to_bbs);
 								} else {
-									layer.close(index);
+									 layer.close(index);
                                      layer.msg("登记失败" + data.msg)
                                      console.log(data.msg)
 								}
