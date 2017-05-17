@@ -167,7 +167,7 @@ $(document).on("click", "#del_case", function() {
 /*图片上传*/
   var uploadImgStr="";
 function imgUpload(){
-	
+	var flag;
 	var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
     var formData=new FormData();
@@ -187,10 +187,11 @@ function imgUpload(){
 		success:function(data){
 			if(data.ret==200){
 			  uploadImgStr=data.data;
-			 
+			 console.log(uploadImgStr);
+			 flag=true;
 			}else{
 				layer.msg("上传图片失败")
-				
+				flag=false;
 			}
 			
 		},
@@ -198,47 +199,13 @@ function imgUpload(){
 			console.log(data+status);			
 		}		
 	});
-
+return flag;
 }
 
 /*发布于bbs*/
-$("#to_bbs").change(function(){
-if($(this).is(":checked")){
-	if(imgUpload()){
-		var cur_timestamp = Date.parse(new Date()) / 1000;
-        var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
-            userid=getSession(0);
-            typeid=$("#djcase_reason").children("option:selected").index()+1;
-            title=$("#djcase_name").val();
-            content=$(".case_explain").val();;
-		$.ajax({
-			type:"post",
-			url:"https://www.ls186.cn/api/public/law/",
-			data:{
-				service:'BBS.publish_post',
-				time:cur_timestamp,
-				token:md_token,
-				userid:userid,
-				typeid:typeid,
-				title:title,
-				content:content,
-				img:uploadImgStr
-				
-			},
-			success:function(data){
-				if(data.ret==200){
-				   layer.msg("已发表到论坛");
-				}else{
-					layer.msg("同步到论坛失败")
-				}
-				
-			},error:function(data){
-				layer.msg(data);
-			}
-		});
-	}
-}
-})
+//$("#to_bbs").change(function(){
+//
+//})
 /*当事人登记新案件*/
 
 
@@ -301,7 +268,44 @@ $("#DjSubBtn").click(function(){
 								}
 							},
 						});
-		
+if($("#to_bbs").is(":checked")){
+	if(imgUpload()){
+		var index=layer.load(2,{shade:[0.2,'red'],content:'正在同步...'});
+		var cur_timestamp = Date.parse(new Date()) / 1000;
+        var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+            userid=getSession(0);
+            typeid=$("#djcase_reason").children("option:selected").index()+1;
+            title=$("#djcase_name").val();
+            content=$(".case_explain").val();;
+		$.ajax({
+			type:"post",
+			url:"https://www.ls186.cn/api/public/law/",
+			data:{
+				service:'BBS.publish_post',
+				time:cur_timestamp,
+				token:md_token,
+				userid:userid,
+				typeid:typeid,
+				title:title,
+				content:content,
+				img:uploadImgStr
+				
+			},
+			success:function(data){
+				layer.close(index);
+				if(data.ret==200){
+					//console.log(data.data);
+				   layer.msg("已发表到论坛");
+				}else{
+					layer.msg("同步到论坛失败")
+				}
+				
+			},error:function(data){
+				layer.msg(data);
+			}
+		});
+	}
+}
 	   
 	   
 })
