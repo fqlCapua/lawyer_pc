@@ -1,0 +1,114 @@
+/* Custom Styles */
+.laws_title{
+	height:5em;
+	background-color:#337AB7;
+	color: #FFFFFF;
+	line-height:5em;
+	text-indent:1em;
+	font-size: 27px;
+	font-weight: bold;
+}
+
+    ul.nav-tabs{
+        width:12rem;
+        margin-top:1.8em;
+        border-radius:4px;
+        border:1px solid #ddd;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    }
+    ul.nav-tabs li{
+        margin: 0;
+        border-top:1px solid #ddd;
+    }
+    ul.nav-tabs li:first-child{
+        border-top:none;
+    }
+    ul.nav-tabs li a{
+        margin: 0;
+        padding:8px 10px;
+        border-radius: 0;
+    }
+    ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+        color: #fff;
+        background: #0088cc;
+        border: 1px solid #0088cc;
+    }
+    ul.nav-tabs li:first-child a{
+        border-radius: 4px 4px 0 0;
+    }
+    ul.nav-tabs li:last-child a{
+        border-radius: 0 0 4px 4px;
+    }
+    ul.nav-tabs.affix{
+        top:10px; /* Set the top position of pinned element */
+    }
+    
+    
+    
+  
+    @media only screen and (max-width: 640px) {
+  .container{
+    		width:100%;
+    		padding: 0;
+    		margin: 0;
+    }
+    #law_box{
+    	padding:0 10px;
+    }
+  
+ .laws_title{
+	height:3em;
+	color: #FFFFFF;
+	line-height:3em;
+	text-indent:1em;
+	font-size: 22px;
+	font-weight: bold;
+}
+   #law_menu{
+	display: flex;
+	flex-wrap: wrap;
+    }
+#law_menu li{
+	width:33%;
+}
+
+#law_menu li i,#law_menu li span{
+	display: block;
+	text-indent: 0;
+	padding: 0;
+	text-align: center;
+	color:#666666;
+}
+#law_menu li:nth-child(2n-1){
+	background-color: #BABABA;
+	color:#FFFFFF;
+}
+
+#law_menu li a{
+	padding: 0;
+	
+}
+#law_menu li i{
+	font-size:2.5em;
+	line-height:85px;
+	
+}
+#law_menu li span{
+	font-size:0.8rem;
+	line-height: 30px;
+}
+  ul.nav-tabs{
+  	   padding: 0;
+        width:100%;
+        margin-top:1.8em;
+        border-radius:4px;
+        border:1px solid #ddd;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    }
+    .nav,.nav-tabs,.nav-stacked{
+    	padding: 0;
+    }	
+    }
+    .nav{
+    	
+    }
