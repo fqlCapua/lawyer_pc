@@ -154,7 +154,8 @@ $(function() {
 								//	console.log(data.data);
 									 $("input[type=text]").val("");
 							    	 $("textarea").val("");
-							   	     $("input[type=file]").attr("src","");
+							   	     $(".file-preview").html("");
+							   	     $("#Myupload1").modal("hide");
 								} else {
 
 								}
@@ -164,6 +165,7 @@ $(function() {
 					}else{
 						layer.msg("填写信息不正确");
 					}
+					  
 			})
 	
 
