@@ -8,6 +8,9 @@
 #searchbox{
 	padding:10px;
 }
+#searchbox .searchHis{
+	line-height:34px;
+}
 .laws_title{
 	height:5em;
 	background-color:#337AB7;
@@ -73,9 +76,12 @@
     	margin:0;
     	padding: 0;
     }
+    #searchbox  .form-inline .control-label{
+    	text-indent:1em;
+    }
   #searchbox{
   	
-  	padding:0 5px;
+  	padding:0 10px;
   	
   }
   .form-control-label{
@@ -91,7 +97,7 @@
 	font-weight: bold;
 }
    #laws_menu{
-   	width: 100%;
+   
    	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
