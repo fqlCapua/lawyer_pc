@@ -94,6 +94,7 @@ $(".nextPage").click(function() {
 
 $(".AJBox").delegate("li .show_tit", "click", function() {
 	alert($(this).siblings(".case_id").html())//案件
+
 	var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
 	var case_id = $(this).siblings(".case_id").html();
@@ -331,4 +332,21 @@ $("#case_sync").on("click",function(){
 						});
 		
 })
-
+$(".load_icon").hide();
+/*箭头*/
+//$(".caret_icon").toggle(function(){
+//	//$(this).removeClass("fa-caret-down");
+//	//$(this).addClass("fa-caret-right");
+//	$(this).siblings(".load_icon").show();
+//	//$(this).parent().parent().siblings().slideDown()
+//},function(){
+//	$(this).removeClass("fa-caret-right");
+//	$(this).addClass("fa-caret-down");
+//	$(this).siblings(".load_icon").hide();
+//	//$(this).parent().parent().siblings().slideUp()
+//})
+$(".evidence_cont").hide();
+$(".caret_icon").click(function(){
+	$(this).parent().parent().siblings().slideToggle()
+	$(".load_icon").toggle();
+})
