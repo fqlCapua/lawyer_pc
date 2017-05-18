@@ -123,8 +123,9 @@
 		 				           </button>
 									<h4 class="modal-title" id="myModalLabel" class="case_name">案件详情</h4>
 								</div>
-								<form>
-									<div class="modal-body">
+
+								<div class="modal-body">
+									<form>
 										<div class="form-group ">
 											<label class="control-label">姓名：</label>
 											<div class="form-control-static" id="userID"></div>
@@ -181,137 +182,157 @@
 											</select>
 										</div>
 
-										<div class="modalCont accordion" id="accordion2">
-											<div class="accordion-group">
-												<div class="accordion-heading">
-													<a class="accordion-toggle text-muted" style="height:40px; line-height:40px;" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
-														证据与法律文书清单：<span class="text-info pull-right">展开<span class="fa fa-sort-down fa-2x"></span></span>
-													</a>
-												</div>
-												<div id="collapse1" class="accordion-body collapse">
-													<div class="accordion-inner">
-														<h5><a href="#">证据与法律文书清单证据与法律文书清单内容</a></h5>
-														<h5><a href="#">证据与法律文书清单证据与法律文书清单内容</a></h5>
+										<div class="modalCont" id="">
+											<div class="">
+												<a class=" text-muted" style="height:40px; line-height:40px;">
+													证据与法律文书清单：
+													<span class="text-info pull-right">展开
+															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down caret_icon"></span>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
+													</span>
+												</a>
+												<ul class="evidence_cont">
+													<li>
+														<a href="#">证据与法律文书清单证据与法律文书清单内容</a>
+													</li>
+													<li>
+														<a href="#">证据与法律文书清单证据与法律文书清单内容</a>
+													</li>
 
-													</div>
-												</div>
+												</ul>
+
+											</div>
+											<div class="">
+												<a class=" text-muted" style="height:40px; line-height:40px;">
+													证据与法律文书清单：
+													<span class="text-info pull-right">展开
+															<span style="font-size:18px;" id="process"  class="fa fa-caret-down caret_icon"></span>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
+													</span>
+												</a>
+												<ul class="evidence_cont">
+													<li>
+														<a href="#">证据与法律文书清单证据与法律文书清单内容</a>
+													</li>
+													<li>
+														<a href="#">证据与法律文书清单证据与法律文书清单内容</a>
+													</li>
+												</ul>
+
 											</div>
 
 										</div>
+										<div class="modal-footer">
+											<input id="save" type="button" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " value="提交保存">
+										</div>
+									</form>
 
-									</div>
-									<div class="modal-footer">
-										<input id="save" type="button" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " value="提交保存">
-									</div>
-								</form>
-
+								</div>
 							</div>
 						</div>
 					</div>
+				</article>
+				<br />
 
-					<br />
+				<div>
+					<select id="SortBox" onchange="" class="form-control">
+						<option name='SortBytime'>按时间排序</option>
+						<option name='SortBytype'>按类型排序</option>
+						<option name='SortByprocess'>按进度排序</option>
+						<option name='SortBytag'>按身份排序</option>
+						<option name='SortByreason'>按诉由排序</option>
 
-					<div>
-						<select id="SortBox" onchange="" class="form-control">
-							<option name='SortBytime'>按时间排序</option>
-							<option name='SortBytype'>按类型排序</option>
-							<option name='SortByprocess'>按进度排序</option>
-							<option name='SortBytag'>按身份排序</option>
-							<option name='SortByreason'>按诉由排序</option>
-
-						</select>
-						<span class="pagination">
+					</select>
+					<span class="pagination">
                            <li class="prevPage"><a href="#">上一页</a></li>
                            <li class="nextPage"><a href="#">下一页</a></li>
-                </span>
-						<span class="pull-right pagination">
+                        </span>
+					<span class="pull-right pagination">
 					    			<input type="button" id="case_sync" style="width:130px;"  class="btn btn-primary" value="同步到手机"/>
 					    			<input type="submit" style="font-size:14px;font-weight: normal;color:#FFFFFF;" data-toggle="modal"  data-target="#myDJ" class="btn  btn-info"  value="登记案件">
-					   </span>
+					    </span>
 
-					</div>
-					<div class="modal fade" id="myDJ">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">
+				</div>
+				<div class="modal fade" id="myDJ">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
 		 					          <span>&times;</span>
 		 				            </button>
-									<h4 class="modal-title" id="myModalLabel">登记案件</h4>
-								</div>
-								<form role="form">
-									<div class="modal-body">
+								<h4 class="modal-title" id="myModalLabel">登记案件</h4>
+							</div>
+							<form role="form">
+								<div class="modal-body">
 
-										<!--<div class="form-group">
+									<!--<div class="form-group">
 											<label class="control-label">接待记录：</label><input class="filestyle" id="djbtn" type="file" multiple/>
 											<br />
 											<textarea type="text" cols="30" rows="4" wrap="hard" class="form-control" id="aqsm" placeholder="案情说明"></textarea>
 										</div>-->
-										<div class="form-group">
-											<label class="control-label">真实姓名：</label>
-											<input id="djcase_uname" type="text" class="form-control" />
+									<div class="form-group">
+										<label class="control-label">真实姓名：</label>
+										<input id="djcase_uname" type="text" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label class="control-label">联系电话：</label>
+										<div class="input-group">
+											<input id="djcase_tel" type="text" class="form-control" placeholder="" />
+											<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>
 										</div>
-										<div class="form-group">
-											<label class="control-label">联系电话：</label>
-											<div class="input-group">
-												<input id="djcase_tel" type="text" class="form-control" placeholder="" />
-												<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">案件名称：</label>
-											<input id="djcase_name" type="text" class="form-control" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">委托人身份：</label>
-											<select id="djcase_utype" class="custom-select form-control">
-												<option>原告</option>
-												<option>被告</option>
-												<option>第三人</option>
-												<option>申请人</option>
-												<option>被申请人</option>
-												<option>上诉人</option>
-												<option>被上诉人</option>
-												<option>其他</option>
-											</select>
-										</div>
-                                        <div class="form-group">
-											<label class="control-label">案件类型：</label>
-											<select id="djcase_type" class="custom-select form-control">
-												<option>民事案件</option>
-												<option>刑事案件</option>
-												<option>行政案件</option>
-												<option>法律咨询</option>
-												<option>仲裁案件</option>、
-												<option>执行案件</option>
-											</select>
-										</div>
-										<div class="form-group">
-											<label class="control-label">新增项目：</label>
-											<select id="djcase_evid" class="custom-select form-control">
-												<option>点击新增项目</option>
-												<option>新增证据与文档副本</option>
-												<option>新增案件流程文档</option>
-												<option>新增时间节点提醒</option>
-												<option>新增费用和票据记录</option>
-												<option>新增相关人通讯录</option>、
-											</select>
-										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">案件名称：</label>
+										<input id="djcase_name" type="text" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label class="control-label">委托人身份：</label>
+										<select id="djcase_utype" class="custom-select form-control">
+											<option>原告</option>
+											<option>被告</option>
+											<option>第三人</option>
+											<option>申请人</option>
+											<option>被申请人</option>
+											<option>上诉人</option>
+											<option>被上诉人</option>
+											<option>其他</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">案件类型：</label>
+										<select id="djcase_type" class="custom-select form-control">
+											<option>民事案件</option>
+											<option>刑事案件</option>
+											<option>行政案件</option>
+											<option>法律咨询</option>
+											<option>仲裁案件</option>、
+											<option>执行案件</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">新增项目：</label>
+										<select id="djcase_evid" class="custom-select form-control">
+											<option>点击新增项目</option>
+											<option>新增证据与文档副本</option>
+											<option>新增案件流程文档</option>
+											<option>新增时间节点提醒</option>
+											<option>新增费用和票据记录</option>
+											<option>新增相关人通讯录</option>、
+										</select>
+									</div>
 
-									</div>
-									<div class="modal-footer">
-										<input type="button" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
-									</div>
-								</form>
-							</div>
+								</div>
+								<div class="modal-footer">
+									<input type="button" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
+								</div>
+							</form>
 						</div>
 					</div>
-					<!--登记案件模态框结束-->
-
-				</article>
+				</div>
+				<!--登记案件模态框结束-->
 
 		</div>
-
+       
 	</body>
 
 	<script type="text/javascript" src="js/bootstrap.js"></script>
