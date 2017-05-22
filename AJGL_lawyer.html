@@ -173,13 +173,117 @@
 											<label class="control-label">新增项目：</label>
 											<select class="custom-select form-control programe">
 												<option>点击新增项目</option>
-												<option name="evidence">新增证据与文档副本</option>
-												<option name="process">新增案件流程文档</option>
-												<option name="remind">新增时间节点提醒</option>
-												<option name='cost'>新增费用和票据记录</option>
-												<option name='contact'>新增相关人通讯录</option>、
+												<option name="evidence1">新增证据与文档副本</option>
+												<option name="process1">新增案件流程文档</option>
+												<option name="remind1">新增时间节点提醒</option>
+												<option name='cost1'>新增费用和票据记录</option>
+												<option name='contact1'>新增相关人通讯录</option>、
 
 											</select>
+										</div>
+										<div class="programeBox">
+											<section id="Myevidence1" class="add_section">
+												<form role="form">
+													<div class="">
+														<div class="form-group">
+															<div class="text-title " style="line-height: 40px;">
+																<a class="text-danger">*</a><b>证据描述：</b>
+															</div>
+															<div class="evid_explain">
+
+																<textarea></textarea>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
+															<input id="file-3" type="file" accept="image/png,image/jpeg">
+														</div>
+														<div class="form-group">
+															<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
+															<input accept="audio/x-mpeg" id="file-4" type="file">
+														</div>
+														<div class="form-group">
+															<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
+															<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
+														</div>
+
+													</div>
+													<!--<div class="">
+												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
+
+											</div>-->
+
+												</form>
+											</section>
+
+											<!--案件流程-->
+
+											<section id="Myprocess1" class="add_section">
+												<form role="form">
+													<div class="">
+														<div class="form-group">
+															<div class="text-title" style="line-height: 40px;">
+																<a class="text-danger">*</a><b>流程文字说明：</b>
+															</div>
+															<div class="evid_explain">
+																<textarea></textarea>
+															</div>
+														</div>
+
+													</div>
+
+												</form>
+											</section>
+											<section id="Myremind1" class="add_section">
+												<form role="form">
+													<div class="">
+														<div class="form-group">
+															<div class="text-title" style="line-height: 40px;">
+																<a class="text-danger">*</a><b>提醒说明：</b>
+															</div>
+															<div class="evid_explain">
+																<textarea></textarea>
+															</div>
+														</div>
+
+													</div>
+
+												</form>
+											</section>
+
+											<section id="Mycost1" class="add_section">
+												<form role="form">
+													<div class="">
+														<div class="form-group">
+															<div class="text-title" style="line-height: 40px;">
+																<a class="text-danger">*</a><b>费用说明：</b>
+															</div>
+															<div class="evid_explain">
+																<textarea></textarea>
+															</div>
+														</div>
+
+													</div>
+
+												</form>
+											</section>
+
+											<section id="Mycontact1" class="add_section">
+												<form role="form">
+													<div class="">
+														<div class="form-group">
+															<div class="text-title" style="line-height: 40px;">
+																<a class="text-danger">*</a><b>联系人说明：</b>
+															</div>
+															<div class="evid_explain">
+																<textarea></textarea>
+															</div>
+														</div>
+
+													</div>
+
+												</form>
+											</section>
 										</div>
 
 										<div class="add_program" id="">
@@ -188,15 +292,15 @@
 													证据与文档副本：
 													<span class="text-info pull-right caret_icon">展开
 															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
-													<i class="fa fa-spinner fa-pulse load_icon"></i>
+													         <i class="fa fa-spinner fa-pulse load_icon"></i>
 													</span>
 												</a>
 												<ul class="evidence_cont">
-													<li>
+													<!--<li>
 														<i class="fa fa-link"></i>
 														<a href="#">据与法律文书清单内容</a>
 														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>
+													</li>-->
 
 												</ul>
 
@@ -319,7 +423,7 @@
 								<button type="button" class="close" data-dismiss="modal">
 		 					          <span>&times;</span>
 		 				            </button>
-								<h4 class="modal-title" id="myModalLabel">登记案件</h4>
+								<h4 class="modal-title">登记案件</h4>
 							</div>
 							<form role="form">
 								<div class="modal-body">
@@ -374,30 +478,179 @@
 											<option>点击新增项目</option>
 											<option name='evidence'>新增证据与文档副本</option>
 											<option name='process'>新增案件流程文档</option>
-											<option name="remind">新增时间节点提醒</option>
 											<option name='cost'>新增费用和票据记录</option>
 											<option name='contact'>新增相关人通讯录</option>、
+											<!--<option name="remind">新增时间节点提醒</option>-->
 										</select>
-										
+
 									</div>
 									<div class="programeBox">
+										<section id="Myevidence" class="add_section">
+											<form role="form" id="evid_sub">
+												<div class="">
+													<div class="form-group">
+														<div class="text-title " style="line-height:30px;">
+															<a class="text-danger">*</a><b>证据描述：</b>
+														</div>
+														<div class="evid_explain">
+
+															<textarea></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
+														<input id="file-6" type="file" accept="image/png,image/jpeg">
+													</div>
+													<div class="form-group">
+														<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
+														<input accept="audio/x-mpeg" id="file-7" type="file">
+													</div>
+													<div class="form-group">
+														<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
+														<input id="file-8" type="file" accept=".docx,.doc,.txt,.pdf">
+													</div>
+
+												</div>
+
+											</form>
+										</section>
+
+										<!--案件流程-->
+
+										<section id="Myprocess" class="add_section">
+											<form role="form">
+												<div class="">
+													<div class="form-group">
+														<div class="text-title" style="line-height:30px;">
+															<a class="text-danger">*</a><b>流程文字说明：</b>
+														</div>
+
+													</div>
+													<div class="form-inline">
+														<select class="custom-select form-control pro_case_type">
+															<option>----请选择案件类型----</option>
+															<option>民事案件</option>
+															<option>刑事案件</option>
+															<option>行政案件</option>
+															<option>法律咨询</option>
+															<option>仲裁案件</option>、
+															<option>执行案件</option>
+														</select>
+														
+														<select  class="custom-select form-control pro_doc_type">
+															<option>----请选择文书类型----</option>
+															
+														</select>
+														<i class="fa fa-spinner fa-pulse doc_load"></i>
+													</div><br />
+													<div class="form-group">
+														<div class="evid_explain">
+
+															<textarea>文书模板</textarea>
+														</div>
+
+													</div>
+
+												</div>
 											
-										</div>
+
+											</form>
+										</section>
+										<section id="Myremind" class="add_section">
+											<form role="form">
+												<div class="">
+													<div class="form-group">
+														<div class="text-title" style="line-height:30px;">
+															<a class="text-danger">*</a><b>提醒说明：</b>
+														</div>
+														<div class="evid_explain">
+															<textarea></textarea>
+														</div>
+													</div>
+
+												</div>
+
+											</form>
+										</section>
+
+										<section id="Mycost" class="add_section">
+											<form role="form">
+												<div class="">
+													<div class="form-group">
+														<div class="text-title" style="">
+															<a class="text-danger">*</a><b>费用说明：</b>
+														</div>
+                                                    </div>
+                                                    <div class="form-group">
+														<select class="custom-select form-control cost_cont cost_type">
+															<option>----请选择费用类型----</option>
+															<option>类型1</option>
+															<option>类型2</option>
+														</select>
+                                                    </div>
+                                                    <div class="form-inline">
+														<label class="control-label">金额(元)：</label>
+														<input class="form-control"   placeholder="支持小数点后四位" />
+														
+                                                    </div><br />
+                                                    <div class="form-group">
+                                                        <div class="cost_explain">
+                                                               <textarea rows="2" cols="100%" class="form-control" placeholder="补充说明"></textarea>
+														</div>
+
+													</div>
+                                                    <div class="form-group">
+														<label class="input_btn"><a class="text-danger"></a>&nbsp;票据存档(JPG,PNG)：</label>
+														<input class="cost_cont" id="file-9" type="file" accept=".png,.jpg">
+													</div>
+												</div>
+
+											</form>
+										</section>
+
+										<section id="Mycontact" class="add_section">
+											<form role="form">
+												<div class="">
+													<div class="form-group">
+														<div class="text-title" style="line-height:30px;">
+															<a class="text-danger">*</a><b>联系人说明：</b>
+														</div>
+
+													</div>
+													<div class="form-group">
+														<input class="form-control contact-cont" placeholder="姓名(必填项)" /><br />
+														<input class="form-control contact-cont" placeholder="电话" /><br />
+														<input class="form-control contact-cont" placeholder="手机(必填项)" /><br />
+														<input class="form-control contact-cont" placeholder="邮箱" /><br />
+														<input class="form-control contact-cont" placeholder="住址" /><br />
+														<textarea cols="100%" rows="2" class="form-control contact-cont" placeholder="补充说明"></textarea>
+														
+													</div>
+
+												</div>
+												<div class="">
+													<input id="contactBtn" class="btn btn-info" value="提交证据">
+
+												</div>
+
+											</form>
+										</section>
+									</div>
 									<div class="add_program" id="">
 										<div class="evidCont">
 											<a class=" text-muted" style="height:40px; line-height:40px;">
 												证据与文档副本：
 												<span class="text-info pull-right caret_icon">展开
 															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
+												
 												</span>
 											</a>
 											<ul class="evidence_cont">
-												<li>
+												<!--<li>
 													<i class="fa fa-link"></i>
 													<a href="#">据与法律文书清单内容</a>
 													<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-												</li>
+												</li>-->
 
 											</ul>
 
@@ -407,7 +660,7 @@
 												案件流程文档：
 												<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
+											
 
 												</span>
 											</a>
@@ -421,7 +674,7 @@
 												时间节点提醒：
 												<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
+												     
 
 												</span>
 											</a>
@@ -435,7 +688,7 @@
 												费用和票据记录：
 												<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
+												
 
 												</span>
 											</a>
@@ -449,7 +702,7 @@
 												相关人通讯录:
 												<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
+												
 
 												</span>
 											</a>
@@ -460,7 +713,7 @@
 										</div>
 
 									</div>
-									
+
 								</div>
 								<div class="modal-footer">
 									<input type="button" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
@@ -475,170 +728,6 @@
                 	时间：2017-05-19
                 	描述：证据新增
                 -->
-                              <section id="Myevidence" class="add_section hide">
-										<form role="form" id="evid_sub">
-											<div class="">
-												<div class="form-group">
-													<div class="text-title " style="line-height: 40px;">
-														<a class="text-danger">*</a><b>证据描述：</b>
-													</div>
-													<div class="evid_explain">
-														
-														<textarea></textarea>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-													<input id="file-3" type="file" accept="image/png,image/jpeg">
-												</div>
-												<div class="form-group">
-													<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-													<input accept="audio/x-mpeg" id="file-4" type="file">
-												</div>
-												<div class="form-group">
-													<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-													<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-												</div>
-
-											</div>
-											<!--<div class="">
-												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
-
-											</div>-->
-
-										</form>
-									</section>
-				<section id="Myprocess" class="add_section hide">
-					<form role="form">
-						<div class="">
-							<div class="form-group">
-								<div class="text-title" style="line-height: 40px;">
-									<a class="text-danger">*</a><b>流程文字说明：</b>
-								</div>
-								<div class="evid_explain">
-									<textarea></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-								<input accept="audio/x-mpeg" id="file-4" type="file">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-								<input id="file-3" type="file" accept="image/png,image/jpeg">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-								<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-							</div>
-
-						</div>
-						<!--<div class="">
-							<input id="evidBtn" type="submit" class="btn btn-info" value="提交证据">
-
-						</div>-->
-
-					</form>
-				</section>
-
-				<section id="Myremind" class="add_section hide">
-					<form role="form">
-						<div class="">
-							<div class="form-group">
-								<div class="text-title" style="line-height: 40px;">
-									<a class="text-danger">*</a><b>提醒说明：</b>
-								</div>
-								<div class="evid_explain">
-									<textarea></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-								<input accept="audio/x-mpeg" id="file-4" type="file">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-								<input id="file-3" type="file" accept="image/png,image/jpeg">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-								<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-							</div>
-
-						</div>
-						<!--<div class="">
-							<input id="evidBtn" type="submit" class="btn btn-info" value="提交证据">
-
-						</div>-->
-
-					</form>
-				</section>
-
-				<section id="Mycost" class="add_section hide">
-					<form role="form">
-						<div class="">
-							<div class="form-group">
-								<div class="text-title" style="line-height: 40px;">
-									<a class="text-danger">*</a><b>费用说明：</b>
-								</div>
-								<div class="evid_explain">
-									<textarea></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-								<input accept="audio/x-mpeg" id="file-4" type="file">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-								<input id="file-3" type="file" accept="image/png,image/jpeg">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-								<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-							</div>
-
-						</div>
-						<div class="">
-							<input id="evidBtn" type="submit" class="btn btn-info" value="提交证据">
-
-						</div>
-
-					</form>
-				</section>
-
-				<section id="Mycontact" class="add_section hide">
-					<form role="form">
-						<div class="">
-							<div class="form-group">
-								<div class="text-title" style="line-height: 40px;">
-									<a class="text-danger">*</a><b>联系人说明：</b>
-								</div>
-								<div class="evid_explain">
-									<textarea></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-								<input accept="audio/x-mpeg" id="file-4" type="file">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-								<input id="file-3" type="file" accept="image/png,image/jpeg">
-							</div>
-							<div class="form-group">
-								<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-								<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-							</div>
-
-						</div>
-						<div class="">
-							<input id="evidBtn" type="submit" class="btn btn-info" value="提交证据">
-
-						</div>
-
-					</form>
-				</section>
 
 				<!--
                 	作者：13523450460@sina.cn
@@ -672,6 +761,36 @@
 
 		});
 		$("#file-5").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary",
+			fileType: "text",
+
+		});
+		$("#file-6").fileinput({
+
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary",
+			fileType: "image",
+
+		});
+
+		$("#file-7").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary",
+			fileType: "audio",
+
+		});
+		$("#file-8").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary",
+			fileType: "text",
+
+		});
+		$("#file-9").fileinput({
 			showUpload: false,
 			showCaption: false,
 			browseClass: "btn btn-primary",

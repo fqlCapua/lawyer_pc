@@ -137,6 +137,9 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 
 })
 
+
+
+
 //保存案件
 $("#save").on("click", function() {
 
@@ -161,7 +164,12 @@ $("#save").on("click", function() {
 
 		},
 		success: function(data) {
-			var title = $(".evid_explain textarea").val();
+			if(data.ret==200){
+				
+				
+				
+				/*保存证据*/
+					var title = $(".evid_explain textarea").val();
 						var img = $("#file-3")[0].files[0];
 						var mp3 = $("#file-4")[0].files[0];
 						var doc = $("#file-5")[0].files[0];
@@ -186,12 +194,14 @@ $("#save").on("click", function() {
 								if(data.ret == 200) {
 									console.log(data.data);
 									
-			$("#myCaseDetail").modal('hide');
-			$(".AJBox").empty();
-			loadCase('1', 'time');
+			                 $("#myCaseDetail").modal('hide');
+			                 $(".AJBox").empty();
+			                  loadCase('1', 'time');
 								}
 							}
 						});
+			}
+		
 			
 		},
 		error: function(xhr, status) {
@@ -201,7 +211,10 @@ $("#save").on("click", function() {
 	});
 
 });
+
 //结束
+
+
 
 /*删除案件*/
 
@@ -352,12 +365,17 @@ $("#DjSubBtn").click(function() {
 		}
 
 	}).fail(function(xhr, status) {
-		layer.msg(xhr.status + status);
+		layer.msg(xhr.status +"\n"+ status);
 	}).always(function() {
 
 	});
 
 })
+
+
+
+
+
 /*同步案件*/
 $("#case_sync").on("click", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
@@ -399,21 +417,112 @@ $(".process_cont").hide();
 $(".remind_cont").hide();
 $(".contact_cont").hide();
 $(".cost_cont").hide();
+$(".load_icon").hide();
+
+/*证据列表*/
+var flag=0;
 $(".caret_icon").click(function() {
-	$(this).parent().siblings().slideToggle()
-	$(this).children(".load_icon").toggle();
+if(flag%2==0){
+	
+	            var cur_timestamp = Date.parse(new Date()) / 1000;
+	            var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+				var case_id=$("#myModalLabel").attr('class');
+				
+				
+					$(this).children(".load_icon").show();
+					$.ajax({
+					type:"post",
+					url:"https://www.ls186.cn/api/public/law/",
+					data:{
+						service:'Case.evidence_list',
+						time:cur_timestamp,
+						token:md_token,
+						id:case_id,
+					},
+					success:function(data){
+						$(".load_icon").hide();
+						if(data.ret==200){
+							//layer.msg('加载成功');
+							$(".evidence_cont").empty();
+							var list=data.data;
+							$.each(list,function(i,ele){
+								var li=$("<li><i class='fa fa-link'></i>&nbsp;&nbsp;<a class='evid_detail' evd_id='"+ele.evidence_id+"'>"+ele.evidence_title+"</a><a class='pull-right text-danger delBtn'><i class='fa fa-trash'></i>&nbsp;删除</a></li>\n");
+								$(".evidence_cont").append(li);
+								
+							})
+							
+							
+							
+
+						}
+					}
+				});
+}else{
+	
+}
+flag++;
+	 $(this).parent().siblings().slideToggle();
 });
+/*获取证据详情(律师版) √*/
+$(".evidence_cont li").delegate("click",function(){
+	alert("OK");
+})
+
 $(".input_btn").click(function() {
 
 	$(this).siblings("input[type=file]").click();
 })
 
 /*新增证据*/
+$(".programeBox").children().hide();
 $(".programe").change(function() {
 	var proType = $(this).children("option:selected").attr("name");
 	var proType = '#My' + proType;
-     $(".programeBox").empty();
-	$(".programeBox").append($(proType));
-	$(proType).removeClass('hide');
-     
+    $(proType).show();
+$(proType).siblings().hide();
+
 })
+
+
+
+/*获取文书类型开始*/
+$(".doc_load").hide()
+$(document).ready(function() {
+				var t1 = Math.round(new Date() / 1000);
+				var md_token = hex_md5("law_" + hex_md5(t1) + "_law");
+
+				$(".pro_case_type").change(function() {
+                   $(".doc_load").show();
+					var index = $(this).get(0).selectedIndex;
+					$(".pro_doc_type").empty();
+					$.ajax({
+						type:"post",
+						url:"https://www.ls186.cn/api/public/law/",
+						data:{
+							service:'Case.get_doc_type',
+							time:t1,
+							token:md_token,
+							id:index
+						},
+						success:function(data){
+							$(".doc_load").hide();
+							if(data.ret==200){
+								var list=data.data;
+								$.each(list, function(i,ele) {
+									var type_name=$("<option name='"+ele.doc_type_id+"'>"+ele.doc_type_name+"</option>");
+									$(".pro_doc_type").append(type_name);
+								});
+								
+							}
+							else{
+								console.log(data.msg)
+							}
+						},
+						error:function(data){
+							console.log(data);
+						}
+						
+					});
+					
+				});
+			});
