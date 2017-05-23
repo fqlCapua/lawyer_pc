@@ -472,22 +472,53 @@ $(".evidence_cont").delegate("li","click",function() {
 var index=layer.load(1,{shade:[0.2,'red']});
 	var evid_id=$(this).children("span").attr("evd_id");
 	var t1=Date.parse(new Date())/1000;
-	var md_token=hex_md5("law_"+ hex_md5(String(cur_timestamp))+"_law");
+	var md_token=hex_md5("law_"+ hex_md5(String(t1))+"_law");
 	$.ajax({
-		type:'post',
+		type:'POST',
 		url:'https://www.ls186.cn/law_api',
 		data:{
-		serivce:'Case.get_evidence',
+		service:'Case.get_evidence',
 		time:t1,
 		token:md_token,
 		id:evid_id
 	       },
+	       dataType:'json',
    	success:function(data){
-   		console.log(data);
    		layer.close(index);
-		var data=JSON.parse(data);
-		if(data.ret==200){
-			console.log(data);
+       if(data.ret==200){
+			console.log(data.data);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}else{
 			
 		}
