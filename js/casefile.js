@@ -464,7 +464,7 @@ if(flag%2==0){
 	
 }
 flag++;
-	 $(this).parent().siblings().slideToggle();
+	 $(this).parent().siblings().slideToggle();	
 });
 /*获取证据详情(律师版) √*/
 
