@@ -15,11 +15,11 @@ function startPro() {
 }
 $(function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law")
+	md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law")
 	/*获取专家库*/
 
 	$.ajax({
-		url: 'https://www.ls186.cn/api/public/law/',
+		url: 'https://www.ls186.cn/law_api',
 		type: 'post',
 		data: {
 			service: "Service.get_export_list",
@@ -28,7 +28,7 @@ $(function() {
 			page: 1
 		},
 		success: function(data) {
-			//layer.close(index);
+			var data=JSON.parse(data);;
 			if(data.ret == 200) {
 				var i = data.data.length;
 				//console.log(i);
@@ -142,13 +142,13 @@ $(function() {
                       
 						$.ajax({
 							type: 'POST',
-							url: 'https://www.ls186.cn/api/public/law/',
+							url: 'https://www.ls186.cn/law_api',
 							cache: false,
 							processData: false,
 							contentType: false,
 							data: formData,
 							success: function(data) {
-								layer.close(index); // 关闭layer 加载层
+								layer.close(index);var data=JSON.parse(data);; // 关闭layer 加载层
 								if(data.ret == 200) {
 									layer.msg("提交论证成功");
 								//	console.log(data.data);

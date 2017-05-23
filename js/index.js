@@ -80,11 +80,11 @@ function getVerifyCode(options) {
 				return;
 			} else {
 				var cur_timestamp = Date.parse(new Date()) / 1000;
-				md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+				md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 				phone = $("#j_phone").val();
 				$.ajax({
 					type: 'POST',
-					url: 'https://www.ls186.cn/api/public/law/',
+					url: 'https://www.ls186.cn/law_api',
 					data: {
 						service: "User.get_code",
 						time: cur_timestamp,
@@ -117,7 +117,7 @@ function getVerifyCode(options) {
 										});
 										$.ajax({
 											type: 'POST',
-											url: 'https://www.ls186.cn/api/public/law/',
+											url: 'https://www.ls186.cn/law_api',
 											data: {
 												service: 'User.user_register',
 												time: cur_timestamp,
@@ -128,7 +128,7 @@ function getVerifyCode(options) {
 
 											},
 											success: function(data) {
-												layer.close(index); // 关闭layer 加载层
+												layer.close(index);var data=JSON.parse(data);; // 关闭layer 加载层
 												if(data.ret == 200) {
 													layer.msg("注册成功");
 													console.log(data)
@@ -281,7 +281,7 @@ if(ls.getItem("law_sign")) {
 /*登录信息*/
 
 var cur_timestamp = Date.parse(new Date()) / 1000;
-var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 new Vue({
 	el: '#app',
 	data: {
@@ -306,10 +306,10 @@ new Vue({
 			// jquery ajax
 			$.ajax({
 				type: 'POST',
-				url: 'https://www.ls186.cn/api/public/law/',
+				url: 'https://www.ls186.cn/law_api',
 				data: this.user,
 				success: function(data) {
-					layer.close(index);
+					layer.close(index);var data=JSON.parse(data);;
 					if(data.ret == 200) {
 						 layer.msg('登录成功', {
 							icon: 1
@@ -352,7 +352,7 @@ new Vue({
 						layer.msg(data.msg, {
 							icon: 2
 						})
-						layer.close(index); // 关闭layer 加载层
+						layer.close(index);var data=JSON.parse(data);; // 关闭layer 加载层
 					}
 				},
 			});

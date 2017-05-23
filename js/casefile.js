@@ -1,13 +1,13 @@
 var loadCase = function(n, s) {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var index = layer.load(2, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
 	});
 	$.ajax({
 		type: "post",
-		url: "https://www.ls186.cn/api/public/law/",
+		url: "https://www.ls186.cn/law_api",
 		data: {
 			service: "Case.case_list",
 			time: cur_timestamp,
@@ -18,7 +18,8 @@ var loadCase = function(n, s) {
 			type: 1
 		},
 		success: function(data) {
-			layer.close(index)
+			layer.close(index);var data=JSON.parse(data);
+			
 			if(data.ret == 200) {
 				var caseMainList = data.data;
 
@@ -40,7 +41,7 @@ var loadCase = function(n, s) {
 			}
 		},
 		error: function(data) {
-			layer.close(index);
+			
 			layer.msg("数据加载失败", {
 				icon: 5
 			})
@@ -88,22 +89,19 @@ $(".nextPage").click(function() {
 	}
 })
 
-$(".AJBox").delegate("li .show_tit", "hover", function() {
 
-	console.log($(this).siblings(".case_id").html())
-})
 /*获取案件详情*/
 
 $(".AJBox").delegate("li .show_tit", "click", function() {
 
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var case_id = $(this).siblings(".case_id").html();
     var index = layer.load(1, {
 		shade: [0.1, 'darkblue']
 	});
 	$.ajax({
-		url: 'https://www.ls186.cn/api/public/law/',
+		url: 'https://www.ls186.cn/law_api',
 		type: 'post',
 		data: {
 			service: "Case.case_detail",
@@ -112,7 +110,7 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 			id: case_id,
 		},
 		success: function(data) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);
 			if(data.ret == 200) {
 
 				$("#myCaseDetail").modal('show');
@@ -129,7 +127,7 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 			}
 		},
 		error: function(xhr, status) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);
 			alert(xhr.status + status);
 		}
 
@@ -149,7 +147,7 @@ $("#save").on("click", function() {
 
 	$.ajax({
 		type: "post",
-		url: "https://www.ls186.cn/api/public/law/",
+		url: "https://www.ls186.cn/law_api",
 		data: {
 			service: "Case.save_case",
 			time: cur_timestamp,
@@ -184,13 +182,13 @@ $("#save").on("click", function() {
 						form1.append("doc", doc);
 						$.ajax({
 							type: "post",
-							url: "https://www.ls186.cn/api/public/law/",
+							url: "https://www.ls186.cn/law_api",
 							cache:false,
 							processData:false,
 							contentType:false,
 							data: form1,
 							success: function(data) {
-							layer.close(index);
+							layer.close(index);var data=JSON.parse(data);
 								if(data.ret == 200) {
 									console.log(data.data);
 									
@@ -205,7 +203,7 @@ $("#save").on("click", function() {
 			
 		},
 		error: function(xhr, status) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);
 			console.log(xhr.status + status)
 		}
 	});
@@ -220,7 +218,7 @@ $("#save").on("click", function() {
 
 $(document).on("click", "#del_case", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var del_case_id = $(this).parent().parent().siblings(".case_id");
 
 	layer.alert('确定要删除么？', {
@@ -232,7 +230,7 @@ $(document).on("click", "#del_case", function() {
 		});
 		$.ajax({
 			type: "post",
-			url: 'https://www.ls186.cn/api/public/law/',
+			url: 'https://www.ls186.cn/law_api',
 			data: {
 				service: "Case.del_case",
 				time: cur_timestamp,
@@ -240,7 +238,7 @@ $(document).on("click", "#del_case", function() {
 				id: del_case_id.html()
 			},
 			success: function(data) {
-				layer.close(index);
+				layer.close(index);var data=JSON.parse(data);
 				if(data.ret == 200) {
 					$(this).parent().parent().siblings(".case_id").parent().remove();
 					layer.msg("已删除！", {
@@ -251,7 +249,7 @@ $(document).on("click", "#del_case", function() {
 					//window.location.reload();
 					loadCase('1', 'time');
 				} else {
-					layer.close(index);
+					layer.close(index);var data=JSON.parse(data);
 					layer.msg("删除失败！", {
 						icon: 2
 					})
@@ -259,7 +257,7 @@ $(document).on("click", "#del_case", function() {
 
 			},
 			error: function() {
-				layer.close(index);
+				layer.close(index);var data=JSON.parse(data);
 				layer.msg("删除失败！", {
 					icon: 2
 				})
@@ -276,7 +274,7 @@ $(document).on("click", "#del_case", function() {
 
 $("#DjSubBtn").click(function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var djcase_uname = $("#djcase_uname").val();
 	djcase_tel = $("#djcase_tel").val();
 	djcase_name = $("#djcase_name").val();
@@ -286,7 +284,7 @@ $("#DjSubBtn").click(function() {
 	var index = layer.load(1, {
 		shade: [0.1, 'blue']
 	});
-	$.ajax('https://www.ls186.cn/api/public/law/', {
+	$.ajax('https://www.ls186.cn/law_api', {
 		type: 'post',
 		data: {
 			service: "Case.get_new_ID",
@@ -305,7 +303,7 @@ $("#DjSubBtn").click(function() {
 
 			$.ajax({
 				type: 'POST',
-				url: 'https://www.ls186.cn/api/public/law/',
+				url: 'https://www.ls186.cn/law_api',
 				data: {
 					service: "Case.save_case",
 					time: cur_timestamp,
@@ -335,7 +333,7 @@ $("#DjSubBtn").click(function() {
 						form1.append("doc", doc);
 						$.ajax({
 							type: "post",
-							url: "https://www.ls186.cn/api/public/law/",
+							url: "https://www.ls186.cn/law_api",
 							cache:false,
 							processData:false,
 							contentType:false,
@@ -350,7 +348,7 @@ $("#DjSubBtn").click(function() {
 						$("#djcase_uname").val("");
 						$("#djcase_tel").val("");
 						$("#djcase_name").val("");
-						layer.close(index);
+						layer.close(index);var data=JSON.parse(data);
 						layer.msg("登记成功")
 						$(".AJBox").empty();
 						loadCase('1', 'time');
@@ -379,14 +377,14 @@ $("#DjSubBtn").click(function() {
 /*同步案件*/
 $("#case_sync").on("click", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var userid = getSession(0);
 	var index = layer.load(2, {
 		shade: [0.1, 'yellow']
 	});
 	$.ajax({
 		type: 'POST',
-		url: 'https://www.ls186.cn/api/public/law/',
+		url: 'https://www.ls186.cn/law_api',
 		data: {
 			service: "Index.data_sync",
 			time: cur_timestamp,
@@ -395,7 +393,7 @@ $("#case_sync").on("click", function() {
 		},
 
 		success: function(data) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);
 			if(data.ret == 200) {
 
 				layer.msg("同步成功")
@@ -419,20 +417,23 @@ $(".contact_cont").hide();
 $(".cost_cont").hide();
 $(".load_icon").hide();
 
+//$(".caret_icon").click(function(){
+//	 $(this).parent().siblings().slideToggle();
+//})
 /*证据列表*/
 var flag=0;
-$(".caret_icon").click(function() {
+$(".evidCont .caret_icon").click(function() {
 if(flag%2==0){
 	
 	            var cur_timestamp = Date.parse(new Date()) / 1000;
-	            var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+	            var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 				var case_id=$("#myModalLabel").attr('class');
 				
 				
 					$(this).children(".load_icon").show();
 					$.ajax({
 					type:"post",
-					url:"https://www.ls186.cn/api/public/law/",
+					url:"https://www.ls186.cn/law_api",
 					data:{
 						service:'Case.evidence_list',
 						time:cur_timestamp,
@@ -441,12 +442,14 @@ if(flag%2==0){
 					},
 					success:function(data){
 						$(".load_icon").hide();
+						var data=JSON.parse(data);
 						if(data.ret==200){
-							//layer.msg('加载成功');
+							
+							layer.msg('加载成功');
 							$(".evidence_cont").empty();
 							var list=data.data;
 							$.each(list,function(i,ele){
-								var li=$("<li><i class='fa fa-link'></i>&nbsp;&nbsp;<a class='evid_detail' evd_id='"+ele.evidence_id+"'>"+ele.evidence_title+"</a><a class='pull-right text-danger delBtn'><i class='fa fa-trash'></i>&nbsp;删除</a></li>\n");
+								var li=$("<li class='list-group-item evid_detail'><i class='fa fa-paper-plane'></i>&nbsp;&nbsp;<span class='' evd_id='"+ele.evidence_id+"'>"+ele.evidence_title+"</span></li>\n");
 								$(".evidence_cont").append(li);
 								
 							})
@@ -464,13 +467,34 @@ flag++;
 	 $(this).parent().siblings().slideToggle();
 });
 /*获取证据详情(律师版) √*/
-$(".evidence_cont li").delegate("click",function(){
-	alert("OK");
-})
 
-$(".input_btn").click(function() {
-
-	$(this).siblings("input[type=file]").click();
+$(".evidence_cont").delegate("li","click",function() {
+var index=layer.load(1,{shade:[0.2,'red']});
+	var evid_id=$(this).children("span").attr("evd_id");
+	var t1=Date.parse(new Date())/1000;
+	var md_token=hex_md5("law_"+ hex_md5(String(cur_timestamp))+"_law");
+	$.ajax({
+		type:'post',
+		url:'https://www.ls186.cn/law_api',
+		data:{
+		serivce:'Case.get_evidence',
+		time:t1,
+		token:md_token,
+		id:evid_id
+	       },
+   	success:function(data){
+   		console.log(data);
+   		layer.close(index);
+		var data=JSON.parse(data);
+		if(data.ret==200){
+			console.log(data);
+		}else{
+			
+		}
+	},error:function(data){
+		console.log(data);
+	}
+	})
 })
 
 /*新增证据*/
@@ -497,7 +521,7 @@ $(document).ready(function() {
 					$(".pro_doc_type").empty();
 					$.ajax({
 						type:"post",
-						url:"https://www.ls186.cn/api/public/law/",
+						url:"https://www.ls186.cn/law_api",
 						data:{
 							service:'Case.get_doc_type',
 							time:t1,

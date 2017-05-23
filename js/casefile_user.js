@@ -3,14 +3,14 @@ $("#SortBox").hide();
 
 var loadCase = function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var index = layer.load(2, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
 	});
 	$.ajax({
 		type: "post",
-		url: "https://www.ls186.cn/api/public/law/",
+		url: "https://www.ls186.cn/law_api",
 		data: {
 			service: "Office.client_case_list",
 			time: cur_timestamp,
@@ -19,7 +19,7 @@ var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
 			type: 1
 		},
 		success: function(data) {
-		   layer.close(index);
+		   layer.close(index);var data=JSON.parse(data);;
 		   
 			if(data.ret == 200) {
 				var caseMainList = data.data;
@@ -36,14 +36,14 @@ var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
 					})
 				}
 			} else {
-				layer.close(index);
+				layer.close(index);var data=JSON.parse(data);;
 				layer.msg(data.msg, {
 					icon: 3
 				});
 			}
 		},
 		error: function(data) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);;
 			layer.msg("数据加载失败", {
 				icon: 5
 			})
@@ -62,13 +62,13 @@ loadCase();
 
 $(".AJBox").delegate("li .show_tit", "click", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var case_id = $(this).siblings(".case_id").html();
 var index = layer.load(1, {
 		            shade: [0.1, 'darkblue']
 	           });
 	$.ajax({
-		url: 'https://www.ls186.cn/api/public/law/',
+		url: 'https://www.ls186.cn/law_api',
 		type: 'post',
 		data: {
 			service: "Office.get_client_case",
@@ -78,7 +78,7 @@ var index = layer.load(1, {
 		},
 		success:function(data) {
 			if(data.ret == 200) {
-				layer.close(index);
+				layer.close(index);var data=JSON.parse(data);;
 				$("#myCaseDetail").modal('show');
 				var case_detail = data.data;
 				$("#case_uname").html(case_detail.case_uname);
@@ -98,7 +98,7 @@ var index = layer.load(1, {
 			}
 		},
 		error: function(xhr, status) {
-			layer.close(index);
+			layer.close(index);var data=JSON.parse(data);;
 			alert(xhr.status + status);
 		}
 
@@ -117,7 +117,7 @@ layer.photos({
 
 $(document).on("click", "#del_case", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var del_case_id = $(this).parent().parent().siblings(".case_id");
 	
 	layer.confirm('确定要删除么？',{btn:['是','否'],time:1500},function(){
@@ -125,7 +125,7 @@ $(document).on("click", "#del_case", function() {
        
 		$.ajax({
 				type: "post",
-				url: 'https://www.ls186.cn/api/public/law/',
+				url: 'https://www.ls186.cn/law_api',
 				data: {
 					service: "Case.del_case",
 					time: cur_timestamp,
@@ -133,7 +133,7 @@ $(document).on("click", "#del_case", function() {
 					id: del_case_id.html()
 				},
 				success: function(data) {
-					layer.close(index);
+					layer.close(index);var data=JSON.parse(data);;
 					if(data.ret == 200) {
 				      layer.msg("已删除！", {
 							icon: 1,
@@ -169,7 +169,7 @@ $(document).on("click", "#del_case", function() {
 function imgUpload(){
 	var flag;
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
     var formData=new FormData();
 	    formData.append("service","Index.upload_img");
 	    formData.append("time",cur_timestamp);
@@ -178,7 +178,7 @@ function imgUpload(){
        
 	$.ajax({
 		type:"post",
-		url:"https://www.ls186.cn/api/public/law/",
+		url:"https://www.ls186.cn/law_api",
 		async:false,
 		cache: false,
         processData: false,
@@ -213,7 +213,7 @@ return flag;
 $("#DjSubBtn").click(function(){
 	
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var userid=getSession(0);
 	    truename=$("#djcase_uname").val();
 	    telphone=$("#djcase_tel").val();
@@ -247,13 +247,13 @@ $("#DjSubBtn").click(function(){
 			});
 	           $.ajax({
 							type: 'POST',
-							url: 'https://www.ls186.cn/api/public/law/',
+							url: 'https://www.ls186.cn/law_api',
 							data: formData,
 							cache: false,
                             processData: false,
                             contentType: false,
 							success: function(data) {
-								layer.close(index);
+								layer.close(index);var data=JSON.parse(data);;
 							   if(data.ret == 200) {
 							    	 $("input[type=text]").val("");
 							    	 $("textarea").val("");
@@ -262,7 +262,7 @@ $("#DjSubBtn").click(function(){
 									$(".AJBox").empty();
 									loadCase();
 								} else {
-									 layer.close(index);
+									 layer.close(index);var data=JSON.parse(data);;
                                      layer.msg("登记失败" + data.msg)
                                      console.log(data.msg)
 								}
@@ -272,14 +272,14 @@ if($("#to_bbs").is(":checked")){
 	if(imgUpload()){
 		var index=layer.load(2,{shade:[0.2,'red'],content:'正在同步...'});
 		var cur_timestamp = Date.parse(new Date()) / 1000;
-        var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+        var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
             userid=getSession(0);
             typeid=$("#djcase_reason").children("option:selected").index()+1;
             title=$("#djcase_name").val();
             content=$(".case_explain").val();;
 		$.ajax({
 			type:"post",
-			url:"https://www.ls186.cn/api/public/law/",
+			url:"https://www.ls186.cn/law_api",
 			data:{
 				service:'BBS.publish_post',
 				time:cur_timestamp,
@@ -292,7 +292,7 @@ if($("#to_bbs").is(":checked")){
 				
 			},
 			success:function(data){
-				layer.close(index);
+				layer.close(index);var data=JSON.parse(data);;
 				if(data.ret==200){
 					//console.log(data.data);
 				   layer.msg("已发表到论坛");
@@ -313,14 +313,14 @@ if($("#to_bbs").is(":checked")){
 /*同步案件*/
 $("#case_sync").on("click",function(){
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(cur_timestamp) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var userid=getSession(0);
 		    var index = layer.load(2, {
 				shade: [0.1, 'yellow']
 			});
 	           $.ajax({
 							type: 'POST',
-							url: 'https://www.ls186.cn/api/public/law/',
+							url: 'https://www.ls186.cn/law_api',
 							data:{
 								service:"Index.data_sync",
 								time:cur_timestamp,
@@ -329,7 +329,7 @@ $("#case_sync").on("click",function(){
 							},
 							
 							success: function(data) {
-								layer.close(index);
+								layer.close(index);var data=JSON.parse(data);;
 							   if(data.ret == 200) {
 							    	
 									layer.msg("同步成功")

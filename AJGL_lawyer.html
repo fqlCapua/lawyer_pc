@@ -296,7 +296,7 @@
 													</span>
 												</a>
 												<ul class="evidence_cont">
-													<!--<li>
+												    <!--<li>
 														<i class="fa fa-link"></i>
 														<a href="#">据与法律文书清单内容</a>
 														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
@@ -314,7 +314,7 @@
 
 													</span>
 												</a>
-												<ul class="evidence_cont">
+												<ul class="process_cont">
 													<li>
 														<i class="fa fa-link"></i>
 														<a href="#">证据与法律文书清单内容</a>、
@@ -332,7 +332,7 @@
 
 													</span>
 												</a>
-												<ul class="evidence_cont">
+												<ul class="remind_cont">
 													<li>
 														<i class="fa fa-link"></i>
 														<a href="#">与法律文书清单内容</a>、
@@ -350,7 +350,7 @@
 
 													</span>
 												</a>
-												<ul class="evidence_cont">
+												<ul class="cost_cont">
 													<li>
 														<i class="fa fa-link"></i>
 														<a href="#">证据与法律文书清单内容</a>、
@@ -368,7 +368,7 @@
 
 													</span>
 												</a>
-												<ul class="evidence_cont">
+												<ul class="contact_cont">
 													<li>
 														<i class="fa fa-link"></i>
 														<a href="#">与法律文书清单内容</a>、
@@ -601,7 +601,7 @@
 													</div>
                                                     <div class="form-group">
 														<label class="input_btn"><a class="text-danger"></a>&nbsp;票据存档(JPG,PNG)：</label>
-														<input class="cost_cont" id="file-9" type="file" accept=".png,.jpg">
+														<input class="cost_cont" id="cost_image" type="file" >
 													</div>
 												</div>
 
@@ -636,83 +636,7 @@
 											</form>
 										</section>
 									</div>
-									<div class="add_program" id="">
-										<div class="evidCont">
-											<a class=" text-muted" style="height:40px; line-height:40px;">
-												证据与文档副本：
-												<span class="text-info pull-right caret_icon">展开
-															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
-												
-												</span>
-											</a>
-											<ul class="evidence_cont">
-												<!--<li>
-													<i class="fa fa-link"></i>
-													<a href="#">据与法律文书清单内容</a>
-													<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-												</li>-->
-
-											</ul>
-
-										</div>
-										<div class="processCont">
-											<a class="text-muted" style="height:40px; line-height:40px;">
-												案件流程文档：
-												<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-											
-
-												</span>
-											</a>
-											<ul class="process_cont">
-
-											</ul>
-
-										</div>
-										<div class="remindCont">
-											<a class="text-muted" style="height:40px; line-height:40px;">
-												时间节点提醒：
-												<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												     
-
-												</span>
-											</a>
-											<ul class="remind_cont">
-
-											</ul>
-
-										</div>
-										<div class="costCont">
-											<a class="text-muted" style="height:40px; line-height:40px;">
-												费用和票据记录：
-												<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												
-
-												</span>
-											</a>
-											<ul class="cost_cont">
-
-											</ul>
-
-										</div>
-										<div class="contactCont">
-											<a class="text-muted" style="height:40px; line-height:40px;">
-												相关人通讯录:
-												<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												
-
-												</span>
-											</a>
-											<ul class="contact_cont">
-
-											</ul>
-
-										</div>
-
-									</div>
+									
 
 								</div>
 								<div class="modal-footer">
@@ -790,11 +714,14 @@
 			fileType: "text",
 
 		});
-		$("#file-9").fileinput({
+		$("#cost_image").click(function(){
+			alert("OK");
+		})
+		$("#cost_image").fileinput({
 			showUpload: false,
 			showCaption: false,
 			browseClass: "btn btn-primary",
-			fileType: "text",
+		      fileType: "image",
 
 		});
 	</script>
