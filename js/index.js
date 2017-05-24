@@ -287,8 +287,8 @@ new Vue({
 	data: {
 		user: {
 			service: "User.user_login",
-			time: cur_timestamp,
-			token: md_token,
+			time: Date.parse(new Date()) / 1000,
+			token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
 			username: '',
 			password: '',
 		}
@@ -309,7 +309,9 @@ new Vue({
 				url: 'https://www.ls186.cn/law_api',
 				data: this.user,
 				success: function(data) {
-					layer.close(index);var data=JSON.parse(data);;
+					
+					layer.close(index);
+					var data=JSON.parse(data);
 					if(data.ret == 200) {
 						 layer.msg('登录成功', {
 							icon: 1
@@ -348,7 +350,7 @@ new Vue({
 						ls.setItem("law_sign", law_signStr1);
 
 					} else {
-
+               console.log(data)
 						layer.msg(data.msg, {
 							icon: 2
 						})
