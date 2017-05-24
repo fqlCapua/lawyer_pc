@@ -262,7 +262,7 @@ $("#DjSubBtn").click(function(){
 									$(".AJBox").empty();
 									loadCase();
 								} else {
-									 layer.close(index);var data=JSON.parse(data);;
+									 
                                      layer.msg("登记失败" + data.msg)
                                      console.log(data.msg)
 								}
@@ -292,7 +292,8 @@ if($("#to_bbs").is(":checked")){
 				
 			},
 			success:function(data){
-				layer.close(index);var data=JSON.parse(data);;
+				layer.close(index);
+				var data=JSON.parse(data);;
 				if(data.ret==200){
 					//console.log(data.data);
 				   layer.msg("已发表到论坛");
@@ -329,7 +330,8 @@ $("#case_sync").on("click",function(){
 							},
 							
 							success: function(data) {
-								layer.close(index);var data=JSON.parse(data);;
+								layer.close(index);
+								var data=JSON.parse(data);;
 							   if(data.ret == 200) {
 							    	
 									layer.msg("同步成功")

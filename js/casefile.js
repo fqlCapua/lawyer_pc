@@ -140,7 +140,8 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 
 //保存案件
 $("#save").on("click", function() {
-
+     var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var index = layer.load(1, {
 		shade: [0.1, 'green']
 	});
@@ -162,12 +163,12 @@ $("#save").on("click", function() {
 
 		},
 		success: function(data) {
+			layer.close(index);
+			var data=JSON.parse(data);
 			if(data.ret==200){
-				
-				
-				
 				/*保存证据*/
 					var title = $(".evid_explain textarea").val();
+					console.info(title);
 						var img = $("#file-3")[0].files[0];
 						var mp3 = $("#file-4")[0].files[0];
 						var doc = $("#file-5")[0].files[0];
@@ -188,16 +189,19 @@ $("#save").on("click", function() {
 							contentType:false,
 							data: form1,
 							success: function(data) {
-							layer.close(index);var data=JSON.parse(data);
+							
+							var data=JSON.parse(data);
 								if(data.ret == 200) {
 									console.log(data.data);
-									
-			                 $("#myCaseDetail").modal('hide');
-			                 $(".AJBox").empty();
-			                  loadCase('1', 'time');
+								   $(".file-input").html("");
+			                 
 								}
 							}
 						});
+						
+						$("#myCaseDetail").modal('hide');
+			             $(".AJBox").empty();
+			              loadCase('1', 'time');
 			}
 		
 			
@@ -238,7 +242,8 @@ $(document).on("click", "#del_case", function() {
 				id: del_case_id.html()
 			},
 			success: function(data) {
-				layer.close(index);var data=JSON.parse(data);
+				layer.close(index);
+				var data=JSON.parse(data);
 				if(data.ret == 200) {
 					$(this).parent().parent().siblings(".case_id").parent().remove();
 					layer.msg("已删除！", {
@@ -249,7 +254,7 @@ $(document).on("click", "#del_case", function() {
 					//window.location.reload();
 					loadCase('1', 'time');
 				} else {
-					layer.close(index);var data=JSON.parse(data);
+					
 					layer.msg("删除失败！", {
 						icon: 2
 					})
@@ -257,7 +262,7 @@ $(document).on("click", "#del_case", function() {
 
 			},
 			error: function() {
-				layer.close(index);var data=JSON.parse(data);
+				layer.close(index);
 				layer.msg("删除失败！", {
 					icon: 2
 				})
@@ -287,19 +292,18 @@ $("#DjSubBtn").click(function() {
 	$.ajax('https://www.ls186.cn/law_api', {
 		type: 'post',
 		data: {
-			service: "Case.get_new_ID",
+			service:"Case.get_new_id",
 			time: cur_timestamp,
 			token: md_token,
 			id: getSession(0),
 			ispc: 1
 		},
 	}).done(function(data) {
+		var data=JSON.parse(data);
 		if(data.ret == 200) {
-
-			console.log(data.data)
-
-			
-			var id = data.data;
+			console.log("new id为："+data.data);
+            
+            var id = data.data;
 
 			$.ajax({
 				type: 'POST',
@@ -308,7 +312,7 @@ $("#DjSubBtn").click(function() {
 					service: "Case.save_case",
 					time: cur_timestamp,
 					token: md_token,
-					id: data.data,
+					id: id,
 					truename: djcase_uname,
 					telphone: djcase_tel,
 					case_title: djcase_name,
@@ -316,12 +320,17 @@ $("#DjSubBtn").click(function() {
 					case_type: djcase_type,
 
 				},
-				success: function(data) {
+				success: function(data){
+					
+					layer.close(index);
+					var data=JSON.parse(data);
 					if(data.ret == 200) {
-						var title = $(".evid_explain textarea").val();
-						var img = $("#file-3")[0].files[0];
-						var mp3 = $("#file-4")[0].files[0];
-						var doc = $("#file-5")[0].files[0];
+						if($(".djevid_explain textarea").val()!=''){
+							 var title = $(".evid_explain textarea").val();
+							
+						var img = $("#file-6")[0].files[0];
+						var mp3 = $("#file-7")[0].files[0];
+						var doc = $("#file-8")[0].files[0];
 						var form1 = new FormData();
 						form1.append("service", "Case.add_evidence");
 						form1.append("time", cur_timestamp);
@@ -339,21 +348,34 @@ $("#DjSubBtn").click(function() {
 							contentType:false,
 							data: form1,
 							success: function(data) {
-							
+							var data=JSON.parse(data);
 								if(data.ret == 200) {
+									layer.msg("新增证据成功!");
 									console.log(data.data);
+									$(".evid_explain textarea").val(" ");
+									$(".file-input").empty();
+									
+								}else{
+									layer.msg(data.msg);
 								}
 							}
 						});
-						$("#djcase_uname").val("");
+						}
+					   
+						
+						//})
+					   $("#djcase_uname").val("");
 						$("#djcase_tel").val("");
 						$("#djcase_name").val("");
-						layer.close(index);var data=JSON.parse(data);
+					
 						layer.msg("登记成功")
 						$(".AJBox").empty();
 						loadCase('1', 'time');
+						
 					} else {
-						layer.msg("登记失败" + data.msg)
+						layer.msg("登记新案件失败"+data.msg)
+						console.log(data.msg);
+//						
 					}
 				},
 			});
@@ -369,7 +391,6 @@ $("#DjSubBtn").click(function() {
 	});
 
 })
-
 
 
 
@@ -393,7 +414,8 @@ $("#case_sync").on("click", function() {
 		},
 
 		success: function(data) {
-			layer.close(index);var data=JSON.parse(data);
+			layer.close(index);
+			var data=JSON.parse(data);
 			if(data.ret == 200) {
 
 				layer.msg("同步成功")

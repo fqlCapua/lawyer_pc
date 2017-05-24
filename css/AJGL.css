@@ -40,6 +40,9 @@ li div{
 	font-family: "微软雅黑";
 	color: #337AB7;
 }
+.add_program li{
+	cursor: pointer;
+}
 /*滚动条*/
 
 /*
