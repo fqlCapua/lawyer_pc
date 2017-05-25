@@ -51,7 +51,7 @@ $(document).ready(function() {
 				}
 			},
 			error: function(data) {
-				console.log(data)
+			
 				layer.msg("数据加载失败", {
 					icon: 5
 				})
