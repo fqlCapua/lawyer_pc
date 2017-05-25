@@ -16,10 +16,10 @@ $(function(){
 			var data=JSON.parse(data);
 			console.log(data.data);
 			var laws_list=data.data;
-			var spans=$("#laws_menu li span");
-			for (var i = 0; i < spans.length; i++) {
-				spans[i].html(data.data[i].laws_cate_name);
-				spans[i].attr("laws_cate_id",data.data[i].laws_cate_id);
+			var lis=$("#laws_menu li");
+			for (var i = 0; i < lis.length; i++) {
+				//spans.eq(i).html(data.data[i].laws_cate_name);
+				lis.eq(i).attr("laws_cate_id",data.data[i].laws_cate_id);
 			}
 		}
 	});
