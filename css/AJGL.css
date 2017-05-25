@@ -115,6 +115,28 @@ li div{
     width: 90%;
 	margin:0 auto;
 }
+.evidence_detailbox{
+	width:250px;
+	height:300px;
+	padding:0 1em;
+	box-shadow:0 0 5px 2px #999999;
+	
+}
+.evidence_title{
+	
+	line-height: 2em;
+}
+.evidence_mp3{
+	width: 100%;
+	word-break:break-word ;
+}
+.evidence_doc{
+	width: 100%;
+	word-break:break-word ;
+}
+/*.evidence_doc label,.evidence_mp3 label,.evidence_title,.evidence_img{
+	color: #337AB7;
+}*/
 @media only screen and (max-width: 700px) {
 	.onlineBtn{
 		

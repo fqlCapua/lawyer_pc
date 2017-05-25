@@ -19,7 +19,8 @@ var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 			type: 1
 		},
 		success: function(data) {
-		   layer.close(index);var data=JSON.parse(data);;
+		   layer.close(index);
+		   var data=JSON.parse(data);;
 		   
 			if(data.ret == 200) {
 				var caseMainList = data.data;
