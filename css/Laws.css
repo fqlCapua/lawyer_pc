@@ -1,8 +1,8 @@
 /* Custom Styles */
-*{
+*:not(ol){
 	padding: 0;
 	margin: 0;
-	list-style: none;
+	
 	text-decoration: none;
 }
 #searchbox{
@@ -11,7 +11,7 @@
 #searchbox .searchHis{
 	line-height:34px;
 }
-.laws_title{
+.law_title{
 	height:5em;
 	background-color:#337AB7;
 	color: #FFFFFF;
@@ -25,12 +25,27 @@
 	display: flex;
 }
     #laws_cont{
+    	list-style-position:inside;
     	height:504px;
     	width:80%;
+    	padding:20px 20px 0 30px;
     	border: 1px solid #DDDDDD;
     	overflow-y:scroll ;
     	
     }
+    #laws_cont li:nth-child(1){
+    	border-top:1px solid #BABABA;
+    }
+    #laws_cont li{
+    	color: #33A3DD;
+    	cursor: pointer;
+    	line-height:26px;
+    	font-size:0.9em;
+    	border-bottom: 1px solid #BABABA;
+    }
+     #laws_cont li a{
+     	/*color: #333333;*/
+     }
     #laws_menu{
     	height: 504px;
     	width:17%;
@@ -38,8 +53,21 @@
         border: 1px solid #DDDDDD;
     }
   #laws_menu li{
+  	cursor: pointer;
   	height:42px;
-  	border-bottom: 1px solid #ddd;
+  	border-bottom:1px solid #ddd;
+  	font-size:0.8em;
+  	text-align:center;
+   }
+     #laws_menu li a{
+     	height: 100%;
+     	display: inline-block;
+     	width: 100%;
+     
+     }
+   #laws_menu li a span{
+   
+   
    }
  #laws_menu li:nth-last-child(1){
  	/*border-bottom: none;*/
