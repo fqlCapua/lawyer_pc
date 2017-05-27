@@ -33,9 +33,9 @@
     	overflow-y:scroll ;
     	
     }
-    #laws_cont li:nth-child(1){
+    /*#laws_cont li:nth-child(1){
     	border-top:1px solid #BABABA;
-    }
+    }*/
     #laws_cont li{
     	color: #33A3DD;
     	cursor: pointer;
@@ -69,10 +69,13 @@
    
    
    }
+   
  #laws_menu li:nth-last-child(1){
  	/*border-bottom: none;*/
  }
-    
+    .laws_content{
+    	padding:5px 10px;
+    }
     
   .style-6::-webkit-scrollbar-track
 {

@@ -463,8 +463,9 @@ $(".evidCont .caret_icon").click(function() {
 		var cur_timestamp = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
-
+       
 		$(this).children(".load_icon").show();
+		$(".evidence_cont").empty();
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
@@ -480,7 +481,7 @@ $(".evidCont .caret_icon").click(function() {
 				if(data.ret == 200) {
 
 					layer.msg('加载成功');
-					$(".evidence_cont").empty();
+					
 					var list = data.data;
 					$.each(list, function(i, ele) {
 						var li = $("<li class='list-group-item evid_detail'><i class='fa fa-paper-plane'></i>&nbsp;&nbsp;<span class='' evd_id='" + ele.evidence_id + "'>" + ele.evidence_title + "</span></li>\n");
