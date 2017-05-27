@@ -132,16 +132,16 @@ function laws_search(search_key,search_type) {
 		},
 		success: function(data) {
 			layer.close(index);
-			console.log(data)
+			
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
-				layer.msg("搜索成功", {
-					icon: 1
-				});
+				layer.msg("搜索成功", {icon: 1});
 				var laws_list = data.data;
+				console.log(laws_list);
 				$.each(laws_list, function(i, ele) {
 					$("#laws_cont").empty();
-					var li = $("<li laws_id='" + ele.laws_id + "'><a class='laws_title'>" + ele.laws_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.laws_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
+					var li=$("<li laws_id='"+ ele.laws_id +"'><a class='laws_title'>" + ele.laws_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.laws_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
+					console.log(li);
 					$("#laws_cont").append(li);
 				});
 
