@@ -38,7 +38,9 @@ $(document).ready(function() {
 				
 				if(data.ret==200) {
 					var caseMainList = data.data;
-					
+					if(caseMainList==''){
+						layer.msg("你还没有登记案件..");
+					}
 					$.each(caseMainList, function(index, ele) {
 						var sgcase = $("<li class='col-md-6'><div class='show_tit'>" + ele.case_title + "<span class='pull-right text-muted'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(' ')[0] + "</span></div></li>");
 					    $(".AJBox_main").append(sgcase);

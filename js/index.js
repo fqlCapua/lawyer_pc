@@ -92,10 +92,17 @@ function getVerifyCode(options) {
 						phone: phone
 					},
 					success: function(data) {
-						layer.msg("发送成功");
+						
+						layer.msg("发送成功",{icon:1});
+						
+						var data=JSON.parse(data);
 						if(data.ret == 200) {
 
 							$("#regBtn").click(function() {
+							
+							var index = layer.load(1, {
+											shade: [0.1, '#000']
+										});
 									var pwd = $("#userPWD").val();
 									pwd2 = $("#userPWD2").val();
 									isRead = $("#myRegs input[type=checkbox]").is(":checked");
@@ -103,18 +110,16 @@ function getVerifyCode(options) {
 									var PhoneCode = $(".getYzCode").prev().val();
 								if(pwd2==pwd&&isRead&&PhoneCode!=""){
 								if(String(data.data) == String(hex_md5("law_" + PhoneCode))) {
-									//layer.msg("验证码正确");
+									layer.msg("验证码正确");
 									console.log(cur_timestamp)
 									console.log(md_token)
 									console.log(phone);
 							
 								
-									//var cur_timestamp = Date.parse(new Date()) / 1000;
-									//var md_token = hex_md5("law_" + hex_md5() + "_law");
+									var cur_timestamp = Date.parse(new Date()) / 1000;
+									var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 									
-										var index = layer.load(1, {
-											shade: [0.1, '#000']
-										});
+										
 										$.ajax({
 											type: 'POST',
 											url: 'https://www.ls186.cn/law_api',
@@ -147,7 +152,7 @@ function getVerifyCode(options) {
 								}else{
 									layer.msg("完善信息！");
 								}
-								
+//								
 							});
 
 						} else {

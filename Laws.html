@@ -13,6 +13,9 @@
 		<script type="text/javascript" src="js/bootstrap.js"></script>
    
       <script type="text/javascript" src="js/layer.js" ></script>
+      <style>
+      	
+      </style>
 	</head>
 
 	<body>
@@ -22,12 +25,8 @@
 			</div>
 			<article id="searchbox" class="searchbox" >
 				<label style="font-size:20px;"  class="control-label col-md-3 text-primary">法律数据库</label>
-				<label  class="control-label col-md-4 searchHis">搜索历史：
-					    <a class="text-danger">人大法规</a>
-						<a class="text-danger">地方人大</a>
-						<a class="text-danger">军事法规</a>
-				</label>
-				<span class="form-inline col-md-5">
+				
+				<span class="form-inline  pull-right">
 					<select  class="custom-select form-control searchType">类型：
                     	<option name='title'>标题</option>
                     	<option name='content'>内容</option>
@@ -84,6 +83,8 @@
 
 				</ul>
 				<ol id="laws_cont" class="style-6">
+					<i id="freshIcon" style="" class="fa fa-spinner fa-pulse"></i>
+					
 					<!--<li>
 						<a class="laws_title">全国人大法律法规</a><span class="laws_ctime text-muted pull-right">2017-05-26</span>
 					</li>-->

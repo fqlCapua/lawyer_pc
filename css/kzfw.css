@@ -55,7 +55,8 @@
 .LzBox li{
 	background-color:#92B8B1;
     border:2px solid #EEEEEE;
-	width:20%;
+	width:170px;
+	
 	text-align:center;
 	
 }
@@ -67,7 +68,7 @@
 .LzBox li dd{
 	width:70%;
 	margin:0 auto;
-	height:9em;
+	height:8em;
 }
 .LzBox li dt{
 	line-height:30px;

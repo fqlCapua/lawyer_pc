@@ -188,8 +188,7 @@ $("#save").on("click", function() {
 						form1.append("doc", doc);
 					}
 					
-					console.log("有文件为："+$("#file-3").val()=="");
-					console.log("无文件为："+$("#file-4").val())
+					
 					$.ajax({
 						type: "post",
 						url: "https://www.ls186.cn/law_api",
@@ -201,13 +200,14 @@ $("#save").on("click", function() {
 							var data = JSON.parse(data);
 							if(data.ret == 200) {
 								console.log(data.data);
+								layer.msg("保存证据成功");
 								$(".evid_explain textarea").val();
 								$(".file-input").html("");
 								$(".programeBox").children().hide();
 							
 
 							} else {
-								layer.msg('新增证据失败')
+								layer.msg('保存证据失败')
 							}
 						}
 					});
@@ -481,7 +481,7 @@ $(".evidCont .caret_icon").click(function() {
 				if(data.ret == 200) {
 
 					layer.msg('加载成功');
-					
+					$(".evidence_cont").empty();
 					var list = data.data;
 					$.each(list, function(i, ele) {
 						var li = $("<li class='list-group-item evid_detail'><i class='fa fa-paper-plane'></i>&nbsp;&nbsp;<span class='' evd_id='" + ele.evidence_id + "'>" + ele.evidence_title + "</span></li>\n");
@@ -521,18 +521,24 @@ $(".evidence_cont").delegate("li", "click", function() {
 			layer.close(index);
 			//var data=JSON.parse(data);
 			if(data.ret == 200) {
-			//console.log(data.data);
+			
 			var detail=data.data;
              var evid_id=detail.evidence_id;
             
               if(detail.evidence_img!=""){
               	 var img="http://www.ls186.cn"+String(detail.evidence_img);
-              };
-             if(detail.evidence_mp3!==""){
+              }else{
+              	var img="";
+              }
+             if(detail.evidence_mp3!=""){
              	 var mp3="http://www.ls186.cn"+String(detail.evidence_mp3);
+             }else{
+             	var mp3="";
              }
-             if(detail.evidence_doc!==""){
+             if(detail.evidence_doc!=""){
              	 var doc="http://www.ls186.cn"+String(detail.evidence_doc);
+             }else{
+             	var doc="";
              }
 				//$("#myCaseDetail").modal('hide');
 				var open1=layer.open({
@@ -558,7 +564,7 @@ $(".evidence_cont").delegate("li", "click", function() {
 			}
 		},
 		error: function(data) {
-			console.log(data);
+		
 		}
 	})
 })
