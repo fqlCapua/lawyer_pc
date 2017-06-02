@@ -199,7 +199,7 @@ $("#save").on("click", function() {
 						success: function(data) {
 							var data = JSON.parse(data);
 							if(data.ret == 200) {
-								console.log(data.data);
+								
 								layer.msg("保存证据成功");
 								$(".evid_explain textarea").val();
 								$(".file-input").html("");
