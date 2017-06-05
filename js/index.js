@@ -60,7 +60,40 @@ function toDesktop(sUrl, sName) {
 /*注册*/
 
 
-
+function pwdTest(){
+	var flag;
+	testPwd=/^[a-zA-Z]\w{7,}$/;
+	if($("#userPWD").val()!=""){
+		if(testPwd.test($("#userPWD").val())){
+			flag=true;
+		}else{
+			layer.msg("密码格式不正确");
+			flag=false;
+		}
+	}else{
+		layer.msg("不能为空");
+		flag=false;
+	}
+	return flag;
+};
+function pwdAgain(){
+	var flag;
+    if($("#userPWD2").val()!=""){
+		if($("#userPWD2").val()==$("#userPWD").val()){
+			flag=true;
+		}else{
+			layer.msg("密码不一致");
+			flag=false;
+		}
+		
+	}else{
+		 layer.msg("不能为空");
+		 flag=false;
+	}
+	return flag;
+};
+$("#userPWD").blur(function(){pwdTest()});
+$("#userPWD2").blur(function(){pwdAgain()});
 
 
 function getVerifyCode(options) {
@@ -92,10 +125,9 @@ function getVerifyCode(options) {
 						phone: phone
 					},
 					success: function(data) {
-						
-						layer.msg("发送成功",{icon:1});
-						
 						var data=JSON.parse(data);
+						layer.msg("发送成功",{icon:1});
+						console.log(data);
 						if(data.ret == 200) {
 
 							$("#regBtn").click(function() {
@@ -108,6 +140,7 @@ function getVerifyCode(options) {
 									isRead = $("#myRegs input[type=checkbox]").is(":checked");
 									tag = $("#myRegs select").find("option:selected").index() + 1;
 									var PhoneCode = $(".getYzCode").prev().val();
+									
 								if(pwd2==pwd&&isRead&&PhoneCode!=""){
 								if(String(data.data) == String(hex_md5("law_" + PhoneCode))) {
 									layer.msg("验证码正确");
