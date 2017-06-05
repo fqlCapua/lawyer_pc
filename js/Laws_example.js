@@ -1,5 +1,5 @@
 /*加载法律法规一级分类*/
-//var flag;
+
 //$(function(){
 //	var cur_time=Math.round(new Date()/1000);
 //	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
@@ -8,7 +8,7 @@
 //		type:"post",
 //		url:"https://www.ls186.cn/law_api",
 //		data:{
-//			service:'Laws.get_laws_category',
+//			service:'Laws.get_examples_category',
 //			time:cur_time,
 //			token:md_token,
 //			
@@ -18,7 +18,7 @@
 //			
 //			var data=JSON.parse(data);
 //			if(data.ret==200){
-//				flag==true;
+//			
 //			console.log(data.data);
 //			var laws_list=data.data;
 //			var lis=$("#laws_menu li");
@@ -27,7 +27,7 @@
 //				lis.eq(i).attr("laws_cate_id",data.data[i].laws_cate_id);
 //			}
 //			}else{
-//				flag==false;
+//				
 //				layer.msg(data.msg);
 //			}
 //			
@@ -47,7 +47,7 @@ function laws_type(cate_id) {
 		type: "post",
 		url: "https://www.ls186.cn/law_api",
 		data: {
-			service: 'Laws.get_laws_list',
+			service: 'Laws.get_examples_list',
 			time: cur_time,
 			token: md_token,
 			cate_id: cate_id
@@ -60,7 +60,7 @@ function laws_type(cate_id) {
 				var laws_list = data.data;
 				$("#laws_cont").empty();
 				$.each(laws_list, function(i, ele) {
-				    var li = $("<li laws_id='" + ele.laws_id + "'><a class='laws_title'>" + ele.laws_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.laws_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
+				    var li = $("<li laws_id='" + ele.examples_id + "'><a class='examples_title'>" + ele.examples_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.examples_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
 					$("#laws_cont").append(li);
 				});
 
@@ -80,7 +80,7 @@ function  laws_detail(i){
 		type: 'post',
 		url: 'https://www.ls186.cn/law_api',
 		data: {
-			service: 'Laws.get_laws_detail',
+			service: 'Laws.get_examples_detail',
 			time: cur_time,
 			token: md_token,
 			laws_id: i
@@ -119,37 +119,39 @@ function  laws_detail(i){
 
 
 /*搜索法律法规*/
-function laws_search(search_key,search_type) {
+function laws_search(search_key,search_type,cate_id) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
-	$("#freshIcon").show()
+	var index=layer.load(0,{shade:[0.3,'blue']});
+	//$("#freshIcon").show()
 //	console.log(cur_time+"++++"+md_token);
 	$.ajax({
 		type: "post",
 		url: "https://www.ls186.cn/law_api",
 		data: {
-			service: 'Laws.search_laws',
+			service: 'Laws.search_examples',
 			time: cur_time,
 			token: md_token,
 			key: search_key,
-			type:search_type
-			
+			type:search_type,
+			cate_id:cate_id
 		},
 		success: function(data) {
-			$("#freshIcon").hide()
+			//$("#freshIcon").hide()
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
+				layer.close(index);
 				layer.msg("搜索成功", {icon: 1});
 				$("#laws_cont").empty();
 				var laws_list = data.data;
 			
 				$.each(laws_list, function(i, ele) {
-					var li=$("<li laws_id='"+ ele.laws_id +"'><a class='laws_title'>" + ele.laws_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.laws_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
+					var li=$("<li laws_id='"+ ele.examples_id +"'><a class='laws_title'>" + ele.examples_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.examples_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
 					$("#laws_cont").append(li);
 				});
 
 			} else {
-				
+			       console.log(data)
 				layer.msg("加载失败"+data.msg);
 			}
 		}
@@ -186,7 +188,8 @@ $("#laws_cont").on("click", 'li', function() {
 
 /*搜索法律法规*/
 $(".searchBtn").click(function(){
+	var cate_id=$(".Type_cate_id").children("option:selected").index()+1;
 	var cur_key=$(".searchKey").val();
 	var cur_type=$('.searchType').children("option:selected").attr("name");
-      laws_search(cur_key,cur_type);
+      laws_search(cur_key,cur_type,cate_id);
 })
