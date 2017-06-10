@@ -208,7 +208,8 @@ $("#save").on("click", function() {
 
 							} else {
 								layer.msg('保存证据失败')
-							}
+							};
+							window.location.reload();
 						}
 					});
 

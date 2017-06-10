@@ -6,6 +6,7 @@
 		<title>法律法规</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<link rel="stylesheet" href="css/Laws.css" />
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<script type="text/javascript" src="js/md5.js"></script>
@@ -21,12 +22,14 @@
 	<body>
 		<div class="container">
 			<div class="law_title">
-				<div>法律法规</div>
+				<div>法律法规数据库</div>
 			</div>
 			<article id="searchbox" class="searchbox" >
-				<label style="font-size:20px;"  class="control-label col-md-3 text-primary">法律数据库</label>
-				
-				<span class="form-inline  pull-right">
+				<span class="pagination"  style="margin: 0;">
+                           <li class="prevPage"><a href="#">上一页</a></li>
+                           <li class="nextPage"><a href="#">下一页</a></li>
+                </span>
+				<span class="form-inline  pull-right" >
 					<select  class="custom-select form-control searchType">类型：
                     	<option name='title'>标题</option>
                     	<option name='content'>内容</option>
@@ -83,7 +86,7 @@
 
 				</ul>
 				<ol id="laws_cont" class="style-6">
-					<i id="freshIcon" style="" class="fa fa-spinner fa-pulse"></i>
+					<!--<i id="freshIcon" style="" class="fa fa-spinner fa-pulse"></i>-->
 					
 					<!--<li>
 						<a class="laws_title">全国人大法律法规</a><span class="laws_ctime text-muted pull-right">2017-05-26</span>

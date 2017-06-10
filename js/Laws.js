@@ -38,7 +38,7 @@
 
 $("#freshIcon").hide();
 /*获取法律法规分类*/
-function laws_type(cate_id) {
+function laws_type(pageNum,cate_id) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
 	$("#laws_cont li").hide();
@@ -50,9 +50,11 @@ function laws_type(cate_id) {
 			service: 'Laws.get_laws_list',
 			time: cur_time,
 			token: md_token,
-			cate_id: cate_id
+			cate_id: cate_id,
+			page:pageNum
 		},
 		success: function(data) {
+			//console.log(Object.prototype.toString.call(pageNum));
 			layer.close(index)
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
@@ -91,8 +93,9 @@ function  laws_detail(i){
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
 				console.log(data.data);
-      	var content="<div class='laws_content'>"+data.data.laws_content+"</div>";
-			layer.open({
+      	var content="<table><tr>"+data.data.laws_content+"</tr></table>";
+      	console.log(content);
+      	layer.open({
 					type: 1,
 					skin: 'layui-layer-lan', //样式类名
 					area:['90%','100%'],
@@ -122,7 +125,7 @@ function  laws_detail(i){
 function laws_search(search_key,search_type) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
-	$("#freshIcon").show()
+	var index=layer.load(0,{shade:[0.1,'blue']});
 //	console.log(cur_time+"++++"+md_token);
 	$.ajax({
 		type: "post",
@@ -136,7 +139,7 @@ function laws_search(search_key,search_type) {
 			
 		},
 		success: function(data) {
-			$("#freshIcon").hide()
+			layer.close(index);
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
 				layer.msg("搜索成功", {icon: 1});
@@ -166,7 +169,11 @@ function laws_search(search_key,search_type) {
  * */
 
 /*默认打开第一页*/
-laws_type('1');
+var pageNum=1;
+
+    cate_id=1;
+laws_type(pageNum,cate_id);
+
 var seleIcon=$("<i class='selecIcon fa fa-arrow-circle-right pull-right fa-2x'></i>");
 $(".nav li a").eq(0).append(seleIcon);
 $(".nav li").click(function() {
@@ -174,8 +181,36 @@ $(".nav li").click(function() {
 	$(this).children().append(seleIcon);
     $(this).siblings().children(".seleIcon").remove();
 	var cate_id = $(this).index() + 1;
-	laws_type(cate_id);
+	laws_type(pageNum,cate_id);
+	
 
+});
+var cate_id;
+function change_cate_id(){
+	var cate_id=$("#laws_menu").find(".selecIcon").parent().parent().index()+1;
+	return cate_id;
+}
+
+/*上一页*/
+$(".prevPage,.nextPage").hide();
+$(".prevPage").click(function(){
+	
+	var cate_id=change_cate_id();
+		if(pageNum==1){
+			layer.msg("已经是第一页了");
+			console.log(cate_id)
+		}else{
+			pageNum--;
+			laws_type(pageNum,cate_id);
+			console.log(cate_id)
+		}
+	})
+$(".nextPage").click(function(){
+	var cate_id=change_cate_id();
+			laws_type(pageNum,cate_id);
+			console.log(cate_id)
+			
+		
 })
 $("#laws_cont").on("click", 'li', function() {
 
