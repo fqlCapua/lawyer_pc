@@ -162,6 +162,7 @@ function change_pwd(phone,pwd){
 			password:pwd
 		},
 		success:function(data){
+			var data=JSON.parse(data);
 			$("#get_code").val("免费获取验证码"); 
 			layer.close(index);
 			if(data.ret==200){
@@ -208,7 +209,7 @@ $("#NewPwd").blur(function(){pwdTest()});
 $("#PwdAgain").blur(function(){pwdAgain()});
 
 
-var ttt=$("#get_code").on("click",function(){
+$("#get_code").on("click",function(){
 
 	var phone=$("#Phone").val();
 	var reg=/^1[3|4|5|7|8][0-9]\d{8}$/;
@@ -226,6 +227,7 @@ var ttt=$("#get_code").on("click",function(){
 					phone:phone,
 				},
 				success:function(data){
+					var data=JSON.parse(data);
 					layer.close(index);
 					if(data.ret==200){
 						layer.msg("发送成功");
