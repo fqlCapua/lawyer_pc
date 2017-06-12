@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/Laws.css" />
+		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<script type="text/javascript" src="js/md5.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
@@ -24,8 +25,10 @@
 				<div>典型判例</div>
 			</div>
 			<article id="searchbox" class="searchbox" >
-				<label style="font-size:20px;"  class="control-label col-md-3 text-primary">法律数据库</label>
-				   
+			<span class="pagination"  style="margin: 0;">
+                           <li class="prevPage"><a href="#">上一页</a></li>
+                           <li class="nextPage"><a href="#">下一页</a></li>
+                       </span>
 				<span class="form-inline  pull-right">
 					<select  class="custom-select form-control searchType">类型：
                     	<option name='title'>标题</option>
@@ -42,6 +45,7 @@
                     	<option >地方人大法规</option>
                     </select>
                     <span class="input-group">
+                    	
                     	<input placeholder="关键字" class="form-control searchKey" type="text" />
                         <div class="input-group-btn">
                         	<button type="button" class="btn btn-primary searchBtn"><span class="fa fa-search"></span></button>
@@ -54,50 +58,10 @@
 			
 			<div id="law_box" >
 				<ul id="laws_menu" class="nav">
-					<li class="">
-						<a href="#"><i class="fa fa-university"></i>&nbsp;<span>全国人大法律库</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-file-text-o"></i>&nbsp;<span>国务院行政法规</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-file-text"></i>&nbsp;<span>立法司法</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-book"></i>&nbsp;<span>国务院部委规章</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-legal"></i>&nbsp;<span>国家规范行文件</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-space-shuttle"></i>&nbsp;<span>军事法规</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-users"></i>&nbsp;<span>行业规范</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-newspaper-o"></i>&nbsp;<span>地方人大法规</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-building"></i>&nbsp;<span>地方政府规章</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-suitcase"></i>&nbsp;<span>地方规范性文件</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-building-o"></i>&nbsp;<span>地方司法规范</span></a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-globe"></i>&nbsp;<span>国际法</span></a>
-					</li>
-
+				
 				</ul>
 				<ol id="laws_cont" class="style-6">
-					<i id="freshIcon" style="" class="fa fa-spinner fa-pulse"></i>
 					
-					<!--<li>
-						<a class="laws_title">全国人大法律法规</a><span class="laws_ctime text-muted pull-right">2017-05-26</span>
-					</li>-->
 					
 				</ol>
 			</div>

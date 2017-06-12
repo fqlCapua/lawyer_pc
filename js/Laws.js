@@ -93,18 +93,19 @@ function  laws_detail(i){
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
 				console.log(data.data);
-      	var content="<table><tr>"+data.data.laws_content+"</tr></table>";
+				
+      	var content="<div class='padding:20px'>"+data.data.laws_content+"</div>";
       	console.log(content);
       	layer.open({
 					type: 1,
 					skin: 'layui-layer-lan', //样式类名
-					area:['90%','100%'],
+					area:['50%','800px'],
 					scrollbar:true,
-					offset:['10px','5%'],
+					offset:['30px','25%'],
 					closeBtn: 1, //不显示关闭按钮
 					anim: 2,
 					maxmin: true,
-					moveOut:false,
+					moveOut:true,
 					shadeClose: true, //开启遮罩关闭
 					content: content
 				});
@@ -174,7 +175,7 @@ var pageNum=1;
     cate_id=1;
 laws_type(pageNum,cate_id);
 
-var seleIcon=$("<i class='selecIcon fa fa-arrow-circle-right pull-right fa-2x'></i>");
+var seleIcon=$("<i class='selecIcon fa fa-toggle-right  fa-2x pull-right '></i>");
 $(".nav li a").eq(0).append(seleIcon);
 $(".nav li").click(function() {
 	
@@ -192,23 +193,24 @@ function change_cate_id(){
 }
 
 /*上一页*/
-$(".prevPage,.nextPage").hide();
+//$(".prevPage,.nextPage").hide();
 $(".prevPage").click(function(){
 	
 	var cate_id=change_cate_id();
 		if(pageNum==1){
 			layer.msg("已经是第一页了");
-			console.log(cate_id)
+			//console.log(cate_id)
 		}else{
 			pageNum--;
 			laws_type(pageNum,cate_id);
-			console.log(cate_id)
+			//console.log(cate_id)
 		}
 	})
 $(".nextPage").click(function(){
 	var cate_id=change_cate_id();
+	pageNum++;
 			laws_type(pageNum,cate_id);
-			console.log(cate_id)
+			//console.log(cate_id)
 			
 		
 })
