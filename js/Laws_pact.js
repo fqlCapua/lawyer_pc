@@ -26,12 +26,12 @@ $(function(){
 			var laws_list=data.data;
 			$.each(laws_list, function(i,laws) {
 				
-				var li=$("<li examples_cate_id='"+laws.pact_cate_id+"'><a>"+laws.pact_cate_name +"</a><i pact_ico='"+laws.pact_ico+"'></i></li>")
+				var li=$("<li  examples_cate_id='"+laws.pact_cate_id+"'><a>"+laws.pact_cate_name +"</a><i pact_ico='"+laws.pact_ico+"'></i></li>")
 			var option=$("<option examples_cate_id='"+laws.pact_cate_id+"'><a>"+laws.pact_cate_name +"</a></option>")
 				$("#laws_menu").append(li);
 			$(".Type_cate_id").append(option);
 			});
-			
+			$("#laws_menu").find("li").eq(0).css("background-color","#EFEFEF");
 				
 	
 			}else{
@@ -201,7 +201,7 @@ $(".nextPage").click(function(){
 /*默认打开第一页*/
 
 $("#laws_menu").on("click",'li',function() {
-	$(this).addClass("active");
+  $(this).addClass("active");
   $(this).css("background-color","#EFEFEF");
   $(this).siblings().css("background-color","#FFFFFF");
   $(this).siblings().removeClass("active");
@@ -221,7 +221,7 @@ $(".searchBtn").click(function(){
 	var cate_id=$(".Type_cate_id").children("option:selected").attr("examples_cate_id");
 	var cur_key=$(".searchKey").val();
 	var cur_type=$('.searchType').children("option:selected").attr("name");
-	console.log(cate_id+""+cur_key+cur_type);
+	
       laws_search(cur_key,cur_type,cate_id);
 })
 
