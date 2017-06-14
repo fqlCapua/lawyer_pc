@@ -144,7 +144,7 @@ function laws_search(search_key,search_type) {
 			layer.close(index);
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
-				layer.msg("搜索成功", {icon: 1});
+				layer.msg("搜索完毕", {icon: 1});
 				$("#laws_cont").empty();
 				var laws_list = data.data;
 			
