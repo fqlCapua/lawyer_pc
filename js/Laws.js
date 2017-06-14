@@ -41,6 +41,7 @@ $("#freshIcon").hide();
 function laws_type(pageNum,cate_id) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
+	console.log(cur_time+"   "+md_token);
 	$("#laws_cont li").hide();
 	var index=layer.load(0,{shade:[0.1,'blue']})
 	$.ajax({
