@@ -122,7 +122,8 @@ $(function() {
 						var index = layer.load(1, {
 							shade: [0.1, '#000']
 						});
-						var title = $("#name").val();
+						
+	             	var title = $("#name").val();
 						telphone = $("#userNum").val();
 						username = $("#userName").val();
 						case_mp3 = $("#file-4")[0].files[0];
@@ -162,6 +163,9 @@ $(function() {
 							},
 						});
 
+                     	
+						
+
 					}else{
 						layer.msg("填写信息不正确");
 					}
@@ -170,3 +174,4 @@ $(function() {
 	
 
 })
+
