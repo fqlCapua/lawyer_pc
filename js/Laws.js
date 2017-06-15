@@ -41,6 +41,7 @@ $("#freshIcon").hide();
 function laws_type(pageNum,cate_id) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
+	console.log(cur_time+"   "+md_token);
 	$("#laws_cont li").hide();
 	var index=layer.load(0,{shade:[0.1,'blue']})
 	$.ajax({
@@ -143,7 +144,7 @@ function laws_search(search_key,search_type) {
 			layer.close(index);
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
-				layer.msg("搜索成功", {icon: 1});
+				layer.msg("搜索完毕", {icon: 1});
 				$("#laws_cont").empty();
 				var laws_list = data.data;
 			
