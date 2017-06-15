@@ -7,14 +7,15 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" href="../css/bootstrap.css" media="screen" />
-		 <link rel="shortcut icon" href="../img/home/logo-s.png">
+		<link rel="shortcut icon" href="../img/home/logo-s.png">
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="../css/index.css" />
 		<link rel="stylesheet" href="../css/flzx.css" />
-		<script type="text/javascript" src="../js/md5.js" ></script>
+		<script type="text/javascript" src="../js/md5.js"></script>
 		<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="../js/vue.js" ></script>
-		<script type="text/javascript" src="../js/layer.js" ></script>
+
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
       <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
@@ -26,7 +27,7 @@
 	</head>
 
 	<body>
-    	<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
@@ -43,17 +44,16 @@
 							<a>&nbsp;</a>
 							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
 				</span>
-				
+
 				<span class="pull-right Ylogin hide">
 				           <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
 								   <span class="fa fa-user-o"></span>
-				                 <b>User</b>已登录
-				           </a>
-				           <a id="clearUser" class="btn  btn-primary"  style="height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
-								 <b>注销</b>
-				           </a>
+				<b>User</b>已登录
+				</a>
+				<a id="clearUser" class="btn  btn-primary" style="height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+					<b>注销</b>
+				</a>
 				</span>
-
 
 			</div>
 			<!--
@@ -72,10 +72,10 @@
 						</div>
 						<form @submit.prevent="submit">
 							<div class="modal-body">
-                                  
+
 								<div class="form-group">
 									<label class="control-label">账号：</label>
-									<input type="text" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$"   placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
+									<input type="text" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
 								</div>
 								<div class="form-group">
 									<label class="control-label">密码：</label>
@@ -85,7 +85,6 @@
 							</div>
 							<div class="modal-footer">
 								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
-								
 
 								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
 							</div>
@@ -157,73 +156,87 @@
 			</div>
 
 		</div>
+		<div class="header-bottom">
+			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 
+		</div>
 		<!-- header -->
 		<div class="container">
-			<div class="header-bottom">
-				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-				
-			</div>
-			<!-- <article class="TopBg">
-
-				<div class="TopBg_text">
-					<a href="#"><strong>刑事诉讼</strong></a><br/>是审判机关（人民法院）、检查机关（人民检察院）和侦查机关（公安机关含国家安全机关）在当事人以及诉讼参与人的参加下，依照法定程序解决被追诉讼者刑事责任问题的诉讼活动。
-					<div>
+			<article class="TopBg">
+				<div class="bbs_type_tit">刑事诉讼</div>
+				<p class="TopBg_text">
+					是审判机关（人民法院）、检查机关（人民检察院）和侦查机关（公安机关含国家安全机关）在当事人以及诉讼参与人的参加下，依照法定程序解决被追诉讼者刑事责任问题的诉讼活动。
+				</p>
 			</article>
- -->
-			<article class="blog_box">
-				<input type='hidden' id='current_page' />
-				<input type='hidden' id='show_per_page' />
-				<ol id="content">
-					<li class="blog" onclick="">
+            <ul class="pagination bbs_type">
+					
+			</ul>         
+			<article class="blog_box" >
+				   
+				<ol id="content" style="" >
+					 <li class="blog">
 						<section class="userMsg">
-							<div class="blog_id hide">1</div>
 							<div class="user_header_img"><img src="../img/professor/pro01.png" /></div>
 							<div class="user_name">执2法</div>
 						</section>
 						<section class="userMsg2">
-							<div class="blog_img"></div>
-							<div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁
+						   <div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁 我见过你最深情的眼眸和最柔软的笑意， 
 							</div>
+						    
 						</section>
 						<section class="userMsg3">
+							<div class="blog_img"><img src="../img/member5.jpg" /></div>
 							<div class="blog_create_time text-muted">2017-03-30</div>
 							<div class="like_num fa fa-thumbs-o-up">2</div>
-							<div class="is_like hide">0</div>
 							<div class="comment_num fa fa-commenting-o">2</div>
 						</section>
 
 					</li>
-
+                    
 				</ol>
-				
-				
+
+				<ul class="pagination pull-right">
+					<li >
+						<a href="#">&laquo;</a>
+					</li>
+					<li class="">
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">&raquo;</a>
+					</li>
+				</ul>
 			</article>
 
-			</div>
+		</div>
 
-			<iframe class="footer_iframe" src="../footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
-			
+		<iframe class="footer_iframe" src="../footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 
-			</div>
+		</div>
 	</body>
 
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src='../js/bbs.js'></script>
+	<script type="text/javascript" src="../js/index.js"></script>
 
 	<script>
 		//$(":file").filestyle();
-		$('.modal').modal({
-			backdrop: 'static',
-			show: false
-		});
-
-	
-		
 	</script>
 	<!-- <script type="text/javascript" src="js/page.js" ></script>-->
 

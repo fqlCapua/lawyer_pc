@@ -392,7 +392,7 @@ new Vue({
 						layer.msg(data.msg, {
 							icon: 2
 						})
-						layer.close(index);var data=JSON.parse(data);; // 关闭layer 加载层
+				
 					}
 				},
 			});

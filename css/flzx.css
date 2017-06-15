@@ -1,25 +1,25 @@
-.TopBg {
-				position: relative;
-				background:url(../img/feed/bj1.jpg) no-repeat 0 0;
+          .TopBg {
+			   background:url(../img/feed/bj1.jpg) no-repeat 0 0;
 				/*background-attachment:scroll;*/
 				background-size: cover;
 				width: 100%;
-				height: 300px;
+				height:10em;
 			}
-			
+			  .TopBg>div{
+			  	font:bold 20px "微软雅黑";
+			  	padding:20px 0 10px 10px;
+			  	color: #fff;
+
+			  }
 			.TopBg_text {
-				position: absolute;
-				line-height: 30px;
-				bottom: 10px;
-				padding: 0 10px;
+			    line-height:30px;
+				padding:0 10px;
 				color: rgba(239, 239, 239, 0.8);
-				font-size: 16px;
-				letter-spacing: 2px;
+				font-size:14px;
+				letter-spacing:2px;
 			}
 			
-			.TopBg_text a {
-				font-size: 28px;
-			}
+			
 			/*论坛模块*/
 			
 			.fa {
@@ -27,11 +27,10 @@
 			}
 			
 			.blog_box {
-				padding: 10px 20px;
+				padding:5px 25px;
 			}
-			
 			.blog {
-				padding: 10px;
+				padding:5px 2px;
 				clear: both;
 				border-bottom: 1px solid #BABABA;
 			}
@@ -44,58 +43,77 @@
 			.is_like,
 			.comment_num {
 				margin-top: 10px;
-				font-size: 14px;
+				font-size: 13px;
 			}
 			
 			.user_header_img {
-				width: 50px;
-				height: 50px;
+				width:30px;
+				height:30px;
 			}
 			
 			.user_header_img img {
 				border: 2px solid #BABABA;
-				border-radius: 50%;
+				border-radius:50%;
 				width: 100%;
 			}
-			
+
+			.blog_img img{
+		    margin-top:10px;
+				width:50px;
+			  height:50px;
+			}
 			.blog_title {
-				width: 100%;
-				line-height: 2em;
-				font-size: 13px;
+				width:100%;
+				font-size:12px;
 				display: -webkit-box;
-				-webkit-line-clamp: 2;
+				-webkit-line-clamp:1;
 				-webkit-box-orient: vertical;
 				white-space: nowrap\9;
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-			
+		
 			.userMsg div,
 			.userMsg3 div {
 				display: inline-block;
+				vertical-align: bottom;
 			}
+			.blog_img{
 			
-			.blog_create_time {
-				width: 85%;
+			width:10%;
 			}
-			
+			.blog_create_time {	
+				width:80%;
+			}			
 			.like_num {
-				width: 6%;
-			}
-			
+				width:4%;
+			}		
 			.comment_num {
-				width: 6%;
+			  width:4%;
 			}
 			
 			.user_name {
-				font-size: 16px;
+				font-size:13px;
 				color: #337AB7;
 				font-weight: bold;
 			}
-			
+			.bbs_type{
+				padding:0 10px;
+				display:flex;
+				font-size: 13px;
+			}
+			.bbs_type li{
+				height:30px;
+			  text-overflow: ellipsis;
+				line-height:30px;
+				text-align: center;
+				width:9vw;
+				flex-wrap:wrap;
+				
+			}
 			@media only screen and (max-width:414px) {
 				.TopBg {
-					height: 200px;
+					height:160px;
 				}
 				.TopBg_text a {
 					font-size: 20px;
@@ -114,4 +132,8 @@
 				.comment_num {
 					width: 48%;
 				}
+			}
+			ol li{
+				
+				border: 1px solid red;
 			}
