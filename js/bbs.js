@@ -26,8 +26,9 @@ function  bbs_type_load() {
     			$(".bbs_type").append(li);  
 
     		})
-    		$(".TopBg_text").html($(".selec").attr('cont'));
     		$(".bbs_type li").eq(0).addClass("active");
+    		$(".TopBg_text").html($("#content .active").attr('cont'));
+    		
     		var bbs_type_id=$(".bbs_type").find(".active").attr("bbs_type_id");
      
        bbs_list(pageNum,bbs_type_id);
@@ -65,12 +66,30 @@ function bbs_list(pageNum,bbs_type_id){
         var data=JSON.parse(data);
     	
     	if(data.ret==200){
-    		console.log(data);
+    	 	console.log(data);
           var list=data.data;
+           
+             var el_li=$(".blog");
     	    $.each(list,function(i,el){
-    	    	var el_li=$(".blog").clone();
+    	    	var el_li=$(<li class='blog'>
+                    <section class='userMsg'> 
+                        <div class='user_header_img'><img src='"+ +"'/></div>
+                       <div class='user_name'>"++"</div>
+                    </section>
+                    <section class='userMsg2'>
+                       <div class='blog_title'>"++" </div>
+                    </section>
+                     <section class='userMsg3'>
+                            <div class='blog_img'><img src='"+ +"' /></div>
+                            <div class='blog_create_time text-muted'>"+ +"</div>
+                            <div class='like_num fa fa-thumbs-o-up'>"+ +"</div>
+                            <div class='comment_num fa fa-commenting-o'>"+ +"</div>
+                      </section>
+
+                    </li>)
+             
     	    	el_li.attr("post_id",el.post_id);
-    	    	el.li.find(".user_header_img img").attr("src",el.user_head_img);
+    	    	el.li.find(".user_header_img img").attr("src",el.user_header_img);
     	    	el_li.find(".user_name").html(el.user_nickname);
     	    	el_li.find(".blog_title").html(el.post_des)
     	    	el_li.find(".blog_img img").attr("src",el.post_img);
