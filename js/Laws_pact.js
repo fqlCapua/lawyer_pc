@@ -32,7 +32,7 @@ $(function(){
 			$(".Type_cate_id").append(option);
 			});
 			$("#laws_menu").find("li").eq(0).css("background-color","#EFEFEF");
-				
+			$("#laws_menu").children().eq(0).addClass("active");	
 	
 			}else{
 				
@@ -71,7 +71,7 @@ function laws_type(pageNum,cate_id) {
 				    var li = $("<li pact_id='" + ele.pact_id + "'><a class='pact_title'>" + ele.pact_title + "</a><span class='pact_ctime text-muted pull-right'>" + new Date(parseInt(ele.pact_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
 					$("#laws_cont").append(li);
 				});
-
+             
 			} else {
 				layer.msg(data.msg);
 			}
@@ -172,7 +172,8 @@ function laws_search(search_key,search_type,cate_id) {
 /*分页*/
 var cate_id;
 function change_cate_id(){
-	var cate_id=$("#laws_menu").find(".active").parent().parent().index()+1;
+	var cate_id=$("#laws_menu").find(".active").attr("examples_cate_id");
+	console.log(cate_id);
 	return cate_id;
 }
 $(".prevPage").click(function(){

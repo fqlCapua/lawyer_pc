@@ -30,18 +30,18 @@ $(function(){
 			$.each(laws_list, function(i,laws) {
 				
 				var li=$("<li examples_cate_id='"+laws.examples_cate_id+"'><a>"+laws.examples_cate_name +"(<b>"+laws.examples_count+"</b>)</a></li>")
-				
+				var option=$("<option examples_cate_id='"+laws.examples_cate_id+"'>"+laws.examples_cate_name +"</option>")
 				$("#laws_menu").append(li);
-			
+			    $(".Type_cate_id").append(option);
 			});
-			
-				
+		
 	
 			}else{
 				
 				layer.msg(data.msg);
 			}
-			
+				
+			$("#laws_menu").children().eq(0).addClass("active");
 		
 		}
 	});
@@ -76,16 +76,16 @@ function laws_type(pageNum,cate_id) {
 				    var li = $("<li laws_id='" + ele.examples_id + "'><a class='examples_title'>" + ele.examples_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.examples_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
 					$("#laws_cont").append(li);
 				});
-
+                
 			} else {
 				layer.msg(data.msg);
 			}
+			  
+
 		}
 	});
 }
-var pageNum=1;
-cate_id=1;
-laws_type(pageNum,cate_id);
+
 /*获取分类下的法规详情*/
 function  laws_detail(i){
 	var index=layer.load(1,{shade:[0.1,'gray']});
@@ -165,7 +165,7 @@ function laws_search(search_key,search_type,cate_id) {
 					var li=$("<li laws_id='"+ ele.examples_id +"'><a class='laws_title'>" + ele.examples_title + "</a><span class='laws_ctime text-muted pull-right'>" + new Date(parseInt(ele.examples_ctime) * 1000).toLocaleString().split(" ")[0] + "</span></li>");
 					$("#laws_cont").append(li);
 				});
-
+          
 			} else {
 			       console.log(data)
 				layer.msg("加载失败"+data.msg);
@@ -177,12 +177,14 @@ function laws_search(search_key,search_type,cate_id) {
 /*分页*/
 var cate_id;
 function change_cate_id(){
-	var cate_id=$("#laws_menu").find(".active").parent().parent().index()+1;
+	var cate_id=$("#laws_menu").find(".active").attr("examples_cate_id");
+	console.log(cate_id);
 	return cate_id;
 }
 $(".prevPage").click(function(){
 	
 	var cate_id=change_cate_id();
+	
 		if(pageNum==1){
 			layer.msg("已经是第一页了");
 			//console.log(cate_id)
@@ -195,22 +197,29 @@ $(".prevPage").click(function(){
 $(".nextPage").click(function(){
 	
 	var cate_id=change_cate_id();
-	pageNum++;
+	console.log(cate_id);
+	if($("#laws_cont li").length<20){
+		layer.msg("已经到最后了")
+	}else{
+			pageNum++;
 	
-			laws_type(pageNum,cate_id);
+		laws_type(pageNum,cate_id);
+	}
+
 			
 			
 		
 })
-
-/*默认打开第一页*/
-
+ var pageNum=1;
+// /*默认打开第一页*/
+     console.log($("#laws_menu").children().eq(0).attr("examples_cate_id"))
+    laws_type(pageNum,4);
 $("#laws_menu").on("click",'li',function() {
 	$(this).addClass("active");
   $(this).css("background-color","#EFEFEF");
   $(this).siblings().css("background-color","#FFFFFF");
   $(this).siblings().removeClass("active");
-	var cate_id = $(this).index() + 1;
+	var cate_id = $(this).attr("examples_cate_id");
 	laws_type(pageNum,cate_id);
 
 })

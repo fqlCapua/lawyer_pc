@@ -78,8 +78,10 @@ var index = layer.load(1, {
 			id: case_id,
 		},
 		success:function(data) {
+			var data=JSON.parse(data);
+			console.log(data.data)
 			if(data.ret == 200) {
-				layer.close(index);var data=JSON.parse(data);;
+				layer.close(index);
 				$("#myCaseDetail").modal('show');
 				var case_detail = data.data;
 				$("#case_uname").html(case_detail.case_uname);
@@ -91,7 +93,7 @@ var index = layer.load(1, {
 				$("#case_mp3").attr("src","http://www.ls186.cn"+case_detail.case_mp3);
                 $("#case_explain").val(case_detail.case_explain); 
                 $("#to_bbs").attr("checked",case_detail.case_to_bbs);  
-                $("#case_img").attr("src",case_detail.case_img);
+                $("#case_img").attr("src","http://www.ls186.cn"+case_detail.case_img);
    
                 
 			}else{

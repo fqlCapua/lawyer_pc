@@ -10,10 +10,11 @@
 		<link rel="shortcut icon" href="../img/home/logo-s.png">
 		<link rel="stylesheet" href="../css/font-awesome.min.css" />
 		<link rel="stylesheet" href="../css/index.css" />
-		<link rel="stylesheet" href="../css/flzx.css" />
+		<link rel="stylesheet" href="../css/fileinput.min.css" />
+        <link rel="stylesheet" href="../css/flzx.css" />
 		<script type="text/javascript" src="../js/md5.js"></script>
 		<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
-
+         
 		<script type="text/javascript" src="../js/vue.js"></script>
 		<script type="text/javascript" src="../js/layer.js"></script>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -167,9 +168,9 @@
 		<!-- header -->
 		<div class="container">
 			<article class="TopBg">
-				<div class="bbs_type_tit"></div>
+				<div class="bbs_type_tit">刑事诉讼</div>
 				<p class="TopBg_text">
-					
+					刑事诉讼是指审判机关（人民法院）、检察机关（人民检察院）和侦查机关（公安机关含国家安全机关等）在当事人以及诉讼参与人的参加下，依照法定程序解决被追诉者刑事责任问题的诉讼活动。
 				</p>
 			</article>
             <ul class="pagination bbs_type">
@@ -178,7 +179,7 @@
 			<article class="blog_box" >
 				   
 				<ol id="content" style="" >
-					 <li class="blog ">
+					 <!-- <li class="blog ">
 						<section class="userMsg">
 							<div class="user_header_img"><img src="../img/professor/pro01.png" /></div>
 							<div class="user_name">执2法</div>
@@ -195,7 +196,7 @@
 							<div class="comment_num fa fa-commenting-o">2</div>
 						</section>
 
-					</li>
+					</li> -->
                     
 				</ol>
 
@@ -223,20 +224,48 @@
 					</li>
 				</ul>
 			</article>
-
+        <section class="blog_menu">
+        	<div>
+        		
+        	</div>
+        </section>
+        <section class="pub_new">
+        	<form>
+        	<h3 class="text-title">发表新帖</h3>
+        		 <div class="form-group">
+                      <input type="text" class="form-control" id="pub_tit" placeholder="输入帖子标题">
+                 </div>
+                 <div class="form-group">
+                      <textarea cols="100%"  rows="5" class="form-control" id="pub_cont" placeholder="输入帖子内容........."></textarea> 
+                 </div>
+             <div class="form-group">
+                        <label  for="pub_img">选择图片</label>
+                        <input type="file" id="file-1"  accept=".png,.jpg">
+            </div>
+             <button type="submit" class="btn btn-default">提交</button>
+        	</form>
+        </section>
 		</div>
-
+       
 		<iframe class="footer_iframe" src="../footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 
 		</div>
 	</body>
-
+	<script type="text/javascript" src="../js/fileinput.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	
 	<script type="text/javascript" src='../js/bbs.js'></script>
 	<script type="text/javascript" src="../js/index.js"></script>
 
 	<script>
-		//$(":file").filestyle();
+		$(":file").filestyle();
+		$("#file-1").fileinput({
+			showUpload: false,
+			showCaption: false,
+			browseClass: "btn btn-primary",
+			fileType: "image",
+
+		});
 	</script>
 	<!-- <script type="text/javascript" src="js/page.js" ></script>-->
 

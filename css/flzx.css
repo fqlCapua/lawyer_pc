@@ -27,6 +27,7 @@
 			}
 			
 			.blog_box {
+				color: #337AB7;
 				padding:5px 25px;
 			}
 			.blog {
@@ -63,6 +64,8 @@
 			  height:50px;
 			}
 			.blog_title {
+				border: 1px solid red;
+				cursor: pointer;
 				width:100%;
 				font-size:12px;
 				display: -webkit-box;
@@ -75,6 +78,7 @@
 		
 			.userMsg div,
 			.userMsg3 div {
+				cursor: pointer;
 				display: inline-block;
 				vertical-align: bottom;
 			}
@@ -110,7 +114,27 @@
 				width:9vw;
 				flex-wrap:wrap;
 				
+ 			}
+      .blog_menu{
+	          position: fixed;
+	          left:80%;
+	          bottom:100px;
+
+         }
+			.blog_menu div{
+				cursor: pointer;
+				width: 100px;
+				height:100px;
+				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
+				background-size: 100%;
+				
 			}
+			.pub_new{
+				padding:0 5%;
+				clear: both;
+				border: 1px solid red;
+			}
+
 			@media only screen and (max-width:414px) {
 				.TopBg {
 					height:160px;
@@ -134,6 +158,5 @@
 				}
 			}
 			ol li{
-				
-				border: 1px solid red;
+			
 			}

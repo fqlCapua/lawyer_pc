@@ -36,7 +36,7 @@ $(function(){
 				
 				layer.msg(data.msg);
 			}
-			
+			laws_type(pageNum,1);
 		
 		}
 	});
@@ -77,8 +77,7 @@ function laws_type(pageNum,cate_id) {
 	});
 }
 var pageNum=1;
-cate_id=1;
-laws_type(pageNum,cate_id);
+
 /*获取分类下的法规详情*/
 function  laws_detail(i){
 	var index=layer.load(1,{shade:[0.1,'gray']});
@@ -188,10 +187,13 @@ $(".prevPage").click(function(){
 $(".nextPage").click(function(){
 	
 	var cate_id=change_cate_id();
-	pageNum++;
+	if($("#laws_cont li").length<20){
+		layer.msg("已经到最后了")
+	}else{
+			pageNum++;
 	
-			laws_type(pageNum,cate_id);
-			
+		laws_type(pageNum,cate_id);
+	}
 			
 		
 })
