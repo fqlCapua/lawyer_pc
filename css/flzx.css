@@ -21,23 +21,24 @@
 			
 			
 			/*论坛模块*/
-			
+			#content{
+				clear: both;
+			}
 			.fa {
 				cursor: pointer;
 			}
 			
 			.blog_box {
-				color: #337AB7;
-				padding:5px 25px;
+				padding:2px 25px;
 			}
 			.blog {
-				padding:5px 2px;
+				padding:2px;
 				clear: both;
 				border-bottom: 1px solid #BABABA;
 			}
 			
 			.blog div {
-				line-height: 30px;
+				line-height:24px;
 			}
 			
 			.like_num,
@@ -59,40 +60,51 @@
 			}
 
 			.blog_img img{
-		    margin-top:10px;
+		        margin-top:10px;
 				width:50px;
-			  height:50px;
+			     height:50px;
 			}
 			.blog_title {
-				border: 1px solid red;
+				font-weight: bold;
+				font-size: 12px;
 				cursor: pointer;
+			
+				
+			  }
+		.blog_cont{
+			text-indent:0.5em;
 				width:100%;
-				font-size:12px;
-				display: -webkit-box;
-				-webkit-line-clamp:1;
-				-webkit-box-orient: vertical;
-				white-space: nowrap\9;
+			    display: -webkit-box;
+			    white-space: nowrap\9;
 				overflow: hidden;
 				text-overflow: ellipsis;
-			}
-		
+		     	font-size:12px;
+		}
 			.userMsg div,
-			.userMsg3 div {
-				cursor: pointer;
+			.userMsg3 div{
+			
 				display: inline-block;
 				vertical-align: bottom;
 			}
+			.blog div:not(.blog_create_time){
+				cursor: pointer;
+			}
 			.blog_img{
-			
-			width:10%;
+			  line-height:80px; 
+			  width:10%;
 			}
 			.blog_create_time {	
-				width:80%;
+			  width:80%;
+			   line-height:80px; 
 			}			
 			.like_num {
+				 line-height:80px; 
 				width:4%;
+				vertical-align: bottom;
 			}		
 			.comment_num {
+				vertical-align: bottom;
+				 line-height:80px; 
 			  width:4%;
 			}
 			
@@ -107,8 +119,8 @@
 				font-size: 13px;
 			}
 			.bbs_type li{
-				height:30px;
-			  text-overflow: ellipsis;
+				border: 1px solid red
+				text-overflow: ellipsis;
 				line-height:30px;
 				text-align: center;
 				width:9vw;

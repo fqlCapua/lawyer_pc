@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="Keywords" Content="律所在线,律师事务所">
-	    <meta name="description" content="律所在线交流平台" />
-	    <link rel="shortcut icon" href="img/home/logo-s.png">
+		<meta name="description" content="律所在线交流平台" />
+		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<title>律所在线网首页</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
@@ -15,8 +15,7 @@
 		<script type="text/javascript" src="js/vue.js"></script>
 		<script type="text/javascript" src="js/md5.js"></script>
 		<script src="js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="js/layer.js" ></script>
-
+		<script type="text/javascript" src="js/layer.js"></script>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if IE]>
@@ -34,21 +33,20 @@
      
          	<link rel="stylesheet" href="css/ie8.css" />
     <![endif]-->
- 
+
 	</head>
 
 	<body>
-		
-		
+
 		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
-		 
+
 		<div class="logo">
 			<div>
 				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
-               
+
 				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
@@ -62,19 +60,19 @@
 				<span class="pull-right Ylogin hide">
 				           <a id="YloginBtn" class="btn  btn-primary"  style="height:40px;font-size:1.2em;font-weight: bold;">
 								   <span class="fa fa-user-circle-o"></span>
-				                   <b>User</b>已登录
-				          </a>
+				<b>User</b>已登录
+				</a>
 				<a id="clearUser" class="btn  btn-primary" style="height:40px;font-size:1.2em;font-weight: bold;">
 					<b>注销</b>
 				</a>
 
 				</span>
 
-         <div class="btn btn-info menuBtn pull-right" id="menuBtn">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
 					<div></div>
 					<div></div>
 					<div></div>
-		</div>
+				</div>
 			</div>
 			<!--作者：fql
 	                       时间：2017-03-07
@@ -91,10 +89,10 @@
 						</div>
 						<form @submit.prevent="submit">
 							<div class="modal-body">
-                                  
+
 								<div class="form-group">
 									<label class="control-label">账号：</label>
-									<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')"   pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$"   placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
+									<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
 								</div>
 								<div class="form-group">
 									<label class="control-label">密码：</label>
@@ -104,7 +102,6 @@
 							</div>
 							<div class="modal-footer">
 								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
- 
 
 								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
 							</div>
@@ -127,7 +124,7 @@
 		 				</button>
 							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
 						</div>
-						<form >
+						<form>
 							<div class="modal-body">
 								<div class="form-group">
 									<label for="j_phone" class="control-label">手机号：</label>
@@ -146,7 +143,7 @@
 								</div>
 								<div class="form-group">
 									<label for="userPWD2" class="control-label">确认密码：</label>
-									<input type="password" oninput="this.setCustomValidity('')"    pattern="^[A-Za-z]\w{8,}$" pattern="^[A-Za-z]\w{8,}$" class="form-control" id="userPWD2" required/>
+									<input type="password" oninput="this.setCustomValidity('')" pattern="^[A-Za-z]\w{8,}$" pattern="^[A-Za-z]\w{8,}$" class="form-control" id="userPWD2" required/>
 								</div>
 
 								<div class="form-group">
@@ -161,13 +158,13 @@
 									</select>
 								</div>
 								<div class="form-check" style="border:none">
-									<input type="checkbox"  />
+									<input type="checkbox" />
 									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
 
 								</div>
 							</div>
 							<div class="modal-footer">
-								<input type="button" id="regBtn"  class="btn btn-info" value="注册">
+								<input type="button" id="regBtn" class="btn btn-info" value="注册">
 							</div>
 						</form>
 					</div>
@@ -175,12 +172,12 @@
 			</div>
 
 		</div>
-		
+
 		<!-- header -->
 		<div class="container">
-           
+
 			<div class="header-bottom">
-				
+
 				<div class="top-menu">
 					<ul class="header_nav">
 						<li>
@@ -243,7 +240,7 @@
 					</li>
 					<li>
 						<dl class="btn">
-							<dd><i style="color: #C78454;"  class="fa fa-user-circle fa-4x"></i></dd>
+							<dd><i style="color: #C78454;" class="fa fa-user-circle fa-4x"></i></dd>
 							<dt>婚姻家庭</dt>
 						</dl>
 					</li>
@@ -311,9 +308,9 @@
 				</ul>
 
 			</article>
-            <div id="showBox_tit" class="list-group-item-info" style="font-size:16px;padding-left:15px;height:40px;line-height:40px;border-bottom:1px solid #BABABA;border-top:1px solid #BABABA;"><b>附近律所</b></div>
-			<article id="showBox" >
-				 <iframe  id="test"  src=""  style="width:100%;" onload="this.height=100"  frameborder="0" scrolling="no"></iframe>
+			<div id="showBox_tit" class="list-group-item-info" style="font-size:16px;padding-left:15px;height:40px;line-height:40px;border-bottom:1px solid #BABABA;border-top:1px solid #BABABA;"><b>附近律所</b></div>
+			<article id="showBox">
+				<iframe id="test" src="" style="width:100%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>
 			</article>
 
 			<!--
@@ -474,14 +471,14 @@
           -->
 			<hr />
 
-			<div>
+			
 				<div id="leftsead">
 
 					<span class="header_download">
 		                 	 <span class="header_download">
 								<div>
 									<div class=""><i class="fa fa-weixin fa-2x"></i><a>微信公众号</a></div>
-					                <div class="clearfix"><img src="img/home/Wechat_News.jpg"></a>
+					                <div class="clearfix"><img src="img/home/Wechat_News.jpg"></a></div>
 								</div>
 								<div>
 									<div class=""><i class="fa fa-android fa-2x"></i><a>安卓版</a></div>
@@ -493,19 +490,15 @@
 					                <div class="clearfix"><img src="img/home/ios.png" /></div>
 								</div>
 					            
-					           
-					          
-				           
-	
-                     </div>
-                     
-                     
-          </div>
-		 </div>
-		<div id="leftsead1">
+					         </span>
 
-		       <ul>
-		            <li class="btn btn-primary btn-block">
+					</span>
+				</div>
+		
+			<div id="leftsead1">
+
+				<ul>
+					<li class="btn btn-primary btn-block">
 						<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="Laws.html">法律法规</a></span>
 					</li>
 					<li class="btn btn-primary btn-block">
@@ -518,32 +511,33 @@
 					<li class="btn btn-primary btn-block">
 						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
 					</li>
-					
+
 					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
 						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
 					</li>
-					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'" >
+					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'">
 						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
 					</li>
-		       </ul>
-	
-         </div>
+				</ul>
+
+			</div>
+
+		</div>
 		<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 	</body>
 
-	<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
-	<script type="text/javascript" src="js/layer.js" ></script>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
 	<script src="js/bootstrap.js"></script>
-	
+
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/getSession.js" ></script>
+	<script type="text/javascript" src="js/getSession.js"></script>
 	<script>
-	//	$(":file").filestyle();
+		//	$(":file").filestyle();
 		$('.modal').modal({
 			backdrop: 'static',
 			show: false
 		});
-
 	</script>
 
 </html>

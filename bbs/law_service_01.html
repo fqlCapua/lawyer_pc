@@ -233,7 +233,7 @@
         	<form>
         	<h3 class="text-title">发表新帖</h3>
         		 <div class="form-group">
-                      <input type="text" class="form-control" id="pub_tit" placeholder="输入帖子标题">
+                      <input  type="text" class="form-control" id="pub_tit" placeholder="输入帖子标题">
                  </div>
                  <div class="form-group">
                       <textarea cols="100%"  rows="5" class="form-control" id="pub_cont" placeholder="输入帖子内容........."></textarea> 
@@ -246,7 +246,54 @@
         	</form>
         </section>
 		</div>
-       
+		<div id="leftsead">
+
+					<span class="header_download">
+		                 	 <span class="header_download">
+								<div>
+									<div class=""><i class="fa fa-weixin fa-2x"></i><a>微信公众号</a></div>
+					                <div class="clearfix"><img src="../img/home/Wechat_News.jpg"></a></div>
+								</div>
+								<div>
+									<div class=""><i class="fa fa-android fa-2x"></i><a>安卓版</a></div>
+					                <div class="clearfix"><img src="../img/home/Wechat_News.jpg"></div>
+								</div>
+								
+								<div>
+									<div><i class="fa fa-apple fa-2x"></i><a>IOS版</a></div>
+					                <div class="clearfix"><img src="../img/home/ios.png" /></div>
+								</div>
+					            
+					         </span>
+
+					</span>
+				</div>
+       <div id="leftsead1">
+
+		       <ul>
+		            <li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="../Laws.html">法律法规</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-copy fa-2x"></i><a target="_blank" href="../Laws_example.html">典型判例</a></span>
+					</li>
+
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-text-o fa-2x"></i><a  href="../Laws_doc.html" target="_blank" >法律文书</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="../Laws_pact.html">合同范本</a></span>
+					</li>
+					
+					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
+						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
+					</li>
+					<li class="btn btn-primary btn-block" onclick="window.location.href='../count.html'" >
+						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
+					</li>
+		       </ul>
+	
+         </div>
 		<iframe class="footer_iframe" src="../footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 
 		</div>
@@ -258,7 +305,7 @@
 	<script type="text/javascript" src="../js/index.js"></script>
 
 	<script>
-		$(":file").filestyle();
+		
 		$("#file-1").fileinput({
 			showUpload: false,
 			showCaption: false,
