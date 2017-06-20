@@ -49,11 +49,10 @@ function  bbs_type_load() {
 
 function show_img(imgArr){
   
-  var imgNum=imgArr.length;
  for (var i = 0; i < imgArr.length; i++) {
-     var imgUrl=$("")imgArr[i]
+     var imgUrl=$("<img src='http://www.ls186.cn"+imgArr[i]+"'/>")
  }
-  return imgStr;
+  return imgUrl;
 }
 /*加载一级分类下的帖子列表*/
 function bbs_list(pageNum,bbs_type_id){
@@ -80,12 +79,11 @@ function bbs_list(pageNum,bbs_type_id){
             $(".TopBg_text").html($(".bbs_type").find(".active a").attr("cont"));
     	 //	console.log(data);
           var list=data.data;
-           console.log(list);
-             var el_li=$(".blog");
+          
     	    $.each(list,function(i,el){
-                while(i=0){
-
-                }
+                
+                        console.log(show_img(el.post_img));
+                
                 if(el.post_img==""){
 
                 var el_li=$("<li class='blog' post_id='"+el.post_id+"' post_istop='"+el.post_istop+"'><section class='userMsg'><div class='user_header_img'><img src='http://www.ls186.cn"+el.user_head_img +"'/></div><div class='user_name'>"+el.user_nickname+"</div></section><section class='userMsg2'><div class='blog_title'>"+el.post_title+" </div><div class='blog_cont'>"+el.post_des+" </section><section class='userMsg3'><div class='blog_create_time text-muted'>"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[1]+"</div><div class='like_num fa fa-thumbs-o-up pull-right'>"+el.like_num +"</div><div class='comment_num fa fa-commenting-o pull-right'>"+el.reply_num+"</div></section></li>")
@@ -96,7 +94,7 @@ function bbs_list(pageNum,bbs_type_id){
                 var el_li=$("<li class='blog'  post_id='"+el.post_id+"' post_istop='"+el.post_istop+"'><section class='userMsg'><div class='user_header_img'><img src='http://www.ls186.cn"+el.user_head_img +"'/></div><div class='user_name'>"+el.user_nickname+"</div></section><section class='userMsg2'><div class='blog_title'>"+el.post_title+" </div><div class='blog_cont'>"+el.post_des+" </section><section class='userMsg3'><div class='blog_img'><img src='http://www.ls186.cn"+el.post_img[0] +"' /></div> <div class='blog_create_time text-muted'>"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[1]+"</div><div class='like_num fa fa-thumbs-o-up pull-right'>"+el.like_num +"</div><div class='comment_num  pull-right fa fa-commenting-o'>"+el.reply_num+"</div></section></li>")
 
             }
-            console.log(el.post_img)
+
        
     	    	$("#content").append(el_li);
     	    })
