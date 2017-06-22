@@ -98,9 +98,9 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var case_id = $(this).siblings(".case_id").html();
-	var index = layer.load(1, {
-		shade: [0.1, 'darkblue']
-	});
+	// var index = layer.load(1, {
+	// 	shade: [0.1, 'darkblue']
+	// });
 	$.ajax({
 		url: 'https://www.ls186.cn/law_api',
 		type: 'post',
@@ -111,7 +111,7 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 			id: case_id,
 		},
 		success: function(data) {
-			layer.close(index);
+			// layer.close(index);
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
 

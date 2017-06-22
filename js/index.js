@@ -344,9 +344,9 @@ new Vue({
 			// jquery ajax
 			$.ajax({
 				type: 'POST',
-				url: 'https://www.ls186.cn/law_api',
+				url: 'http://www.ls186.cn/Law_api',
 				data: this.user,
-				success: function(data) {
+			    success: function(data) {
 					
 					layer.close(index);
 					var data=JSON.parse(data);
