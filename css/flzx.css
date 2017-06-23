@@ -32,7 +32,7 @@
 				padding:2px 25px;
 			}
 			.blog {
-				padding:2px;
+				padding:px;
 				clear: both;
 				border-bottom: 1px solid #BABABA;
 			}
@@ -59,11 +59,8 @@
 				width: 100%;
 			}
 
-			.blog_img img{
-		        margin-top:10px;
-				width:50px;
-			     height:50px;
-			}
+			
+			
 			.blog_title {
 				font-weight: bold;
 				font-size: 12px;
@@ -92,9 +89,16 @@
 			.blog_img{
 			  line-height:80px; 
 			  width:100%;
+
 			}
-			.blog_img img{
-              margin-left: 5px;
+			.blog_img_b{
+				display:none;
+			}
+			.blog_img img:not(.blog_img_b){
+				 margin-top:10px;
+				 width:50px;
+			     height:50px;
+                  margin-left: 5px;
 			}
 			.blog_create_time {	
 			   width:80%;

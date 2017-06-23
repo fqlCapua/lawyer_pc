@@ -91,7 +91,7 @@ function bbs_list(pageNum,bbs_type_id){
             }else{
                 
             
-                var el_li=$("<li class='blog'  post_id='"+el.post_id+"' post_istop='"+el.post_istop+"'><section class='userMsg'><div class='user_header_img'><img src='http://www.ls186.cn"+el.user_head_img +"'/></div><div class='user_name'>"+el.user_nickname+"</div></section><section class='userMsg2'><div class='blog_title'>"+el.post_title+" </div><div class='blog_cont'>"+el.post_des+" </section><section class='userMsg3'><div class='blog_img'><img src='http://www.ls186.cn"+el.post_img[0] +"' /></div> <div class='blog_create_time text-muted'>"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[1]+"</div><div class='like_num fa fa-thumbs-o-up pull-right'>"+el.like_num +"</div><div class='comment_num  pull-right fa fa-commenting-o'>"+el.reply_num+"</div></section></li>")
+                var el_li=$("<li class='blog'  post_id='"+el.post_id+"' post_istop='"+el.post_istop+"'><section class='userMsg'><div class='user_header_img'><img src='http://www.ls186.cn"+el.user_head_img +"'/></div><div class='user_name'>"+el.user_nickname+"</div></section><section class='userMsg2'><div class='blog_title'>"+el.post_title+" </div><div class='blog_cont'>"+el.post_des+" </section><section class='userMsg3'><div class='blog_img'><img class='blog_img_b' src='http://www.ls186.cn"+el.post_img[0]+"'/><img   src='http://www.ls186.cn"+el.post_img[0] +"' /></div> <div class='blog_create_time text-muted'>"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[1]+"</div><div class='like_num fa fa-thumbs-o-up pull-right'>"+el.like_num +"</div><div class='comment_num  pull-right fa fa-commenting-o'>"+el.reply_num+"</div></section></li>")
 
             }
 
@@ -150,11 +150,12 @@ function  load_comments(obj,blog_id,pageNum){
                        obj.parent().parent().find(".comment").remove();
                        $.each(list,function(i,ele){
                       
-                       var comment=$("<section post_reply_id='"+ele.post_reply_id+"'  user_id='"+ele.user_id+"' class='comment'><div class='userMsg'> <div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img  +"'/></div> <div class='user_name'>"+ele.user_nickname+"</div> </div><div class='comment_cont'>"+ele.post_reply_content+"</div> <div class='com_create_time text-muted'>"+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[0]+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[1]+"</div></section>");
+                       var comment=$("<section post_reply_id='"+ele.post_reply_id+"'  user_id='"+ele.user_id+"' class='comment'><div class='userMsg'> <div class='user_header_img'><img  src='http://www.ls186.cn"+ele.user_head_img  +"'/></div> <div class='user_name'>"+ele.user_nickname+"</div> </div><div class='comment_cont'>"+ele.post_reply_content+"</div> <div class='com_create_time text-muted'>"+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[0]+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[1]+"</div></section>");
                        obj.parent().parent().append(comment);
                        })
 layer.open({
   type: 1,
+  id:obj.parent().parent().attr('post_id'),
   area:['50%','600px'],
   scrollbar:true,
   title:'帖子详情',
@@ -169,8 +170,7 @@ layer.open({
    obj.parent().parent().find(".comment").remove();
   }
 });
- 
-                  
+    
                  }else{
                
                     layer.msg(data.msg);
@@ -184,7 +184,23 @@ layer.open({
 
 
 }
+$("#content").on("click","li .blog_img img",function(){
 
+
+ 
+    
+layer.open({
+  type: 1,
+  title: false,
+  closeBtn: 0,
+  area: '516px',
+  skin: 'layui-layer-nobg', //没有背景色
+  shadeClose: true,
+  content:$(this).siblings()
+});
+
+
+})
 
 /*帖子详情*/
 var pageNum=1;
