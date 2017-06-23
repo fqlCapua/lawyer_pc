@@ -32,7 +32,7 @@
 				padding:2px 25px;
 			}
 			.blog {
-				padding:px;
+				padding-bottom:10px;
 				clear: both;
 				border-bottom: 1px solid #BABABA;
 			}
@@ -103,7 +103,8 @@
 			.blog_create_time {	
 			   width:80%;
 			
-			}			
+			}
+
 			.like_num {
 				
 				width:4%;
@@ -144,15 +145,24 @@
          {
          	padding:0 20px; 
          }
-			.blog_menu div{
+
+			.blog_menu div a {
+				display: block;
 				cursor: pointer;
 				width:7em;
 				height:7em;
 				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
-				background-size: 100%;
-				
+				background-size:100%;
+				border-radius:50%;
 			}
-
+     .blog_menu div a:hover{
+     	       border:10px solid #FFFFFF;
+				width:7.2em;
+				height:7.2em;
+				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
+				background-size:100%;
+				border-radius:50%;
+			}
 			/*评论样式*/
 			.comment{
 				border-top:1px solid #EFEFEF; 

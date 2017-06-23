@@ -79,11 +79,10 @@ function bbs_list(pageNum,bbs_type_id){
             $(".TopBg_text").html($(".bbs_type").find(".active a").attr("cont"));
     	 //	console.log(data);
           var list=data.data;
-          
+         
     	    $.each(list,function(i,el){
                 
                    
-                
                 if(el.post_img==""){
 
                 var el_li=$("<li class='blog' post_id='"+el.post_id+"' post_istop='"+el.post_istop+"'><section class='userMsg'><div class='user_header_img'><img src='http://www.ls186.cn"+el.user_head_img +"'/></div><div class='user_name'>"+el.user_nickname+"</div></section><section class='userMsg2'><div class='blog_title'>"+el.post_title+" </div><div class='blog_cont'>"+el.post_des+" </section><section class='userMsg3'><div class='blog_create_time text-muted'>"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(el.post_ctime) * 1000).toLocaleString().split(":")[1]+"</div><div class='like_num fa fa-thumbs-o-up pull-right'>"+el.like_num +"</div><div class='comment_num fa fa-commenting-o pull-right'>"+el.reply_num+"</div></section></li>")
@@ -165,7 +164,7 @@ layer.open({
   closeBtn: 1, //不显示关闭按钮
   anim: 1,
   shadeClose:false, //开启遮罩关闭
-  content:obj.parent().parent().html(),
+  content:"<div style='padding:20px'>"+obj.parent().parent().html()+"</div>",
   cancel:function(){
    obj.parent().parent().find(".comment").remove();
   }
@@ -214,5 +213,99 @@ $("#content").on("click","li .blog_title,li .blog_cont",function(){
     
 
 
+
+})
+/*发表帖子*/
+
+ var imgStr='';
+function pubBlog_img(){
+    var cur_timestamp = Date.parse(new Date()) / 1000;
+        md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+    var fileList=$('#pub_blog_img')[0].files;
+    var imgData=new  FormData();
+   
+$.each(fileList,function(i,ele){
+    imgData.append('img',ele);
+    imgData.append('service','Index.upload_img');
+    imgData.append('time',cur_timestamp);
+    imgData.append('token',md_token);
+    $.ajax({
+        type:'post',
+        url:'http://www.ls186.cn/Law_api',
+        async:false,
+        cache:false,
+        processData:false,
+        contentType: false,
+        data:imgData,
+        success:function(data){
+            var data=JSON.parse(data);
+            if(data.ret==200){
+                var imgUrl=data.data;
+              
+              
+                   imgStr+=(imgUrl+",");
+               
+              
+
+              // console.log(imgStr)
+            }else{
+                layer.msg(data.msg);
+            }
+        }
+
+    });
+})
+
+   
+    return imgStr;
+
+   } 
+
+function setImgStr(arrStr){
+    var arr=arrStr.split(",")
+    var b=[];
+    $.each(arr, function(i,m) {
+        if(m==""){
+            
+        }else{
+            b.push(m);
+        }
+        
+    });
+    return b.join(",");
+}
+
+
+
+$(".sub_newBlog").click(function(){
+    var index=layer.load(0,{shade:[0.1,'red']});
+       var cur_timestamp = Date.parse(new Date()) / 1000;
+       var   md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+          var imgStr=pubBlog_img();
+          console.log(setImgStr(imgStr));
+          var Str=setImgStr(imgStr);
+         $.ajax({
+                    type:'post',
+                    url:'http://www.ls186.cn/Law_api',
+                    data:{
+                        service:'BBS.publish_post',
+                        time:cur_timestamp,
+                        token:md_token,
+                        userid:getSession(0),
+                        typeid:$(".bbs_type").find(".active").attr('bbs_type_id'),
+                        title:$("#pub_tit").val(),
+                        content:$("#pub_cont").val(),
+                        img:Str,
+                    },
+                    success:function(data){
+                        layer.close(index);
+                      var data=JSON.parse(data);
+                      if(data.ret==200){
+                        console.log(data.data);
+                      }else{
+                        layer.msg(data.msg)
+                      }
+                    }
+                })
 
 })
