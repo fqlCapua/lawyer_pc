@@ -82,7 +82,7 @@ function bbs_list(pageNum,bbs_type_id){
           
     	    $.each(list,function(i,el){
                 
-                        console.log(show_img(el.post_img));
+                   
                 
                 if(el.post_img==""){
 
@@ -127,8 +127,9 @@ $(".bbs_type").on("click", 'li',function(){
 })
 
 /*加载某条帖子的评论*/
-var conments;
-function  load_conments(blog_id,pageNum){
+
+function  load_comments(obj,blog_id,pageNum){
+ 
     var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
    $.ajax({
@@ -144,36 +145,58 @@ function  load_conments(blog_id,pageNum){
         success:function(data){
             var data=JSON.parse(data);
             if(data.ret==200){
-                     console.log(data)
-                     var conments=data.data;
-                 }else{
-                    layer.msg(data.msg);
-                 }
-       
-        },error:function(status){
-            console.log(status)
-        }
-});
-   return conments;
-}
-
-
-/*帖子详情*/
-var pageNum=1;
-$("#content").on("click","li",function(){
-    var cont=$(this).html();
-    var blog_id=$(this).attr("post_id");
-    var conments=load_conments(blog_id,pageNum);
-    layer.open({
+                  
+                        var list=data.data;
+                       obj.parent().parent().find(".comment").remove();
+                       $.each(list,function(i,ele){
+                      
+                       var comment=$("<section post_reply_id='"+ele.post_reply_id+"'  user_id='"+ele.user_id+"' class='comment'><div class='userMsg'> <div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img  +"'/></div> <div class='user_name'>"+ele.user_nickname+"</div> </div><div class='comment_cont'>"+ele.post_reply_content+"</div> <div class='com_create_time text-muted'>"+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[0]+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[1]+"</div></section>");
+                       obj.parent().parent().append(comment);
+                       })
+layer.open({
   type: 1,
-  area:['50%','400px'],
+  area:['50%','600px'],
   scrollbar:true,
+  title:'帖子详情',
   offset:['10px','25%'],
   maxmin:true,
   skin: 'layui-layer-demo', //样式类名
   closeBtn: 1, //不显示关闭按钮
   anim: 1,
-  shadeClose: true, //开启遮罩关闭
-  content: "<div style='padding:20px'>"+cont+"<br/>"+conments+"</div>"
+  shadeClose:false, //开启遮罩关闭
+  content:obj.parent().parent().html(),
+  cancel:function(){
+   obj.parent().parent().find(".comment").remove();
+  }
 });
+ 
+                  
+                 }else{
+               
+                    layer.msg(data.msg);
+                 }
+       
+        },error:function(status){
+            console.log(status)
+           
+        }
+});
+
+
+}
+
+
+/*帖子详情*/
+var pageNum=1;
+$("#content").on("click","li .blog_title,li .blog_cont",function(){
+
+    var Obj= $(this).parent().parent();
+    var blog_id=Obj.attr("post_id");
+   // console.log(blog_id)
+     load_comments($(this),blog_id,pageNum);
+
+    
+
+
+
 })

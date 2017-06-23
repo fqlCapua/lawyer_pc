@@ -47,7 +47,7 @@
 				margin-top: 10px;
 				font-size: 13px;
 			}
-			
+	
 			.user_header_img {
 				width:30px;
 				height:30px;
@@ -91,21 +91,24 @@
 			}
 			.blog_img{
 			  line-height:80px; 
-			  width:10%;
+			  width:100%;
+			}
+			.blog_img img{
+              margin-left: 5px;
 			}
 			.blog_create_time {	
-			  width:80%;
-			   line-height:80px; 
+			   width:80%;
+			
 			}			
 			.like_num {
-				 line-height:80px; 
+				
 				width:4%;
-				vertical-align: bottom;
+			
 			}		
 			.comment_num {
-				vertical-align: bottom;
-				 line-height:80px; 
-			  width:4%;
+				
+				 
+			     width:4%;
 			}
 			
 			.user_name {
@@ -129,18 +132,35 @@
  			}
       .blog_menu{
 	          position: fixed;
-	          left:80%;
+	          right: 5%;
 	          bottom:100px;
 
          }
+         .blog_detial
+         {
+         	padding:0 20px; 
+         }
 			.blog_menu div{
 				cursor: pointer;
-				width: 100px;
-				height:100px;
+				width:7em;
+				height:7em;
 				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
 				background-size: 100%;
 				
 			}
+
+			/*评论样式*/
+			.comment{
+				border-top:1px solid #EFEFEF; 
+				padding: 15px 10px;
+			}
+			.comment_cont{
+               font-size: 10px;
+               line-height:30px;
+			}
+		.com_create_time{
+			font-size: 10px;
+		}
 			.pub_new{
 				padding:0 5%;
 				clear: both;
