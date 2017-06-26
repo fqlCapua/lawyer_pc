@@ -105,15 +105,11 @@
 			
 			}
 
-			.like_num {
+		
+		.like_num,.comment_num{
+				text-align: center;
 				
-				width:4%;
-			
-			}		
-			.comment_num {
-				
-				 
-			     width:4%;
+			     width:50px;
 			}
 			
 			.user_name {
@@ -127,7 +123,7 @@
 				font-size: 13px;
 			}
 			.bbs_type li{
-				border: 1px solid red
+				
 				text-overflow: ellipsis;
 				line-height:30px;
 				text-align: center;
@@ -178,7 +174,7 @@
 			.pub_new{
 				padding:0 5%;
 				clear: both;
-				border: 1px solid red;
+				
 			}
 
 			@media only screen and (max-width:414px) {
