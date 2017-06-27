@@ -18,7 +18,11 @@
 				font-size:14px;
 				letter-spacing:2px;
 			}
-			
+			.comNum{
+				position: absolute;
+				bottom:20px;
+				right: 20px;
+			}
 			
 			/*论坛模块*/
 			#content{

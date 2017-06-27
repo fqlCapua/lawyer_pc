@@ -128,14 +128,21 @@ $(".bbs_type").on("click", 'li',function(){
 })
 /*重新加载帖子列表*/
 function reload_list() {
-  var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
-  var pageNum=1;
-  bbs_list(pageNum,active_id);
+var ls = window.sessionStorage;
+  if(ls.getItem('law_sign')) {
+     var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
+      bbs_list(pageNum,active_id);
+
+  } else {
+    layer.msg('请先登录');
+
+  }
+ 
 };
 
 /*加载某条帖子的评论*/
-
-function  load_comments(obj,blog_id,pageNum){
+var comNum=1;
+function  load_comments(obj,blog_id,comNum){
  
     var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
@@ -147,13 +154,14 @@ function  load_comments(obj,blog_id,pageNum){
             time:cur_timestamp,
             token:md_token,
             id:blog_id,
-            page:pageNum
+            page:comNum
         },
         success:function(data){
             var data=JSON.parse(data);
             if(data.ret==200){
                   
                         var list=data.data;
+                        
                        obj.parent().parent().find(".comment").remove();
                        $.each(list,function(i,ele){
                       
@@ -172,11 +180,13 @@ layer.open({
   closeBtn: 1, //不显示关闭按钮
   anim: 1,
   shadeClose:false, //开启遮罩关闭
-  content:"<div style='padding:20px'>"+obj.parent().parent().html()+"</div>",
+  content:"<div style='position:relative;padding:20px'>"+obj.parent().parent().html()+"<ul class='pagination comNum'><li class='prevNum'><a>加载更多...</a></li></ul></div>",
   cancel:function(){
    obj.parent().parent().find(".comment").remove();
   }
 });
+
+
     
                  }else{
                
@@ -192,10 +202,7 @@ layer.open({
 
 }
 $("#content").on("click","li .blog_img img",function(){
-
-
- 
-    
+   
 layer.open({
   type: 1,
   title: false,
@@ -216,11 +223,7 @@ $("#content").on("click","li .blog_title,li .blog_cont",function(){
     var Obj= $(this).parent().parent();
     var blog_id=Obj.attr("post_id");
    // console.log(blog_id)
-     load_comments($(this),blog_id,pageNum);
-
-    
-
-
+     load_comments($(this),blog_id,comNum);
 
 })
 /*发表帖子*/
@@ -345,7 +348,7 @@ function add_like(userid,post_id){
              reload_list();
          }else{
              like_flag=false;
-            // layer.msg(data.msg);             
+          layer.msg(data.msg);             
          }
         },error:function(status,data){
             console.log(status+":"+data);
@@ -358,15 +361,17 @@ function add_like(userid,post_id){
 $("#content").on("click","li .like_num",function(){
     var post_id=$(this).parent().parent().attr('post_id');
     var userid=getSession(0);
-    add_like(userid,post_id);
+   
 if(add_like(userid,post_id)){
  
-  
+   add_like(userid,post_id);
   var like_num=$(this).html();
   $(this).html(eval(like_num+1));
   $(this).removeClass('.fa-thumbs-o-up');
    $(this).addClass('.fa-thumbs-up');
-}else{}
+}else{
+
+}
 
 })
 
@@ -411,4 +416,63 @@ $("#content").on("click","li .comment_num",function(){
 
   })
 
+})
+
+function next_page(pageNum) {
+  // body...
+  var bbs_typeid=$(".bbs_type").find(".active").attr('bbs_type_id');
+  pageNum++;  
+      bbs_list(pageNum,bbs_typeid);
+      console.log(pageNum);    
+
+
+}
+function prev_page(pageNum) {
+ var bbs_typeid=$(".bbs_type").find(".active").attr('bbs_type_id');
+  if(pageNum>1){
+      pageNum--;  
+      bbs_list(pageNum,bbs_typeid);
+      console.log(pageNum);     
+  }else{
+    layer.msg('已经是第一页了')
+  }
+  
+
+}
+// function  sayName() {
+//   // body...
+//   console.log(comNum)
+// }
+//  window.setInterval("sayName()",1000);
+/*帖子上下页*/
+$(".pageNum .prevNum").click(function() {
+if(pageNum>1){
+  pageNum--;
+  var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
+  bbs_list(pageNum,active_id);
+}else{
+    layer.msg("已经是第一页了")
+}
+   
+})
+$(".pageNum .nextNum").click(function() {
+ pageNum++;
+  var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
+ bbs_list(pageNum,active_id);
+})
+/*评论翻页*/
+$("body").on("click",".comNum .prevNum",function() {
+   if($(this).siblings().length<21){
+      layer.msg("没有更多评论...")
+    }else{
+      // comNum++;
+      // var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
+ 
+      // load_comments($(this).children(),active_id,comNum);
+    }
+   
+   
+  
+
+   
 })
