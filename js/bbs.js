@@ -224,6 +224,7 @@ $("#content").on("click","li .blog_title,li .blog_cont",function(){
     var blog_id=Obj.attr("post_id");
    // console.log(blog_id)
      load_comments($(this),blog_id,comNum);
+      load_comments($(this),blog_id,Number(comNum)+1);
 
 })
 /*发表帖子*/
