@@ -1,8 +1,11 @@
+$(".login a").eq(2).hide();
+
 /*自适应菜单*/
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();
 })
 /*iframe高度*/
+
 function reinitIframe() {
 	var iframe = document.getElementById("test");
 	try {

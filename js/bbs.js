@@ -127,8 +127,9 @@ $(".bbs_type").on("click", 'li',function(){
     bbs_list(pageNum,bbs_type_id);
 })
 /*重新加载帖子列表*/
-function reload_list() {
 var ls = window.sessionStorage;
+function reload_list() {
+
   if(ls.getItem('law_sign')) {
      var active_id=$(".bbs_type").find(".active").attr('bbs_type_id');
       bbs_list(pageNum,active_id);
@@ -143,7 +144,7 @@ var ls = window.sessionStorage;
 /*加载某条帖子的评论*/
 var comNum=1;
 function  load_comments(obj,blog_id,comNum){
- 
+    var index=layer.load(0,{shade:[0.1,'#000']});
     var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
    $.ajax({
@@ -156,21 +157,22 @@ function  load_comments(obj,blog_id,comNum){
             id:blog_id,
             page:comNum
         },
+        async:false,
         success:function(data){
+          layer.close(index);
             var data=JSON.parse(data);
             if(data.ret==200){
-                  
-                        var list=data.data;
-                        
-                       obj.parent().parent().find(".comment").remove();
+                   var list=data.data;
+                      //  console.log(list);
                        $.each(list,function(i,ele){
                       
                        var comment=$("<section post_reply_id='"+ele.post_reply_id+"'  user_id='"+ele.user_id+"' class='comment'><div class='userMsg'> <div class='user_header_img'><img  src='http://www.ls186.cn"+ele.user_head_img  +"'/></div> <div class='user_name'>"+ele.user_nickname+"</div> </div><div class='comment_cont'>"+ele.post_reply_content+"</div> <div class='com_create_time text-muted'>"+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[0]+":"+new Date(parseInt(ele.post_reply_ctime)*1000).toLocaleString().split(":")[1]+"</div></section>");
                        obj.parent().parent().append(comment);
                        })
+                      
 layer.open({
   type: 1,
-  id:obj.parent().parent().attr('post_id'),
+  id:"ooo"+obj.parent().parent().index(),
   area:['50%','600px'],
   scrollbar:false,
   title:'帖子详情',
@@ -180,20 +182,18 @@ layer.open({
   closeBtn: 1, //不显示关闭按钮
   anim: 1,
   shadeClose:false, //开启遮罩关闭
-  content:"<div style='position:relative;padding:20px'>"+obj.parent().parent().html()+"<ul class='pagination comNum'><li class='prevNum'><a>加载更多...</a></li></ul></div>",
+  content:"<div style='position:relative;padding:20px'>"+obj.parent().parent().html()+"</div>",
   cancel:function(){
-   obj.parent().parent().find(".comment").remove();
+     obj.parent().parent().find(".comment").remove();
   }
 });
-
-
-    
-                 }else{
+ }else{
                
                     layer.msg(data.msg);
                  }
        
         },error:function(status){
+           layer.close(index);
             console.log(status)
            
         }
@@ -218,11 +218,12 @@ layer.open({
 
 /*帖子详情*/
 var pageNum=1;
-$("#content").on("click","li .blog_title,li .blog_cont",function(){
-
+$("#content").on("click",".userMsg2 div",function(){
+    
     var Obj= $(this).parent().parent();
     var blog_id=Obj.attr("post_id");
    // console.log(blog_id)
+   Obj.find(".comment").remove();
      load_comments($(this),blog_id,comNum);
       load_comments($(this),blog_id,Number(comNum)+1);
 
@@ -360,19 +361,24 @@ function add_like(userid,post_id){
    return like_flag;
 }
 $("#content").on("click","li .like_num",function(){
-    var post_id=$(this).parent().parent().attr('post_id');
-    var userid=getSession(0);
    
-if(add_like(userid,post_id)){
+   var ss=window.sessionStorage;
+  if(ss.getItem('law_sign')) {
+     var post_id=$(this).parent().parent().attr('post_id');
+      var userid=getSession(0);
+      if(add_like(userid,post_id)){
  
    add_like(userid,post_id);
   var like_num=$(this).html();
   $(this).html(eval(like_num+1));
-  $(this).removeClass('.fa-thumbs-o-up');
-   $(this).addClass('.fa-thumbs-up');
 }else{
 
 }
+  } else {
+    layer.msg('请先登录');
+
+  }
+
 
 })
 
@@ -408,14 +414,20 @@ cosnole.log(data);
 })
  }
 $("#content").on("click","li .comment_num",function(){
-    var post_id=$(this).parent().parent().attr('post_id');
-    var userid=getSession(0);
+   
 
-  layer.prompt({title:"输入回复内容:",formType:2},function(content,index){
+
+if(ls.getItem('law_sign')) {
+
+    layer.prompt({title:"输入回复内容:",formType:2},function(content,index){
     layer.close(index);
     add_comment(userid,post_id,content);
+ })
+  }else{
+    layer.msg('请先登录');
 
-  })
+  }
+  
 
 })
 

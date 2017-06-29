@@ -3,53 +3,206 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>附近律所</title>
+		<title>附近律师</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/index.css" />
-        <link rel="stylesheet" href="css/flzx.css" />
-	    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	    <script type="text/javascript" src="js/vue.js" ></script>
-		<script type="text/javascript" src="js/md5.js" ></script>
-			
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+         <script type="text/javascript" src='js/getSession.js'></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
       <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
       <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
+		<style>
+            .TopBg {
+			   background:url(img/feed/bj1.jpg) no-repeat 0 0;
+				/*background-attachment:scroll;*/
+				background-size: cover;
+				width: 100%;
+				height:10em;
+
+			}
+			  .TopBg>div{
+			  	font:bold 30px "微软雅黑";
+			  	padding:20px 0 10px 10px;
+			  	color:#000000;
+            line-height:5em;
+			  }
+			.TopBg_text {
+			    line-height:30px;
+				padding:0 10px;
+				color: rgba(239, 239, 239, 0.8);
+				font-size:14px;
+				letter-spacing:2px;
+			}
+			.comNum{
+				position: absolute;
+				bottom:20px;
+				right: 20px;
+			}
+			
+			/*论坛模块*/
+			#content{
+				clear: both;
+			}
+			.fa {
+				cursor: pointer;
+			}
+			
+			.blog_box {
+				padding:2px 25px;
+			}
+			.blog {
+				padding-bottom:10px;
+				clear: both;
+				border-bottom: 1px solid #BABABA;
+			}
+			
+			.blog div {
+				line-height:24px;
+			}
+			
+			.like_num,
+			.is_like,
+			.comment_num {
+				margin-top: 10px;
+				font-size: 13px;
+			}
+	
+			.user_header_img {
+				width:30px;
+				height:30px;
+			}
+			
+			.user_header_img img {
+				border: 2px solid #BABABA;
+				border-radius:50%;
+				width: 100%;
+			}
+
+			
+			
+			.blog_title {
+				font-weight: bold;
+				font-size: 12px;
+				cursor: pointer;
+			
+				
+			  }
+		.blog_cont{
+			text-indent:0.5em;
+				width:100%;
+			    display: -webkit-box;
+			    white-space: nowrap\9;
+				overflow: hidden;
+				text-overflow: ellipsis;
+		     	font-size:12px;
+		}
+			.userMsg div,
+			.userMsg3 div{
+			
+				display: inline-block;
+				vertical-align: bottom;
+			}
+			.blog div:not(.blog_create_time){
+				cursor: pointer;
+			}
+			.blog_img{
+			  line-height:80px; 
+			  width:100%;
+
+			}
+			.blog_img_b{
+				display:none;
+			}
+			.blog_img img:not(.blog_img_b){
+				 margin-top:10px;
+				 width:50px;
+			     height:50px;
+                  margin-left: 5px;
+			}
+			.blog_create_time {	
+			   width:80%;
+			
+			}
+
+		
+		.like_num,.comment_num{
+				text-align: center;
+				
+			     width:50px;
+			}
+			
+			.user_name {
+				font-size:13px;
+				color: #337AB7;
+				font-weight: bold;
+			}
+			.bbs_type{
+				padding:0 10px;
+				display:flex;
+				font-size: 13px;
+			}
+			.bbs_type li{
+				
+				text-overflow: ellipsis;
+				line-height:30px;
+				text-align: center;
+				width:9vw;
+				flex-wrap:wrap;
+				
+ 			}
+      .blog_menu{
+	          position: fixed;
+	          right: 5%;
+	          bottom:100px;
+
+         }
+         .blog_detial
+         {
+         	padding:0 20px; 
+         }
+
+			
+
+		</style>
 	</head>
 
 	<body>
-          	<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
-          	</span>
+					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
 		<div class="logo">
 			<div>
 				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
-				       <span class="login pull-right">
+				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
 							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size: 1.1em;">注册</a>
-				       </span>
-				       <span class="login1 pull-right">
+			   </span>
+				<span class="login1 pull-right">
 							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
 							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
-				    </span>
-				    <span class="pull-right Ylogin hide">
-				          <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;font-size:1.2em;font-weight: bold;">
-								   <span class="fa fa-user-circle-o"></span>
-				                 <b>User</b>已登录
-				           </a>
-				           <a id="clearUser" class="btn  btn-primary"  style="height:40px;font-size:1.2em;font-weight: bold;">
-								 <b>注销</b>
-				           </a>
-				     </span>
+				</span>
+
+				<span class="pull-right Ylogin hide">
+				           <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+								   <span class="fa fa-user-o"></span>
+				<b>User</b>已登录
+				</a>
+				<a id="clearUser" class="btn  btn-primary" style="height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
+					<b>注销</b>
+				</a>
+				</span>
 
 			</div>
 			<!--
@@ -70,22 +223,17 @@
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="userID" class="control-label">请输入用户名：</label>
-									<input type="text" class="form-control" id="userID" v-model="user.username" required/>
+									<label class="control-label">账号：</label>
+									<input type="text" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
 								</div>
 								<div class="form-group">
-									<label class="control-label">请输入密码：</label>
-									<input type="password" class="form-control" id="userPwd" v-model="user.password" required/>
+									<label class="control-label">密码：</label>
+									<input type="password" pattern="^\w{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
 								</div>
 
 							</div>
 							<div class="modal-footer">
 								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
-								<div class="btn-group">
-									<button class="btn btn-default">
-										<span class="fa fa-wechat info" style="color:#449D44;"></span>微信登录
-									</button>
-								</div>
 
 								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
 							</div>
@@ -113,12 +261,12 @@
 
 								<div class="form-group">
 									<label for="j_phone" class="control-label">手机号：</label>
-									<input type="text"  class="form-control phone" id="j_phone" required/>
+									<input type="text" class="form-control phone" id="j_phone" required/>
 								</div>
 								<div class="form-group">
 									<label for="userPhone" class="control-label">验证码：</label>
 									<div class="input-group">
-										<input type="text"  class="form-control" placeholder="" />
+										<input type="text" class="form-control" placeholder="" />
 										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
 									</div>
 								</div>
@@ -142,8 +290,8 @@
 										<option>当事人</option>
 									</select>
 								</div>
-								<div class="form-check">
-									<input type="checkbox" />
+								<div class="form-inline">
+									<input type="checkbox" class="form-control" />
 									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
 
 								</div>
@@ -157,91 +305,123 @@
 			</div>
 
 		</div>
+		<div class="header-bottom">
+			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+		</div>
 		<!-- header -->
 		<div class="container">
-			<div class="header-bottom">
-				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-				<div class="top-menu">
-						<ul class="header_nav">
-						<li>
-							<a class="home" href="home.html">首页</a>
-						</li>
-						<li>
-							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
-						</li>
-						<li>
-							<a class="FaLvFG" href="home.html#FLFG">法律法规</a>
-						</li>
-						<li>
-							<a class="AJGL" >案件管理</a>
-						</li>
-						<li>
-							<a class="KZFW" target="_blank" href="KZFW.html">扩展服务</a>
-						</li>
-						<li>
-							<a href="home.html#news">新闻公告</a>
-						</li>
-						<li >
-							<a class="FJLS"  href="javascript:void(0)">附近律所</a>
-						</li>
-
-						<li>
-							<a href="Abou.html" target="_blank">关于我们</a>
-						</li>
-
-					</ul>
-
-				</div>
-			</div>
-			
-			
-			
-			
-			
-			
-			<!--
-            	作者：13523450460@sina.cn
-            	时间：2017-03-30
-            	描述：内容开始
-            -->
-            <article>
-            	<ol id="content">
-					<li class="blog">
+			<article class="TopBg">
+				<div class="laws_tit">附近律师</div>
+			</article>
+            <ul class="pagination bbs_type">
+					
+			</ul>         
+			<article class="blog_box" >
+				   
+				<ol id="content" style="" >
+					 <li class="blog ">
 						<section class="userMsg">
-							<div class="blog_id hide">1</div>
 							<div class="user_header_img"><img src="img/professor/pro01.png" /></div>
-							<div class="user_name">执法</div>
+							<div class="user_name">执2法</div>
 						</section>
 						<section class="userMsg2">
-							<div class="blog_img"></div>
-							<div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁
+						   <div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 
 							</div>
+						    
 						</section>
 						<section class="userMsg3">
+							<div class="blog_img"><img src="img/member5.jpg" /><img src="img/member5.jpg" /><img src="img/member5.jpg" /><img src="img/member5.jpg" /></div>
 							<div class="blog_create_time text-muted">2017-03-30</div>
-							<div class="like_num fa fa-thumbs-o-up">2</div>
-							<div class="is_like hide">0</div>
+							<div class="like_num fa fa-thumbs-o-up">21</div>
 							<div class="comment_num fa fa-commenting-o">2</div>
 						</section>
+                       
+					</li>
+			 </ol>
 
+				<ul class="pagination pageNum pull-right">
+					<li class="prevNum">
+						<a>上一页</a>
+					</li>
+					<li class="nextNum">
+						<a>下一页</a>
+					</li>
+				</ul>
+			</article>
+        <section class="blog_menu">
+            <div>
+             	<a href="#pub_link"></a>
+        	</div>
+        </section>
+       
+		</div>
+		<div id="leftsead">
+
+					<span class="header_download">
+		                 	 <span class="header_download">
+								<div>
+									<div class=""><i class="fa fa-weixin fa-2x"></i><a>微信公众号</a></div>
+					                <div class="clearfix"><img src="img/home/Wechat_News.jpg"></a></div>
+								</div>
+								<div>
+									<div class=""><i class="fa fa-android fa-2x"></i><a>安卓版</a></div>
+					                <div class="clearfix"><img src="img/home/Android.png"/></div>
+								</div>
+								
+								<div>
+									<div><i class="fa fa-apple fa-2x"></i><a>IOS版</a></div>
+					                <div class="clearfix"><img src="img/home/ios.png" /></div>
+								</div>
+					            
+					         </span>
+
+					</span>
+				</div>
+       <div id="leftsead1">
+
+		       <ul>
+		            <li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="../Laws.html">法律法规</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-copy fa-2x"></i><a target="_blank" href="Laws_example.html">典型判例</a></span>
 					</li>
 
-				</ol>
-            </article>
-
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-text-o fa-2x"></i><a  href="Laws_doc.html" target="_blank" >法律文书</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
+					</li>
+					
+					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
+						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
+					</li>
+					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'" >
+						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
+					</li>
+		       </ul>
 	
+         </div>
+         <p id="demo">点击这个按钮，获得您的坐标：</p>
+             <button onclick="getLocation()">试一下</button>
+		<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
+
 		</div>
 	</body>
-<script type="text/javascript" src="js/layer.js" ></script>
+
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/index.js" ></script>
-     <script>
-		//$(":file").filestyle();
-		$('.modal').modal({ backdrop: 'static', show: false });
+	<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src='js/service_nearby.js'></script>
+	<script>
+		
+		
 	</script>
+	<!-- <script type="text/javascript" src="js/page.js" ></script>-->
 
 </html>
