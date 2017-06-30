@@ -10,6 +10,7 @@
 		<link rel="shortcut icon" href="img/home/logo-s.png">
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/office_nearby.css">
 		<script type="text/javascript" src="js/md5.js"></script>
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
          <script type="text/javascript" src='js/getSession.js'></script>
@@ -21,155 +22,9 @@
       <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
 		<style>
-            .TopBg {
-			   background:url(img/feed/bj1.jpg) no-repeat 0 0;
-				/*background-attachment:scroll;*/
-				background-size: cover;
-				width: 100%;
-				height:10em;
-
-			}
-			  .TopBg>div{
-			  	font:bold 30px "微软雅黑";
-			  	padding:20px 0 10px 10px;
-			  	color:#000000;
-            line-height:5em;
-			  }
-			.TopBg_text {
-			    line-height:30px;
-				padding:0 10px;
-				color: rgba(239, 239, 239, 0.8);
-				font-size:14px;
-				letter-spacing:2px;
-			}
-			.comNum{
-				position: absolute;
-				bottom:20px;
-				right: 20px;
-			}
+            
 			
-			/*论坛模块*/
-			#content{
-				clear: both;
-			}
-			.fa {
-				cursor: pointer;
-			}
-			
-			.blog_box {
-				padding:2px 25px;
-			}
-			.blog {
-				padding-bottom:10px;
-				clear: both;
-				border-bottom: 1px solid #BABABA;
-			}
-			
-			.blog div {
-				line-height:24px;
-			}
-			
-			.like_num,
-			.is_like,
-			.comment_num {
-				margin-top: 10px;
-				font-size: 13px;
-			}
 	
-			.user_header_img {
-				width:30px;
-				height:30px;
-			}
-			
-			.user_header_img img {
-				border: 2px solid #BABABA;
-				border-radius:50%;
-				width: 100%;
-			}
-
-			
-			
-			.blog_title {
-				font-weight: bold;
-				font-size: 12px;
-				cursor: pointer;
-			
-				
-			  }
-		.blog_cont{
-			text-indent:0.5em;
-				width:100%;
-			    display: -webkit-box;
-			    white-space: nowrap\9;
-				overflow: hidden;
-				text-overflow: ellipsis;
-		     	font-size:12px;
-		}
-			.userMsg div,
-			.userMsg3 div{
-			
-				display: inline-block;
-				vertical-align: bottom;
-			}
-			.blog div:not(.blog_create_time){
-				cursor: pointer;
-			}
-			.blog_img{
-			  line-height:80px; 
-			  width:100%;
-
-			}
-			.blog_img_b{
-				display:none;
-			}
-			.blog_img img:not(.blog_img_b){
-				 margin-top:10px;
-				 width:50px;
-			     height:50px;
-                  margin-left: 5px;
-			}
-			.blog_create_time {	
-			   width:80%;
-			
-			}
-
-		
-		.like_num,.comment_num{
-				text-align: center;
-				
-			     width:50px;
-			}
-			
-			.user_name {
-				font-size:13px;
-				color: #337AB7;
-				font-weight: bold;
-			}
-			.bbs_type{
-				padding:0 10px;
-				display:flex;
-				font-size: 13px;
-			}
-			.bbs_type li{
-				
-				text-overflow: ellipsis;
-				line-height:30px;
-				text-align: center;
-				width:9vw;
-				flex-wrap:wrap;
-				
- 			}
-      .blog_menu{
-	          position: fixed;
-	          right: 5%;
-	          bottom:100px;
-
-         }
-         .blog_detial
-         {
-         	padding:0 20px; 
-         }
-
 			
 
 		</style>
@@ -315,9 +170,7 @@
 		</div>
 		<!-- header -->
 		<div class="container">
-			<article class="TopBg">
-				<div class="laws_tit">附近律师</div>
-			</article>
+			
             <ul class="pagination bbs_type">
 					
 			</ul>         
@@ -408,8 +261,6 @@
 		       </ul>
 	
          </div>
-         <p id="demo">点击这个按钮，获得您的坐标：</p>
-             <button onclick="getLocation()">试一下</button>
 		<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 
 		</div>
@@ -417,11 +268,11 @@
 
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src='js/service_nearby.js'></script>
+    <script type="text/javascript" src='js/service_nearby.js'></script>
 	<script>
 		
 		
 	</script>
-	<!-- <script type="text/javascript" src="js/page.js" ></script>-->
+	
 
 </html>
