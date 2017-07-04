@@ -44,7 +44,7 @@ function  load_nearBy_lawyer(lng,lat){
    
 console.log(JSONStr);
 			$(".pageBox").pageFun({  /*在本地服务器上才能访问哦*/
-    			interFace:data,  /*接口*/
+    			interFace:[1,2,3,4,5,6,7,8,9,10],  /*接口*/
     			displayCount:5,  /*每页显示总条数*/
     			maxPage:4,/*每次最多加载多少页*/
     			dataFun:function(data){

@@ -101,13 +101,13 @@
 					<div class="form-group">
 						<label for="NewPwd" class="col-sm-2 control-label">新密码：</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="NewPwd" placeholder="请输入新密码">
+							<input type="password" class="form-control" id="NewPwd" placeholder="不小于6位的任意字符">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="PwdAgain" class="col-sm-2 control-label">确认新密码：</label>
 						<div class="col-sm-6">
-							<input type="password"  class="form-control" id="PwdAgain" placeholder="请确认密码">
+							<input type="password"  class="form-control" id="PwdAgain" placeholder="不小于6位的任意字符">
 						</div>
 					</div>
 					
@@ -211,11 +211,11 @@ function change_pwd(phone,pwd){
 
 function pwdTest(){
 	var flag;
-	testPwd=/^[a-zA-Z]\w{8,}$/;
+	testPwd=/^\S{6,}$/;
 	if(testPwd.test($("#NewPwd").val())&&$("#NewPwd").val()!=""){
 		flag=true;
 	}else{
-		layer.msg("密码格式不正确,至少8位字母开头的字母数字组合",{time:1500});
+		layer.msg("格式不正确！！",{time:1500});
 		flag=false;
 	}
 	return flag;
@@ -257,7 +257,7 @@ $("#get_code").on("click",function(){
 					layer.close(index);
 					if(data.ret==200){
 						layer.msg("发送成功");
-					//console.log(data.data)
+					console.log(data.data)
 				  var PCCode=String(data.data);
 				  $("#lo1").click(function(){
 	           var PhoneCode=String(hex_md5("law_"+$("#yzCode").val()));
