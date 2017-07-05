@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>关于我们</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="律师在线是最近刚成立的律师交流平台更能迅捷快速的处理律师们遇到的问题，提供在线交流能方式" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/circle.css" />
+		 <link rel="shortcut icon" href="img/home/logo-s.png">
+	   <link rel="stylesheet" href="css/font-awesome.min.css" />
+		<!--图标样式-->
+		<link rel="stylesheet" href="css/templatemo_style.css" />
+		<!--字体样式-->
+		<link rel="stylesheet" href="css/nivo-slider.css">
+		<link rel="stylesheet" href="css/index.css" />
+		
+		  <script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/layer.js" ></script>
+         <!--<script src="js/modernizr.custom.js"></script>-->
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+		<style>
+			.container .container{
+				width:100%;
+			}
+			.icon img{
+				height: 2.3em;
+				width:8em;
+			}
+      #BigCont {
+			    border-right: 1px solid #BABABA;
+				border-left: 1px solid #BABABA;	
+			}
+			
+			.nivo-directionNav a {
+				display: block;
+				width: 30px;
+				height: 30px;
+				background: url(img/sliderArrow.png) no-repeat;
+				text-indent: -9999px;
+				border: 0;
+			}
+			
+			a.nivo-nextNav {
+				background-position: -56px -3px;
+				display: inline-block;
+				height: 38px;
+				width: 38px;
+				border-radius: 50%;
+				right: 15px;
+			}
+			
+			a.nivo-prevNav {
+				background-position: 0 -3px;
+				display: inline-block;
+				height: 38px;
+				width: 38px;
+				border-radius: 50%;
+				left: 15px;
+			}
+			
+			header{
+				padding: 0;
+			}
+			.partnerWrap{
+				width: 100%;
+				/*overflow: hidden;*/
+				
+			}
+			.slideshow{
+				width:200%;				
+			}
+			.slideshow img{
+				display:inline-block;
+				width:280px;
+				
+			}
+			footer{
+				padding:0 10px;
+				width: 100%;
+				clear: both;
+				background-color: #337AB7;
+			}
+			#leftsead1 li{
+				background-color: #337Ab7;
+			}
+		</style>
+	</head>
+
+	<body>
+		 	
+		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
+					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
+		 
+		<div class="logo">
+			<div>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+               
+				<span class="login pull-right">
+							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
+				</span>
+				<span class="login1 pull-right">
+							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
+							<a>&nbsp;</a>
+							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
+				</span>
+				<span class="pull-right Ylogin hide">
+				           <a id="YloginBtn" class="btn  btn-primary"  style="height:40px;font-size:1.2em;font-weight: bold;">
+								   <span class="fa fa-user-circle-o"></span>
+				                   <b>User</b>已登录
+				          </a>
+				<a id="clearUser" class="btn  btn-primary" style="height:40px;font-size:1.2em;font-weight: bold;">
+					<b>注销</b>
+				</a>
+
+				</span>
+
+         <div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+		</div>
+			</div>
+			<!--作者：fql
+	                       时间：2017-03-07
+	                      描述：登录弹窗-->
+
+			<div class="modal fade" id="myLogin">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content" id="app">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">登录界面</h4>
+						</div>
+						<form @submit.prevent="submit">
+							<div class="modal-body">
+                                  
+								<div class="form-group">
+									<label class="control-label">账号：</label>
+									<input type="text" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$"   placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
+								</div>
+								<div class="form-group">
+									<label class="control-label">密码：</label>
+									<input type="password" pattern="^\w{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
+								<div class="btn-group">
+									<button class="btn btn-default">
+										<span class="fa fa-wechat info" style="color:#449D44;"></span>微信登录
+									</button>
+								</div>
+
+								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：fql
+            	时间：2017-03-07
+            	描述：注册弹窗
+            	  -->
+			<div class="modal fade" id="myRegs">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
+						</div>
+						<form >
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="j_phone" class="control-label">手机号：</label>
+									<input type="text" class="form-control phone" id="j_phone" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPhone" class="control-label">验证码：</label>
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="" />
+										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">密码：</label>
+									<input type="password" class="form-control" id="userPWD" required/>
+								</div>
+								<div class="form-group">
+									<label for="userPWD" class="control-label">确认密码：</label>
+									<input type="password" class="form-control" id="userPWD2" required/>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label">你的身份：</label>
+									<select class="custom-select-sm form-control">
+										<option>主任律师</option>
+										<option>正式律师</option>
+										<option>实习律师</option>
+										<option>律所内勤</option>
+										<option>法律工作者</option>
+										<option>当事人</option>
+									</select>
+								</div>
+								<div class="form-check" style="border:none">
+									<input type="checkbox" />
+									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
+
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" class="btn btn-info" value="注册">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- header -->
+		<div class="container">
+
+			<div class="header-bottom">
+				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="top-menu">
+					<ul class="header_nav">
+						<li>
+							<a class="home" href="home.html">首页</a>
+						</li>
+						
+						<li>
+							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+						</li>
+						<li>
+							<a class="AJGL" id="AJGL">案件管理</a>
+						</li>
+						<li>
+							<a class="KZFW"  href="KZFW.html">扩展服务</a>
+						</li>
+						<li>
+							<a href="home.html#news" >新闻公告</a>
+						</li>
+						<li >
+							<a class="FJLS"  href="office_nearby.html">附近律所</a>
+						</li>
+
+						<li>
+							<a href="javascript:void(0)">关于我们</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+		<div class="container" id="BigCont">
+			<header>
+				<div id="slider" class="nivoSlider">
+					<img src="img/carousel/ulogin/ulogin_1.jpg" alt="" title="#htmlcaption" />
+					<img src="img/carousel/ulogin/ulogin_2.jpg" alt="" />
+					<img src="img/carousel/ulogin/ulogin_3.jpg" alt="" title="" />
+					<img src="img/carousel/ulogin/ulogin_4.jpg" alt="" />
+					
+					
+					
+                
+                     
+				</div>
+				<div id="htmlcaption" class="nivo-html-caption">
+					律所在线竭诚为你服务
+				</div>
+			</header>
+			
+			<!--
+	作者：13523450460@sina.cn
+	时间：2017-03-21
+	描述：section1:服务项目
+-->
+			<div id="templatemo_services" class="section1">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="secHeader">
+								<h1 class="text-center">我们的服务</h1>
+								<p class="text-center"><small> 我们的服务宗旨是为了人民为了当时人的利益，保障公民的最大权益，还有很多什么的什么的一些类似的 问题还有什么什么的<a href="#/plugins/nivo-slider/">详细介绍</a>.</small></p>
+							</div>
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-3">
+									<div class="blok text-center">
+										<div class="hexagon-a">
+											<a class="hlinktop" href="#">
+												<div class="hexa-a">
+													<div class="hcontainer-a">
+														<div class="vertical-align-a">
+															<span class="texts-a"><i class="fa fa-handshake-o"></i></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="hexagon">
+											<a class="hlinkbott" href="#">
+												<div class="hexa">
+													<div class="hcontainer">
+														<div class="vertical-align">
+															<span class="texts"></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<h4>法律咨询</h4>
+										<p><small>提供法律咨询服务</small></p>
+										
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-3">
+									<div class="blok text-center">
+										<div class="hexagon-a">
+											<a class="hlinktop" href="#">
+												<div class="hexa-a">
+													<div class="hcontainer-a">
+														<div class="vertical-align-a">
+															<span class="texts-a"><i class="fa fa-rocket"></i></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="hexagon">
+											<a class="hlinkbott" href="#">
+												<div class="hexa">
+													<div class="hcontainer">
+														<div class="vertical-align">
+															<span class="texts"></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<h4>拓展服务</h4>
+										<p><small>专家论证服务</small></p>
+										
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-3">
+									<div class="blok text-center">
+
+										<div class="hexagon-a">
+											<a class="hlinktop" href="#">
+												<div class="hexa-a">
+													<div class="hcontainer-a">
+														<div class="vertical-align-a">
+															<span class="texts-a"><i class="fa fa-file-text"></i></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="hexagon">
+											<a class="hlinkbott" href="#">
+												<div class="hexa">
+													<div class="hcontainer">
+														<div class="vertical-align">
+															<span class="texts"></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+
+										<h4>案件管理</h4>
+										<p><small>案件管理服务</small></p>
+										
+									</div>
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-3">
+									<div class="blok text-center">
+
+										<div class="hexagon-a">
+											<a class="hlinktop" href="#">
+												<div class="hexa-a">
+													<div class="hcontainer-a">
+														<div class="vertical-align-a">
+															<span class="texts-a"><i class="fa fa-calculator"></i></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="hexagon">
+											<a class="hlinkbott" href="#">
+												<div class="hexa">
+													<div class="hcontainer">
+														<div class="vertical-align">
+															<span class="texts"></span>
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+
+										<h4>计算工具</h4>
+										<p><small>计算工具服务</small></p>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- e/o section1 -->
+			
+			<!-- e/o section2 -->
+			
+	<div id="templatemo_about"   class="section3" style="">
+      <div class="" >
+        <div class="row">
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center"><a class="text-title text-primary" href="#" title="" target="_blank">我们的团队</a></h1>
+              <p class="text-center"><small>我们的团队怎么怎么样就的还有什么的</small></p>
+            </div>
+  
+            <div class="infoTxt">
+              <p class="text-center"><small>团队描述</small></p>
+            </div>
+            <div class="teamInfo" style="">
+              <ul>
+                <li>
+                  <div class="teamBox">
+                    <div class="imgWrp"><img class="img-responsive" alt="Angel" src="img/member1.jpg"></div>
+                    <div class="tInfo">
+                      <h4 class="text-center">杨老师</h4>
+                      <h6 class="text-center">律师</h6>
+                    </div>
+                  </div>
+                </li> 
+                <li>
+                  <div class="teamBox">
+                    <div class="imgWrp"><img class="img-responsive" alt="Mary" src="img/member2.jpg"></div>
+                    <div class="tInfo">
+                      <h4 class="text-center">王老师</h4>
+                      <h6 class="text-center">律师</h6>
+                    </div>
+                  </div>
+                </li> 
+                <li>
+                  <div class="teamBox">
+                    <div class="imgWrp"><img class="img-responsive" alt="Nancy" src="img/member3.jpg"></div>
+                    <div class="tInfo">
+                      <h4 class="text-center">李老师</h4>
+                      <h6 class="text-center">律师</h6>
+                    </div>
+                  </div>
+                </li> 
+                <li>
+                  <div class="teamBox">
+                    <div class="imgWrp"><img class="img-responsive" alt="Linda" src="img/member4.jpg"></div>
+                    <div class="tInfo">
+                      <h4 class="text-center">张老师</h4>
+                      <h6 class="text-center">助理</h6>
+                    </div>
+                  </div>
+                </li> 
+                <li>
+                  <div class="teamBox">
+                    <div class="imgWrp"><img class="img-responsive" alt="Helen" src="img/member5.jpg"></div>
+                    <div class="tInfo">
+                      <h4 class="text-center">韩老师</h4>
+                      <h6 class="text-center">助理</h6>
+                    </div>
+                  </div>
+                </li> 
+              </ul>
+            </div>
+        <div class="text-center"><div class="btn btn-primary">更多+</div></div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- e/o section3 -->
+    
+       <div class="" style="padding-left:30px;">
+        <div class="row">
+          <div class="secHeader">
+              <h1 class="text-center"><a class="text-title text-primary" href="#" title="" target="_blank">联系我们</a></h1>
+              <p class="text-center"><small>有过有什么需要咨询的问题就可以咨询我们的咨询中心</small></p>
+          </div>
+
+          <div class="col-md-8">
+             <iframe src="baidumap.html"  frameborder="0" width="100%" height="400"  scrolling="no" ></iframe> 
+          </div>
+          <div class="col-md-3" style="height:400px;padding-top:50px;">
+            <div class="addr text-center">
+              <p>河南省郑州市金水区金水东路政一街2号院</p>
+              <ul>
+                 <li><i class="fa fa-mobile-phone"></i>0371-2888-23222</li>
+                 <li><i class="fa fa-envelope"></i>info@company.com</li>
+                 <li><i class="fa fa-weibo"></i>company.com</li>
+              </ul>
+            </div>
+          </div>
+            
+      </div>
+
+    </div> <!-- eo section 4 -->
+    
+    <hr />
+  <div class="section5">
+      <div class="">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center text-primary">合作伙伴</h1>
+              <h3 class="text-center text-info">合作单位描述</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="partnerWrap">
+        <div class="slideshow" >
+            <img alt="partner 1" src="img/partners/partner1.jpg">
+            <img alt="partner 2" src="img/partners/partner2.jpg">
+            <img alt="partner 3" src="img/partners/partner3.jpg">
+            <img alt="partner 4" src="img/partners/partner4.jpg">
+            <img alt="partner 5" src="img/partners/partner5.jpg">
+            <img alt="partner 6" src="img/partners/partner6.jpg">
+            <img alt="partner 7" src="img/partners/partner7.jpg">
+            <img alt="partner 8" src="img/partners/partner8.jpg">
+        </div>
+       </div>
+
+    </div> <!-- eo section 5 -->
+    
+</div>
+<hr />
+   <div id="leftsead1">
+
+		       <ul>
+		            <li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="Laws.html">法律法规</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-copy fa-2x"></i><a target="_blank" href="Laws_example.html">典型判例</a></span>
+					</li>
+
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-file-text-o fa-2x"></i><a  href="Laws_doc.html" target="_blank" >法律文书</a></span>
+					</li>
+					<li class="btn btn-primary btn-block">
+						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
+					</li>
+				
+					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
+						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
+					</li>
+					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'" >
+						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
+					</li>
+		       </ul>
+	
+         </div>
+	<footer class="footer container" style="border: 1px solid  red; padding:10px 20px;" id="foo">
+    
+        <div class="row final">
+        	
+          <div class="col-md-6">
+            <div class="info1">
+              <h4 style="color: #FFFFFF;">相关信息</h4>
+              <div class="addr">
+                
+                <ul>
+                  <li style="color: #FFFFFF;"><i class="fa fa-map-marker"></i>河南省郑州市450000</li>
+                  <li style="color: #FFFFFF;"><i class="fa fa-mobile-phone"></i>010-020-0120</li>
+                  <li style="color: #FFFFFF;"><i class="fa fa-globe"></i><a  style="color: #FFFFFF;">www.32132.com</a></li>
+                  <li style="color: #FFFFFF;"><i class="fa fa-envelope"></i>info@company.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <!--<div class="col-md-3">
+          <div class="info2">
+              <h4 style="color: #FFFFFF;">律所展示</h4>
+              <div class="row">
+                <div class="col-xs-4">
+                  <a  href="" title="Free Photos"><img class="img-responsive" alt="flickr" src="img/feed/image1.jpg"></a>
+                </div>
+                <div class="col-xs-4">
+                  <a  href=""><img class="img-responsive" alt="flickr" src="img/feed/image2.jpg"></a>
+                </div>
+                <div class="col-xs-4">
+                  <a  href=""><img class="img-responsive" alt="flickr" src="img/feed/image3.jpg"></a>
+                </div>
+                <div class="col-xs-4">
+                  <a  href=""><img class="img-responsive" alt="flickr" src="img/feed/image4.jpg"></a>
+                </div>
+                <div class="col-xs-4">
+                  <a  href=""><img class="img-responsive" alt="flickr" src="img/feed/image5.jpg"></a>
+                </div>
+                <div class="col-xs-4">
+                  <a  href="http:page/6"><img class="img-responsive" alt="flickr" src="img/feed/image6.jpg"></a>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div class="col-md-6">
+            <div class="info3">
+              <h4 style="color: #FFFFFF;">您的邮箱</h4>
+              <p style="color: #FFFFFF;">你可以接受到我们最新消息以及我们律所的重大新闻</p>
+              <form role="form">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email_newsletter" placeholder="你的邮箱">
+                </div>
+                <div><button type="button" class="btn btn-primary">发送</button></div>
+              </form>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+        <br/>
+       <div style="color:#FFFFFF; text-align: center;height:60px;line-height:60px;font-style: italic;border-top: 1px solid #FFFFFF;" class="col-md-12">技术支持 第九联盟 . Copyright © 2016. All Rights Reserved. 豫ICP备15000500号</div> 
+
+    
+            
+    </footer>
+	</body>
+    
+ <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/getSession.js" ></script>
+   <<script type="text/javascript" src="js/bootstrap.js" ></script>
+	<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+	
+	<script type="text/javascript">
+		$(window).load(function() {
+			$('#slider').nivoSlider();
+		});
+
+
+      
+      /*合作单位*/
+    
+     var i=1;
+     function pat(){
+     	if(i<5){
+     		var Loffset=-i*280+'px';
+     	     $(".slideshow").animate({"marginLeft":Loffset},1000);
+     	    
+     	   i++;
+     	}else{
+     		i=1;
+     	}
+     	
+     }
+     setInterval("pat()",3000);
+     
+    var ls=window.sessionStorage;
+    
+     /*轮播内容*/
+ function  Aboutcarousel(){
+    if(ls.getItem("law_sign")){
+    	    if(getSession(2)==6){
+    	 	     var carousel=$("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
+   	            $("#slider").html(carousel);
+  
+                  }else{
+                   	 
+   	                  var carousel=$("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
+     	               $("#slider").html(carousel);
+                        }
+    }else{
+       var carousel=$("<img src='img/carousel/ulogin/ulogin_1.jpg' title='#htmlcaption' /><img src='img/carousel/ulogin/ulogin_2.jpg' /><img src='img/carousel/ulogin/ulogin_3.jpg' /><img src='img/carousel/ulogin/ulogin_4.jpg' />");
+        $("#slider").html(carousel)
+    
+    }
+    };
+    
+
+  $("#clearUser").on("click",function(){
+  	Aboutcarousel();
+  })
+      
+      
+    </script>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>计算工具</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+		<link rel="shortcut icon" href="img/home/logo-s.png">
+		
+		
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	
+		<script type="text/javascript" src="js/counter.js"></script>
+		
+		
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+      <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+      <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+   <![endif]-->
+		<style>
+			.detailCopy tr td {
+				padding: 0 10px;
+			}
+			
+			tr {
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			.countBox {
+				padding-top: 20px;
+			}
+			
+			.countBox div {
+				margin-bottom: 20px;
+				padding: 0 8px;
+				width: 24.4%;
+				display: inline-block;
+				border-radius: 5px;
+				height: 225px;
+			}
+			
+			.countBox div span em {
+				font-style: normal;
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				word-break: keep-all;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			
+			.countBox div span {
+				width: 100%;
+				background-color: rgba(51, 122, 183, 0.8);
+				display: inline-block;
+				border: 1px solid #BABABA;
+				color: #FFFFFF;
+				border-radius: 10px;
+				padding: 2px 10px;
+				box-shadow: 5px 5px 10px #BABABA;
+			}
+			
+			@media only screen and (max-width:600px) {
+				.countBox {
+					padding-top: 20px;
+				}
+				.countBox div {
+					margin: 20px auto;
+					border-radius: 5px;
+					display: block;
+					width: 90%;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		
+			<!--
+	作者：fql
+	时间：2017-03-07
+	描述：登录弹窗
+-->
+
+		
+		<!-- header -->
+		<div class="container" style="">
+		
+				<table class="detailCopy" width="100%" style="background-color:#FFFFFF;">
+					<tr>
+						<td>
+							<table width='100%'>
+								<caption class="text-center text-warning" style="font-size: 22px; line-height: 34px; border-bottom: 1px solid #BABABA;padding:20px;"><b>财产案件计算诉讼费（单位元，保留两位小数）</b></caption>
+								<!---->
+								<tr>
+									<td>
+										<section width="100%">
+											<form class="countBox" name="formsuan">
+												<div class="">
+													<span class="">
+														<em>诉讼标的：</em>
+														<input type="text" class="form-control" name="textfieldshurushou" />&nbsp;
+														<input type="button" class="btn btn-info btn-sm" name="buttonshou" value="计算" onclick="shou()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
+														<input type="text" class="form-control" name="textfieldsuanshou" />&nbsp;
+													  
+													</span>
+												</div>
+												<div class="">
+													<span>
+														<em>保全费标的：</em>
+														<input class="form-control" type="text" name="textfieldshurubao" />&nbsp;
+														<input type="button" class="btn btn-info btn-sm" name="buttonshou" value="计算" onclick="bao()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
+														<input class="form-control" type="text" name="textfieldsuanbao" />&nbsp;
+															
+													</span>
+												</div>
+												<div class="">
+													<span>
+														<em>执行费标的：</em>
+														<input class="form-control" type="text" name="textfieldshuruzhi" />&nbsp;
+														<input class="btn btn-info btn-sm" type="button" name="buttonshou" value="计算" onclick="zhi()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
+														<input class="form-control" type="text" name="textfieldsuanzhi" />&nbsp;
+													
+													</span>
+												</div>
+												<div class="">
+													<span>
+														 <em>离婚标的：</em>
+														<input class="form-control"  type="text" name="textfieldshurulihun" />&nbsp;
+														<input class="btn btn-info btn-sm" type="button" name="buttonshou" value="计算" onclick="lihun()" /><!--&nbsp;&rArr;
+														计算结果&nbsp;-->
+													  <input class="form-control" type="text" name="textfieldsuanlihun" />&nbsp;
+													
+													</span>
+												</div>
+												<div class="">
+													<span>
+														<em>人格权纠纷标的：</em>
+														<input class="form-control" type="text" name="textfieldshururenge" />&nbsp;
+														<input class="btn btn-info btn-sm"  type="button" name="buttonshou" value="计算" onclick="renge()"/>
+														<input class="form-control" type="text" name="textfieldsuanrenge" />&nbsp;
+													</span>
+												</div>
+
+											</form>
+										
+											
+											
+											
+										</section>
+									</td>
+								</tr>
+							</table>
+
+							</span>
+					</tr>
+				</table>
+
+			</article>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-primary">
+					<div class="panel-heading" style="color:#FFFFFF; font-weight: bold;" role="tab" id="headingOne">
+						<div class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							非财产案件诉讼费用<a class="pull-right" style="color:#FFFFFF;"><span class="fa fa-caret-down fa-2x "></span></a>
+						</div>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<table class="table table-dafalt">
+								<tr class="">
+									<td class="col-md-10">一、非财产案件按照下列标准交纳：</td>
+
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.离婚案件每件交纳50元至300元。</td>
+								</tr>
+								<tr>
+									<td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.侵害姓名权、名称权、肖像权、名誉权、荣誉权以及其他人格权的案件，每件交纳100元至500元。</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.其他非财产案件每件交纳50元至100元。</td>
+								</tr>
+								<tr class="">
+									<td>二、知识产权民事案件，没有争议金额或者价额的，每件交纳500元至1000元；有争议金额或者价<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额的，按照财产案件的标准交纳。</td>
+								</tr>
+								<tr class="">
+									<td>三、劳动争议案件每件交纳10元。</td>
+								</tr>
+								<tr class="">
+									<td>四、行政案件按照下列标准交纳：</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.商标、专利、海事行政案件每件交纳100元；</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.其他行政案件每件交纳50元。</td>
+								</tr>
+								<tr class="">
+									<td>五、当事人提出案件管辖权异议，异议不成立的，每件交纳50元至100元。</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" style="color: #FFFFFF; font-weight: bold;" role="tab" id="heading2">
+						<div class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+							申请费用<a class="pull-right" style="color:#FFFFFF;"><span class="fa fa-caret-down fa-2x "></span></a>
+						</div>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+						<div class="panel-body">
+							<table class="table table-hover">
+								<tr class="">
+									<td style="line-height:16px">一、申请执行人民法院发生法律效力的判决、裁定、调解书，仲裁机构依法作出的裁决和调解书，公证机关依法赋予强制执行效力的<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;债权文书，申请承认和执行外国法院判决、裁定以及国外仲裁机构裁决，没有执行金额或者价额的，每件交纳50元至500元。
+									</td>
+								</tr>
+								<tr class="">
+									<td>二、依法申请支付令的，比照财产案件受理费标准的1/3交纳。</td>
+								</tr>
+								<tr class="">
+									<td>三、依法申请公示催告的，每件交纳100元。</td>
+								</tr>
+								<tr class="">
+									<td>四、申请撤销仲裁裁决或者认定仲裁协议效力的，每件交纳400元。</td>
+								</tr>
+								<tr class="">
+									<td>五、破产案件依据破产财产总额计算，按照财产案件受理费标准减半交纳，但是，最高不超过30万元。</td>
+								</tr>
+								<tr class="">
+									<td>六、海事案件的申请费按照下列标准交纳：</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.申请设立海事赔偿责任限制基金的，每件交纳1000元至1万元；</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.申请海事强制令的，每件交纳1000元至5000元；</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.申请船舶优先权催告的，每件交纳1000元至5000元；</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.申请海事债权登记的，每件交纳1000元；</td>
+								</tr>
+								<tr>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.申请共同海损理算的，每件交纳1000元。</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
+
+	</body>
+
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+
+	<script>
+		//$(":file").filestyle();
+		$('.modal').modal({
+			backdrop: 'static',
+			show: false
+		});
+	</script>
+
+</html>

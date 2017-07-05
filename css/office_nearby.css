@@ -1,0 +1,62 @@
+     /*律师内容模块*/
+			#content{
+				clear:both;
+				padding-top: 10px;
+			}
+			.fa {
+				cursor: pointer;
+			}
+			
+			.blog_box {
+				padding:2px 10px;
+			}
+			.blog {
+				padding-bottom:10px;
+				clear: both;
+				border-bottom: 1px solid #F9F2F4;
+			}
+			
+			.user_header_img {
+				width:10%;
+				
+			}
+			.user_header_img img{
+				height:50px;
+				width: 50px;
+				border: 2px solid #BABABA;
+				border-radius:50%;
+				
+			}
+			.userMsg{
+				display:flex;
+			}
+			.userMsg>div{
+				display: inline-block\9;		
+			}
+			.user_name {
+				width:80%;
+				
+			}
+			.user_name1{
+				font-size:13px;
+				line-height:20px;
+				color: #337AB7;
+				font-weight:bold;
+			}
+			.user_des{
+				line-height:34px;
+				color: #666666;
+				font-size:13px;
+			}
+			.lawyer_distance{
+				width:10%;
+				text-align: end;
+				
+				line-height: 50px;
+				
+			}
+.search_place{
+	height:50px;
+	line-height: 50px;
+	text-indent:10px;
+}

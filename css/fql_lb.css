@@ -1,0 +1,35 @@
+   .fql_banner{
+				width: 100%;
+				overflow: hidden;
+				
+			}
+			.h500{
+				height: 500px;
+			}
+			.h300{
+				height: 300px;
+			}
+			.h200{
+				height: 200px;
+			}
+			.fql_container{
+			     width:100%;
+				
+				overflow: hidden;
+			}
+			.fql_container img{
+				display: block;
+				width: 100%;
+			}
+			@media only screen  and (max-width: 640px) {
+			.h500{
+				height: 250px;
+			}
+			 .h300{
+				height: 150px;
+			}
+			.h200{
+				height: 100px;
+			}
+				
+			}
