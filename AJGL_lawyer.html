@@ -7,8 +7,10 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="shortcut icon" href="img/home/logo-s.png">
+		
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/bootstrap.css">
+		<!--<link rel="stylesheet" href="css/bootstrap-combined.min.css" />-->
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/AJGL.css" />
 		<link rel="stylesheet" href="css/fileinput.min.css" />
@@ -190,22 +192,22 @@
 																<a class="text-danger">*</a><b>证据描述：</b>
 															</div>
 															<div class="evid_explain" style="height:60px;">
-                                                                 <textarea rows="2" cols="100%"></textarea>
+																<textarea rows="2" cols="100%"></textarea>
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
+															<label class="input_btn"><a class="text-danger"></a>&nbsp;图片证据：</label>
 															<input id="file-3" type="file" accept="image/png,image/jpeg">
 														</div>
 														<div class="form-group">
-															<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-															<input accept="audio/x-mpeg" id="file-4" type="file">
+															<label class="input_btn"><a class="text-danger"></a>&nbsp;录音视频音频：</label>
+															<input id="file-4" type="file">
 														</div>
-														<div class="form-group">
+														<!--<div class="form-group">
 															<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
 															<input id="file-5" type="file" accept=".docx,.doc,.txt,.pdf">
-														</div>
-                                                        <input type="button" value="保存证据" class="btn btn-success  evidBtn">
+														</div>-->
+														<input type="button" value="保存证据" class="btn btn-success  evidBtn">
 													</div>
 													<!--<div class="">
 												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
@@ -224,16 +226,26 @@
 															<div class="text-title" style="line-height: 40px;">
 																<a class="text-danger">*</a><b>流程文字说明：</b>
 															</div>
-															<div class="evid_explain">
-																<textarea></textarea>
+															
+															<iframe id="test" src="Laws_doc.html" style="width:90%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>
+															<div class="evid_explain ">
+																<div class="pro_box">
+																	<textarea class="pro_cont" rows="10">
+
+																	</textarea>
+																	 <div></div>
+																</div>
+															
+                                                                
 															</div>
+															
+													        <input type="button" class="btn btn-success pro_btn  clearfix" value='保存' />
 														</div>
 
 													</div>
 
 												</form>
 											</section>
-										
 
 											<section id="Mycost1" class="add_section">
 												<form role="form">
@@ -276,11 +288,11 @@
 													证据与文档副本：
 													<span class="text-info pull-right caret_icon">展开
 															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
-													         <i class="fa fa-spinner fa-pulse load_icon"></i>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
 													</span>
 												</a>
 												<ul class="evidence_cont">
-												    <!--<li>
+													<!--<li>
 														<i class="fa fa-link"></i>
 														<a href="#">据与法律文书清单内容</a>
 														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
@@ -307,24 +319,7 @@
 												</ul>
 
 											</div>
-											<div class="remindCont">
-												<a class="text-muted" style="height:40px; line-height:40px;">
-													时间节点提醒：
-													<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-													<i class="fa fa-spinner fa-pulse load_icon"></i>
 
-													</span>
-												</a>
-												<ul class="remind_cont">
-													<li>
-														<i class="fa fa-link"></i>
-														<a href="#">与法律文书清单内容</a>、
-														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>
-												</ul>
-
-											</div>
 											<div class="costCont">
 												<a class="text-muted" style="height:40px; line-height:40px;">
 													费用和票据记录：
@@ -464,7 +459,7 @@
 											<option name='process'>新增案件流程文档</option>
 											<option name='cost'>新增费用和票据记录</option>
 											<option name='contact'>新增相关人通讯录</option>
-											
+
 										</select>
 
 									</div>
@@ -486,14 +481,14 @@
 														<input id="file-6" type="file" accept="image/png,image/jpeg">
 													</div>
 													<div class="form-group">
-														<label class="input_btn"><a class="text-danger"></a>&nbsp;音频(mp3)：</label>
-														<input accept="audio/x-mpeg" id="file-7" type="file">
+														<label class="input_btn"><a class="text-danger"></a>&nbsp;录音材料(mp3)：</label>
+														<input id="file-7" type="file">
 													</div>
-													<div class="form-group">
+													<!--<div class="form-group">
 														<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
 														<input id="file-8" type="file" accept=".docx,.doc,.txt,.pdf">
-													</div>
-                                                    <!--<div class="form-group">
+													</div>-->
+													<!--<div class="form-group">
 														<input type="button" class="btn btn-primary savePro" value="保存">
 													</div>-->
 												</div>
@@ -522,10 +517,10 @@
 															<option>仲裁案件</option>、
 															<option>执行案件</option>
 														</select>
-														
-														<select  class="custom-select form-control pro_doc_type">
+
+														<select class="custom-select form-control pro_doc_type">
 															<option>----请选择文书类型----</option>
-															
+
 														</select>
 														<i class="fa fa-spinner fa-pulse doc_load"></i>
 													</div><br />
@@ -538,11 +533,10 @@
 													</div>
 
 												</div>
-											
 
 											</form>
 										</section>
-									
+
 										<section id="Mycost" class="add_section">
 											<form role="form">
 												<div class="">
@@ -550,28 +544,28 @@
 														<div class="text-title" style="">
 															<a class="text-danger">*</a><b>费用说明：</b>
 														</div>
-                                                    </div>
-                                                    <div class="form-group">
+													</div>
+													<div class="form-group">
 														<select class="custom-select form-control cost_cont cost_type">
 															<option>----请选择费用类型----</option>
 															<option>类型1</option>
 															<option>类型2</option>
 														</select>
-                                                    </div>
-                                                    <div class="form-inline">
+													</div>
+													<div class="form-inline">
 														<label class="control-label">金额(元)：</label>
-														<input class="form-control"   placeholder="支持小数点后四位" />
-														
-                                                    </div><br />
-                                                    <div class="form-group">
-                                                        <div class="cost_explain">
-                                                               <textarea rows="2" cols="100%" class="form-control" placeholder="补充说明"></textarea>
+														<input class="form-control" placeholder="支持小数点后四位" />
+
+													</div><br />
+													<div class="form-group">
+														<div class="cost_explain">
+															<textarea rows="2" cols="100%" class="form-control" placeholder="补充说明"></textarea>
 														</div>
 
 													</div>
-                                                    <div class="form-group">
+													<div class="form-group">
 														<label class="input_btn"><a class="text-danger"></a>&nbsp;票据存档(JPG,PNG)：</label>
-														<input class="cost_cont" id="cost_image" type="file" >
+														<input class="cost_cont" id="cost_image" type="file">
 													</div>
 												</div>
 
@@ -594,7 +588,7 @@
 														<input class="form-control contact-cont" placeholder="邮箱" /><br />
 														<input class="form-control contact-cont" placeholder="住址" /><br />
 														<textarea cols="100%" rows="2" class="form-control contact-cont" placeholder="补充说明"></textarea>
-														
+
 													</div>
 
 												</div>
@@ -606,7 +600,6 @@
 											</form>
 										</section>
 									</div>
-									
 
 								</div>
 								<div class="modal-footer">
@@ -617,39 +610,39 @@
 					</div>
 				</div>
 				<!--登记案件模态框结束-->
-				
+
 			</article>
 		</div>
-       <div id="leftsead1">
+		<div id="leftsead1">
 
-		       <ul>
-		            <li class="btn btn-primary btn-block">
-						<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="Laws.html">法律法规</a></span>
-					</li>
-					<li class="btn btn-primary btn-block">
-						<span><i style="" class="fa fa-copy fa-2x"></i><a target="_blank" href="Laws_example.html">典型判例</a></span>
-					</li>
+			<ul>
+				<li class="btn btn-primary btn-block">
+					<span><i style="" class="fa fa-file-o fa-2x"></i><a target="_blank"  href="Laws.html">法律法规</a></span>
+				</li>
+				<li class="btn btn-primary btn-block">
+					<span><i style="" class="fa fa-copy fa-2x"></i><a target="_blank" href="Laws_example.html">典型判例</a></span>
+				</li>
 
-					<li class="btn btn-primary btn-block">
-						<span><i style="" class="fa fa-file-text-o fa-2x"></i><a  href="Laws_doc.html" target="_blank" >法律文书</a></span>
-					</li>
-					<li class="btn btn-primary btn-block">
-						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
-					</li>
-					
+				<li class="btn btn-primary btn-block">
+					<span><i style="" class="fa fa-file-text-o fa-2x"></i><a  href="Laws_doc.html" target="_blank" >法律文书</a></span>
+				</li>
+				<li class="btn btn-primary btn-block">
+					<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
+				</li>
 
-					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
-						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
-					</li>
-					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'" >
-						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
-					</li>
-		       </ul>
-	
-         </div>
+				<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
+					<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
+				</li>
+				<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'">
+					<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
+				</li>
+			</ul>
+
+		</div>
 	</body>
 	<script type="text/javascript" src="js/fileinput.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/Laws_doc.js" ></script>
 	<script type="text/javascript" src="js/casefile.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script>
@@ -699,14 +692,14 @@
 			fileType: "text",
 
 		});
-		$("#cost_image").click(function(){
+		$("#cost_image").click(function() {
 			alert("OK");
 		})
 		$("#cost_image").fileinput({
 			showUpload: false,
 			showCaption: false,
 			browseClass: "btn btn-primary",
-		      fileType: "image",
+			fileType: "image",
 
 		});
 	</script>

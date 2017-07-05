@@ -65,12 +65,12 @@ function toDesktop(sUrl, sName) {
 
 function pwdTest(){
 	var flag;
-	testPwd=/^[a-zA-Z]\w{7,}$/;
+	testPwd=/^\S{6,}$/;
 	if($("#userPWD").val()!=""){
 		if(testPwd.test($("#userPWD").val())){
 			flag=true;
 		}else{
-			layer.msg("密码格式不正确");
+			layer.msg("格式不正确");
 			flag=false;
 		}
 	}else{

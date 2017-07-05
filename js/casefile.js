@@ -621,11 +621,24 @@ $(".evidence_cont").delegate("li .del_evid", "click", function() {
 /*新增证据*/
 $(".programeBox").children().hide();
 $(".programe").change(function() {
+	
+	$('.pro_cont').val('');
+	
 	var proType = $(this).children("option:selected").attr("name");
 	var proType = '#My' + proType;
 	$(proType).show();
 	$(proType).siblings().hide();
+		
 
+})
+
+/*流程文书*/
+function check(){
+	var doc=$(".pro_cont").val();
+	$('')
+}
+$(".pro_cont").blur(function(){
+	
 })
 
 /*获取文书类型开始*/

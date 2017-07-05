@@ -3,6 +3,9 @@
  * 法律文书
  * 
  * */
+
+
+
 $(function(){
 	var cur_time=Math.round(new Date()/1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
@@ -25,7 +28,8 @@ $(function(){
 			$.each(laws_list, function(i,laws) {
 				
 				var li=$("<li  ctype_id='"+laws.ctype_id+"'><a>"+laws.ctype_name +"(<i>"+laws.doc_count+"</i>)</a></li>")
-			var option=$("<option ctype_id='"+laws.ctype_id+"'><a>"+laws.ctype_name +"</a></option>")
+			    var option=$("<option ctype_id='"+laws.ctype_id+"'><a>"+laws.ctype_name +"</a></option>")
+			    $(".pro_one").append(option);
 				$("#laws_menu").append(li);
 			$(".Type_cate_id").append(option);
 			});
@@ -40,8 +44,15 @@ $(function(){
 		
 		}
 	});
+	
+	
 })
-/*获取合同范本分类下列表*/
+$(".pro_one").on('change',function(){
+	$('.pro_two').empty();
+	var selct_op=$(this).children('option:selected').attr('ctype_id');
+	laws_type(1,selct_op);
+})
+/*获取法律文书分类下列表*/
 function laws_type(pageNum,cate_id) {
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
@@ -68,6 +79,8 @@ function laws_type(pageNum,cate_id) {
 				$.each(laws_list, function(i, ele) {
 				    var li = $("<li doc_type_id='" + ele.doc_type_id + "'><a class='doc_type_name'>" + ele.doc_type_name + "</a></li>");
 					$("#laws_cont").append(li);
+					var option= $("<option doc_type_id='" + ele.doc_type_id + "'>" + ele.doc_type_name + "</option>");
+					$('.pro_two').append(option);
 				});
 
 			} else {
@@ -80,10 +93,11 @@ var pageNum=1;
 
 /*获取分类下的法规详情*/
 function  laws_detail(i){
+	
 	var index=layer.load(1,{shade:[0.1,'gray']});
 	var cur_time = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(cur_time)) + "_law");
-	
+	  parent.$(".pro_cont").html("");
 	$.ajax({
 		type: 'post',
 		url: 'https://www.ls186.cn/law_api',
@@ -100,7 +114,18 @@ function  laws_detail(i){
 			if(data.ret == 200) {
 				//console.log(data.data);
       	    var content="<div class='laws_content'>"+data.data+"</div>";
-			layer.open({
+      	  
+if(window.top==window.self){//不存在父页面
+ 	   
+ 	
+ }else{
+ 	  parent.$(".pro_cont").val('');
+//     parent.$(".pro_cont").val($.parseHTML());
+
+      parent.$(".pro_cont").val($(data.data).text());
+       
+   }
+			 layer.open({
 					type: 1,
 					skin: 'layui-layer-lan', //样式类名
 					area:['50%','800px'],
@@ -113,6 +138,7 @@ function  laws_detail(i){
 					shadeClose: true, //开启遮罩关闭
 					content: content
 				});
+ 
 			} else {
 				layer.msg(data.msg);
 			}
@@ -206,6 +232,7 @@ $("#laws_menu").on("click",'li',function() {
   $(this).siblings().css("background-color","#FFFFFF");
   $(this).siblings().removeClass("active");
 	var cate_id = $(this).attr("ctype_id");
+	
 	laws_type(pageNum,cate_id);
 
 })
