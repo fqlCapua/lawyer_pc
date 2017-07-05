@@ -211,7 +211,7 @@ function change_pwd(phone,pwd){
 
 function pwdTest(){
 	var flag;
-	testPwd=/^\s\S{6,}$/;
+	testPwd=/^\S{6,}$/;
 	if(testPwd.test($("#NewPwd").val())&&($("#NewPwd").val()!="")){
 		flag=true;
 	}else{
