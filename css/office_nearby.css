@@ -16,11 +16,11 @@
 				border-bottom: 1px solid #F9F2F4;
 			}
 			
-			.user_header_img {
+			.user_header_img,.office_ad  {
 				width:10%;
 				
 			}
-			.user_header_img img{
+			.user_header_img img,.office_ad img{
 				height:50px;
 				width: 50px;
 				border: 2px solid #BABABA;
@@ -33,22 +33,22 @@
 			.userMsg>div{
 				display: inline-block\9;		
 			}
-			.user_name {
+			.user_name{
 				width:80%;
 				
 			}
-			.user_name1{
+			.user_name1,.office_title {
 				font-size:13px;
 				line-height:20px;
 				color: #337AB7;
 				font-weight:bold;
 			}
-			.user_des{
+			.user_des,.office_desc{
 				line-height:34px;
 				color: #666666;
 				font-size:13px;
 			}
-			.lawyer_distance{
+			.lawyer_distance,.{
 				width:10%;
 				text-align: end;
 				

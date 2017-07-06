@@ -42,30 +42,20 @@ function  load_nearBy_lawyer(lng,lat){
 			var data=JSON.parse(data);
 			if(data.ret==200){
    
-console.log(JSONStr);
-			$(".pageBox").pageFun({  /*在本地服务器上才能访问哦*/
-    			interFace:data,  /*接口*/
-    			displayCount:5,  /*每页显示总条数*/
-    			maxPage:4,/*每次最多加载多少页*/
-    			dataFun:function(data){
-    				//var dataHtml = "<li class='blog' tag='"+data.tag+"' user_id='"+data.user_id+"'><section class='userMsg' title='"+data.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+data.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+data.user_truename+"</div><div class='user_des'>"+data.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(data.distance)+"km</div></section></li>";
-    				var dataHtml='<li>'+data.tag+'</li>';
-    				return dataHtml;
-    			},
-    			pageFun:function(i){
-    				var pageHtml = "<li class='pageNum'><a href='#'>"+i+"</a></li>";
-						return pageHtml;
-    			}
-
-    		})
-
-
-
-
+       
+			
 				  var list=data.data;
+				     console.log(list);
 				  $.each(list, function(i,ele){
-				 var li=$("<li class='blog' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
-				   $("#content").append(li);
+				 
+				  	if(ele.tag==0){
+				  		 var li=$("<li class='blog' lng='"+ele.user_lng+"' lat='"+ele.user_lat+"' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
+				     $("#content").append(li);
+				  	}else{
+				  		 var li=$("<li class='blog' tag='"+ele.tag+"' lng='"+ele.office_lng+"' lat='"+ele.office_lat+"'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+ele.office_desc+"'><div class='office_ad'><img src='"+ele.office_ad+"'/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='office_des'>"+ele.office_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
+				        $("#content").append(li);
+				  	}
+				
 				  
 				  });
 			

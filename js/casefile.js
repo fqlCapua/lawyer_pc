@@ -538,7 +538,7 @@ $(".evidence_cont").delegate("li .link_evid", "click", function() {
              }
              if(detail.evidence_doc!=""){
              	 var doc="http://www.ls186.cn"+String(detail.evidence_doc);
-             }else{
+             }else if(detail.evidence_doc=""){
              	var doc="";
              }
 				//$("#myCaseDetail").modal('hide');
