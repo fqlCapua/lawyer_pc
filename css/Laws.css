@@ -100,8 +100,8 @@
   */
   
   
-@media only screen and (max-width: 640px) {
-   .container{
+@media only screen and (max-width:770px) {
+   /*.container{
     		width:100%;
     		padding: 0;
     		margin: 0;
@@ -179,6 +179,12 @@
         border:1px solid #ddd;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
     }
-   
+   */
+
+   .form-inline select,.form-inline .input-group{
+   	margin: 10px;
+   	width: 100%;
+   	width: 200px;
+   }
     }
    
