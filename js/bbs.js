@@ -408,8 +408,8 @@ function add_comment(userid,post_id,content){
          }else{
                 layer.msg(data.msg);     
          }
-        },error:function(status,data){
-cosnole.log(data);
+        },error:function(status,data){ 
+      console.log(data);
         }
 })
  }
@@ -418,7 +418,9 @@ $("#content").on("click","li .comment_num",function(){
 
 
 if(ls.getItem('law_sign')) {
-
+    var userid=getSession(0);
+    post_id=$(this).parent().parent().attr('post_id');
+ 
     layer.prompt({title:"输入回复内容:",formType:2},function(content,index){
     layer.close(index);
     add_comment(userid,post_id,content);

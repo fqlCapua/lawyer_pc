@@ -1,5 +1,5 @@
 $(".login a").eq(2).hide();
-
+$(".login1 a").eq(2).hide();
 /*自适应菜单*/
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();

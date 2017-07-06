@@ -499,6 +499,7 @@ $(".evidCont .caret_icon").click(function() {
 	flag++;
 	$(this).parent().siblings().slideToggle();
 });
+
 /*获取证据详情(律师版) √*/
 
 $(".evidence_cont").delegate("li .link_evid", "click", function() {
@@ -537,8 +538,9 @@ $(".evidence_cont").delegate("li .link_evid", "click", function() {
              	var mp3="";
              }
              if(detail.evidence_doc!=""){
-             	 var doc="http://www.ls186.cn"+String(detail.evidence_doc);
-             }else if(detail.evidence_doc=""){
+             	 var doc=String(detail.evidence_doc);
+                 var file_name=doc.split('/')[doc.split('/').length-1];
+             }else{
              	var doc="";
              }
 				//$("#myCaseDetail").modal('hide');
@@ -546,12 +548,11 @@ $(".evidence_cont").delegate("li .link_evid", "click", function() {
 					title:"证据详情",
 					type: 1,
 					skin: 'layui-layer-lan', //样式类名
-					closeBtn: 0, //不显示关闭按钮
-					area:['320px','320px'],
-					offset: '200px',
+					area:['400px','600px'],
+					offset: '25px',
 					anim: 2,
 					shadeClose: true, //开启遮罩关闭
-                    content:"<div class='evidence_detialbox'><div class='text-title evidence_title  text-center'>"+detail.evidence_title+"</div><img width='100' height='100' class='evidence_img' src='"+img+"' alt='无图片'/><div><label>音频内容：</label><audio controls  class='evidence_mp3' src='"+mp3+"'/></div><div><label>文档内容：</label><span class='evidence_doc'>"+doc+"</span><div class='text-center'></div></div>",
+                    content:"<div class='evidence_detialbox' style='padding:20px;'><div class='text-title evidence_title  text-center'>"+detail.evidence_title+"</div><img  style='margin:0 auto;' class='evidence_img' src='"+img+"' alt='无图片'/><div><label>音频内容：</label><audio controls  class='evidence_mp3' src='"+mp3+"'/></div><div><label>文件内容：</label><span class='evidence_doc'><a  target='_blank' href='http://www.ls186.cn"+doc+"'>"+file_name+"</a></span><div class='pull-right'><a style='font-weight:bold;' target='_blank' href='http://www.ls186.cn"+doc+"'>预览</a></div></div>",
 				});
 //<button class='btn btn-sm btn-primary'>删除</button>
 				    
@@ -570,7 +571,10 @@ $(".evidence_cont").delegate("li .link_evid", "click", function() {
 	})
 })
 
+
+
 /*删除证据*/
+
 $(".evidence_cont").delegate("li .del_evid", "click", function() {
 	var index = layer.load(1, {
 		shade: [0.2, 'gray']
@@ -633,13 +637,48 @@ $(".programe").change(function() {
 })
 
 /*流程文书*/
-function check(){
-	var doc=$(".pro_cont").val();
-	$('')
-}
-$(".pro_cont").blur(function(){
-	
-})
+var flag = 0;
+$(".processCont .caret_icon").click(function() {
+	if(flag % 2 == 0) {
+
+		var cur_timestamp = Date.parse(new Date()) / 1000;
+		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+		var case_id = $("#myModalLabel").attr('class');
+       
+		$(this).children(".load_icon").show();
+		$(".evidence_cont").empty();
+		$.ajax({
+			type: "post",
+			url: "https://www.ls186.cn/law_api",
+			data: {
+				service: 'Case.evidence_list',
+				time: cur_timestamp,
+				token: md_token,
+				id: case_id,
+			},
+			success: function(data) {
+				$(".load_icon").hide();
+				var data = JSON.parse(data);
+				if(data.ret == 200) {
+
+					layer.msg('加载成功');
+					$(".evidence_cont").empty();
+					var list = data.data;
+					$.each(list, function(i, ele) {
+						var li = $("<li class='list-group-item' evid_id='"+ele.evidence_id+"'><i class='link_evid fa fa-paper-plane'></i>&nbsp;&nbsp;<span>" + ele.evidence_title + "</span><i  class='text-danger fa fa-trash pull-right del_evid'></i></li>\n");
+						$(".evidence_cont").append(li);
+
+					})
+
+				}
+			}
+		});
+	} else {
+
+	}
+	flag++;
+	$(this).parent().siblings().slideToggle();
+});
 
 /*获取文书类型开始*/
 // $(".doc_load").hide()
@@ -681,3 +720,8 @@ $(".pro_cont").blur(function(){
 
 // 	});
 // });
+
+$('.modal').modal({
+			backdrop: 'static',
+			show: false
+		});
