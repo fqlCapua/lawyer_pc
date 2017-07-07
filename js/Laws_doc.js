@@ -92,7 +92,7 @@ function laws_type(pageNum,cate_id) {
 var pageNum=1;
 
 /*获取分类下的法规详情*/
-function  laws_detail(i){
+function  laws_detail(i,tit){
 	
 	var index=layer.load(1,{shade:[0.1,'gray']});
 	var cur_time = Math.round(new Date() / 1000);
@@ -113,7 +113,7 @@ function  laws_detail(i){
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
 				//console.log(data.data);
-      	    var content="<div class='laws_content'>"+data.data+"</div>";
+      	    var content="<div class='laws_content' tit='"+tit+"' type_id='"+i+"'>"+data.data+"</div>";
       	  
 if(window.top==window.self){//不存在父页面
  	   
@@ -121,11 +121,11 @@ if(window.top==window.self){//不存在父页面
  }else{
  	  parent.$(".pro_cont").val('');
 //     parent.$(".pro_cont").val($.parseHTML());
-
-      parent.$(".pro_cont").val($(data.data).text());
-       
+      
+      parent.editor.txt.html(content);
+       parent.layer.closeAll();
    }
-			 layer.open({
+			layer.open({
 					type: 1,
 					skin: 'layui-layer-lan', //样式类名
 					area:['50%','800px'],
@@ -240,8 +240,8 @@ $("#laws_menu").on("click",'li',function() {
 $("#laws_cont").on("click", 'li', function() {
 
 	var laws_id = $(this).attr('doc_type_id');
-	
-	laws_detail(laws_id)
+	var doc_title=$(this).text();
+	laws_detail(laws_id,doc_title);
 })
 
 /*搜索法律法规*/

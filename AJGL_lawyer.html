@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="shortcut icon" href="img/home/logo-s.png">
-		
+
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/index.css" />
@@ -18,6 +18,7 @@
 		<script type="text/javascript" src="js/getSession.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/wangEditor.js"></script>
 	</head>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -115,7 +116,7 @@
                         	描述：展示列表模块
                         -->
 				<section class="show_cont">
-					<div class="modal fade" id="myCaseDetail"  >
+					<div class="modal fade" id="myCaseDetail">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -173,10 +174,9 @@
 										<div class="form-group">
 											<label class="control-label">新增项目：</label>
 											<select class="custom-select form-control programe">
-												<option>点击新增项目</option>
+												<option name=''>点击新增项目</option>
 												<option name="evidence1">新增证据与文档副本</option>
 												<option name="process1">新增案件流程文档</option>
-												</option>
 												<option name='cost1'>新增费用和票据记录</option>
 												<option name='contact1'>新增相关人通讯录</option>、
 
@@ -225,20 +225,13 @@
 															<div class="text-title" style="line-height: 40px;">
 																<a class="text-danger">*</a><b>流程文字说明：</b>
 															</div>
-															
-															<iframe id="test" src="Laws_doc.html" style="width:90%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>
-															<div class="evid_explain ">
-																<div class="pro_box">
-																	<textarea class="pro_cont" rows="10">
+															<input style="margin-bottom: 5px;" type="button" class="btn btn-success load_pro_btn  clearfix" value='加载文书' />
 
-																	</textarea>
-																	 <div></div>
-																</div>
-															
-                                                                
-															</div>
-															
-													        <input type="button" class="btn btn-success pro_btn  clearfix" value='保存' />
+															<!--<iframe id="test" src="Laws_doc.html" style="width:90%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>-->
+															<div id="editor">
+																<p>文书详情</p>
+															</div><br />
+															<input type="button" class="btn btn-success save_pro_btn  clearfix" value='保存' />
 														</div>
 
 													</div>
@@ -247,17 +240,27 @@
 											</section>
 
 											<section id="Mycost1" class="add_section">
-												<form role="form">
+												<form role="form" >
 													<div class="">
 														<div class="form-group">
-															<div class="text-title" style="line-height: 40px;">
-																<a class="text-danger">*</a><b>费用说明：</b>
+															<div class="form-group">
+																<label><a class="text-danger">*</a>&nbsp;标题：</label>
+																<input  class="cost_tit form-control" type="text" />
 															</div>
-															<div class="evid_explain">
-																<textarea></textarea>
+															<div class="form-group">
+																<label><a class="text-danger">*</a>&nbsp;金额(&yen;)：</label>
+																<input  class="cost_sum form-control" type="text" placeholder="支持小数点后四位" />
 															</div>
+															<div class="form-group">
+																<textarea class="cost_comment form-control" placeholder="费用说明" style="width:100%;height:100px;"></textarea>
+															</div>
+															<div class="form-group">
+																<label><a class="text-danger">*</a>&nbsp;票据存档：</label>
+																<input type="file" class="cost_img" accept="image/jpeg,image/png" />
+															</div>
+															<input type="button" class="btn btn-success save_cost_btn"  value="保存"/>
 														</div>
-
+ 
 													</div>
 
 												</form>
@@ -291,16 +294,12 @@
 													</span>
 												</a>
 												<ul class="evidence_cont">
-													<!--<li>
-														<i class="fa fa-link"></i>
-														<a href="#">据与法律文书清单内容</a>
-														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>-->
 
 												</ul>
 
 											</div>
 											<div class="processCont">
+
 												<a class="text-muted" style="height:40px; line-height:40px;">
 													案件流程文档：
 													<span class="text-info pull-right caret_icon">展开
@@ -308,13 +307,12 @@
 													<i class="fa fa-spinner fa-pulse load_icon"></i>
 
 													</span>
+													<div class="doc_txt hide">
+
+													</div>
 												</a>
 												<ul class="process_cont">
-													<li>
-														<i class="fa fa-link"></i>
-														<a href="#">证据与法律文书清单内容</a>、
-														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>
+
 												</ul>
 
 											</div>
@@ -329,11 +327,7 @@
 													</span>
 												</a>
 												<ul class="cost_cont">
-													<li>
-														<i class="fa fa-link"></i>
-														<a href="#">证据与法律文书清单内容</a>、
-														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>
+							
 												</ul>
 
 											</div>
@@ -395,7 +389,7 @@
                 	描述：登记案件开始
                 -->
 				<div class="modal fade" id="myDJ">
-					<div class="modal-dialog modal-lg">
+					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
@@ -406,11 +400,6 @@
 							<form role="form">
 								<div class="modal-body">
 
-									<!--<div class="form-group">
-											<label class="control-label">接待记录：</label><input class="filestyle" id="djbtn" type="file" multiple/>
-											<br />
-											<textarea type="text" cols="30" rows="4" wrap="hard" class="form-control" id="aqsm" placeholder="案情说明"></textarea>
-										</div>-->
 									<div class="form-group">
 										<label class="control-label">真实姓名：</label>
 										<input id="djcase_uname" type="text" class="form-control" />
@@ -450,154 +439,9 @@
 											<option>执行案件</option>
 										</select>
 									</div>
-									<div class="form-group">
-										<label class="control-label">新增项目：</label>
-										<select class="custom-select form-control programe">
-											<option>点击新增项目</option>
-											<option name='evidence'>新增证据与文档副本</option>
-											<option name='process'>新增案件流程文档</option>
-											<option name='cost'>新增费用和票据记录</option>
-											<option name='contact'>新增相关人通讯录</option>
-
-										</select>
-
-									</div>
+									
 									<div class="programeBox">
-										<section id="Myevidence" class="add_section">
-											<form role="form" id="evid_sub">
-												<div class="">
-													<div class="form-group">
-														<div class="text-title " style="line-height:30px;">
-															<a class="text-danger">*</a><b>证据描述：</b>
-														</div>
-														<div class="djevid_explain">
-
-															<textarea class="form-control" cols="100%" rows="2"></textarea>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="input_btn"><a class="text-danger"></a>&nbsp;图像(jpg)：</label>
-														<input id="file-6" type="file" accept="image/png,image/jpeg">
-													</div>
-													<div class="form-group">
-														<label class="input_btn"><a class="text-danger"></a>&nbsp;录音材料(mp3)：</label>
-														<input id="file-7" type="file">
-													</div>
-													<!--<div class="form-group">
-														<label class="input_btn"><a class="text-danger"></a>&nbsp;文档(doc)：</label>
-														<input id="file-8" type="file" accept=".docx,.doc,.txt,.pdf">
-													</div>-->
-													<!--<div class="form-group">
-														<input type="button" class="btn btn-primary savePro" value="保存">
-													</div>-->
-												</div>
-
-											</form>
-										</section>
-
-										<!--案件流程-->
-
-										<section id="Myprocess" class="add_section">
-											<form role="form">
-												<div class="">
-													<div class="form-group">
-														<div class="text-title" style="line-height:30px;">
-															<a class="text-danger">*</a><b>流程文字说明：</b>
-														</div>
-
-													</div>
-													<div class="form-inline">
-														<select class="custom-select form-control pro_case_type">
-															<option>----请选择案件类型----</option>
-															<option>民事案件</option>
-															<option>刑事案件</option>
-															<option>行政案件</option>
-															<option>法律咨询</option>
-															<option>仲裁案件</option>、
-															<option>执行案件</option>
-														</select>
-
-														<select class="custom-select form-control pro_doc_type">
-															<option>----请选择文书类型----</option>
-
-														</select>
-														<i class="fa fa-spinner fa-pulse doc_load"></i>
-													</div><br />
-													<div class="form-group">
-														<div class="evid_explain">
-
-															<textarea>文书模板</textarea>
-														</div>
-
-													</div>
-
-												</div>
-
-											</form>
-										</section>
-
-										<section id="Mycost" class="add_section">
-											<form role="form">
-												<div class="">
-													<div class="form-group">
-														<div class="text-title" style="">
-															<a class="text-danger">*</a><b>费用说明：</b>
-														</div>
-													</div>
-													<div class="form-group">
-														<select class="custom-select form-control cost_cont cost_type">
-															<option>----请选择费用类型----</option>
-															<option>类型1</option>
-															<option>类型2</option>
-														</select>
-													</div>
-													<div class="form-inline">
-														<label class="control-label">金额(元)：</label>
-														<input class="form-control" placeholder="支持小数点后四位" />
-
-													</div><br />
-													<div class="form-group">
-														<div class="cost_explain">
-															<textarea rows="2" cols="100%" class="form-control" placeholder="补充说明"></textarea>
-														</div>
-
-													</div>
-													<div class="form-group">
-														<label class="input_btn"><a class="text-danger"></a>&nbsp;票据存档(JPG,PNG)：</label>
-														<input class="cost_cont" id="cost_image" type="file">
-													</div>
-												</div>
-
-											</form>
-										</section>
-
-										<section id="Mycontact" class="add_section">
-											<form role="form">
-												<div class="">
-													<div class="form-group">
-														<div class="text-title" style="line-height:30px;">
-															<a class="text-danger">*</a><b>联系人说明：</b>
-														</div>
-
-													</div>
-													<div class="form-group">
-														<input class="form-control contact-cont" placeholder="姓名(必填项)" /><br />
-														<input class="form-control contact-cont" placeholder="电话" /><br />
-														<input class="form-control contact-cont" placeholder="手机(必填项)" /><br />
-														<input class="form-control contact-cont" placeholder="邮箱" /><br />
-														<input class="form-control contact-cont" placeholder="住址" /><br />
-														<textarea cols="100%" rows="2" class="form-control contact-cont" placeholder="补充说明"></textarea>
-
-													</div>
-
-												</div>
-												<div class="">
-													<input id="contactBtn" class="btn btn-info" value="提交证据">
-
-												</div>
-
-											</form>
-										</section>
+										
 									</div>
 
 								</div>
@@ -638,12 +482,14 @@
 			</ul>
 
 		</div>
+
 	</body>
 	<script type="text/javascript" src="js/fileinput.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/Laws_doc.js" ></script>
+	<script type="text/javascript" src="js/Laws_doc.js"></script>
 	<script type="text/javascript" src="js/casefile.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+
 	<script>
 		$("#file-3").fileinput({
 
@@ -691,10 +537,8 @@
 			fileType: "text",
 
 		});
-		$("#cost_image").click(function() {
-			alert("OK");
-		})
-		$("#cost_image").fileinput({
+		
+		$(".cost_img").fileinput({
 			showUpload: false,
 			showCaption: false,
 			browseClass: "btn btn-primary",
