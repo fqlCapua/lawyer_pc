@@ -30,6 +30,7 @@ function  load_nearBy_lawyer(lng,lat){
 	$.ajax({
 		type:"post",
 		url:"https://www.ls186.cn/law_api",
+		async:false,
 		data: {
 			service: "Office.service_nearby",
 			time: curtime,
@@ -58,7 +59,11 @@ function  load_nearBy_lawyer(lng,lat){
 				
 				  
 				  });
-			
+			$('#content').kkPages({
+		    PagesClass:'.blog', //需要分页的元素
+		    PagesMth:10, //每页显示个数		
+		    PagesNavMth:8 //显示导航个数
+		 });
 				
 			}else{
 				layer.msg(data.msg);
@@ -77,8 +82,8 @@ function  load_nearBy_lawyer(lng,lat){
 //	load_nearBy_lawyer(113.64964385,34.75661006);
 	//load_nearBy_lawyer(r.point.lng,r.point.lat);
 	// 百度地图API功能
-	var index = layer.load(0, {
-		shade: [0.3, "#000000"],
+	var index = layer.load(1, {
+		shade: [0.1, "orange"],
 	});
 	var map = new BMap.Map("allmap");
 	var point = new BMap.Point(116.331398,39.897445);
@@ -90,7 +95,6 @@ function  load_nearBy_lawyer(lng,lat){
 	geolocation.getCurrentPosition(function(r){
 		layer.close(index);
 		if(this.getStatus() == BMAP_STATUS_SUCCESS){
-			
 			var mk = new BMap.Marker(r.point);
 			map.addOverlay(mk);
 			map.panTo(r.point);
