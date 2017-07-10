@@ -148,9 +148,6 @@
 												<option>被申请人</option>
 												<option>上诉人</option>
 												<option>被上诉人</option>
-												<option>嫌疑人近亲属</option>
-												<option>被告人近亲属</option>
-												<option>法律援助中心</option>
 												<option>其他</option>
 											</select>
 										</div>
@@ -266,25 +263,48 @@
 												</form>
 											</section>
 
-											<section id="Mycontact1" class="add_section">
-												<form role="form">
+											<section id="Mycontact1" class="add_section" >
+												<form role="form" @submit.prevent="submit">
 													<div class="">
 														<div class="form-group">
 															<div class="text-title" style="line-height: 40px;">
-																<a class="text-danger">*</a><b>联系人说明：</b>
-															</div>
-															<div class="evid_explain">
-																<textarea></textarea>
+																<a class="text-danger"></a><b>联系人说明：</b>
 															</div>
 														</div>
-
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<input  class="contact_name form-control" type="text" placeholder="姓名(必填)" v-model="contact.name" required />
+															</div>
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<input  class="contact_tel form-control" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" type="text" placeholder="手机(必填)" v-model="contact.phone"/>
+															</div>
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<input type="text"  pattern="^1[3-9]\d{9}$" placeholder="座机" class="form-control contact_mobile"  v-model="contact.mobile" />
+																
+															</div>
+															
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<input  class="contact_mail form-control" type="email" placeholder="邮箱" v-model="contact.email"/>
+															</div>
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<input  class="contact_address form-control" type="text" placeholder="住址" v-model="contact.address" />
+															</div>
+															<div class="form-group">
+																<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
+																<textarea  class="contact_comment form-control" placeholder="备注信息..." v-model="contact.comment"></textarea>
+															</div>
+															<input type="submit" class="btn btn-success save_contact_btn"  value="保存"/>
 													</div>
 
 												</form>
 											</section>
 										</div>
 
-										<div class="add_program" id="">
+										<div class="add_program">
 											<div class="evidCont">
 												<a class=" text-muted" style="height:40px; line-height:40px;">
 													证据与文档副本：
@@ -341,11 +361,7 @@
 													</span>
 												</a>
 												<ul class="contact_cont">
-													<li>
-														<i class="fa fa-link"></i>
-														<a href="#">与法律文书清单内容</a>、
-														<a class="pull-right text-danger delBtn"><i class="fa fa-trash"></i>&nbsp;删除</a>
-													</li>
+													
 												</ul>
 
 											</div>
