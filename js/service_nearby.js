@@ -152,26 +152,111 @@ function  load_nearBy_lawyer(lng,lat){
 //  ========== 
 //  = 用户信息详情点击事件 = 
 //  ========== 
-
+/*加载律所信息*/
+  //加载图片数组
+	function appendImg(arr,pObj){
+        		for (var i = 0; i < arr.length; i++) {
+        		 var img=$("<img style='width:50px;height: 50px; margin-right:5px;display: inline-block;'  src='"+arr[i]+"'/>");
+        		 $(pObj).append(img);
+        	}
+        	}
+function load_office(officeid){
+	var curtime=Math.round(new Date()/1000);
+	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
+	$.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/law_api",
+		async:false,
+		data: {
+			service: "Office.office_info",
+			time: curtime,
+			token: md_token,
+			officeid:officeid
+		},
+		success:function(data){
+			console.log(data.data)
+			var data=JSON.parse(data);
+			if(data.ret==200){
+				var msg=data.data;
+			  	layer.open({
+			  		title:msg.office_title,
+					type: 1,
+					skin: 'layui-layer-lan',
+					area: ['500px', '600px'],
+					offset:'15px',
+                    anim: 2,
+                    content:"<div class='office' style='padding:20px;'><div><img style='width:450px;height:250px;' src='"+msg.office_ad+appendImg(msg.users,'.office')+ "'/></div><hr/><div>地址:<a href='#'>"+msg.office_address+"</a></div><div>电话:<a href='#'>"+msg.office_tel+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.office_desc+"</div></div></div>"
+			  	})
+			}else{
+				layer.msg(data.msg)
+			}
+			
+		},
+		error:function(data){
+			layer.msg(data)
+		}
+	});
+}
+/*加载个人信息*/
+function load_user(userid){
+	var curtime=Math.round(new Date()/1000);
+	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
+	$.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/law_api",
+		async:false,
+		data: {
+			service: "User.get_user_info",
+			time: curtime,
+			token: md_token,
+			id:userid
+		},
+		success:function(data){
+			var data=JSON.parse(data);
+			if(data.ret==200){
+				
+				var msg=data.data;
+				//console.log(msg)
+			  	layer.open({
+			  		title:'个人信息',
+					type: 1,
+					skin: 'layui-layer-lan',
+					area: ['500px', '600px'],
+					offset:'15px',
+                    anim: 2,
+                    content:"<div user_id='"+msg.user_id+"' style='padding:20px;'><div style='width:100%;height:50px;'><span><img  style='border-radius:50%;width:50px;height:50px;display:inline-block' src='img/member1.jpg' /></span><span style='display:inline-block;height:50px;line-height:50px;vertical-align:end;'>已认证</span></div><br /><div>昵称："+msg.user_nickname+"</div><div>真实姓名："+msg.user_truename+"</div><div>律师证号："+msg.user_lawyer_id+"</div><div>地址:<a href='#'>"+msg.user_work_place+"</a></div><div>电话:<a href='#'>"+msg.user_phone+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.user_desc+"</div></div></div>"
+			  	})
+			}else{
+				layer.msg(data.msg)
+			}
+			
+		},
+		error:function(data){
+			layer.msg(data)
+		}
+	});
+}
 
 $("#content").on('click','.blog',function(){
     var img=$(this).find('img').attr('src');
 	var tag=$(this).attr('tag');
+    var des=$(this).find('.user_des').html();
 	if(tag=='0'){
-		var des=$(this).find('.user_des').html();
+//		  layer.open({
+//					title:$(this).find('.user_name1').html(),
+//					type: 1,
+//					skin: 'layui-layer-lan',
+//					area: ['400px', '400px'],
+//                  anim: 2,
+//                  content:"<div style='padding:20px;'><img style='width:250px;height:250px' src='"+img+"'/><div style='padding-top:10px'>"+des+"</div></div>"
+//				});
+var userid=$(this).attr('user_id')
+		load_user(userid);
 	}else if(tag=='1'){
-		var des=$(this).find('.office_des').html();
+		var officeid=$(this).attr('office_id')
+		load_office(officeid);
 	}
 	
 	
-	        layer.open({
-					title:$(this).find('.user_name1').html(),
-					type: 1,
-					skin: 'layui-layer-lan',
-					area: ['400px', '400px'],
-//					offset: '55px',
-					anim: 2,
-//					shade: true, //开启遮罩关闭
-					content:"<div style='padding:20px;'><img style='width:250px;height:250px' src='"+img+"'/><div style='padding-top:10px'>"+des+"</div></div>"
-				});
+	      
 })

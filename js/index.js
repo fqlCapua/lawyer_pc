@@ -1,5 +1,5 @@
-$(".login a").eq(2).hide();
-$(".login1 a").eq(2).hide();
+//$(".login a").eq(2).hide();
+//$(".login1 a").eq(2).hide();
 /*自适应菜单*/
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();
@@ -62,42 +62,73 @@ function toDesktop(sUrl, sName) {
 
 /*注册*/
 
-
-function pwdTest(){
+function pwdTest() {
 	var flag;
-	testPwd=/^\S{6,}$/;
-	if($("#userPWD").val()!=""){
-		if(testPwd.test($("#userPWD").val())){
-			flag=true;
-		}else{
+	testPwd = /^\S{6,}$/;
+	if($("#userPWD").val() != "") {
+		if(testPwd.test($("#userPWD").val())) {
+			flag = true;
+		} else {
 			layer.msg("格式不正确");
-			flag=false;
+			flag = false;
 		}
-	}else{
+	} else {
 		layer.msg("不能为空");
-		flag=false;
+		flag = false;
 	}
 	return flag;
 };
-function pwdAgain(){
-	var flag;
-    if($("#userPWD2").val()!=""){
-		if($("#userPWD2").val()==$("#userPWD").val()){
-			flag=true;
-		}else{
-			layer.msg("密码不一致");
-			flag=false;
-		}
-		
-	}else{
-		 layer.msg("不能为空");
-		 flag=false;
-	}
-	return flag;
-};
-$("#userPWD").blur(function(){pwdTest()});
-$("#userPWD2").blur(function(){pwdAgain()});
 
+function pwdAgain() {
+	var flag;
+	if($("#userPWD2").val() != "") {
+		if($("#userPWD2").val() == $("#userPWD").val()) {
+			flag = true;
+		} else {
+			layer.msg("密码不一致");
+			flag = false;
+		}
+
+	} else {
+		layer.msg("不能为空");
+		flag = false;
+	}
+	return flag;
+};
+$("#userPWD").blur(function() {
+	pwdTest()
+});
+$("#userPWD2").blur(function() {
+	pwdAgain()
+});
+/*环信*/
+var conn = {};
+conn = new WebIM.connection({
+	isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
+	https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
+	url: WebIM.config.xmppURL,
+	isAutoLogin: true,
+	heartBeatWait: WebIM.config.heartBeatWait,
+	autoReconnectNumMax: WebIM.config.autoReconnectNumMax,
+	autoReconnectInterval: WebIM.config.autoReconnectInterval
+});
+
+function reg(userid) {
+	var options = {
+		username: userid,
+		password: userid,
+		nickname: '用户' + userid,
+		appKey: '1144161101115205#lawyer',
+		success: function() {
+			alert("成功");
+		},
+		error: function() {
+			alert("失败");
+		},
+		apiUrl: WebIM.config.apiURL
+	};
+	conn.registerUser(options);
+}
 
 function getVerifyCode(options) {
 
@@ -128,34 +159,31 @@ function getVerifyCode(options) {
 						phone: phone
 					},
 					success: function(data) {
-						var data=JSON.parse(data);
-						layer.msg("发送成功",{icon:1});
-						console.log(data);
+						var data = JSON.parse(data);
+						layer.msg("发送成功", {
+							icon: 1
+						});
+
 						if(data.ret == 200) {
 
 							$("#regBtn").click(function() {
-							
-							var index = layer.load(1, {
-											shade: [0.1, '#000']
-										});
-									var pwd = $("#userPWD").val();
-									pwd2 = $("#userPWD2").val();
-									isRead = $("#myRegs input[type=checkbox]").is(":checked");
-									tag = $("#myRegs select").find("option:selected").index() + 1;
-									var PhoneCode = $(".getYzCode").prev().val();
-									
-								if(pwd2==pwd&&isRead&&PhoneCode!=""){
-								if(String(data.data) == String(hex_md5("law_" + PhoneCode))) {
-									layer.msg("验证码正确");
-									console.log(cur_timestamp)
-									console.log(md_token)
-									console.log(phone);
-							
-								
-									var cur_timestamp = Date.parse(new Date()) / 1000;
-									var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-									
-										
+
+								var index = layer.load(1, {
+									shade: [0.1, '#000']
+								});
+								var pwd = $("#userPWD").val();
+								pwd2 = $("#userPWD2").val();
+								isRead = $("#myRegs input[type=checkbox]").is(":checked");
+								tag = $("#myRegs select").find("option:selected").index() + 1;
+								var PhoneCode = $(".getYzCode").prev().val();
+
+								if(pwd2 == pwd && isRead && PhoneCode != "") {
+									if(String(data.data) == String(hex_md5("law_" + PhoneCode))) {
+										layer.msg("验证码正确");
+
+										var cur_timestamp = Date.parse(new Date()) / 1000;
+										var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+
 										$.ajax({
 											type: 'POST',
 											url: 'https://www.ls186.cn/law_api',
@@ -169,26 +197,57 @@ function getVerifyCode(options) {
 
 											},
 											success: function(data) {
-												layer.close(index);var data=JSON.parse(data);; // 关闭layer 加载层
+												layer.close(index);
+												var data = JSON.parse(data);; // 关闭layer 加载层
 												if(data.ret == 200) {
-													layer.msg("注册成功");
-													console.log(data)
+													
+													/*环信注册*/
+													var conn = {};
+													conn = new WebIM.connection({
+														isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
+														https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
+														url: WebIM.config.xmppURL,
+														isAutoLogin: true,
+														heartBeatWait: WebIM.config.heartBeatWait,
+														autoReconnectNumMax: WebIM.config.autoReconnectNumMax,
+														autoReconnectInterval: WebIM.config.autoReconnectInterval
+													});
+
+													function reg(userid) {
+														var options = {
+															username: userid,
+															password: userid,
+															nickname: '用户' + userid,
+															appKey: '1144161101115205#lawyer',
+															success: function() {
+																	layer.msg("注册成功");
+															},
+															error: function() {
+																layer.msg("注册失败");
+															},
+															apiUrl: WebIM.config.apiURL
+														};
+														conn.registerUser(options);
+													}
+													reg(data.data.user_id);
+												
+
 												} else {
 													layer.msg(data.msg);
 												}
 											},
 										});
 
-								} else {
-									console.log(data.data)
-									console.log(hex_md5("law_" + PhoneCode))
-									layer.msg("验证码错误");
+									} else {
+										console.log(data.data)
+										console.log(hex_md5("law_" + PhoneCode))
+										layer.msg("验证码错误");
 
-								}
-								}else{
+									}
+								} else {
 									layer.msg("完善信息！");
 								}
-//								
+								//								
 							});
 
 						} else {
@@ -273,7 +332,7 @@ $("#clearUser").click(function() {
 
 /*写入存储*/
 $(".AJGL").click(function() {
- if(ls.getItem('law_sign')) {
+	if(ls.getItem('law_sign')) {
 		if(getSession(2) == 6) {
 			window.location.href = 'AJGL_user.html';
 		} else {
@@ -297,14 +356,14 @@ if(ls.getItem("law_sign")) {
 		$("#showBox_tit b").html("附近律所");
 		$("#showBox").children("iframe").attr("src", "visitor.html");
 		var time2 = window.setTimeout("reinitIframe()", 200);
-		var carousel=$("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
-   	                            $("#slider").html(carousel);
+		var carousel = $("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
+		$("#slider").html(carousel);
 	} else {
 		$("#showBox_tit b").html("案件管理");
 		$("#showBox").children("iframe").attr("src", "ajgl_index.html");
 		var timer1 = window.setTimeout("reinitIframe()", 200);
-		var carousel=$("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
-     	                      $("#slider").html(carousel);
+		var carousel = $("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
+		$("#slider").html(carousel);
 	}
 
 	$(".login,.login1").addClass("hide");
@@ -315,8 +374,8 @@ if(ls.getItem("law_sign")) {
 	$("#showBox_tit b").html("附近律所");
 	$("#showBox").children("iframe").attr("src", "visitor.html");
 	var time2 = window.setTimeout("reinitIframe()", 200);
-	var carousel=$("<img src='img/carousel/ulogin/ulogin_1.jpg' title='#htmlcaption' /><img src='img/carousel/ulogin/ulogin_2.jpg' /><img src='img/carousel/ulogin/ulogin_3.jpg' /><img src='img/carousel/ulogin/ulogin_4.jpg' />");
-        $("#slider").html(carousel)
+	var carousel = $("<img src='img/carousel/ulogin/ulogin_1.jpg' title='#htmlcaption' /><img src='img/carousel/ulogin/ulogin_2.jpg' /><img src='img/carousel/ulogin/ulogin_3.jpg' /><img src='img/carousel/ulogin/ulogin_4.jpg' />");
+	$("#slider").html(carousel)
 }
 
 /*登录信息*/
@@ -329,7 +388,7 @@ new Vue({
 		user: {
 			service: "User.user_login",
 			time: Date.parse(new Date()) / 1000,
-			token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
+			token: hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
 			username: '',
 			password: '',
 		}
@@ -339,9 +398,9 @@ new Vue({
 
 			//加载层
 			var index = layer.load(1, {
-		  shade: [0.1, "#EEEEEE"],
-		 
-	     });
+				shade: [0.1, "#EEEEEE"],
+
+			});
 			$("#myLogin").modal('hide')
 
 			// jquery ajax
@@ -349,37 +408,37 @@ new Vue({
 				type: 'POST',
 				url: 'http://www.ls186.cn/Law_api',
 				data: this.user,
-			    success: function(data) {
-					
+				success: function(data) {
+
 					layer.close(index);
-					var data=JSON.parse(data);
+					var data = JSON.parse(data);
 					if(data.ret == 200) {
-						 layer.msg('登录成功', {
+						layer.msg('登录成功', {
 							icon: 1
 						});
+						console.log(data.data.user_id)
 						var userlist = {
 							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag,
 
 						};
-                 setTimeout("ajaxreload()",1000);
+						setTimeout("ajaxreload()", 1000);
 						//check user_type
 						if(data.data.user_tag == 6) {
 							$("#showBox_tit b").html("附近律所");
 							$("#showBox").children("iframe").attr("src", "visitor.html");
-							var time2 = window.setTimeout("reinitIframe()",200);
-							var carousel=$("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
-   	                            $("#slider").html(carousel);
-   	                            
+							var time2 = window.setTimeout("reinitIframe()", 200);
+							var carousel = $("<img src='img/carousel/user/user_1.jpg' /><img src='img/carousel/user/user_2.jpg' />");
+							$("#slider").html(carousel);
+
 						} else {
 							$("#showBox_tit b").html("案件管理");
 							$("#showBox").children("iframe").attr("src", "ajgl_index.html");
 							var timer1 = window.setTimeout("reinitIframe()", 200);
-							var carousel=$("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
-     	                      $("#slider").html(carousel);
+							var carousel = $("<img src='img/carousel/lawyer/lawyer_1.jpg' /><img src='img/carousel/lawyer/lawyer_2.jpg' />");
+							$("#slider").html(carousel);
 						}
-						 // 关闭layer 加载层
+						// 关闭layer 加载层
 						//$(".cover").hide();
-						
 
 						$("#clearUser").show();
 
@@ -391,11 +450,11 @@ new Vue({
 						ls.setItem("law_sign", law_signStr1);
 
 					} else {
-               console.log(data)
+						console.log(data)
 						layer.msg(data.msg, {
 							icon: 2
 						})
-				
+
 					}
 				},
 			});
@@ -404,8 +463,6 @@ new Vue({
 })
 
 /*刷新*/
-function ajaxreload(){
+function ajaxreload() {
 	window.location.reload();
 }
-	
-
