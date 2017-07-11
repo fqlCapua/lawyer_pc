@@ -1,7 +1,7 @@
 
 a:hover,
 a:active {
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 	-webkit-transition: color .15s linear, background-color .3s linear;
 	-moz-transition: color .15s linear, background-color .3s linear;
 	-o-transition: color .15s linear, background-color .3s linear;
@@ -68,7 +68,7 @@ a:active {
 }
 
 .Pagination a {
-	font-size: 14px;
+	font-size: 12px;
 	text-decoration: none;
 	display: block;
 	float: left;
@@ -76,7 +76,7 @@ a:active {
 	border: 1px solid #cacaca;
 	height:40px;
 	line-height:37px;
-	padding: 0 10px;
+	padding: 0 7px;
 	margin: 0 2px;
 }
 
@@ -107,6 +107,7 @@ cite.FormNum {
 
 .Pagination a:hover,
 .Pagination a.PageCur {
+	text-decoration: none;
 	background-color: #337AB7;
 	border-radius: 4px;
 	color: #ffffff;

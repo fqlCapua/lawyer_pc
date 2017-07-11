@@ -22,6 +22,27 @@ function returnFloat(value){
  return value;
  }
 }
+
+
+//  ========== 
+//  = 添加标记点 = 
+//  ========== 
+function addMarker(lng,lat,law_msg){
+	var point = new BMap.Point(lng,lat);
+	  var marker = new BMap.Marker(point);
+	  map.addOverlay(marker);
+    var opts = {
+	  width : 200,     // 信息窗口宽度
+	  height: 50,     // 信息窗口高度
+	  title : '信息详情' , // 信息窗口标题
+	  enableMessage:true,//设置允许信息窗发送短息
+	  message:" "
+	}
+    var infoWindow = new BMap.InfoWindow(law_msg, opts);
+    marker.addEventListener("click", function(){          
+		map.openInfoWindow(infoWindow,point); //开启信息窗口
+	});
+	}	
 /*返回附近律师列表*/
 function  load_nearBy_lawyer(lng,lat){
 	var curtime=Math.round(new Date()/1000);
@@ -46,15 +67,19 @@ function  load_nearBy_lawyer(lng,lat){
        
 			
 				  var list=data.data;
-				     console.log(list);
+//				     console.log(list);
 				  $.each(list, function(i,ele){
-				 
+				     
 				  	if(ele.tag==0){
+				  		 //addMarker(ele.user_lng,ele.user_lat);
 				  		 var li=$("<li class='blog' lng='"+ele.user_lng+"' lat='"+ele.user_lat+"' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
-				     $("#content").append(li);
+				         $("#content").append(li);
+				         addMarker(ele.office_lng,ele.user_lat,ele.user_desc);
 				  	}else{
-				  		 var li=$("<li class='blog' tag='"+ele.tag+"' lng='"+ele.office_lng+"' lat='"+ele.office_lat+"'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+ele.office_desc+"'><div class='office_ad'><img src='"+ele.office_ad+"'/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='office_des'>"+ele.office_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
+				  		
+				  		var li=$("<li class='blog' tag='"+ele.tag+"' lng='"+ele.office_lng+"' lat='"+ele.office_lat+"'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+ele.office_desc+"'><div class='office_ad'><img src='"+ele.office_ad+"'/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='office_des'>"+ele.office_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
 				        $("#content").append(li);
+				        addMarker(ele.office_lng,ele.office_lat,ele.office_desc);
 				  	}
 				
 				  
@@ -62,7 +87,7 @@ function  load_nearBy_lawyer(lng,lat){
 			$('#content').kkPages({
 		    PagesClass:'.blog', //需要分页的元素
 		    PagesMth:10, //每页显示个数		
-		    PagesNavMth:8 //显示导航个数
+		    PagesNavMth:4 //显示导航个数
 		 });
 				
 			}else{
@@ -78,16 +103,15 @@ function  load_nearBy_lawyer(lng,lat){
 	});
 	
 }
-	
-//	load_nearBy_lawyer(113.64964385,34.75661006);
-	//load_nearBy_lawyer(r.point.lng,r.point.lat);
+
+
 	// 百度地图API功能
 	var index = layer.load(1, {
 		shade: [0.1, "orange"],
 	});
 	var map = new BMap.Map("allmap");
 	var point = new BMap.Point(116.331398,39.897445);
-	map.centerAndZoom(point,12);
+	map.centerAndZoom(point,15);
   var posArr=[];
     map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 	map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
@@ -100,7 +124,7 @@ function  load_nearBy_lawyer(lng,lat){
 			map.panTo(r.point);
 			posArr.push(r.point.lng);
 			posArr.push(r.point.lat);
-			console.log(posArr);
+			//console.log(posArr);
 			
 	      load_nearBy_lawyer(r.point.lng,r.point.lat);
 
@@ -125,3 +149,29 @@ function  load_nearBy_lawyer(lng,lat){
 	//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
 
 	
+//  ========== 
+//  = 用户信息详情点击事件 = 
+//  ========== 
+
+
+$("#content").on('click','.blog',function(){
+    var img=$(this).find('img').attr('src');
+	var tag=$(this).attr('tag');
+	if(tag=='0'){
+		var des=$(this).find('.user_des').html();
+	}else if(tag=='1'){
+		var des=$(this).find('.office_des').html();
+	}
+	
+	
+	        layer.open({
+					title:$(this).find('.user_name1').html(),
+					type: 1,
+					skin: 'layui-layer-lan',
+					area: ['400px', '400px'],
+//					offset: '55px',
+					anim: 2,
+//					shade: true, //开启遮罩关闭
+					content:"<div style='padding:20px;'><img style='width:250px;height:250px' src='"+img+"'/><div style='padding-top:10px'>"+des+"</div></div>"
+				});
+})
