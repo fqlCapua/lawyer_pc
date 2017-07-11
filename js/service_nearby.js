@@ -156,6 +156,7 @@ function  load_nearBy_lawyer(lng,lat){
   //加载图片数组
 	function appendImg(arr,pObj){
         		for (var i = 0; i < arr.length; i++) {
+        			
         		 var img=$("<img style='width:50px;height: 50px; margin-right:5px;display: inline-block;'  src='"+arr[i]+"'/>");
         		 $(pObj).append(img);
         	}
@@ -174,8 +175,9 @@ function load_office(officeid){
 			officeid:officeid
 		},
 		success:function(data){
-			console.log(data.data)
+			
 			var data=JSON.parse(data);
+			console.log(data.data)
 			if(data.ret==200){
 				var msg=data.data;
 			  	layer.open({
@@ -185,7 +187,7 @@ function load_office(officeid){
 					area: ['500px', '600px'],
 					offset:'15px',
                     anim: 2,
-                    content:"<div class='office' style='padding:20px;'><div><img style='width:450px;height:250px;' src='"+msg.office_ad+appendImg(msg.users,'.office')+ "'/></div><hr/><div>地址:<a href='#'>"+msg.office_address+"</a></div><div>电话:<a href='#'>"+msg.office_tel+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.office_desc+"</div></div></div>"
+                    content:"<div class='office' style='padding:20px;'><div><img style='width:450px;height:250px;' src='"+msg.office_ad+ "'/>"+appendImg(msg.office_imgs,'.office')+"</div><hr/><div>地址:<a href='#'>"+msg.office_address+"</a></div><div>电话:<a href='#'>"+msg.office_tel+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.office_desc+"</div></div></div>"
 			  	})
 			}else{
 				layer.msg(data.msg)
