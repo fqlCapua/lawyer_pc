@@ -67,14 +67,13 @@ function  load_nearBy_lawyer(lng,lat){
        
 			
 				  var list=data.data;
-//				     console.log(list);
-				  $.each(list, function(i,ele){
-				     
+              $.each(list, function(i,ele){
+				     console.log(ele)
 				  	if(ele.tag==0){
 				  		 //addMarker(ele.user_lng,ele.user_lat);
 				  		 var li=$("<li class='blog' lng='"+ele.user_lng+"' lat='"+ele.user_lat+"' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
 				         $("#content").append(li);
-				         addMarker(ele.office_lng,ele.user_lat,ele.user_desc);
+				         addMarker(ele.user_lng,ele.user_lat,ele.user_desc);
 				  	}else{
 				  		
 				  		var li=$("<li class='blog' tag='"+ele.tag+"' lng='"+ele.office_lng+"' lat='"+ele.office_lat+"'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+ele.office_desc+"'><div class='office_ad'><img src='"+ele.office_ad+"'/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='office_des'>"+ele.office_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
@@ -111,7 +110,7 @@ function  load_nearBy_lawyer(lng,lat){
 	});
 	var map = new BMap.Map("allmap");
 	var point = new BMap.Point(116.331398,39.897445);
-	map.centerAndZoom(point,15);
+	map.centerAndZoom(point,13);
   var posArr=[];
     map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 	map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
@@ -154,12 +153,14 @@ function  load_nearBy_lawyer(lng,lat){
 //  ========== 
 /*加载律所信息*/
   //加载图片数组
-	function appendImg(arr,pObj){
+	function appendImg(arr){
+		var imgArr=[];
         		for (var i = 0; i < arr.length; i++) {
-        			
-        		 var img=$("<img style='width:50px;height: 50px; margin-right:5px;display: inline-block;'  src='"+arr[i]+"'/>");
-        		 $(pObj).append(img);
-        	}
+        	   var img="<img userid='"+arr[i].user_id+"' style='border:2px solid #BABABA;width:50px;border-radius:50%;height: 50px;margin:5px;display:inline-block;'  src='http://www.ls186.cn"+arr[i].user_head_img+"'/>";
+        		imgArr.push(img)
+        		}
+        		var imgStr= imgArr.join("");
+        		return imgStr;
         	}
 function load_office(officeid){
 	var curtime=Math.round(new Date()/1000);
@@ -177,9 +178,9 @@ function load_office(officeid){
 		success:function(data){
 			
 			var data=JSON.parse(data);
-			console.log(data.data)
 			if(data.ret==200){
 				var msg=data.data;
+				//console.log(msg)
 			  	layer.open({
 			  		title:msg.office_title,
 					type: 1,
@@ -187,7 +188,7 @@ function load_office(officeid){
 					area: ['500px', '600px'],
 					offset:'15px',
                     anim: 2,
-                    content:"<div class='office' style='padding:20px;'><div><img style='width:450px;height:250px;' src='"+msg.office_ad+ "'/>"+appendImg(msg.office_imgs,'.office')+"</div><hr/><div>地址:<a href='#'>"+msg.office_address+"</a></div><div>电话:<a href='#'>"+msg.office_tel+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.office_desc+"</div></div></div>"
+                    content:"<div class='office' style='padding:20px;'><div><img style='width:450px;height:250px;' src='"+msg.office_ad+ "'/>"+appendImg(msg.users)+"</div><hr/><div>地址:<a href='#'>"+msg.office_address+"</a></div><div>电话:<a href='#'>"+msg.office_tel+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.office_desc+"</div></div></div>"
 			  	})
 			}else{
 				layer.msg(data.msg)
@@ -199,6 +200,7 @@ function load_office(officeid){
 		}
 	});
 }
+
 /*加载个人信息*/
 function load_user(userid){
 	var curtime=Math.round(new Date()/1000);
@@ -218,7 +220,23 @@ function load_user(userid){
 			if(data.ret==200){
 				
 				var msg=data.data;
-				//console.log(msg)
+			     console.log(msg);
+			     if(msg.user_isverify==1){
+			     	isverify="<div class='vip'></div>"
+			     }else{
+			     	isverify='';
+			     };
+			     if(msg.user_head_img==""){
+			     	head_img="http://www.ls186.cn"+"/data/upload/head_img/20170516/file_65.jpg";
+			     }else{
+			     	head_img="http://www.ls186.cn"+msg.user_head_img;
+			     };
+			      if(msg.user_isexport==1){
+			     	var pro='是';
+			     }else{
+			     	 var pro='否';
+			     }
+			      
 			  	layer.open({
 			  		title:'个人信息',
 					type: 1,
@@ -226,7 +244,7 @@ function load_user(userid){
 					area: ['500px', '600px'],
 					offset:'15px',
                     anim: 2,
-                    content:"<div user_id='"+msg.user_id+"' style='padding:20px;'><div style='width:100%;height:50px;'><span><img  style='border-radius:50%;width:50px;height:50px;display:inline-block' src='img/member1.jpg' /></span><span style='display:inline-block;height:50px;line-height:50px;vertical-align:end;'>已认证</span></div><br /><div>昵称："+msg.user_nickname+"</div><div>真实姓名："+msg.user_truename+"</div><div>律师证号："+msg.user_lawyer_id+"</div><div>地址:<a href='#'>"+msg.user_work_place+"</a></div><div>电话:<a href='#'>"+msg.user_phone+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.user_desc+"</div></div></div>"
+                    content:"<div user_id='"+msg.user_id+"' style='padding:20px;'><div class='header_img'><div class='head_img'><img src='"+head_img+"'/>"+isverify+" </div></div><br /><div>星级："+msg.user_level+"星</div><div>昵称："+msg.user_nickname+"</div><div>真实姓名："+msg.user_truename+"</div><div>律师证号："+msg.user_lawyer_id+"</div><div>地址:<a href='#'>"+msg.user_work_place+"</a></div><div>邮箱:<a href='#'>"+msg.user_email+"</a></div><div>是否为专家辅助人:<a href='#'>"+pro+"</a></div><div>电话:<a href='#'>"+msg.user_phone+"</a></div><div style='padding-top:10px'>简介：<div style='text-indent:20px'>"+msg.user_desc+"</div></div></div>"
 			  	})
 			}else{
 				layer.msg(data.msg)
