@@ -131,7 +131,7 @@
 				text-overflow: ellipsis;
 				line-height:30px;
 				text-align: center;
-				width:9vw;
+				margin-left:10px;
 				flex-wrap:wrap;
 				
  			}

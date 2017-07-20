@@ -200,7 +200,7 @@ function getVerifyCode(options) {
 												layer.close(index);
 												var data = JSON.parse(data);; // 关闭layer 加载层
 												if(data.ret == 200) {
-													
+
 													/*环信注册*/
 													var conn = {};
 													conn = new WebIM.connection({
@@ -220,7 +220,7 @@ function getVerifyCode(options) {
 															nickname: '用户' + userid,
 															appKey: '1144161101115205#lawyer',
 															success: function() {
-																	layer.msg("注册成功");
+																layer.msg("注册成功");
 															},
 															error: function() {
 																layer.msg("注册失败");
@@ -230,7 +230,6 @@ function getVerifyCode(options) {
 														conn.registerUser(options);
 													}
 													reg(data.data.user_id);
-												
 
 												} else {
 													layer.msg(data.msg);
@@ -466,3 +465,153 @@ new Vue({
 function ajaxreload() {
 	window.location.reload();
 }
+//  ========== 
+//  = 个人信息 = 
+//  ========== 
+
+
+//上传头像
+function upload_head(obj){
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+    var file=obj[0].files[0];
+    var headData=new FormData();
+        headData.append("service", "User.upload_head_img");
+		headData.append("time", cur_timestamp);
+		headData.append("token", md_token);
+		headData.append("id", getSession(0));
+		headData.append("head_img", file);
+    $.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		cache:false,
+		processData:false,
+		contentType:false,
+		data:headData,
+		success: function(data) {
+			var  data=JSON.parse(data);
+			if(data.ret==200){
+				
+				var url='http://www.ls186.cn'+data.data;
+				
+				$(".head_show").attr("src",url);
+				layer.msg('更改成功')
+				
+			}else{
+				layer.msg(data.msg);
+			}
+			
+		},
+		error:function(data){}
+		})
+}
+
+
+
+
+
+$(".headChange").click(function(){
+	//$(".head_img").removeClass('hide');
+	$(".head_img").click();
+})
+$(".head_img").change(function(){
+	upload_head($(".head_img"));
+})
+$(".user_set>div").click(function() {
+	 load_user();
+	var name = $(this).attr('name');
+	var type = "#" + name;
+	console.log(type)
+	$(type).removeClass('hide');
+	
+	var userinfo=layer.open({
+		type: 1,
+		shade: false,
+		area:['500px','auto'],
+		title: false, //不显示标题
+		content: $(type), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+		cancel: function() {
+			$(type).addClass('hide');
+		}
+	});
+})
+//加载个人信息
+function load_user(){
+	var curtime=Math.round(new Date()/1000);
+	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
+	$.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/law_api",
+		
+		data: {
+			service: "User.get_user_info",
+			time: curtime,
+			token: md_token,
+			id:getSession(0)
+			
+		},
+		success:function(data){
+			var data=JSON.parse(data);
+			if(data.ret==200){
+				var info=data.data;
+				console.log(info)
+				var nickname=info.user_nickname;
+				    sex=info.user_sex;
+				    desc=info.user_desc;
+				    url='http://www.ls186.cn'+info.user_head_img;
+				    $(".head_show").attr('src',url);
+				   $(".nickname").val(nickname);
+				   $(".gender option").eq(sex).attr("selected",true);
+				   $(".intro").val(desc);
+				    
+			}else{
+				
+			}
+		},
+		error:function(){
+			
+		}
+	})
+	}
+
+//更新个人信息
+function update_info(userid){
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+ 	var nickname=$(".nickname").val();
+	var gender=$(".gender option:selected").index();
+	var desc=$(".intro").val();
+  $.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/law_api",
+		
+		data: {
+			service: "Index.update_user_center",
+			time: cur_timestamp,
+			token: md_token,
+			userid:userid,
+			des:desc,
+			sex:gender,
+			nickname:nickname
+			
+		},
+		success:function(data){
+			var data=JSON.parse(data);
+			if(data.ret==200){
+			   layer.msg('修改成功');
+			     layer.closeAll();
+			   $("#userInfo").hide();
+			  
+			   
+			}else{
+				layer.msg(data.msg);
+			}
+		},
+		error:function(){
+			
+		}
+	})
+}
+$('#info_sub').click(function(){
+	update_info(getSession(0))
+})

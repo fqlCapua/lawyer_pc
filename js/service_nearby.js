@@ -68,7 +68,7 @@ function  load_nearBy_lawyer(lng,lat){
 			
 				  var list=data.data;
               $.each(list, function(i,ele){
-				     console.log(ele)
+//				     console.log(ele)
 				  	if(ele.tag==0){
 				  		 //addMarker(ele.user_lng,ele.user_lat);
 				  		 var li=$("<li class='blog' lng='"+ele.user_lng+"' lat='"+ele.user_lat+"' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");

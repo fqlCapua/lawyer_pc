@@ -65,6 +65,7 @@ a:active {text-decoration:none;}
 }
 .Ylogin .fa-user-circle-o{
 	font-size: 1.4em;
+	
 }
 .icon {
 	display: inline-block;
@@ -274,10 +275,10 @@ textarea{
 /*侧栏工具*/
 			
 			#leftsead{
-				z-index:20;
+				z-index:10;
 				width: 131px;
 				height: 143px;
-				position:fixed;
+				position:absolute;
 				top:15%;
 				right:0;
 			}
@@ -286,13 +287,12 @@ textarea{
 				padding:7px 0;
 			}
 			#leftsead1{
-				position:fixed;
+				position:absolute;
+				z-index: 10;
 				top:20%;
 				left:0;
 			   }
-			 #leftsead1 ul{
-			 
-			 }
+		
 			  	    	
 			#leftsead1 li span i,#leftsead1 li span a{
 			   	vertical-align:top;
@@ -334,6 +334,7 @@ textarea{
 }
 .Ylogin{
 	margin-top:10px;
+	
 }
 .header_nav{
 	background-color:#337AB7 ;
@@ -428,3 +429,59 @@ textarea{
 	display: none;
 }
 }
+/* ========== */
+/* = 个人中心 样式 = */
+/* ========== */
+.user_set{
+	display:none;
+position: absolute;
+left: 0;
+
+}
+.user_set>div{
+	width:110px;
+	height:40px;
+	font-size:1.1em;
+	margin:3px 0;
+	text-align: center;
+	line-height:25px;
+}
+/*.user_set>div:hover{
+	background-color: #31B0D5;
+}*/
+.Ylogin:hover .user_set{
+	display: block;
+}
+.login_icon{
+	display: inline-block;
+	width:65px;
+	text-align:end;
+	background-image: url(../img/home/Ylogin.png);
+	background-repeat: no-repeat;
+	background-size:40% 100%;
+}
+.mySet{
+	width:500px;
+	height: auto;
+	background-color:FEFEFE;
+	/*position: fixed;
+	top: 100px;
+	margin: 0 auto;*/
+}
+.mySet .Myheader{
+	border-top-left-radius: 5px;
+	border-top-right-radius:5px;
+	font-weight: bold;
+	line-height: 40px;
+}
+.mySet .Mybody{
+	padding:15px 20px 10px 20px ;
+}
+.mySet .Myfooter{
+	
+	margin-bottom: 10px;
+}
+.mySet .Myfooter input{
+	width: 150px;
+}
+
