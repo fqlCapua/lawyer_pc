@@ -220,35 +220,29 @@
 					</li>
 					<hr/>
 
-					<li id="FxproBox">
-						<dl data-toggle="modal" data-target="#Myupload1">
+					<li id="FxproBox"  onclick="layer.msg('此功能暂未开放')">
+						<dl>
 							<dd></dd>
 							<dt href="#">法学专家疑难案件论证</dt>
 						</dl>		
 					</li>
 					<hr/>
-					<li id="FlBox">
-						<dl data-toggle="modal" data-target="#Myupload1">
+					<li id="FlBox" onclick="layer.msg('此功能暂未开放')">
+						<dl >
 							<dd></dd>
 							<dt href="#">法律金融</dt>
 						</dl>
 					</li>
 					<hr/>
-					<li id="YdplaceBox">
-						<dl data-toggle="modal" data-target="#Myupload1">
+					<li id="YdplaceBox" onclick="layer.msg('此功能暂未开放')">
+						<dl >
 							<dd></dd>
 							<dt>异地互助办案</dt>
 						</dl>
 					</li>
 					<hr />
 
-					<li id="SsBox">
-						<dl data-toggle="modal" data-target="#Myupload1">
-							<dd></dd>
-							<dt>诉讼担保保险</dt>
-						</dl>
-				     </li>
-					<hr/>
+					
 				</ol>
 
 				<br />
@@ -266,7 +260,7 @@
 
 						<form>
 							<div class="modal-body" id="submit_service">
-								<article class="fql_banner h300">
+								<article class="fql_banner h200">
 									<div class="fql_container">
 										<img class="img_item" id="img" src="img/carousel/lawyer/lawyer_1.jpg" />
 										<img class="img_item" src="img/carousel/lawyer/lawyer_2.jpg" alt="图片不存在" />
@@ -276,11 +270,7 @@
 									</div>
 
 								</article>
-								<div>
-									<h4 class="text-left"><strong>简介:</strong></h4>
-									<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
-								</div>
-								<hr />
+								
 								<div class="professor">
 									<h4 class="text-left"><strong>专家库:</strong></h4>
 									<br />
@@ -291,28 +281,23 @@
 									<!--<a id="" class="pro_btn fa fa-chevron-right fa-2x"></a>-->
 								</div>
 								<hr />
-								<div id="" class="text-center">
-									<h4>合作单位：河南司法辅助人咨询中心</h4>
-									<div style="text-indent: 2em;">
-										<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
-									</div>
-								</div>
-								<hr />
-								<div class="form-group">
+							
+								
+								<div class="form-inline">
 									<label for="name" class="control-label">案件题目：</label>
 									<input type="text" class="form-control" id="name" />
 								</div>
-								<div class="form-group">
+								<div class="form-inline">
 									<label for="userName" class="control-label">联系人：</label>
 									<input type="text" class="form-control" id="userName" />
 								</div>
-								<div class="form-group">
+								<div class="form-inline">
 									<label for="userNum" class="control-label">联系电话：</label>
 									<input type="text" class="form-control" id="userNum" />
 								</div>
-								<div class="form-group">
+								<div class="form-inline">
 									<label><a class="text-danger"></a>情况音频(mp3)：</label>
-									<input id="file-4" type="file" accept="audio/x-mpeg">
+									<input id="file-4" type="file" accept="audio/x-mpeg" />
 								</div>
 								
 								<div class="form-group">
@@ -329,8 +314,19 @@
 							<div class="modal-footer">
 								<input type="button" id="submit_serviceBtn" style="font-size:14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-primary"  value="提交案件">
 							</div>
-
+                                 <div style="padding: 20px;">
+									<h4 class="text-left"><strong>简介:</strong></h4>
+									<div style="text-indent:2em;" class="">如果你无法简介的表述你的想法，那只能说明你还不够了解它：——爱因斯坦</div>
+								</div>
+								<hr />
+							   <div style="padding-bottom: 20px;" id="" class="text-center">
+									<h4>合作单位：河南司法辅助人咨询中心</h4>
+									<div style="text-indent: 2em;">
+										<a class="text-info" href="http://www.hnsfzx.cn">http://www.hnsfzx.cn</a>
+									</div>
+								</div>
 						</form>
+						       
 					</div>
 				</div>
 			</div>
@@ -381,17 +377,17 @@
 			$("#file-3").fileinput({
 			showUpload: false,
 			showCaption: false,
-			browseClass: "btn btn-primary btn-lg",
+			browseClass: "btn btn-primary btn-sm",
 			fileType: "image",
-			previewFileIcon: "<i class='fa fa-file-image-o fa-lg'></i>",
+			previewFileIcon: "<i class='fa fa-file-image-o fa-sm'></i>",
 		});
 		
 		$("#file-4").fileinput({
 			showUpload: false,
 			showCaption: false,
-			browseClass: "btn btn-primary btn-lg",
+			browseClass: "btn btn-primary btn-sm",
 			fileType: "audio",
-			previewFileIcon: "<i class='fa fa-microphone fa-lg'></i>",
+			previewFileIcon: "<i class='fa fa-microphone fa-sm'></i>",
 		});
 
 		$(function() {

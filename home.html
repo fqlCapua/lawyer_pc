@@ -13,7 +13,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 		<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
-		
 		<link rel="stylesheet" href="css/index.css" />
 		<script type="text/javascript" src="js/vue.js"></script>
 		<script type="text/javascript" src="js/md5.js"></script>
@@ -73,10 +72,10 @@
 					注销
 				</a>
 				<div class="user_set">
-					<div name='homeInfo' class=" btn  btn-success">
+					<!--<div onclick="window.location.href='user_page.html'" name='homeInfo' class=" btn  btn-success">
 						<span class="fa fa-home fa-fw"></span>
 						<b>个人主页</b>
-					</div>
+					</div>-->
 
 					<div name='userInfo' class="userInfo btn  btn-success">
 						<span class="fa fa-cog fa-fw"></span>
@@ -215,16 +214,24 @@
 							<img class="head_show" style="width: 50px;height: 50px;" />
 							<input type="button" class="btn btn-default btn-sm headChange" value="更改"  />
 							<input type="file" accept="png,jpg"   class="head_img hide"  />
+						</div><p />
+						<div class="form-group">
+							<label class="control-label">手机：</label>
+							<span style="border: none;" class="form-control phone"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">邮箱：</label>
+							<span style="border: none;" class="form-control email"></span>
 						</div>
 						<div class="form-group">
 							<label class="control-label">昵称：</label>
-							<input type="text"  placeholder="新昵称" class="form-control nickname" v-model="user.username" required/>
+							<input type="text"  placeholder="新昵称" class="form-control nickname"   required/>
 						</div>
+						
 						<div class="form-group">
 							<label class="control-label">性别</label>
 						   <select class="form-control  gender">
-						    	<option></option>
-						   	  <option>男</option>
+						      <option>男</option>
 						   	  <option>女</option>
 						   </select>
 			             </div>
@@ -249,26 +256,43 @@
 				<div class="Myheader text-center  bg-primary" >
 					实名认证
 				</div>
-				<form>
+				<form id="vertify">
 					<div class="Mybody">
                        
 						<div class="form-group">
-							<label class="control-label">身份证认证：</label>
-							<input type="text" oninput="this.setCustomValidity('')" placeholder="昵称" class="form-control nickname" v-model="user.username" required/>
+							<label class="control-label">真实姓名：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="truename" class="form-control truename"    required/>
 						</div>
-						<div class="form-group gender">
-							<label class="control-label">律师认证：</label>
-							<label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="男"> 男
-                            </label>
-							<label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="女"> 女
-                            </label>
+						<div class="form-group">
+							<label class="control-label">身份证号：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="id" class="form-control id"    required/>
 			             </div>
+			             <div class="form-group">
+							<label class="control-label">律师证号：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name='lawyer_id' class="form-control lawyer_id"    required/>
+			             </div>
+			             <div class="form-group">
+							<label class="control-label">工作单位：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="work_place" class="form-control work_place"    required/>
+			             </div>
+			            
+			             <div class="form-inline">
+							<label class="control-label">执业证照：</label>
+							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="lawyer_id_img"   class="lawyer_id_img"  required/>
+						</div>
+			             <div class="form-inline">
+							<label class="control-label">身份证正面：</label>
+							<input type="file" accept="png,jpg"  oninput="this.setCustomValidity('')" name="id_img_front"  class="id_img_front"  required/>
+						</div>
+						<div class="form-inline">
+							<label class="control-label">身份证反面：</label>
+							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="id_img_back"   class="id_img_back"  required/>
+						</div>
+			             
                         
 					</div>
 					<div class="Myfooter text-center">
-						<input id="info_sub" type="submit" class="btn btn-info" value="提交">
+						<input id="vertify_sub" onclick="sub_vertify()" type="button" class="btn btn-info" value="提交">
                     </div>
 				</form>
 		

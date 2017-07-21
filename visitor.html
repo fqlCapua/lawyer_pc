@@ -46,7 +46,7 @@
 	  enableMessage:true,//设置允许信息窗发送短息
 	  message:''
 	}
-    console.log(opts)
+    //console.log(opts)
     var infoWindow = new BMap.InfoWindow(law_msg, opts);
     marker.addEventListener("click", function(){          
 		map.openInfoWindow(infoWindow,point); //开启信息窗口
@@ -70,7 +70,7 @@
 		success:function(data){
 			 var JSONStr=data;
 			var data=JSON.parse(data);
-			console.log(data.data);
+			
 			if(data.ret==200){
    
        

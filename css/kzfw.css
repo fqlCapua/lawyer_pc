@@ -41,6 +41,15 @@
 	height:70px;
 	
 }
+.form-inline label{
+	width:100px;
+}
+input[type=text]{
+	display: inline-block;
+	
+	width:500px;
+	margin:5px;
+}
 /*.LzBox{
 	display: flex;
 }

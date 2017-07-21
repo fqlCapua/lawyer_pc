@@ -351,6 +351,14 @@ $(".AJGL").click(function() {
 if(ls.getItem("law_sign")) {
 	var jsonTxt = JSON.parse(ls.getItem('law_sign'));
 	var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
+	       if(jsonStr.split("_")[3] =='1'){
+	              	       if($("#leftsead1 ul").children().length==6){
+	              		         var li=$("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
+							       $("#leftsead1 ul").append(li);
+	              	      }
+	              	}else{
+							
+						}
 	if(jsonStr.split("_")[2] == 6) {
 		$("#showBox_tit b").html("附近律所");
 		$("#showBox").children("iframe").attr("src", "visitor.html");
@@ -365,6 +373,7 @@ if(ls.getItem("law_sign")) {
 		$("#slider").html(carousel);
 	}
 
+
 	$(".login,.login1").addClass("hide");
 	$(".Ylogin").removeClass("hide");
 
@@ -377,6 +386,23 @@ if(ls.getItem("law_sign")) {
 	$("#slider").html(carousel)
 }
 
+function pro_refresh(){
+	if(ls.getItem("law_sign")) {
+	var jsonTxt = JSON.parse(ls.getItem('law_sign'));
+	var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
+	        if(jsonStr.split("_")[3] ==1){
+	        	    if( $("#leftsead1 ul").children().length==6){
+	              		     var li=$("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
+						      $("#leftsead1 ul").append(li);
+	              	   }
+	              	}else{
+							
+						}
+	
+}
+	             
+}
+setInterval('pro_refresh()',1000);
 /*登录信息*/
 
 var cur_timestamp = Date.parse(new Date()) / 1000;
@@ -415,13 +441,14 @@ new Vue({
 						layer.msg('登录成功', {
 							icon: 1
 						});
-						console.log(data.data.user_id)
+					//	console.log(data.data.user_id)
 						var userlist = {
-							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag,
+							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag+"_"+data.data.user_isexport,
 
 						};
-						setTimeout("ajaxreload()", 1000);
+					//	setTimeout("ajaxreload()", 1000);
 						//check user_type
+						
 						if(data.data.user_tag == 6) {
 							$("#showBox_tit b").html("附近律所");
 							$("#showBox").children("iframe").attr("src", "visitor.html");
@@ -449,7 +476,7 @@ new Vue({
 						ls.setItem("law_sign", law_signStr1);
 
 					} else {
-						console.log(data)
+						
 						layer.msg(data.msg, {
 							icon: 2
 						})
@@ -462,9 +489,9 @@ new Vue({
 })
 
 /*刷新*/
-function ajaxreload() {
-	window.location.reload();
-}
+//function ajaxreload() {
+//	window.location.reload();
+//}
 //  ========== 
 //  = 个人信息 = 
 //  ========== 
@@ -521,9 +548,9 @@ $(".user_set>div").click(function() {
 	 load_user();
 	var name = $(this).attr('name');
 	var type = "#" + name;
-	console.log(type)
-	$(type).removeClass('hide');
 	
+	$(type).removeClass('hide');
+	//$(type).siblings().hide();
 	var userinfo=layer.open({
 		type: 1,
 		shade: false,
@@ -531,7 +558,7 @@ $(".user_set>div").click(function() {
 		title: false, //不显示标题
 		content: $(type), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
 		cancel: function() {
-			$(type).addClass('hide');
+			window.location.reload();
 		}
 	});
 })
@@ -554,7 +581,7 @@ function load_user(){
 			var data=JSON.parse(data);
 			if(data.ret==200){
 				var info=data.data;
-				console.log(info)
+			console.log(info)
 				var nickname=info.user_nickname;
 				    sex=info.user_sex;
 				    desc=info.user_desc;
@@ -563,6 +590,8 @@ function load_user(){
 				   $(".nickname").val(nickname);
 				   $(".gender option").eq(sex).attr("selected",true);
 				   $(".intro").val(desc);
+				   $(".phone").html(info.user_phone);
+				   $(".email").html(info.user_email)
 				    
 			}else{
 				
@@ -576,6 +605,7 @@ function load_user(){
 
 //更新个人信息
 function update_info(userid){
+	
 	var cur_timestamp = Date.parse(new Date()) / 1000;
     var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
  	var nickname=$(".nickname").val();
@@ -598,11 +628,8 @@ function update_info(userid){
 		success:function(data){
 			var data=JSON.parse(data);
 			if(data.ret==200){
-			   layer.msg('修改成功');
-			     layer.closeAll();
-			   $("#userInfo").hide();
-			  
-			   
+			 layer.msg('保存成功');
+		   
 			}else{
 				layer.msg(data.msg);
 			}
@@ -612,6 +639,73 @@ function update_info(userid){
 		}
 	})
 }
-$('#info_sub').click(function(){
-	update_info(getSession(0))
+$("#info_sub").click(function(){
+	update_info(getSession(0));
 })
+//实名认证
+function sub_vertify(){
+	var index=layer.load({
+		type:1,
+		area:['100px','50px']
+	});
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var vertiData=new FormData();
+	var userid=getSession(0);
+	    truename=$(".truename").val();
+	    id=$('.id').val();
+	    lawyer_id=$('.lawyer_id').val();
+	    work_place=$('.work_place').val();
+	    lawyer_id_img=$('.lawyer_id_img')[0].files[0];
+	    id_img_front=$('.id_img_front')[0].files[0];
+	    id_img_back=$('.id_img_back')[0].files[0];
+	 vertiData.append('service','User.info_verify');
+	 vertiData.append('time',cur_timestamp);
+	 vertiData.append('token',md_token);
+	 vertiData.append('userid',userid);
+	 vertiData.append('truename',truename);
+	 
+	 vertiData.append('id',id);
+	 
+	 vertiData.append('lawyer_id',lawyer_id);
+	 
+	 vertiData.append('work_place',work_place);
+	 
+	 vertiData.append('lawyer_id_img',lawyer_id_img);
+	 
+	 vertiData.append('id_img_front',id_img_front);
+	 
+	 vertiData.append('id_img_back',id_img_back);
+	 
+	 
+	 
+	$.ajax({
+		type:"post",
+		url:"https://www.ls186.cn/law_api",
+		cache:false,
+		processData:false,
+		contentType: false,
+		data:vertiData,
+		success:function(data){
+			layer.close(index);
+			var data=JSON.parse(data)
+			if(data.ret==200){
+			
+				if(data.data=='1'){
+					 layer.msg('上传成功');
+				}else{
+					layer.msg('认证中..');
+				}
+			   
+			}else{
+				layer.msg(data.msg)
+				
+			}
+			
+		},
+		error:function(data,status){
+			layer.close(index);
+			console.log(data+status);			
+		}	
+	});
+}
