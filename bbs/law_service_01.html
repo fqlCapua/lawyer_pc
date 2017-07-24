@@ -39,135 +39,251 @@
 					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
 		<div class="logo">
 			<div>
-				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="../img/home/logo.png" alt=""/></span>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+
 				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
-							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size: 1.1em;">注册</a>
-			   </span>
-				<span class="login1 pull-right">
+						
+							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
+				</span>
+				<span class="login1 pull-right hide">
 							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
 							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
 				</span>
-
 				<span class="pull-right Ylogin hide">
-				           <a id="YloginBtn" class="btn  btn-primary"  style=" height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
-								   <span class="fa fa-user-o"></span>
-				<b>User</b>已登录
+				           <a id="YloginBtn" class="btn  btn-success"  style="width:110px;height:40px;margin-bottom:2px;font-size:1.2em;font-weight: bold;">
+								<span class="login_icon">User</span>
 				</a>
-				<a id="clearUser" class="btn  btn-primary" style="height:40px;text-shadow:black 5px 3px 3px;font-size:1.2em;font-weight: bold;">
-					<b>注销</b>
+				<a id="clearUser" class="btn  btn-info" style="height:40px;font-size:1.2em;font-weight: bold;">
+					注销
 				</a>
-				</span>
+				<div class="user_set">
+					<!--<div onclick="window.location.href='user_page.html'" name='homeInfo' class=" btn  btn-success">
+						<span class="fa fa-home fa-fw"></span>
+						<b>个人主页</b>
+					</div>-->
 
-			</div>
-			<!--
-	作者：fql
-	时间：2017-03-07
-	描述：登录弹窗
--->
-			<div class="modal fade" id="myLogin">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content" id="app">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-		 					<span>&times;</span>
-		 				</button>
-							<h4 class="modal-title" id="myModalLabel">登录界面</h4>
-						</div>
-						<form @submit.prevent="submit">
-							<div class="modal-body">
+					<div name='userInfo' class="userInfo btn  btn-success">
+						<span class="fa fa-cog fa-fw"></span>
+						<b>个人设置</b>
+					</div>
 
-								<div class="form-group">
-									<label class="control-label">账号：</label>
-									<input type="text" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
-								</div>
-								<div class="form-group">
-									<label class="control-label">密码：</label>
-									<input type="password" pattern="^\w{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
-
-								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
-							</div>
-						</form>
+					<div name="vertifyInfo" class="vertifyInfo btn  btn-success">
+						<span class="fa fa-drivers-license-o fa-fw"></span>
+						<b>实名认证</b>
+					</div>
+					<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
+						<span class="fa fa-key fa-fw"></span>
+						<b>修改密码</b>
 					</div>
 				</div>
+
 			</div>
 
-			<!--
-            	作者：fql
-            	时间：2017-03-07
-            	描述：注册弹窗
-            	  -->
-			<div class="modal fade" id="myRegs">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-		 					<span>&times;</span>
-		 				</button>
-							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
-						</div>
-						<form>
-							<div class="modal-body">
-
-								<div class="form-group">
-									<label for="j_phone" class="control-label">手机号：</label>
-									<input type="text" class="form-control phone" id="j_phone" required/>
-								</div>
-								<div class="form-group">
-									<label for="userPhone" class="control-label">验证码：</label>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="" />
-										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="userPWD" class="control-label">请输入您的密码：</label>
-									<input type="password" class="form-control" id="userPWD" required/>
-								</div>
-								<div class="form-group">
-									<label for="userPWD" class="control-label">请再次输入你的密码：</label>
-									<input type="password" class="form-control" id="userPWD2" required/>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label">你的身份：</label>
-									<select class="custom-select-sm form-control">
-										<option>主任律师</option>
-										<option>正式律师</option>
-										<option>实习律师</option>
-										<option>律所内勤</option>
-										<option>法律工作者</option>
-										<option>当事人</option>
-									</select>
-								</div>
-								<div class="form-inline">
-									<input type="checkbox" class="form-control" />
-									<label class="control-label">已阅读并同意<a href="#">《协议与帮助》</a></label>
-
-								</div>
-							</div>
-							<div class="modal-footer">
-								<input type="submit" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " data-dismiss="modal" value="注册">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<div class="header-bottom">
 			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
 				<div></div>
 				<div></div>
 				<div></div>
 			</div>
+		</div>
+		<!--作者：fql
+	                       时间：2017-03-07
+	                      描述：登录弹窗-->
+
+		<div class="modal fade" id="myLogin">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content" id="app">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+						<h4 class="modal-title" id="myModalLabel">登录界面</h4>
+					</div>
+					<form @submit.prevent="submit">
+						<div class="modal-body">
+
+							<div class="form-group">
+								<label class="control-label">账号：</label>
+								<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label">密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
+
+							<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--
+            	作者：fql
+            	时间：2017-03-07
+            	描述：注册弹窗
+            	  -->
+		<div class="modal fade" id="myRegs">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+		 					<span>&times;</span>
+		 				</button>
+						<h4 class="modal-title" id="myModalLabel">注册界面</h4>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="j_phone" class="control-label">手机号：</label>
+								<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$" class="form-control phone" id="j_phone" required/>
+							</div>
+							<div class="form-group">
+								<label for="userPhone" class="control-label">验证码：</label>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="" required />
+									<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="userPWD" class="control-label">密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPWD" required/>
+							</div>
+							<div class="form-group">
+								<label for="userPWD2" class="control-label">确认密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" pattern="^\S{6,}$" class="form-control" id="userPWD2" required/>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label">你的身份：</label>
+								<select class="custom-select-sm form-control">
+									<option>主任律师</option>
+									<option>正式律师</option>
+									<option>实习律师</option>
+									<option>律所内勤</option>
+									<option>法律工作者</option>
+									<option>当事人</option>
+								</select>
+							</div>
+							<div class="form-check" style="border:none">
+								<input type="checkbox" />
+								<label class="control-label">已阅读并同意<a href="secret_law.html">《协议与帮助》</a></label>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="button" id="regBtn" class="btn btn-info" value="注册">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+		<!--  ==========  -->
+		<!--  = 个人设置模态框 =  -->
+		<!--  ==========  -->
+
+		<div class="mySet hide" id="userInfo">
+			    <div class="Myheader text-center  bg-primary" >
+					信息设置
+				</div>
+				<form>
+					<div class="Mybody">
+                        <div class="form-inline">
+							<label class="control-label">头像：</label>
+							<img class="head_show" style="width: 50px;height: 50px;" />
+							<input type="button" class="btn btn-default btn-sm headChange" value="更改"  />
+							<input type="file" accept="png,jpg"   class="head_img hide"  />
+						</div><p />
+						<div class="form-group">
+							<label class="control-label">手机：</label>
+							<span style="border: none;" class="form-control phone"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">邮箱：</label>
+							<span style="border: none;" class="form-control email"></span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">昵称：</label>
+							<input type="text"  placeholder="新昵称" class="form-control nickname"   required/>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">性别</label>
+						   <select class="form-control  gender">
+						      <option>男</option>
+						   	  <option>女</option>
+						   </select>
+			             </div>
+                        <div class="form-group">
+							<label class="control-label">简介：</label>
+							<textarea  type="text"  placeholder="请一句话描述自己..." class="form-control intro" ></textarea>
+			             </div>
+					</div>
+					<div class="Myfooter text-center">
+						<input id="info_sub" type="button" class="btn btn-info" value="提交">
+                    </div>
+				</form>
+		
+
+		</div>
+		<!--  ==========  -->
+		<!--  = 身份认证 =  -->
+		<!--  ==========  -->
+
+		<div class="mySet hide" id="vertifyInfo">
+			
+				<div class="Myheader text-center  bg-primary" >
+					实名认证
+				</div>
+				<form id="vertify">
+					<div class="Mybody">
+                       
+						<div class="form-group">
+							<label class="control-label">真实姓名：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="truename" class="form-control truename"    required/>
+						</div>
+						<div class="form-group">
+							<label class="control-label">身份证号：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="id" class="form-control id"    required/>
+			             </div>
+			             <div class="form-group">
+							<label class="control-label">律师证号：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name='lawyer_id' class="form-control lawyer_id"    required/>
+			             </div>
+			             <div class="form-group">
+							<label class="control-label">工作单位：</label>
+							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="work_place" class="form-control work_place"    required/>
+			             </div>
+			            
+			             <div class="form-inline">
+							<label class="control-label">执业证照：</label>
+							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="lawyer_id_img"   class="lawyer_id_img"  required/>
+						</div>
+			             <div class="form-inline">
+							<label class="control-label">身份证正面：</label>
+							<input type="file" accept="png,jpg"  oninput="this.setCustomValidity('')" name="id_img_front"  class="id_img_front"  required/>
+						</div>
+						<div class="form-inline">
+							<label class="control-label">身份证反面：</label>
+							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="id_img_back"   class="id_img_back"  required/>
+						</div>
+			             
+                        
+					</div>
+					<div class="Myfooter text-center">
+						<input id="vertify_sub" onclick="sub_vertify()" type="button" class="btn btn-info" value="提交">
+                    </div>
+				</form>
+		
 
 		</div>
 		<!-- header -->

@@ -1,177 +1,144 @@
-var pro_index = 0;
 
-//function startPro() {
-//	if(pro_index <window.innerWidth) {
-//
-//		pro_index++;
-//		var lLength = -pro_index  + 'px';
-//		$(".professor_imgKu").css("margin-left",lLength);
-//	} else {
-//		pro_index = 0;
-//		$(".professor_imgKu").css("margin-left",0);
-//
-//	}
-//
-//}
-$(function() {
+
+$('.service1').click(function(){
+     layer.open({
+         type: 2,
+         title: '服务详情',
+         shadeClose: true,
+         shade: 0.8,
+         area: ['580px', '70%'],
+         content: 'laws_professor.html'
+   }); 
+});
+//加载案件列表
+function case_lawyer(n, s,userid) {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-	md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law")
-	/*获取专家库*/
-
-	$.ajax({
-		url: 'https://www.ls186.cn/law_api',
-		type: 'post',
-		data: {
-			service: "Service.get_export_list",
-			time: cur_timestamp,
-			token: md_token,
-			page: 1
-		},
-		success: function(data) {
-			var data = JSON.parse(data);;
-			if(data.ret == 200) {
-				var i = data.data.length;
-				//console.log(i);
-
-				console.log(data.data)
-				var proList = data.data;
-				$.each(proList, function(i, ele) {
-					var singlePro = $("<span class='img_" + ele.user_id + "'><img  src='http://www.ls186.cn" + ele.user_head_img + "' alt='图片加载出错' title='" + ele.user_nickname + " " + ele.user_phone + "'/></span>")
-					$(".professor_imgKu").append(singlePro);
-
-				})
-
-				//setInterval("startPro()",50)
-			} else {
-				layer.msg("加载出错");
-			}
-		},
-		error: function(xhr, status) {
-
-			layer.msg(xhr.status + status);
-		}
-
-	})
-	/*获取论证项目*/
-	var service_type = $(".LzBox li span");
-	//  console.log(service_type.length);
-
-	service_type.on("click", function() {
-		var service_tit = $(this).find(":last-child").html();
-		$(".service_tit").html(service_tit);
-
-		/*专家轮播*/
-
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var index = layer.load(2, {
+		shade: [0.1, "#EEEEEE"],
+		offset: ['50%', '50%']
 	});
 
-	$("#FxproBox").click(function() {
-//		layer.open({
-//			type: 2,
-//			title: '专家辅助人简介',
-//			shadeClose: true,
-//			shade: 0.8,
-//			area: ['480px', '90%'],
-//			content: 'http://www.ls186.cn/laws_professor.html' //iframe的url
-//		});
-	})
-	/*表单验证*/
-	function TestBlank(name) {
-		var flag;
-		if($(name).val() != "") {
-			flag = true;
-		} else {
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		data: {
+			service: "Case.case_list",
+			time: cur_timestamp,
+			token: md_token,
+			userid: userid,
+			page: n,
+			rule: s,
+			type: 1
+		},
+		success: function(data) {
+			layer.close(index);
+			var data = JSON.parse(data);
+           if(data.ret == 200) {
+				var caseMainList = data.data;
 
-			flag = false;
-
-		}
-		return flag;
-	};
-
-	function TestPhone(name) {
-		var flag;
-		testPwd = /^1[3|5|7|8]\d{9}$/;
-		if(testPwd.test($(name).val()) && $(name).val() != "") {
-			flag = true;
-		} else {
-			layer.msg("手机格式不正确", {
-				time: 700
-			});
-			flag = false;
-		}
-		return flag;
-	};
-
-	$("#userNum").blur(function() {
-		if($(this).val() != "") {
-			TestPhone($(this))
-		} else {
-			TestBlank($(this))
+				if(caseMainList == '') {
+					layer.msg("没有数据了", {
+						icon: 5
+					});
+				} else {
+				console.log(caseMainList)
+					$.each(caseMainList, function(index, ele) {
+						 var tr=$("<tr class='paCase'  case_id='"+ele.case_id+"'><td><input class='childcase' type='checkbox' /></td><td>"+ele.case_title+"</td></tr>");
+					      $(".caseSelect table").append(tr);
+					})
+				}
+			} else {
+				layer.msg(data.msg, {
+					icon: 3
+				});
+			}
+		},
+		error: function(data) {
+             layer.close(index);
+			layer.msg("数据加载失败");
 		}
 
-	})
-	$("#userName").blur(function() {
-		TestBlank($(this))
-	})
-	$("#case_explain").blur(function() {
-		TestBlank($(this))
-	})
-	$("#name").blur(function() {
-		TestBlank($(this))
-	})
-	/*提交论证*/
-
-	$("#submit_serviceBtn").on("click", function() {
-		if(TestBlank("#userName") && TestBlank("#userNum") && TestBlank("#name") && TestBlank("#case_explain") && TestPhone("#userNum")) {
-
-			var index = layer.load(1, {
-				shade: [0.1, '#000']
-			});
-
-			var title = $("#name").val();
-			telphone = $("#userNum").val();
-			username = $("#userName").val();
-			case_mp3 = $("#file-4")[0].files[0];
-			case_img = $("#file-3").get(0).files[0];
-			case_explain = $("#case_explain").val();
-			var formData = new FormData();
-			formData.append("service", "Office.ext_service");
-			formData.append("time", cur_timestamp);
-			formData.append("token", md_token);
-			formData.append("title", title)
-			formData.append("userid", getSession(0));
-			formData.append("contact_name", username);
-			formData.append("telphone", telphone);
-			formData.append("case_mp3", case_mp3);
-			formData.append("case_img", case_img);
-			formData.append("case_explain", case_explain);
-
-			$.ajax({
-				type: 'POST',
-				url: 'https://www.ls186.cn/law_api',
-				cache: false,
-				processData: false,
-				contentType: false,
-				data: formData,
-				success: function(data) {
-					layer.close(index);
-					var data = JSON.parse(data);; // 关闭layer 加载层
-					if(data.ret == 200) {
-						layer.msg("提交论证成功");
-						//	console.log(data.data);
-						$("input[type=text]").val("");
-						$("textarea").val("");
-						$(".file-preview").html("");
-						$("#Myupload1").modal("hide");
-					} else {
-
-					}
-				},
-			});
-
-		} else {
-			layer.msg("填写信息不正确");
+	});
+}
+function case_client(userid){
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var index = layer.load(2, {
+		shade: [0.1, "#EEEEEE"],
+		offset: ['50%', '50%']
+	});
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		data: {
+			service: "Office.client_case_list",
+			time: cur_timestamp,
+			token: md_token,
+			userid:userid,
+			type:1
+		},
+		success: function(data) {
+		   layer.close(index);
+		   var data=JSON.parse(data);;
+		   if(data.ret == 200) {
+				var caseMainList = data.data;
+				if(caseMainList == '') {
+					layer.msg("没有数据", {
+						icon: 5
+					});
+				} else {
+					cosnole.log(caseMainList)
+					$.each(caseMainList, function(index, ele) {
+					  var tr=$("<tr class='paCase'  case_id='"+ele.case_id+"'><td><input class='childcase'  type='checkbox' /></td><td>"+ele.case_title+"</td></tr>");
+					   $(".caseSelect table").append(tr);
+					})
+				}
+			} else {
+				
+				layer.msg(data.msg, {
+					icon: 3
+				});
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+			layer.msg("数据加载失败");
 		}
 
-	})
+	});
+}
+$(function(){
+	
 
+})
+
+
+
+$('.caseSend').click(function(){
+	var userid=getSession(0);
+	 console.log(userid);
+       var ss=window.sessionStorage;
+ if(ss.getItem("law_sign")) {
+	var jsonTxt = JSON.parse(ls.getItem('law_sign'));
+	var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
+	$(".caseSelect table").find(".paCase").remove();
+	if(jsonStr.split("_")[2] == 6) {
+	       case_client(userid);
+	       
+	}else{
+		 case_lawyer(1,'time',userid);
+	}
+	
+
+	} else {
+	layer.msg('请先登录');
+      }
+
+
+
+
+})
+$(".caseSelect").on("table","click",function(){
+	console.log('OK');
 })

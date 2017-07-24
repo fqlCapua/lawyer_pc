@@ -203,6 +203,7 @@ function load_office(officeid){
 
 /*加载个人信息*/
 function load_user(userid){
+	
 	var curtime=Math.round(new Date()/1000);
 	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
 	$.ajax({
@@ -220,7 +221,7 @@ function load_user(userid){
 			if(data.ret==200){
 				
 				var msg=data.data;
-			     console.log(msg);
+//			 console.log(msg);
 			     if(msg.user_isverify==1){
 			     	isverify="<div class='vip'></div>"
 			     }else{
@@ -257,7 +258,7 @@ function load_user(userid){
 	});
 }
 
-$("#content").on('click','.blog',function(){
+$(".blog_box #content").on('click','.blog',function(){
     var img=$(this).find('img').attr('src');
 	var tag=$(this).attr('tag');
     var des=$(this).find('.user_des').html();
@@ -270,8 +271,10 @@ $("#content").on('click','.blog',function(){
 //                  anim: 2,
 //                  content:"<div style='padding:20px;'><img style='width:250px;height:250px' src='"+img+"'/><div style='padding-top:10px'>"+des+"</div></div>"
 //				});
-var userid=$(this).attr('user_id')
+ var userid=$(this).attr('user_id')
+      
 		load_user(userid);
+		
 	}else if(tag=='1'){
 		var officeid=$(this).attr('office_id')
 		load_office(officeid);

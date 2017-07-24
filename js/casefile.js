@@ -43,7 +43,7 @@ var loadCase = function(n, s) {
 			}
 		},
 		error: function(data) {
-
+              layer.close(index);
 			layer.msg("数据加载失败", {
 				icon: 5
 			})

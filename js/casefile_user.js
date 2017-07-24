@@ -3,7 +3,7 @@ $("#SortBox").hide();
 
 var loadCase = function() {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var index = layer.load(2, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
@@ -37,14 +37,14 @@ var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 					})
 				}
 			} else {
-				layer.close(index);var data=JSON.parse(data);;
+				
 				layer.msg(data.msg, {
 					icon: 3
 				});
 			}
 		},
 		error: function(data) {
-			layer.close(index);var data=JSON.parse(data);;
+			layer.close(index);
 			layer.msg("数据加载失败", {
 				icon: 5
 			})

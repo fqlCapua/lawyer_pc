@@ -581,7 +581,7 @@ function load_user(){
 			var data=JSON.parse(data);
 			if(data.ret==200){
 				var info=data.data;
-			console.log(info)
+			//console.log(info)
 				var nickname=info.user_nickname;
 				    sex=info.user_sex;
 				    desc=info.user_desc;

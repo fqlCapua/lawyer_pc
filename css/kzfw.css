@@ -1,54 +1,22 @@
 .container{
+	overflow-y: scroll;
 	border-bottom: none;
 }
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
 /*专家库*/
-.professor_imgKu{
-	display: flex;
-	width:200%;
-	height:6em;
 
-}
-.professor{
-	width:100%;
-	overflow: hidden;
-	/*position:relative;*/
-}
-.professor_imgKu span{
-	width:110px;
-	height: 5em;
-	text-align:center;
-	display:inline-block;
-	
-	
-}
-.pro_btn{
-	position:absolute;
-	top:60px;
-	right:0;
-	z-index:10;
-	height:80px;
-	display:inline-block;
-	line-height:80px;
-}
-
-.professor_imgKu span img{
-	height:6em;
-	border-radius:50%;
-	border:2px solid #BABABA;
-}
 .LzBox .fa{
 	width:80px;
 	height:70px;
 	
 }
-.form-inline label{
-	width:100px;
-}
-input[type=text]{
+.form-group input{
 	display: inline-block;
-	
-	width:500px;
-	margin:5px;
+	width:400px;
 }
 /*.LzBox{
 	display: flex;
@@ -65,7 +33,6 @@ input[type=text]{
 	background-color:#92B8B1;
     border:2px solid #EEEEEE;
 	width:170px;
-	
 	text-align:center;
 	
 }
@@ -111,9 +78,46 @@ input[type=text]{
 	background-size:100% 100%;
 	
 }
-@media only screen and (max-width: 640px) {
- .professor{
-	height:140px;
-	position: relative;
+
+.caseSend{
+	cursor: pointer;
+	position:fixed;
+	width: 100px;
+	height: 100px;
+	right:10%;
+	bottom:100px;
+	
 }
+
+@keyframes bling{
+	from{
+		color:#000000;
+	}
+	to{
+		color:#EFEFEF;
+	}
+}
+
+.caseSend div:nth-child(2){
+	font-weight: bold;
+	text-align: center;
+	font-size:15px;
+	line-height:24px;
+    animation:bling 1s  infinite;
+}
+.caseSend div:nth-child(1){
+	background-color: #269ABC;
+	height:100px;
+	width: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size:4em;
+	color:#FFFFFF;
+	border-radius: 50%;
+	
+}
+.caseSelect{ 
+	width:96%;
+/*	/*
+	margin:10px auto;*/
 }
