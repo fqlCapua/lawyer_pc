@@ -4,6 +4,54 @@
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();
 })
+
+function user_ismoderator() {
+
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var index = layer.load(2, {
+		shade: [0.1, "#EEEEEE"],
+		offset: ['50%', '50%']
+	});
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		data: {
+			service: "User.get_user_info",
+			time: cur_timestamp,
+			token: md_token,
+			id: getSession(0),
+
+		},
+		success: function(data) {
+			layer.close(index);
+			var data = JSON.parse(data);;
+			if(data.ret == 200) {
+				var userinfo = data.data;
+				if(userinfo.user_ismoderator =='') {
+					$(".blog_menu").find('.set_blog').hide();;
+
+				} else {
+
+					$(".blog_menu").find('.set_blog').css('display', 'block');
+					var redict_url = 'https://www.ls186.cn/index.php?g=Law&m=Post&a=hurt&user_ismoderator=' + userinfo.user_ismoderator;
+					//	var SetBtn="<section  class ='master' ><a href='"+redict_url+"' class ='caseIcon fa fa-cog fa-spin'></a><a  href='"+redict_url+"' class='text-center'>帖子管理 </a></section>";
+					//$("").append(SetBtn);
+					
+//					$('.set_blog').attr("onclick", "window.location.href='" + redict_url + "'");
+                         $('.set_blog').attr("href",redict_url);
+				}
+
+			} else {
+				console.log(data.msg);
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+			console.log(data);
+		}
+	})
+}
 /*iframe高度*/
 
 function reinitIframe() {
@@ -324,6 +372,7 @@ $("#clearUser").click(function() {
 	}, function() {
 		ls.clear();
 		window.location.reload();
+		user_ismoderator();
 
 	});
 
@@ -441,6 +490,7 @@ new Vue({
 						layer.msg('登录成功', {
 							icon: 1
 						});
+						
 					//	console.log(data.data.user_id)
 						var userlist = {
 							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag+"_"+data.data.user_isexport,
@@ -474,7 +524,7 @@ new Vue({
 						law_sign.push(userlist);
 						var law_signStr1 = JSON.stringify(law_sign);
 						ls.setItem("law_sign", law_signStr1);
-
+                       user_ismoderator();
 					} else {
 						
 						layer.msg(data.msg, {

@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>刑事诉讼</title><link rel="stylesheet" href="css/animate.css" />
+		<title>刑事诉讼</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" href="../css/bootstrap.css" media="screen" />
@@ -28,6 +28,39 @@
       <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
 		<style>
+        #leftsead,#leftsead1{
+        	top:200px;
+        }
+
+
+.master a:nth-child(2){
+	display: block;
+	font-weight: bold;
+	text-align: center;
+	font-size:12px;
+	line-height:24px;
+    
+}
+.master a:nth-child(1){
+	display: block;
+	width:50px;
+	height:50px;
+	line-height:50px;
+	text-align: center;
+	font-size:3em;
+	color:#337AB7;
+	border-radius: 50%;
+	
+}
+.master{
+	cursor: pointer;
+	position:fixed;
+	width:50px;
+	height:50px;
+	right:17%;
+	top:240px;
+	
+}
 
 		</style>
 	</head>
@@ -39,7 +72,7 @@
 					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a></span>
 		<div class="logo">
 			<div>
-				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="../img/home/logo.png" alt=""/></span>
 
 				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
@@ -300,34 +333,7 @@
 			<article class="blog_box" >
 				   
 				<ol id="content" style="" >
-					<!--  <li class="blog ">
-						<section class="userMsg">
-							<div class="user_header_img"><img src="../img/professor/pro01.png" /></div>
-							<div class="user_name">执2法</div>
-						</section>
-						<section class="userMsg2">
-						   <div class="blog_title">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， 在炎凉的事态中灯火一样给予我苟且的能录，我们要坚持立党为公，执政为民，忠诚团结，求实开拓，为人民服务使他们的宗旨 ，让他们的生命更有意义以及使他们的灵魂更加纯洁 我见过你最深情的眼眸和最柔软的笑意， 
-							</div>
-						    
-						</section>
-						<section class="userMsg3">
-							<div class="blog_img"><img src="../img/member5.jpg" /><img src="../img/member5.jpg" /><img src="../img/member5.jpg" /><img src="../img/member5.jpg" /></div>
-							<div class="blog_create_time text-muted">2017-03-30</div>
-
-							<div class="like_num fa fa-thumbs-o-up">21</div>
-							<div class="comment_num fa fa-commenting-o">2</div>
-						</section>
-                       
-					</li>
-					<section class="comments">
-						<div class="userMsg">
-							<div class="user_header_img"><img src="../img/professor/pro01.png" /></div>
-							<div class="user_name">执2法</div>
-						</div>
-						<div class="comment_cont">我见过你最深情的眼眸和最柔软的笑意 我见过你最深情的眼眸和最柔软的笑意， ， </div>
-						<div class="com_create_time text-muted">2017-03-30 19:20</div>
-					
-					</section> -->
+				
                     
 			 </ol>
 
@@ -341,9 +347,13 @@
 				</ul>
 			</article>
         <section class="blog_menu">
-            <div>
-             	<a href="#pub_link"></a>
+        	<div>
+             	<a title="帖子管理" class="set_blog fa fa-cog"  ></a>
+        	</div>   
+             <div>
+             	<a class="pub_blog" title="发表帖子" href="#pub_link"></a>
         	</div>
+                	
         </section>
         <section class="pub_new" >
      
@@ -364,6 +374,7 @@
         	</form>
         </section>
 		</div>
+		
 		<div id="leftsead">
 
 					<span class="header_download">
@@ -411,7 +422,8 @@
 					</li>
 		       </ul>
 	
-         </div>
+         </div>	
+         
 		<iframe class="footer_iframe" src="../footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
 
 		</div>
@@ -432,6 +444,6 @@
 
 		});
 	</script>
-	<!-- <script type="text/javascript" src="js/page.js" ></script>-->
+
 
 </html>

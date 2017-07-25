@@ -101,7 +101,7 @@ var index = layer.load(1, {
 			}
 		},
 		error: function(xhr, status) {
-			layer.close(index);var data=JSON.parse(data);;
+			layer.close(index);
 			alert(xhr.status + status);
 		}
 
@@ -125,8 +125,7 @@ $(document).on("click", "#del_case", function() {
 	
 	layer.confirm('确定要删除么？',{btn:['是','否'],time:1500},function(){
 		var index=layer.load(1,{shade:[0.1,'yellow']});
-       
-		$.ajax({
+        $.ajax({
 				type: "post",
 				url: 'https://www.ls186.cn/law_api',
 				data: {
@@ -136,7 +135,8 @@ $(document).on("click", "#del_case", function() {
 					id: del_case_id.html()
 				},
 				success: function(data) {
-					layer.close(index);var data=JSON.parse(data);;
+					layer.close(index);
+					var data=JSON.parse(data);;
 					if(data.ret == 200) {
 				      layer.msg("已删除！", {
 							icon: 1,

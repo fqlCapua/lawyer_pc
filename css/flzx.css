@@ -137,32 +137,40 @@
  			}
       .blog_menu{
 	          position: fixed;
-	          right: 5%;
+	          right:8%;
 	          bottom:100px;
-
+           
          }
-         .blog_detial
+        .blog_detial
          {
          	padding:0 20px; 
          }
 
-			.blog_menu div a {
+			.blog_menu div .pub_blog {
 				display: block;
 				cursor: pointer;
-				width:7em;
-				height:7em;
+				width:70px;
+				height:70px;
 				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
 				background-size:100%;
 				border-radius:50%;
 			}
-     .blog_menu div a:hover{
-     	       border:10px solid #FFFFFF;
-				width:7.2em;
-				height:7.2em;
-				background: url(../img/blog/pub_blog.png) no-repeat 0 0;
-				background-size:100%;
-				border-radius:50%;
+			.blog_menu div .set_blog {
+				display: block;
+				cursor: pointer;
+				width:62px;
+				height:62px;
+			 
+			  text-align: center;
+			  line-height:62px;
+			  margin: 0 auto;
+			  font-size:2.2em;
+			  background-color: #3772ED;
+			  color: #FFFFFF;
+			  border-radius:50%;
+			  box-shadow:#636C72 1px 0 1px 0;
 			}
+
 			/*评论样式*/
 			.comment{
 				border-top:1px solid #EFEFEF; 
