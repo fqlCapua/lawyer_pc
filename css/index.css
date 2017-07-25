@@ -486,3 +486,32 @@ left: 0;
 	width: 150px;
 }
 
+/* ========== */
+/* = 新闻中心  = */
+/* ========== */
+
+.media img{
+	width:200px;
+	heigt:100px;
+}
+.media-body{
+	height:100px;
+	
+}
+.media .news_ctime{
+	
+	
+	border-bottom:0;
+	font-size:12px;
+    text-align: end;
+	
+}
+.media h4{
+	line-height:30px;
+	font-size: 16px;
+}
+.media-desc{
+	line-height:25px;
+	font-size:14px;
+	color:#565656;
+}
