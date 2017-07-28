@@ -1,4 +1,6 @@
-	
+$('.icon').click(function(){
+	window.location.href='http://www.ls186.cn'
+})	
 /*返回搜索城市*/
 	 function showArea(){
 			var Str1= $('#s_province').val()+$('#s_city').val()+$('#s_county').val();

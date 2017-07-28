@@ -43,7 +43,7 @@ var loadCase = function(n, s) {
 			}
 		},
 		error: function(data) {
-              layer.close(index);
+			layer.close(index);
 			layer.msg("数据加载失败", {
 				icon: 5
 			})
@@ -129,7 +129,7 @@ $(".AJBox").delegate("li .show_tit", "click", function() {
 			}
 		},
 		error: function(xhr, status) {
-		
+
 			layer.msg(xhr.status + status);
 		}
 
@@ -179,8 +179,6 @@ $("#save").on("click", function() {
 	});
 
 });
-
-
 
 /*删除案件*/
 
@@ -294,12 +292,11 @@ $("#DjSubBtn").click(function() {
 						$("#djcase_uname").val("");
 						$("#djcase_tel").val("");
 						$("#djcase_name").val("");
-		      
 
 					} else {
-						
+
 						console.log(data.msg);
-										
+
 					}
 				},
 			});
@@ -351,7 +348,6 @@ $("#case_sync").on("click", function() {
 
 })
 
-
 $(".load_icon").hide();
 $(".evidence_cont").hide();
 $(".process_cont").hide();
@@ -365,7 +361,9 @@ $(".load_icon").hide();
 /*新增证据*/
 $(".evidBtn").click(function() {
 
-	var index = layer.load(0, { shade: [0.1, '#000'] });
+	var index = layer.load(0, {
+		shade: [0.1, '#000']
+	});
 	/*保存证据*/
 	var title = $(".evid_explain textarea").val();
 	var img = $("#file-3")[0].files[0];
@@ -400,8 +398,8 @@ $(".evidBtn").click(function() {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg("保存成功")
-                    $(".programe").children().eq(0).attr('selected',true);
-			    		$(".programeBox").children().hide();
+					$(".programe").children().eq(0).attr('selected', true);
+					$(".programeBox").children().hide();
 				} else {
 					layer.msg(data.msg);
 				};
@@ -412,7 +410,6 @@ $(".evidBtn").click(function() {
 	}
 
 })
-
 
 //$(".caret_icon").click(function(){
 //	 $(this).parent().siblings().slideToggle();
@@ -442,15 +439,15 @@ $(".evidCont .caret_icon").click(function() {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 
-					  console.log('加载成功');
+					console.log('加载成功');
 					$(".evidence_cont").empty();
 					var list = data.data;
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' evid_id='" + ele.evidence_id + "'><i class='link_evid fa fa-paper-plane'></i>&nbsp;&nbsp;<span>" + ele.evidence_title + "</span><i  class='text-danger fa fa-trash pull-right del_evid'></i></li>\n");
+						var li = $("<li class='list-group-item' evid_id='" + ele.evidence_id + "'><a href='#' class='link_evid'>预览</a>&nbsp;&nbsp;<span>" + ele.evidence_title + "</span><i  class='text-danger fa fa-trash pull-right del_evid'></i></li>\n");
 						$(".evidence_cont").append(li);
-          
+
 					})
-                   
+
 				}
 			}
 		});
@@ -498,22 +495,21 @@ $(".evidence_cont").delegate("li .link_evid", "click", function() {
 				} else {
 					var mp3 = "  ";
 				}
-				if(detail.evidence_doc != ""||detail.evidence_doc!=undefined) {
+				if(detail.evidence_doc != "" || detail.evidence_doc != undefined) {
 					var doc = String(detail.evidence_doc);
 					var file_name = doc.split('/')[doc.split('/').length - 1];
 				} else {
 					var doc = "  ";
 				}
 
-
-layer.open({
-	title:detail.evidence_title,
-	type:1,
-	skin:'layui-layer-lan',
-	area: ['500px', '600px'],
-	shadeClose:true,
-	content: "<div class='evidence_detialbox' style='padding:20px;'><img  style='margin:0 auto;  class='evidence_img' src='" + img + "' alt='无图片'/><div><label>音频内容：</label><audio controls  class='evidence_mp3' src='" + mp3 + "'/></div><div><label>文件内容：</label><span class='evidence_doc'><a  target='_blank' href='http://www.ls186.cn" + doc + "'>" + file_name + "</a></span><div class='pull-right'><a style='font-weight:bold;' target='_blank' href='http://www.ls186.cn" + doc + "'>预览</a></div></div>"
-})
+				layer.open({
+					title: detail.evidence_title,
+					type: 1,
+					skin: 'layui-layer-lan',
+					area: ['500px', '600px'],
+					shadeClose: true,
+					content: "<div class='evidence_detialbox' style='padding:20px;'><img  style='margin:0 auto;  class='evidence_img' src='" + img + "' alt='无图片'/><div><label>音频内容：</label><audio controls  class='evidence_mp3' src='" + mp3 + "'/></div><div><label>文件内容：</label><span class='evidence_doc'><a  target='_blank' href='http://www.ls186.cn" + doc + "'>" + file_name + "</a></span><div class='pull-right'><a style='font-weight:bold;' target='_blank' href='http://www.ls186.cn" + doc + "'>预览</a></div></div>"
+				})
 				//<button class='btn btn-sm btn-primary'>删除</button>
 
 				$(".del_evid").attr("name", evid_id);
@@ -554,7 +550,7 @@ $(".evidence_cont").delegate("li .del_evid", "click", function() {
 			},
 			dataType: 'json',
 			success: function(data) {
-                  layer.close(index);
+				layer.close(index);
 				//var data=JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('已删除！！')
@@ -569,8 +565,8 @@ $(".evidence_cont").delegate("li .del_evid", "click", function() {
 			}
 		})
 	}, function() {
-		 layer.close(index);
-		
+		layer.close(index);
+
 	})
 
 })
@@ -578,13 +574,15 @@ $(".evidence_cont").delegate("li .del_evid", "click", function() {
 /*新增项目样式*/
 $(".programeBox").children().hide();
 $(".programe").change(function() {
-    
-	
-    var proType = $(this).children("option:selected").attr("name");
-    if(proType==''){
-    	$(".programeBox").children().hide();
-    }
+
+	var proType = $(this).children("option:selected").attr("name");
+	if(proType == '') {
+		$(".programeBox").children().hide();
+	}
 	var proType = '#My' + proType;
+	if(proType == '') {
+
+	}
 	$(proType).show();
 	$(proType).siblings().hide();
 
@@ -593,78 +591,96 @@ $(".programe").change(function() {
 //  = 流程文书 = 
 //  ========== 
 
-
 /*加载富文本*/
-       var wangTxt= window.wangEditor
-        var editor=new wangTxt('#editor')
-        // 或者 var editor = new E( document.getElementById('#editor') )
-        editor.create();  
+var wangTxt = window.wangEditor;
+var editor = new wangTxt('#editor');
+editor.customConfig.menus = [
+	'head', // 标题
+	'bold', // 粗体
+	'italic', // 斜体
+	'underline', // 下划线
+	'strikeThrough', // 删除线
+	'foreColor', // 文字颜色
+	
+	'link', // 插入链接
+	'list', // 列表
+	'justify', // 对齐方式
+	'quote', // 引用
+	'emoticon', // 表情
+	'table', // 表格
+	'undo', // 撤销
+	
+];
+// 或者 var editor = new E( document.getElementById('#editor') )
+editor.create();
 /*加载文书类型*/
 $('.load_pro_btn').click(function() {
 	parent.editor.txt.html('');
-	var iframe_doc=layer.open({
+	var iframe_doc = layer.open({
 		type: 2,
-		area: ['80%', '700px'],
+		area: ['60%', '700px'],
 		skin: 'layui-layer-rim',
-		title:'文书类型',
+		title: '文书类型',
 		fixed: true, //固定
 		maxmin: true,
 		content: 'Laws_doc.html'
 	});
 })
 /*保存文书类型*/
-    $('.save_pro_btn').click(function(){
-    	var index=layer.load(1,{shade:[0.1,'red']});
-    	var pro_txt=editor.txt.html();
-    	if(pro_txt!=''){
-    		var t1 = Date.parse(new Date()) / 1000;
-	        var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
-	       // console.log(pro_txt);
-	        var case_id = $("#myModalLabel").attr('class');
-	            type_id =$(pro_txt).attr('type_id');
-	            console.log(case_id+"  "+  type_id);
-	             name=$(pro_txt).attr('tit');
-	      $.ajax({
-	      	type:"post",
-	        url: "https://www.ls186.cn/law_api",
-	        
-	        data:{
-	        	service:'Case.add_process',
-	        	case_id:case_id,
-	      	    type_id:type_id,
-	      	    name:name,
-	      	    content:pro_txt,
-	        },
-	        
-	        success:function(data){
-	        	layer.close(index);
-	        	var data=JSON.parse(data);
-	        	if(data.ret==200){
-	        		layer.msg('添加成功');
-	        		    $(".programe").children().eq(0).attr('selected',true);
-			    		$(".programeBox").children().hide();
-	        	}else{
-	        		layer.msg(data.msg)
-	        	}
-	        },error:function(data){
-	        	console.log(data);
-	        }
-	      	
-	      	
-	      });
-    	}
-    	
-    })
+$('.save_pro_btn').click(function() {
+	var index = layer.load(1, {
+		shade: [0.1, 'red']
+	});
+	var pro_txt = editor.txt.html();
+	if(pro_txt != '') {
+		var t1 = Date.parse(new Date()) / 1000;
+		var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+		// console.log(pro_txt);
+		var case_id = $("#myModalLabel").attr('class');
+		type_id = $(pro_txt).attr('type_id');
+		console.log(case_id + "  " + type_id);
+		name = $(pro_txt).attr('tit');
+		$.ajax({
+			type: "post",
+			url: "https://www.ls186.cn/law_api",
+
+			data: {
+				service: 'Case.add_process',
+				case_id: case_id,
+				type_id: type_id,
+				name: name,
+				content: pro_txt,
+			},
+
+			success: function(data) {
+				layer.close(index);
+				var data = JSON.parse(data);
+				if(data.ret == 200) {
+					layer.msg('添加成功');
+					$(".programe").children().eq(0).attr('selected', true);
+					$(".programeBox").children().hide();
+				} else {
+					layer.msg(data.msg)
+				}
+			},
+			error: function(data) {
+				console.log(data);
+			}
+
+		});
+	}
+
+})
 
 /*加载流程文书列表*/
 var flag2 = 0;
 $(".processCont .caret_icon").click(function() {
 	if(flag2 % 2 == 0) {
-        var cur_timestamp = Date.parse(new Date()) / 1000;
+		var cur_timestamp = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
-        $(this).children(".load_icon").show();
-	     $(".process_cont").empty();
+		$(this).children(".load_icon").show();
+		$(".process_cont").empty();
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
@@ -679,12 +695,12 @@ $(".processCont .caret_icon").click(function() {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 
-					  console.log('加载成功');
+					console.log('加载成功');
 					$(".process_cont").empty();
 					var list = data.data;
-					
+
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><i class='link_doc fa fa-paper-plane'></i>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
+						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><a href='#' class='link_doc'>预览</a>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
 						$(".process_cont").append(li);
 
 					})
@@ -699,12 +715,11 @@ $(".processCont .caret_icon").click(function() {
 	$(this).parent().siblings().slideToggle();
 });
 
-
 /*获取文书详情(律师版) √*/
-        var docTxt= window.wangEditor
-        var editor1=new docTxt('.doc_txt')
-        // 或者 var editor = new E( document.getElementById('#editor') )
-        editor1.create();  
+//var docTxt = window.wangEditor
+//var editor1 = new docTxt('.doc_txt')
+// 或者 var editor = new E( document.getElementById('#editor') )
+// editor1.create();
 $(".process_cont").delegate("li .link_doc", "click", function() {
 	var index = layer.load(1, {
 		shade: [0.2, 'gray']
@@ -728,24 +743,29 @@ $(".process_cont").delegate("li .link_doc", "click", function() {
 			if(data.ret == 200) {
 
 				var detail = data.data;
-//				console.log(detail);
+				//				console.log(detail);
 				//$("#myCaseDetail").modal('hide');
-				editor1.txt.html(detail.case_doc_content)
-				var open1 = layer.open({
-					title: "文书详情",
-					type: 1,
-					skin: 'layui-layer-lan',
-					//样式类名
-					area: ['80%', '700px'],
-					offset: '25px',
-					anim: 2,
-					shade: false, //开启遮罩关闭
-					content:"<div style='padding:10px 20px;'>"+$('.doc_txt').text()+"</div>"
-					
-//					"<div class='doc_detialbox' case_doc_id='"+detail.case_doc_id+"' case_doc_dtid='"+detail.case_doc_dtid+"' case_doc_cid='"+detail.case_doc_cid+"'  style='padding:20px;'><div class='text-title doc_title  text-center'>" + detail.case_doc_name + "</div><div class='doc_content'>"+detail.case_doc_content+"</div></div>",
-				});
-				$(".del_doc").attr("name", doc_id);
+				//editor1.txt.html(detail.case_doc_content)
 				
+				editor.txt.html(detail.case_doc_content);
+				$('#Myprocess1').show();
+//				var open1 = layer.open({
+//					title: "文书详情",
+//					type: 1,
+//					skin: 'layui-layer-lan',
+//					//样式类名
+//					area: ['60%', '700px'],
+//					offset: '25px',
+//					anim: 2,
+//					shade: false, //开启遮罩关闭
+//					content: "<div style='padding:10px 20px;'>" + $('.doc_txt').text() + "</div>"
+//
+//					//					"<div class='doc_detialbox' case_doc_id='"+detail.case_doc_id+"' case_doc_dtid='"+detail.case_doc_dtid+"' case_doc_cid='"+detail.case_doc_cid+"'  style='padding:20px;'><div class='text-title doc_title  text-center'>" + detail.case_doc_name + "</div><div class='doc_content'>"+detail.case_doc_content+"</div></div>",
+//				});
+                 $('#Myprocess1').removeClass('hide');
+
+				  $(".del_doc").attr("name", doc_id);
+
 			} else {
 				layer.msg("加载失败，请刷新页面");
 			}
@@ -768,7 +788,7 @@ $(".process_cont").delegate("li .del_doc", "click", function() {
 	layer.confirm('确定要删除么？', {
 		btn: ['是', '否']
 	}, function() {
-		
+
 		$.ajax({
 			type: 'POST',
 			url: 'https://www.ls186.cn/law_api',
@@ -780,7 +800,7 @@ $(".process_cont").delegate("li .del_doc", "click", function() {
 			},
 			dataType: 'json',
 			success: function(data) {
-                  layer.close(index);
+				layer.close(index);
 				//var data=JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('已删除！！')
@@ -795,102 +815,102 @@ $(".process_cont").delegate("li .del_doc", "click", function() {
 			}
 		})
 	}, function() {
-		 layer.close(index);
-		
+		layer.close(index);
+
 	})
 
 })
-
 
 //  ========== 
 //  = 费用 = 
 //  ========== 
 
-
 /*检验非空*/
 var Nullflag;
-function checkNull(name){
-	var val=name.val();
-	if(val==''){
-		Nullflag=false;
+
+function checkNull(name) {
+	var val = name.val();
+	if(val == '') {
+		Nullflag = false;
 		layer.msg('此项不能为空');
-	}else{
-		Nullflag=true;
+	} else {
+		Nullflag = true;
 	}
-	return  Nullflag;
+	return Nullflag;
 }
 
 /*新增费用*/
-$('.cost_tit').blur(function(){
+$('.cost_tit').blur(function() {
 	checkNull($(this))
 });
-$('.cost_sum').blur(function(){
+$('.cost_sum').blur(function() {
 	checkNull($(this))
 })
-$('.cost_img').blur(function(){
+$('.cost_img').blur(function() {
 	checkNull($(this))
 })
-$('.save_cost_btn').click(function(){
-	if( checkNull($('.cost_sum')) && checkNull($(this))&&checkNull($('.cost_img'))){
-		var index=layer.load(1,{shade:[0.1,'red']});
-    	var t1 = Date.parse(new Date()) / 1000;
-	        var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
-	        var case_id = $("#myModalLabel").attr('class');
-	        title=$('.cost_tit').val();  
-	        sum=$(".cost_sum").val();
-	        content=$('.cost_comment').val();
-	        img=$('.cost_img').get(0).files[0];
-	        var costForm=new FormData();
-	        costForm.append('service','Case.add_cost');
-	        costForm.append('time','t1');
-	        costForm.append('token',md_token);
-	        costForm.append('id',case_id);
-	        costForm.append('title',title);
-	        costForm.append('sum',sum);
-	        costForm.append('comment',content);
-	         costForm.append('img',img);
-	      $.ajax({
-	      	type:"post",
-	        url: "https://www.ls186.cn/law_api",
-	        cache: false,
-            processData: false,
-            contentType: false,
-	        data:costForm,
-	        success:function(data){
-	        	layer.close(index);
-	        	var data=JSON.parse(data);
-	        	if(data.ret==200){
-	        		layer.msg('添加成功');
-	        		$(".programe").children().eq(0).attr('selected',true);
-			    		$(".programeBox").children().hide();
-			    		
-	        	}else{
-	        		layer.msg(data.msg)
-	        	}
-	        },error:function(data){
-	        	layer.close(index);
-	        	console.log(data);
-	        }
-	      	
-	      	
-	      });
-	}else{
-		
-	}
-   	
-    })
+$('.save_cost_btn').click(function() {
+	if(checkNull($('.cost_sum')) && checkNull($(this)) && checkNull($('.cost_img'))) {
+		var index = layer.load(1, {
+			shade: [0.1, 'red']
+		});
+		var t1 = Date.parse(new Date()) / 1000;
+		var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+		var case_id = $("#myModalLabel").attr('class');
+		title = $('.cost_tit').val();
+		sum = $(".cost_sum").val();
+		content = $('.cost_comment').val();
+		img = $('.cost_img').get(0).files[0];
+		var costForm = new FormData();
+		costForm.append('service', 'Case.add_cost');
+		costForm.append('time', 't1');
+		costForm.append('token', md_token);
+		costForm.append('id', case_id);
+		costForm.append('title', title);
+		costForm.append('sum', sum);
+		costForm.append('comment', content);
+		costForm.append('img', img);
+		$.ajax({
+			type: "post",
+			url: "https://www.ls186.cn/law_api",
+			cache: false,
+			processData: false,
+			contentType: false,
+			data: costForm,
+			success: function(data) {
+				layer.close(index);
+				var data = JSON.parse(data);
+				if(data.ret == 200) {
+					layer.msg('添加成功');
+					$(".programe").children().eq(0).attr('selected', true);
+					$(".programeBox").children().hide();
 
+				} else {
+					layer.msg(data.msg)
+				}
+			},
+			error: function(data) {
+				layer.close(index);
+				console.log(data);
+			}
+
+		});
+	} else {
+
+	}
+
+})
 
 /*费用列表*/
 
 var flag3 = 0;
 $(".costCont .caret_icon").click(function() {
 	if(flag3 % 2 == 0) {
-        var cur_timestamp = Date.parse(new Date()) / 1000;
+		var cur_timestamp = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
-         $(this).children(".load_icon").show();
-	     
+		$(this).children(".load_icon").show();
+
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
@@ -904,11 +924,11 @@ $(".costCont .caret_icon").click(function() {
 				$(".load_icon").hide();
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
-                     console.log('加载成功');
-                    $(".cost_cont").empty();
-				  var list = data.data;				 
+					console.log('加载成功');
+					$(".cost_cont").empty();
+					var list = data.data;
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' cost_id='" + ele.cost_id + "'><i class='link_cost fa fa-paper-plane'></i>&nbsp;&nbsp;<span>"+ele.cost_title + "</span><i  class='text-danger fa fa-trash pull-right del_cost'></i></li>\n");
+						var li = $("<li class='list-group-item' cost_id='" + ele.cost_id + "'><a href='#' class='link_cost'>预览</a>&nbsp;&nbsp;<span>" + ele.cost_title + "</span><i  class='text-danger fa fa-trash pull-right del_cost'></i></li>\n");
 						$(".cost_cont").append(li);
 
 					})
@@ -922,7 +942,6 @@ $(".costCont .caret_icon").click(function() {
 	flag3++;
 	$(this).parent().siblings().slideToggle();
 });
-
 
 /*费用详情*/
 $(".cost_cont").delegate("li .link_cost", "click", function() {
@@ -944,12 +963,11 @@ $(".cost_cont").delegate("li .link_cost", "click", function() {
 		dataType: 'json',
 		success: function(data) {
 			layer.close(index);
-           if(data.ret == 200) {
+			if(data.ret == 200) {
 
 				var detail = data.data;
-			
 
-			 layer.open({
+				layer.open({
 					title: detail.cost_title,
 					type: 1,
 					skin: 'layui-layer-lan',
@@ -957,20 +975,19 @@ $(".cost_cont").delegate("li .link_cost", "click", function() {
 					offset: '25px',
 					anim: 2,
 					shade: false, //开启遮罩关闭
-					content:"<div style='padding:10px 20px;'><div style='line-height:30px'>金额："+detail.cost_sum+"</div><div style='line-height:40px'>描述："+detail.cost_comment+"</div><div><img   src='http://www.ls186.cn"+detail.cost_img +"'</div></div>"
+					content: "<div style='padding:10px 20px;'><div style='line-height:30px'>金额：" + detail.cost_sum + "</div><div style='line-height:40px'>描述：" + detail.cost_comment + "</div><div><img   src='http://www.ls186.cn" + detail.cost_img + "'</div></div>"
 				});
 				$(".del_doc").attr("name", cost_id);
-				
+
 			} else {
 				layer.msg("加载失败，请刷新页面");
 			}
 		},
 		error: function(data) {
-        layer.close(index);
+			layer.close(index);
 		}
 	})
 })
-
 
 /*删除费用*/
 $(".cost_cont").delegate("li .del_cost", "click", function() {
@@ -983,7 +1000,7 @@ $(".cost_cont").delegate("li .del_cost", "click", function() {
 	layer.confirm('确定要删除么？', {
 		btn: ['是', '否']
 	}, function() {
-		
+
 		$.ajax({
 			type: 'POST',
 			url: 'https://www.ls186.cn/law_api',
@@ -991,11 +1008,11 @@ $(".cost_cont").delegate("li .del_cost", "click", function() {
 				service: 'Case.del_cost',
 				time: t1,
 				token: md_token,
-				id:cost_id
+				id: cost_id
 			},
 			dataType: 'json',
 			success: function(data) {
-                  layer.close(index);
+				layer.close(index);
 				//var data=JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('已删除！！')
@@ -1010,8 +1027,8 @@ $(".cost_cont").delegate("li .del_cost", "click", function() {
 			}
 		})
 	}, function() {
-		 layer.close(index);
-		
+		layer.close(index);
+
 	})
 
 })
@@ -1028,46 +1045,46 @@ var cur_timestamp = Date.parse(new Date()) / 1000;
 var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 
 new Vue({
-	el:'#Mycontact1',
-	data:{
-		contact:{
+	el: '#Mycontact1',
+	data: {
+		contact: {
 			service: "Case.add_contact",
 			time: Date.parse(new Date()) / 1000,
-			token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
-			id:'',
+			token: hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
+			id: '',
 			name: '',
 			mobile: '',
-			phone:'',
-			email:'',
-			address:'',
-			comment:'',
+			phone: '',
+			email: '',
+			address: '',
+			comment: '',
 		}
 	},
-	methods:{
-		submit:function(){
-			this.contact.id=$("#myModalLabel").attr('class');
-			var index=layer.load(1,{
-				shade:[0.1,'red']
+	methods: {
+		submit: function() {
+			this.contact.id = $("#myModalLabel").attr('class');
+			var index = layer.load(1, {
+				shade: [0.1, 'red']
 			});
 			$.ajax({
-				type:"post",
-				url:'http://www.ls186.cn/Law_api',
-			    data:this.contact,
-			    success:function(data){
-			    	layer.close(index);
-			    	var data=JSON.parse(data);
-			    	if(data.ret==200){
-			    		layer.msg('添加成功');
-			    		$(".programe").children().eq(0).attr('selected',true);
-			    		$(".programeBox").children().hide();
-			    	}else{
-			    		layer.msg(data.msg);
-			    	}
-			    },
-			    error:function(data,status){
-			    	layer.close(index);
-			    	layer.msg(status+data);
-			    }
+				type: "post",
+				url: 'http://www.ls186.cn/Law_api',
+				data: this.contact,
+				success: function(data) {
+					layer.close(index);
+					var data = JSON.parse(data);
+					if(data.ret == 200) {
+						layer.msg('添加成功');
+						$(".programe").children().eq(0).attr('selected', true);
+						$(".programeBox").children().hide();
+					} else {
+						layer.msg(data.msg);
+					}
+				},
+				error: function(data, status) {
+					layer.close(index);
+					layer.msg(status + data);
+				}
 			});
 		}
 	}
@@ -1076,11 +1093,11 @@ new Vue({
 var flag4 = 0;
 $(".contactCont .caret_icon").click(function() {
 	if(flag4 % 2 == 0) {
-        var cur_timestamp = Date.parse(new Date()) / 1000;
+		var cur_timestamp = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
-         $(this).children(".load_icon").show();
-	     
+		$(this).children(".load_icon").show();
+
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
@@ -1094,12 +1111,12 @@ $(".contactCont .caret_icon").click(function() {
 				$(".load_icon").hide();
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
-				//	console.log(data)
-                    console.log('加载成功');
-                    $(".contact_cont").empty();
-				   var list = data.data;				 
+					//	console.log(data)
+					console.log('加载成功');
+					$(".contact_cont").empty();
+					var list = data.data;
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' contact_id='" + ele.contact_id + "'><i class='link_cost fa fa-paper-plane'></i>&nbsp;&nbsp;<span>"+ele.contact_name + "</span><i  class='text-danger fa fa-trash pull-right del_cost'></i></li>\n");
+						var li = $("<li class='list-group-item' contact_id='" + ele.contact_id + "'><a href='#' class='link_cost'>预览</a>&nbsp;&nbsp;<span>" + ele.contact_name + "</span><i  class='text-danger fa fa-trash pull-right del_cost'></i></li>\n");
 						$(".contact_cont").append(li);
 
 					})
@@ -1133,10 +1150,10 @@ $(".contact_cont").delegate("li .link_cost", "click", function() {
 		dataType: 'json',
 		success: function(data) {
 			layer.close(index);
-           if(data.ret == 200) {
-         
+			if(data.ret == 200) {
+
 				var detail = data.data;
-			 layer.open({
+				layer.open({
 					title: '联系人详情',
 					type: 1,
 					skin: 'layui-layer-lan',
@@ -1144,16 +1161,16 @@ $(".contact_cont").delegate("li .link_cost", "click", function() {
 					offset: '25px',
 					anim: 2,
 					shade: false, //开启遮罩关闭
-					content:"<div style='padding:10px 20px;'><div style='line-height:30px'>联系人："+detail.contact_name+"</div><div style='line-height:30px'>手机："+detail.contact_phone+"</div><div style='line-height:30px'>E-mail："+detail.contact_email+"</div><div style='line-height:30px'>住址："+detail.contact_address+"</div></div>"
+					content: "<div style='padding:10px 20px;'><div style='line-height:30px'>联系人：" + detail.contact_name + "</div><div style='line-height:30px'>手机：" + detail.contact_phone + "</div><div style='line-height:30px'>E-mail：" + detail.contact_email + "</div><div style='line-height:30px'>住址：" + detail.contact_address + "</div></div>"
 				});
 				$(".del_contact").attr("name", contact_id);
-				
+
 			} else {
 				layer.msg("加载失败，请刷新页面");
 			}
 		},
 		error: function(data) {
-        layer.close(index);
+			layer.close(index);
 		}
 	})
 })

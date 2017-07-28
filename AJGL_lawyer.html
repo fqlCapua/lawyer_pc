@@ -124,7 +124,7 @@
                         -->
 				<section class="show_cont">
 					<div class="modal fade" id="myCaseDetail">
-						<div class="modal-dialog modal-lg">
+						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">
@@ -134,20 +134,21 @@
 								</div>
 
 								<div class="modal-body">
-									<form>
-										<div class="form-group ">
-											<label class="control-label">姓名：</label>
-											<div class="form-control-static" id="userID"></div>
+									<form class="form-horizontal" role="form">
+									
+										<div class="form-group">
+											<label class="control-label col-md-2">姓名：</label>
+											<div class="form-control-static col-md-10" id="userID"></div>
 										</div>
 
 										<div class="form-group">
-											<label class="control-label">电话：</label>
-											<div id="userNum" class="form-control-static"></div>
+											<label class="control-label col-md-2">电话：</label>
+											<div id="userNum" class="form-control-static col-md-10"></div>
 										</div>
 
-										<div class="form-group">
-											<label for="ServerID" class="control-label">委托人身份：</label>
-											<select id="userType" class="custom-select form-control">
+										<div class="form-group" style="display: flex;margin-right:20px;">
+											<label for="ServerID" class="control-label col-md-3">委托人：</label>
+											<select id="userType" class="custom-select form-control col-md-8">
 												<option>原告</option>
 												<option>被告</option>
 												<option>第三人</option>
@@ -159,9 +160,9 @@
 											</select>
 										</div>
 
-										<div class="form-group">
-											<label class="control-label">案件类型：</label>
-											<select id="thingtypeNum" class="custom-select form-control">
+										<div class="form-group" style="display: flex;margin-right:20px;">
+											<label class="control-label col-md-3">案件类型：</label>
+											<select id="thingtypeNum" class="custom-select form-control col-md-7">
 												<option>民事案件</option>
 												<option>刑事案件</option>
 												<option>行政案件</option>
@@ -170,14 +171,14 @@
 												<option>执行案件</option>
 											</select>
 										</div>
-										<div class="form-group">
-											<label for="ThingName" class="control-label">案件名称：</label>
-											<input type="text" class="form-control" id="ThingName" placeholder="单行输入" value="" />
+										<div class="form-group"  style="display: flex;margin-right:20px;">
+											<label for="ThingName" class="control-label col-md-3">案件名称：</label>
+											<input type="text" class="form-control col-md-9" id="ThingName" placeholder="单行输入" value="" />
 										</div>
 
-										<div class="form-group">
-											<label class="control-label">新增项目：</label>
-											<select class="custom-select form-control programe">
+										<div class="form-group"  style="display: flex;margin-right:20px;">
+											<label class="control-label col-md-3">新增项目：</label>
+											<select class="custom-select form-control programe col-md-9">
 												<option name=''>点击新增项目</option>
 												<option name="evidence1">新增证据与文档副本</option>
 												<option name="process1">新增案件流程文档</option>
@@ -190,24 +191,24 @@
 											<section id="Myevidence1" class="add_section">
 												<form role="form">
 													<div class="">
-														<div class="form-group">
-															<div class="text-title " style="line-height: 40px;">
+														<div class="form-group"  style="display: flex;">
+															<div class="text-title col-md-3" style="line-height: 40px;">
 																<a class="text-danger">*</a><b>证据描述：</b>
 															</div>
 															<div class="evid_explain" style="height:60px;">
-																<textarea rows="2" cols="100%"></textarea>
+																<textarea rows="2" placeholder="必填" ></textarea>
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="input_btn"><a class="text-danger"></a>&nbsp;图片：</label>
-															<input id="file-3" type="file" accept="image/png,image/jpeg">
+														<div class="form-group" style="display: flex;">
+															<label class="input_btn col-md-3" ><a class="text-danger"></a>&nbsp;图片：</label>
+															<input id="file-3"  type="file" accept="image/png,image/jpeg">
 														</div>
-														<div class="form-group">
-															<label class="input_btn"><a class="text-danger"></a>&nbsp;录音：</label>
+														<div class="form-group" style="display: flex;">
+															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;录音：</label>
 															<input id="file-4" type="file" />
 														</div>
-														<div class="form-group">
-															<label class="input_btn"><a class="text-danger"></a>&nbsp;视频：</label>
+														<div class="form-group" style="display: flex;">
+															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;视频：</label>
 															<input id="file-5" type="file" />
 														</div>
 														<input type="button" value="保存证据" class="btn btn-success  evidBtn">
@@ -224,20 +225,19 @@
 
 											<section id="Myprocess1" class="add_section">
 												<form role="form">
-													<div class="">
-														<div class="form-group">
+													<div class="" style="width:100%;">
+														
 															<div class="text-title" style="line-height: 40px;">
 																<a class="text-danger">*</a><b>流程文字说明：</b>
 															</div>
 															<input style="margin-bottom: 5px;" type="button" class="btn btn-success load_pro_btn  clearfix" value='加载文书' />
 
 															<!--<iframe id="test" src="Laws_doc.html" style="width:90%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>-->
-															<div id="editor">
-																<p>文书详情</p>
+															<div id="editor" style="">
+																<p style="">文书详情</p>
 															</div><br />
 															<input type="button" class="btn btn-success save_pro_btn  clearfix" value='保存' />
-														</div>
-
+														
 													</div>
 
 												</form>

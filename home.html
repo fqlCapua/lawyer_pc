@@ -84,7 +84,11 @@
 
 					<div name="vertifyInfo" class="vertifyInfo btn  btn-success">
 						<span class="fa fa-drivers-license-o fa-fw"></span>
-						<b>实名认证</b>
+						<b>律师认证</b>
+					</div>
+					<div name="vertifyInfo2" class="vertifyInfo btn  btn-success">
+						<span class="fa fa-drivers-license-o fa-fw"></span>
+						<b>律所认证</b>
 					</div>
 					<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
 						<span class="fa fa-key fa-fw"></span>
@@ -254,7 +258,7 @@
 		<div class="mySet hide" id="vertifyInfo">
 
 			<div class="Myheader text-center  bg-primary">
-				实名认证
+				律师认证
 			</div>
 			<form id="vertify">
 				<div class="Mybody">
@@ -292,6 +296,51 @@
 				</div>
 				<div class="Myfooter text-center">
 					<input id="vertify_sub" onclick="sub_vertify()" type="button" class="btn btn-info" value="提交">
+				</div>
+			</form>
+
+		</div>
+		<div class="mySet hide" id="vertifyInfo2">
+
+			<div class="Myheader text-center  bg-primary">
+				律所认证
+			</div>
+			<form>
+				<div class="Mybody">
+                  
+					<div class="form-group">
+						<label class="control-label">负责人姓名：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')"  class="form-control director_name" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">负责人身份证号：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')" class="form-control director_id" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">律所营业执照号：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')"  class="form-control license_id" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">律所名称：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')"  class="form-control office_name" required/>
+					</div>
+
+					<div class="form-inline">
+						<label class="control-label">执业证照：</label>
+						<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')"  class="license_img" required/>
+					</div>
+					<div class="form-inline">
+						<label class="control-label">身份证正面：</label>
+						<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="id_img_front" class="director_img_front" required/>
+					</div>
+					<div class="form-inline">
+						<label class="control-label">身份证反面：</label>
+						<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="id_img_back" class="director_img_back" required/>
+					</div>
+
+				</div>
+				<div class="Myfooter text-center">
+					<input id="vertify_sub2" onclick="sub_vertify2()" type="button" class="btn btn-info" value="提交">
 				</div>
 			</form>
 
@@ -433,7 +482,7 @@
 			</article>
 			<div id="showBox_tit" class="list-group-item-info" style="font-size:16px;padding-left:15px;height:40px;line-height:40px;border-bottom:1px solid #BABABA;border-top:1px solid #BABABA;"><b>附近律所</b></div>
 			<article id="showBox">
-				<iframe id="test" src="" style="width:100%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>
+				<iframe id="test" src="" style="width:99%;" onload="this.height=100" frameborder="0" scrolling="no"></iframe>
 			</article>
 
 			<!--
