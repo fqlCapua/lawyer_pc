@@ -120,10 +120,9 @@ if(window.top==window.self){//不存在父页面
  	
  }else{
 // 	  parent.$(".pro_cont").val('');
-////     parent.$(".pro_cont").val($.parseHTML());sss
-     
+////     parent.$(".pro_cont").val($.parseHTML()); 
        parent.editor.txt.html(content);
-  
+  //parent.console.log(content)
        parent.layer.closeAll();
    }
 			layer.open({
