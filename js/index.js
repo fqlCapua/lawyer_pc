@@ -12,7 +12,7 @@ function user_ismoderator() {
 
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	var index = layer.load(2, {
+	var index = layer.load(1, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
 	});
@@ -707,8 +707,8 @@ $("#info_sub").click(function(){
 })
 //实名认证
 function sub_vertify(){
-	var index=layer.load({
-		type:1,
+	var index=layer.load(1,{
+		shade:[0.1,'red'],
 		area:['100px','50px']
 	});
 	var cur_timestamp = Date.parse(new Date()) / 1000;
@@ -777,8 +777,8 @@ function sub_vertify(){
 //  = 律所认证 = 
 //  ========== 
 function sub_vertify2(){
-	var index=layer.load({
-		type:1,
+	var index=layer.load(1,{
+		shade:[0.1,'gray'],
 		area:['100px','50px']
 	});
 	var cur_timestamp = Date.parse(new Date()) / 1000;

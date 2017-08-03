@@ -22,11 +22,40 @@
 		<script type='text/javascript' src='js/dist/strophe-1.2.8.js'></script>
 		<script type='text/javascript' src='js/dist/websdk-1.4.10.js'></script>
 		<script type="text/javascript" src="js/chat.js"></script>
+		<style>
+			.ie_page {
+				display: none;
+			}
+		</style>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if IE]>
+			<style>
+  .ie_page{
+    width: 100%;
+  	height:80px;
+  	background-color:#777777;
+  	display:block
+  }
+ 
+  
+  .ie_page h5{
+  	color:#EFEFEF;
+  }
+ 
+
+  .ie_page a:visited {color:#00FF00;}/* 已被访问的链接 */
+
+  .ie_page a:hover {color:#FF00FF;}/* 鼠标指针移动到链接上 */
+
+  .ie_page a:active {color:#0000FF;}/* 正在被点击的链接 */
+  *{
+  	margin: 0;
+  	padding: 0;
+  }
+</style>
       <script>
-      
      
+    
       </script>
         
     <![endif]-->
@@ -40,6 +69,26 @@
     <![endif]-->
 
 	</head>
+	<script>
+		
+	</script>
+	<div class='ie_page' >
+		<div>
+			<h5>为了您能有更好的体验，请下载下列任意一种浏览器，保证您能使用律所在线的完整功能.谢谢合作</h5>
+		</div>
+		&nbsp;&nbsp;
+		<a href="http://www.baidu.com/link?url=-b7o4tRJ-D_uLxiGwRJ6pS6oRYCVGqFWamxTTu59njUTUhD_51Y6HM_Is98u1A_vbNp23Tfac6eDTTHK_rlhRxWdoU-al0Y0yAmxDmgPlIy">
+			谷歌浏览器
+			
+		</a>&nbsp;&nbsp;&nbsp;
+		<a href='http://down.360safe.com/se/360se9.1.0.342.exe'>
+			360浏览器 
+		</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="http://download.theworld.cn/twc/theworld_chrome_4.3.0.102.exe">
+			世界之窗
+		</a>
+	</div>
 
 	<body>
 
@@ -347,28 +396,7 @@
 		</div>
 		<!-- header -->
 		<div class="container">
-			
-			<li class='caseSingle'>
-				<div class='case_title show_tit'>" + ele.case_title + "</div>
-				<div class='case_id'>" + ele.case_id + "</div>
-				<div class='case_uid'>" + ele.case_uid + "</div>
-				<div class='case_reason'>" + ele.case_reason + "</div>
-				<div class='case_process'>" + ele.case_process + "</div>
-				<div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div>
-				<div class='case_type'>" + ele.case_type + "</div>
-				<div class='case_status'>" + ele.case_status + "</div>
-				<div class='dropdown'>
-					<a class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a>
-					<ul class='dropdown-menu'>
-						<li id='del_case'>
-							<a>删除</a>
-						</li>
-						<li class='show_case'>
-							<a>浏览</a>
-						</li>
-					</ul>
-				</div>
-			</li>
+
 			<div class="header-bottom">
 
 				<div class="top-menu">
@@ -408,17 +436,6 @@
         	时间：2017-04-13
         	描述：法律论坛
         -->
-			<!--<div  class="cur_news">
-        	<div class="fa fa-bell-o" style="color:darkred; text-align: center;line-height:57px;height: 50px;width: 50px;"></div> 
-        	   <div class="cur_newsBox">
-        	     <ul class="cur_newsBox_ul">
-        	     	<li><a>1新闻:这是划伤一个月亮律师类卡拉斯的雷克萨了借壳上市要你说出来我就可以搜索出来哦</a></li>
-        	     	<li><a>2新闻:这是最新的新闻，你想知道什么，为寂寞的夜空划伤一个月亮律师类卡拉斯的雷克萨了借壳上市要你说出来我就可以搜索出来哦</a></li>
-        	     	<li><a>3新闻:这是最新的新闻，你想知道什么，为寂寞的夜空划伤一个月亮律师类卡拉斯的雷克萨了借壳上市要你说出来我就可以搜索出来哦</a></li>
-        	     </ul>  
-        	     
-        	    </div>
-		 </div>-->
 
 			<article class="studyChat">
 

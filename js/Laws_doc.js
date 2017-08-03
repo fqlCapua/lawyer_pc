@@ -112,7 +112,7 @@ function  laws_detail(i,tit){
            $("#freshIcon").hide()
 			var data = JSON.parse(data);
 			if(data.ret == 200) {
-				console.log(data.data);
+				//console.log(data.data);
       	    var content="<div class='laws_content' tit='"+tit+"' type_id='"+i+"'>"+data.data+"</div>";
       	  
 if(window.top==window.self){//不存在父页面
