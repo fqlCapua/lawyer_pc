@@ -34,7 +34,9 @@
  <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
  <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
+<style>
+	
+</style>
 	<body>
 		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
@@ -226,11 +228,14 @@
 											<section id="Mylaw_pic" class="add_section">
 												<form role="form">
 													<div class="">
-														<div class="form-group" style="display: flex;">
-															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;图片副本：</label>
-															<input id="law_pic_file" type="file" multiple="multiple" accept=".png,.jpg">
+														<div class="form-group" style="">
+															<input class="writ_title form-control"  type="text"  placeholder="文书标题" >
 														</div>
-														<input type="button" value="保存副本" class="btn btn-success  law_btn">
+														<div class="form-group" style="">
+															<label class="input_btn ">&nbsp;图片副本：</label><hr style="margin:10px;" />
+															<input class="writ_file" id="law_pic_file" type="file" multiple="multiple" accept=".png,.jpg">
+														</div>
+														<input type="button" value="保存副本" class="btn btn-success  writ_btn">
 													</div>
 													<!--<div class="">
 												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
@@ -362,7 +367,22 @@
 												</form>
 											</section>
 										</div>
-										<div class="processCont">
+										
+										<div class="add_program">
+											<div class="evidCont">
+												<a class=" text-muted" style="height:40px; line-height:40px;">
+													证据与文档：
+													<span class="text-info pull-right caret_icon">展开
+															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
+													</span>
+												</a>
+												<ul class="evidence_cont">
+
+												</ul>
+
+											</div>
+											<div class="processCont">
 
 											<a class="text-muted" style="height:40px; line-height:40px;">
 												案件流程文档：
@@ -383,16 +403,16 @@
 											</ul>
 
 										</div>
-										<div class="add_program">
-											<div class="evidCont">
-												<a class=" text-muted" style="height:40px; line-height:40px;">
-													证据与文档：
+											<div class="writCont">
+												<a class="text-muted" style="height:40px; line-height:40px;">
+												          法律文书清单：
 													<span class="text-info pull-right caret_icon">展开
-															<span style="font-size:18px;" id="evid"  class="fa fa-caret-down "></span>
-													<i class="fa fa-spinner fa-pulse load_icon"></i>
+													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
+													 <i class="fa fa-spinner fa-pulse load_icon"></i>
+
 													</span>
 												</a>
-												<ul class="evidence_cont">
+												<ul class="writ_cont">
 
 												</ul>
 
