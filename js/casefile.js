@@ -1618,29 +1618,18 @@ $(".writ_cont").delegate("li .link_writ", "click", function() {
 			layer.close(index);
 			if(data.ret == 200) {
                  var detail = data.data;
-                 console.log(detail)
-                   				layer.open({
-					title: '联系人详情',
+                
+                 var content="<div style='padding:10px 20px;'><div style='line-height:30px'>标题：" + detail.writ_title + "</div><div>副本："+ appendImg(detail.writ_img)+ "</div><div>";    
+				layer.open({
+					title: '文书详情',
 					type: 1,
 					skin: 'layui-layer-lan',
 					area: ['600px', '600px'],
 					offset: '25px',
 					anim: 2,
 					shade: false, //开启遮罩关闭
-					content: "<h1>文书详情</h1>"
+					content:content                                                                                       
 				});
-				
-                 
-//				layer.open({
-//					title: '联系人详情',
-//					type: 1,
-//					skin: 'layui-layer-lan',
-//					area: ['600px', '600px'],
-//					offset: '25px',
-//					anim: 2,
-//					shade: false, //开启遮罩关闭
-//					content: "<div style='padding:10px 20px;'><div style='line-height:30px'>联系人：" + detail.contact_name + "</div><div style='line-height:30px'>手机：" + detail.contact_phone + "</div><div style='line-height:30px'>E-mail：" + detail.contact_email + "</div><div style='line-height:30px'>住址：" + detail.contact_address + "</div></div>"
-//				});
 				$(".del_writ").attr("name", writ_id);
 
 			} else {
