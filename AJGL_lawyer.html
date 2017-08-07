@@ -253,15 +253,18 @@
 														<div class="text-title" style="line-height: 40px;">
 															<b>流程文字说明：</b>
 														</div>
-
+                                                       <!-- <input type="text" style='margin-bottom:5px;' class="form-control process_tit"  placeholder="流程标题(必填)"/>-->
 														<input style="margin-bottom: 5px;" type="button" class="btn btn-success load_pro_btn  clearfix" value='加载模板   ' />
 														<input style="margin-bottom:5px;" type="button" class="btn btn-success upload_law_btn pull-right" value='上传文档' />
-														<input type="file" class="hide upload_law_pic" />
-
+														<input type="file" style='margin-bottom:5px;' id="upload_process" class="upload_process" accept=".doc,.docx,.txt" />
+                                                        <div id="pro_doc" class="pro_doc hide">
+                                                        	<a class="pro_name" href=""></a><a href="">下载</a>
+                                                        </div>
 														<div id="editor" style="">
-															<p style="">文书详情</p>
+															<p style="color:#BABABA;">文书详情(与提交文档可选任意一种)</p>
+															<p tit='流程文书' style="" class='hide'></p>
 														</div><br />
-														<input type="button" class="btn btn-success save_pro_btn  clearfix" value='提交' />
+														<input type="button" class="btn btn-success save_pro_btn  clearfix" value='提交'/>
 														<input type="button" class="btn btn-success pro_btn2" value='保存' />
 
 													</div>
@@ -341,11 +344,11 @@
 														</div>
 														<div class="form-group">
 															<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
-															<input class="contact_tel form-control" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" type="text" placeholder="手机(必填)" v-model="contact.phone" />
+															<input class="contact_tel form-control" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" type="text" placeholder="手机(必填)" v-model="contact.mobile" required/>
 														</div>
 														<div class="form-group">
 															<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
-															<input type="text" pattern="^1[3-9]\d{9}$" placeholder="座机" class="form-control contact_mobile" v-model="contact.mobile" />
+															<input type="text"  placeholder="座机" class="form-control contact_phone" v-model="contact.phone" />
 
 														</div>
 

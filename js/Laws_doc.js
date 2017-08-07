@@ -199,7 +199,6 @@ function change_cate_id(){
 	return cate_id;
 }
 $(".prevPage").click(function(){
-	
 	var cate_id=change_cate_id();
 		if(pageNum==1){
 			layer.msg("已经是第一页了");
