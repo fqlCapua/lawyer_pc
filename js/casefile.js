@@ -372,16 +372,25 @@ var fileArr = new Array();
 
 function returnStr(obj,case_id) {
 	fileArr=[];
+	var case_id = $("#myModalLabel").attr('class');
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token=hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var fileNum=obj[0].files;
-	$.each(fileNum, function(i, ele) {
+	$.each(fileNum, function(i, ele){
+		 
+		var name=ele.name;
+	    var reader = new FileReader(ele);
+        reader.readAsDataURL(ele);
+        var URL = URL || webkitURL;
+        var blob = URL.createObjectURL(ele);
+        var newEle=new File([blob],cur_timestamp+name);
+console.log(newEle);
 		var fileData = new FormData();
-		// var fileobj=obj[0].files[i];
+		 var fileobj=obj[0].files[i];
 		fileData.append('service', "Index.upload_file");
 		fileData.append('time', cur_timestamp);
 		fileData.append('token', md_token);
-		fileData.append('file', ele);
+		fileData.append('file', newEle);
 		fileData.append('user_id', getSession(0));
 		fileData.append('case_id', case_id);
 		$.ajax({
@@ -396,9 +405,64 @@ function returnStr(obj,case_id) {
 				var data = JSON.parse(data);;
 				if(data.ret == 200) {
 					var str=data.data;
+					console.log(str)
                      fileArr.push(str);
+                     
 				} else {
 					layer.msg(data.msg);
+					
+					return  false;
+				}
+			},
+			error: function(data) {
+
+				layer.msg(data);
+			}
+		})
+
+	});
+	return fileArr.join(",");
+}
+function returnImgStr(obj,case_id) {
+	fileArr=[];
+	var case_id = $("#myModalLabel").attr('class');
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token=hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var fileNum=obj[0].files;
+	$.each(fileNum, function(i, ele){
+		var name=ele.name;
+	    var reader = new FileReader(ele);
+            reader.readAsDataURL(ele);
+        var URL = URL || webkitURL;
+        var blob = URL.createObjectURL(ele);
+        var newEle=new File([blob],cur_timestamp+name);
+      
+		var fileData = new FormData();
+		 var fileobj=obj[0].files[i];
+		fileData.append('service', "Index.upload_file");
+		fileData.append('time', cur_timestamp);
+		fileData.append('token', md_token);
+		fileData.append('file', newEle);
+		fileData.append('user_id', getSession(0));
+		fileData.append('case_id', case_id);
+		$.ajax({
+			type: "post",
+			url: "https://www.ls186.cn/law_api",
+			async: false,
+			cache: false,
+			processData: false,
+			contentType: false,
+			data: fileData,
+			success: function(data) {
+				var data = JSON.parse(data);;
+				if(data.ret == 200) {
+					var str=data.data;
+					  console.log(str)
+                      fileArr.push(str);
+                     
+				} else {
+					layer.msg(data.msg);
+					
 				}
 			},
 			error: function(data) {
@@ -412,18 +476,18 @@ function returnStr(obj,case_id) {
 }
 
 $(".evidBtn").click(function() {
-
-	var imgStr = returnStr($('#file-3'));
+	
+    var imgStr = returnStr($('#file-3'));
 	var case_id = $("#myModalLabel").attr('class');
 	/*保存证据*/
 	var title = $(".evid_explain textarea").val();
-	var img = returnStr($('#file-3'), case_id);
+	var img = returnImgStr($('#file-3'), case_id);
 	var mp3 = returnStr($('#file-4'), case_id);
 	var doc = returnStr($('#file-5'), case_id);
-	if(title != "") {
-		var index = layer.load(1, {
 
-			area: ['100px', '100px'],
+	if(title!= "") {
+		var index = layer.load(1, {
+            area: ['100px', '100px'],
 			shade: [0.1, 'gray']
 		});
 		$.ajax({
@@ -460,7 +524,7 @@ $(".evidBtn").click(function() {
 		});
 
 	} else {
-		layer.msg('描述不能为空');
+		layer.msg('提交出错...');
 	}
 
 })
@@ -721,65 +785,21 @@ $('.load_pro_btn').click(function() {
 })
 /*新增文书类型*/
 
-function process_file(obj,case_id) {
-	fileArr=[];
-	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token=hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	var fileNum=obj[0].files[0];
-
-     var   fileData = new FormData();
-		// var fileobj=obj[0].files[i];
-		fileData.append('service', "Index.upload_file");
-		fileData.append('time', cur_timestamp);
-		fileData.append('token', md_token);
-		fileData.append('file', fileNum);
-		fileData.append('user_id', getSession(0));
-		fileData.append('case_id', case_id);
-		$.ajax({
-			type: "post",
-			url: "https://www.ls186.cn/law_api",
-			async: false,
-			cache: false,
-			processData: false,
-			contentType: false,
-			data: fileData,
-			success: function(data) {
-				var data = JSON.parse(data);;
-				if(data.ret == 200) {
-					var str=data.data+"/"+String(name);
-					console.log(str);
-                     fileArr.push(str);
-                     
-				} else {
-					layer.msg(data.msg);
-				}
-			},
-			error: function(data) {
-
-				layer.msg(data);
-			}
-		
-
-	});
-	return fileArr.join(",");
-}
 
 $('.save_pro_btn').click(function() {
 	   	var index = layer.load(1, {
 		shade: [0.1, 'red']
 	});
-	
-    var pro_txt = editor.txt.html();
+	 var pro_txt = editor.txt.html();
 	    var t1 = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
+		var file1=returnStr($("#upload_process"),case_id);
 	if($("#upload_process").val()!=''){
-		var file1=process_file($("#upload_process"),case_id);
-		var pathStr=file1.split("/")[0];
 		var name=$("#upload_process")[0].files[0].name;
 		
 	}else{
-		name=$(pro_txt).attr('tit');
+		  name=$(pro_txt).attr('tit');
 	}
 	
 		$.ajax({
@@ -792,7 +812,7 @@ $('.save_pro_btn').click(function() {
 				case_id: case_id,
 				name:name,
 				content: pro_txt,
-				path:pathStr
+				path:file1
 			},
 
 			success: function(data) {
@@ -845,7 +865,7 @@ $(".processCont .caret_icon").click(function() {
 					var list = data.data;
                   console.log(list)
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><a href='"+ele.case_doc_path+"' class='link_doc'>预览</a>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
+						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><a  class='link_doc'>预览</a>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
 						$(".process_cont").append(li);
 
 					})
@@ -864,7 +884,7 @@ $(".processCont .caret_icon").click(function() {
 
 $('.pro_btn2').hide();
 $(".process_cont").delegate("li .link_doc", "click", function() {
-	$("#editor").show();
+
 	 $(".pro_doc").removeClass('hide');
 	
 	var doc_id = $(this).parent().attr('doc_id');
@@ -891,7 +911,7 @@ $(".process_cont").delegate("li .link_doc", "click", function() {
 		success: function(data) {
 			layer.close(index);
 			if(data.ret == 200) {
-				 $("#editor").hide();
+			console.log(data.data)
 				var detail = data.data;
 				var content = detail.case_doc_content;
 				$('#Myprocess1').show();
