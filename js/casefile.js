@@ -384,7 +384,7 @@ function returnStr(obj,case_id) {
         var URL = URL || webkitURL;
         var blob = URL.createObjectURL(ele);
         var newEle=new File([blob],cur_timestamp+name);
-console.log(newEle);
+
 		var fileData = new FormData();
 		 var fileobj=obj[0].files[i];
 		fileData.append('service', "Index.upload_file");
@@ -430,19 +430,13 @@ function returnImgStr(obj,case_id) {
 	var md_token=hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var fileNum=obj[0].files;
 	$.each(fileNum, function(i, ele){
-		var name=ele.name;
-	    var reader = new FileReader(ele);
-            reader.readAsDataURL(ele);
-        var URL = URL || webkitURL;
-        var blob = URL.createObjectURL(ele);
-        var newEle=new File([blob],cur_timestamp+name);
-      
+		
 		var fileData = new FormData();
 		 var fileobj=obj[0].files[i];
 		fileData.append('service', "Index.upload_file");
 		fileData.append('time', cur_timestamp);
 		fileData.append('token', md_token);
-		fileData.append('file', newEle);
+		fileData.append('file', ele);
 		fileData.append('user_id', getSession(0));
 		fileData.append('case_id', case_id);
 		$.ajax({
@@ -457,12 +451,13 @@ function returnImgStr(obj,case_id) {
 				var data = JSON.parse(data);;
 				if(data.ret == 200) {
 					var str=data.data;
-					  console.log(str)
+					
                       fileArr.push(str);
                      
 				} else {
 					layer.msg(data.msg);
-					
+				  fileArr.push("samename");
+					return fileArr.join(",");
 				}
 			},
 			error: function(data) {
@@ -486,6 +481,9 @@ $(".evidBtn").click(function() {
 	var doc = returnStr($('#file-5'), case_id);
 
 	if(title!= "") {
+		if(img!='samename'){
+			
+		
 		var index = layer.load(1, {
             area: ['100px', '100px'],
 			shade: [0.1, 'gray']
@@ -522,9 +520,12 @@ $(".evidBtn").click(function() {
 				layer.close(index);
 			}
 		});
+		}else{
+			
+		}
 
 	} else {
-		layer.msg('提交出错...');
+		layer.msg('描述不能为空');
 	}
 
 })
@@ -794,7 +795,7 @@ $('.save_pro_btn').click(function() {
 	    var t1 = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
-		var file1=returnStr($("#upload_process"),case_id);
+		var file1=returnImgStr($("#upload_process"),case_id);
 	if($("#upload_process").val()!=''){
 		var name=$("#upload_process")[0].files[0].name;
 		
@@ -863,9 +864,10 @@ $(".processCont .caret_icon").click(function() {
 					//	console.log('加载成功');
 					$(".process_cont").empty();
 					var list = data.data;
-                  console.log(list)
+               
+                 
 					$.each(list, function(i, ele) {
-						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><a  class='link_doc'>预览</a>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
+						var li = $("<li class='list-group-item' doc_id='" + ele.case_doc_id + "'><a href='javaScript:void(0)' class='link_doc' name='http://www.ls186.cn"+ele.case_doc_path+"'>预览</a>&nbsp;&nbsp;<span>" + ele.case_doc_name + "</span><i  class='text-danger fa fa-trash pull-right del_doc'></i></li>\n");
 						$(".process_cont").append(li);
 
 					})
@@ -883,9 +885,15 @@ $(".processCont .caret_icon").click(function() {
 /*获取文书详情(律师版) √*/
 
 $('.pro_btn2').hide();
-$(".process_cont").delegate("li .link_doc", "click", function() {
+$(".process_cont").delegate("li .link_doc", "click", function(){
 
 	 $(".pro_doc").removeClass('hide');
+	 console.log($(this).attr('name'));
+	 var doc_arr=String($(this).attr('name')).split('/')
+	var load_name=doc_arr[doc_arr.length-1];
+	$('.pro_name').html(load_name);
+	$('.pro_url').html('下载');
+	$('.pro_url').attr('href',$(this).attr('name'));
 	
 	var doc_id = $(this).parent().attr('doc_id');
 	//console.log(doc_id);
