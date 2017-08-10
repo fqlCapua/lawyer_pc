@@ -362,6 +362,7 @@ $(".contact_cont").hide();
 $(".cost_cont").hide();
 $(".writ_cont").hide();
 $(".load_icon").hide();
+ $(".log_cont").hide();
 //  ========== 
 //  = 证据 = 
 //  ========== 
@@ -473,7 +474,9 @@ function returnImgStr(obj,case_id) {
 }
 
 $(".evidBtn").click(function() {
-
+   var index = layer.load(1, {
+          shade: [0.1, 'gray']
+		});
     var case_id = $("#myModalLabel").attr('class');
 	/*保存证据*/
 	var title = $(".evid_explain textarea").val();
@@ -483,9 +486,7 @@ $(".evidBtn").click(function() {
 
 	if(title!='') {
 		if((img.indexOf('samename')==-1)&&(mp3.indexOf('samename')==-1)&&(doc.indexOf('samename')==-1)){
-		var index = layer.load(1, {
-          shade: [0.1, 'gray']
-		});
+		
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
@@ -520,12 +521,12 @@ $(".evidBtn").click(function() {
 		});
 	
 		}else{
-		
+		layer.close(index);
 			
 		}
 
 	} else {
-		
+		layer.close(index);
 		layer.msg('描述不能为空');
 	}
 
@@ -1774,4 +1775,301 @@ $(".writ_cont").delegate("li .del_writ", "click", function() {
 
 	})
 
+})
+
+
+//  ==========
+//  = 新增日志 = 
+//  ========== 
+
+      
+	    
+//$(function(){
+//	
+//	    new Vue({
+//	el: '#Mylog1',
+//	data: {
+//		log:{
+//			service: "Case.add_log",
+//			time: '',
+//			token: '',
+//			case_id: '',
+//			date:'',
+//			field:'',
+//			content: ''
+//			}
+//	},
+//	methods:{
+//		submit: function() {
+//			var time_stamp=Date.parse(new Date()) / 1000;
+//			this.log.time=time_stamp;
+//			this.log.token=hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law");
+//			this.log.case_id = $("#myModalLabel").attr('class');
+//			this.log.date=getLocalTime(time_stamp);
+//		    var index = layer.load(1, {
+//				shade: [0.1, 'red']
+//			});
+//			$.ajax({
+//				type: "post",
+//				url: 'http://www.ls186.cn/Law_api',
+//				data: this.log,
+//				success: function(data) {
+//					layer.close(index);
+//					var data = JSON.parse(data);
+//					if(data.ret == 200) {
+//						layer.msg('添加成功');
+//						$(".programe").children().eq(0).attr('selected', true);
+//						$(".programeBox").children().hide();
+//						$("input[type='text']").val('');
+//                      $('textarea').val('');
+//                      var l=1;
+//					} else {
+//						layer.msg(data.msg);
+//					}
+//				},
+//				error: function(data, status) {
+//					layer.close(index);
+//					layer.msg(status + data);
+//				}
+//			});
+//		}
+//	}
+//});
+//      var l=1;
+//      $(".log_content").val('1.')
+//	    $(".log_content").keydown(function(event) {
+//          if(event.keyCode == "13"){
+//
+//	     	      l++;
+//		         e = $(this).val();
+//		         $(this).val(e+"\n"+l+'.'); 
+//		        
+//	        }
+//	    });
+//})
+
+$(".logBtn").click(function() {
+                      
+	var index = layer.load(1, {
+		shade: [0.2, 'gray']
+	});
+	var case_id=$("#myModalLabel").attr('class');
+	var log_id = $(this).parent().attr("case_log_id");
+	var t1 = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+	
+	var date1=getLocalTime(t1);
+	var place=$('.log_loc').val();
+	var content= $('.log_content').val();
+	$.ajax({
+		type: 'POST',
+		url: 'https://www.ls186.cn/law_api',
+		data: {
+			service: 'Case.add_log',
+			time: t1,
+			token: md_token,
+			case_id:case_id,
+			date:date1,
+			field:place,
+			content:content	
+		},
+		dataType: 'json',
+		success: function(data) {
+			layer.close(index);
+			if(data.ret == 200) {
+                 $('#Mylog1').attr('log_id',data.data)
+                  $('#Mylog1').hide();
+                layer.msg('提交成功');
+			} else {
+				layer.msg(data.msg);
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+		}
+	})
+})
+
+//  ========== 
+//  = 日志列表 = 
+//  ========== 
+
+var flag7 = 0;
+$(".logCont .caret_icon").click(function() {
+	if(flag7 % 2 == 0) {
+		var cur_timestamp = Date.parse(new Date()) / 1000;
+		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+		var case_id = $("#myModalLabel").attr('class');
+		$(this).children(".load_icon").show();
+                       
+		$.ajax({
+			type: "post",
+			url: "https://www.ls186.cn/law_api",
+			data: {
+				service: 'Case.log_list',
+				time: cur_timestamp,
+				token: md_token,
+				page:1,
+				case_id: case_id,
+			},
+			success: function(data){
+				$(".load_icon").hide();
+				var data = JSON.parse(data);
+				if(data.ret == 200) {
+                      $(".log_cont").empty();
+					var list = data.data;
+				 console.log(list);
+					$.each(list, function(i, ele) {
+						var li = $("<li class='list-group-item ' case_log_id='" + ele.case_log_id + "'><a href='#' class='link_log'>预览</a>&nbsp;&nbsp;<span>" + ele.case_log_field + "</span><i  class='text-danger fa fa-trash pull-right del_log'></i></li>");
+						$(".log_cont").append(li);
+
+					})
+
+				} else {
+					layer.msg(data.msg);
+				}
+			}
+		});
+	} else {
+
+	}
+	flag7++;
+	$(this).parent().siblings().slideToggle();
+});//  ========== 
+//  = 日志详情 = 
+//  ==========
+$(".log_cont").on('click',"li .link_log", function() {
+	$('.savelogBtn').show();
+	$('.logBtn').hide();
+                            $("input[type='text']").val('');
+                        $('textarea').val('');
+                        $('.log_ctime').html('');
+    $('#Mylog1').show();
+	var index = layer.load(1, {
+		shade: [0.2, 'gray']
+	});
+	var case_log_id = $(this).parent().attr("case_log_id");
+	var t1 = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+	$.ajax({
+		type: 'POST',
+		url: 'https://www.ls186.cn/law_api',
+		data: {
+			service: 'Case.log_detail',
+			time: t1,
+			token: md_token,
+			log_id:case_log_id
+		},
+		dataType: 'json',
+		success: function(data) {
+			layer.close(index);
+			if(data.ret == 200) {
+                 var detail = data.data;
+                  $('.log_ctime').html(detail.case_log_date);
+                  $('.log_loc').val(detail.case_log_field);
+                  $('.log_content').val(detail.case_log_content);
+           
+			} else {
+				layer.msg(data.msg);
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+		}
+	})
+})
+//  ========== 
+//  = 删除日志 = 
+//  ==========
+$(".log_cont").delegate("li .del_log", "click", function() {
+	var index = layer.load(1, {
+		shade: [0.2, 'gray']
+	});
+	var log_id = $(this).parent().attr("case_log_id");
+	var t1 = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+	layer.confirm('确定要删除么？', {
+		btn: ['是', '否']
+	}, function() {
+
+		$.ajax({
+			type: 'POST',
+			url: 'https://www.ls186.cn/law_api',
+			data: {
+				service: 'Case.del_log',
+				time: t1,
+				token: md_token,
+				id: log_id
+			},
+			dataType: 'json',
+			success: function(data) {
+				layer.close(index);
+				//var data=JSON.parse(data);
+				if(data.ret == 200) {
+					layer.msg('已删除！！')
+					setInterval('window.location.reload()', 500);
+				} else {
+					layer.msg("删除失败!");
+				}
+			},
+			error: function(data) {
+				layer.close(index);
+				console.log(data)
+			}
+		})
+	}, function() {
+		layer.close(index);
+
+	})
+
+})
+//  ========== 
+//  = 保存日志 = 
+//  ========== 
+$('.savelogBtn').hide();
+
+$(".savelogBtn").click(function() {
+                        $("input[type='text']").val('');
+                        $('textarea').val('');
+                        $('.log_ctime').html('');
+                        var index = layer.load(1, {
+		                 shade: [0.2, 'gray']
+	              });
+	var log_id=$('#Mylog1').attr('log_id');
+	var t1 = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
+	
+	var date1=getLocalTime(t1);
+	var place=$('.log_loc').val();
+	var  content= $('.log_content').val();
+	$.ajax({
+		type: 'POST',
+		url: 'https://www.ls186.cn/law_api',
+		data: {
+			service: 'Case.save_log',
+			time: t1,
+			token: md_token,
+			log_id:log_id,
+			date:date1,
+			field:place,
+			content:content	
+		},
+		dataType: 'json',
+		success: function(data) {
+			layer.close(index);
+			if(data.ret == 200) {
+                
+                  $('.log_ctime').html('');
+                  $('.log_loc').val('');
+                  $('.log_content').val('');
+                  $('#Mylog1').hide();
+                layer.msg('保存成功');
+			} else {
+				layer.msg(data.msg);
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+		}
+	})
 })

@@ -34,9 +34,18 @@
  <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
  <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style>
-	
-</style>
+
+	<style>
+		ol {
+			list-style-type: demical;
+		
+		}
+		
+		ol li{
+			list-style-position:outside;
+		}
+	</style>
+
 	<body>
 		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
@@ -188,7 +197,8 @@
 												<option name="law_pic">新增法律文书清单</option>
 												<option name="remind1">新增流程时间提醒</option>
 												<option name='cost1'>新增费用和票据记录</option>
-												<option name='contact1'>新增相关人通讯录</option>、
+												<option name='contact1'>新增相关人通讯录</option>
+												<option name='log1'>新增日志</option>、
 
 											</select>
 										</div>
@@ -229,10 +239,11 @@
 												<form role="form">
 													<div class="">
 														<div class="form-group" style="">
-															<input class="writ_title form-control"  type="text"  placeholder="文书标题" >
+															<input class="writ_title form-control" type="text" placeholder="文书标题">
 														</div>
 														<div class="form-group" style="">
-															<label class="input_btn ">&nbsp;图片副本：</label><hr style="margin:10px;" />
+															<label class="input_btn ">&nbsp;图片副本：</label>
+															<hr style="margin:10px;" />
 															<input class="writ_file" id="law_pic_file" type="file" multiple="multiple" accept=".png,.jpg">
 														</div>
 														<input type="button" value="保存副本" class="btn btn-success  writ_btn">
@@ -253,22 +264,23 @@
 														<div class="text-title" style="line-height: 40px;">
 															<b>流程文字说明：</b>
 														</div>
-                                                       <!-- <input type="text" style='margin-bottom:5px;' class="form-control process_tit"  placeholder="流程标题(必填)"/>-->
+														<!-- <input type="text" style='margin-bottom:5px;' class="form-control process_tit"  placeholder="流程标题(必填)"/>-->
 														<input style="margin-bottom: 5px;" type="button" class="btn btn-success load_pro_btn  clearfix" value='加载模板   ' />
 														<div class="input-group">
-															
+
 														</div>
 														<!--<input style="margin-bottom:5px;" type="button" class="btn btn-success upload_law_btn pull-right" value='上传文档' />-->
 														<input type="file" style='margin-bottom:5px;' id="upload_process" class="upload_process btn btn-default" accept=".doc,.docx,.txt" />
-                                                            <div class="input-group pro_doc" style="width: 100%;">
-                                                        		 <a class="pro_name col-md-8" href=""></a><a class="pro_url col-md-3" href=""></a>
-                                                        	</div>
-                                                       
+														<div class="input-group pro_doc" style="width: 100%;">
+															<a class="pro_name col-md-8" href=""></a>
+															<a class="pro_url col-md-3" href=""></a>
+														</div>
+
 														<div id="editor" style="">
 															<p style="color:#BABABA;">文书详情(与提交文档可选任意一种)</p>
 															<p tit='流程文书' style="" class='hide'></p>
 														</div><br />
-														<input type="button" class="btn btn-success save_pro_btn  clearfix" value='提交'/>
+														<input type="button" class="btn btn-success save_pro_btn  clearfix" value='提交' />
 														<input type="button" class="btn btn-success pro_btn2" value='保存' />
 
 													</div>
@@ -278,30 +290,30 @@
 											<!--案件提醒-->
 
 											<section id="Myremind1" class="add_section">
-												<form role="form"  class="form-horizontal" @submit.prevent="submit">
+												<form role="form" class="form-horizontal" @submit.prevent="submit">
 													<div class="" style=""><br />
 														<div class="form-group">
-												        	<input type="text" v-model='remind.title' class="remind_title form-control" id="" value="" placeholder="标题" required/>
-												        </div>
-                                                       
-												        <div class="form-group">
-												        	<label>设置时间:</label>
-                                                            <input type="datetime-local"  placeholder="设置时间" value="2017-08-01"  class="form-control remindfirst" />
-												                    <!--<select>
+															<input type="text" v-model='remind.title' class="remind_title form-control" id="" value="" placeholder="标题" required/>
+														</div>
+
+														<div class="form-group">
+															<label>设置时间:</label>
+															<input type="datetime-local" placeholder="设置时间" value="2017-08-01" class="form-control remindfirst" />
+															<!--<select>
 												           	            <option></option>
 												                   </select>-->
-												        </div>
-												        <div class="form-group">
-												        	<input type="text" v-model='remind.second' pattern="^([1-9][0-9]*)$" oninvalid="setCustomValidity('正整数')" oninput="setCustomValidity('')" class="remind_second form-control"  placeholder="提前提醒小时数" required/>
-												        </div>
-												        <div class="form-group">
-												        	<input type="text" v-model='remind.third' class="remind_third form-control" pattern="^([1-9][0-9]*)$" oninput="setCustomValidity('')" oninvalid="setCustomValidity('正整数')"  placeholder="提前提醒天数" required/>
-												        </div>
-												        <div class="form-group">
-												        	<textarea type="text" v-model='remind.comment' cols="100%" rows="2"  class="remind_desc form-control"  value="" placeholder="提醒说明" ></textarea>
-												        </div>
-                                                         <input type="submit" class="btn btn-success remind_btn"  value="提交"/>    
-                                                           
+														</div>
+														<div class="form-group">
+															<input type="text" v-model='remind.second' pattern="^([1-9][0-9]*)$" oninvalid="setCustomValidity('正整数')" oninput="setCustomValidity('')" class="remind_second form-control" placeholder="提前提醒小时数" required/>
+														</div>
+														<div class="form-group">
+															<input type="text" v-model='remind.third' class="remind_third form-control" pattern="^([1-9][0-9]*)$" oninput="setCustomValidity('')" oninvalid="setCustomValidity('正整数')" placeholder="提前提醒天数" required/>
+														</div>
+														<div class="form-group">
+															<textarea type="text" v-model='remind.comment' cols="100%" rows="2" class="remind_desc form-control" value="" placeholder="提醒说明"></textarea>
+														</div>
+														<input type="submit" class="btn btn-success remind_btn" value="提交" />
+
 													</div>
 
 												</form>
@@ -352,7 +364,7 @@
 														</div>
 														<div class="form-group">
 															<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
-															<input type="text"  placeholder="座机" class="form-control contact_phone" v-model="contact.phone" />
+															<input type="text" placeholder="座机" class="form-control contact_phone" v-model="contact.phone" />
 
 														</div>
 
@@ -366,15 +378,44 @@
 														</div>
 														<div class="form-group">
 															<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
-															<textarea class="contact_comment form-control" placeholder="备注信息..." v-model="contact.comment"></textarea>
+															<textarea class="contact_comment form-control" placeholder="备注信息..." >1.</textarea>
 														</div>
 														<input type="submit" class="btn btn-success save_contact_btn" value="保存" />
 													</div>
 
 												</form>
 											</section>
+											<section id="Mylog1" class="add_section">
+												<form role="form" @submit.prevent="submit">
+													<div class="">
+														<br />
+														<div class="log_ctime">
+															
+														</div>
+														<div class="form-group">
+															<label>地点:</label>
+															<input class=" form-control log_loc" type="text" placeholder="地点" v-model="log.field" />
+														</div>
+                                                        <div class="form-group" >
+															<label>内容:</label>
+													
+															   <textarea  style="height: 150px;overflow-y: scroll;"  class="form-control log_content"   v-model='log.content' placeholder=""></textarea>
+															
+
+														</div>
+
+														<input type="button" value="提交日志" class="btn btn-success  logBtn">
+														<input type="button"  value="保存日志" class="btn btn-success  savelogBtn">
+													</div>
+													<!--<div class="">
+												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
+
+											</div>-->
+
+												</form>
+											</section>
 										</div>
-										
+
 										<div class="add_program">
 											<div class="evidCont">
 												<a class=" text-muted" style="height:40px; line-height:40px;">
@@ -391,31 +432,31 @@
 											</div>
 											<div class="processCont">
 
-											<a class="text-muted" style="height:40px; line-height:40px;">
-												案件流程文档：
-												<span class="text-info pull-right caret_icon">展开
-													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-												<i class="fa fa-spinner fa-pulse load_icon"></i>
-
-												</span>
-												<div class="doc_txtbox hide">
-													<div class="doc_txt">
-
-													</div>
-
-												</div>
-											</a>
-											<ul class="process_cont">
-
-											</ul>
-
-										</div>
-											<div class="writCont">
 												<a class="text-muted" style="height:40px; line-height:40px;">
-												          法律文书清单：
+													案件流程文档：
 													<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
-													 <i class="fa fa-spinner fa-pulse load_icon"></i>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
+
+													</span>
+													<div class="doc_txtbox hide">
+														<div class="doc_txt">
+
+														</div>
+
+													</div>
+												</a>
+												<ul class="process_cont">
+
+												</ul>
+
+											</div>
+											<div class="writCont">
+												<a class="text-muted" style="height:40px; line-height:40px;">
+													法律文书清单：
+													<span class="text-info pull-right caret_icon">展开
+													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
 
 													</span>
 												</a>
@@ -426,7 +467,7 @@
 											</div>
 											<div class="remindCont">
 												<a class="text-muted" style="height:40px; line-height:40px;">
-												               时间提醒清单：
+													时间提醒清单：
 													<span class="text-info pull-right caret_icon">展开
 													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
 													<i class="fa fa-spinner fa-pulse load_icon"></i>
@@ -467,8 +508,25 @@
 												</ul>
 
 											</div>
+											<div class="logCont">
+
+												<a class="text-muted" style="height:40px; line-height:40px;">
+													日志：
+													<span class="text-info pull-right caret_icon">展开
+													   <span style="font-size:18px;" id="process"  class="fa fa-caret-down"></span>
+													<i class="fa fa-spinner fa-pulse load_icon"></i>
+
+													</span>
+													
+												</a>
+												<ul class="log_cont">
+
+												</ul>
+
+											</div>
 
 										</div>
+
 										<div class="modal-footer">
 											<input id="save" type="button" style="font-size: 14px;font-weight: normal;color: #FFFFFF;" class="btn  btn-info " value="提交保存">
 										</div>
