@@ -802,6 +802,7 @@ $('.save_pro_btn').click(function() {
 		
 	}else{
 		  name=$(pro_txt).attr('tit');
+		  console.log(name);
 	}
 	
 		$.ajax({
