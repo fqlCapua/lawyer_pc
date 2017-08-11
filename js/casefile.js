@@ -473,10 +473,8 @@ function returnImgStr(obj,case_id) {
 	return fileArr.join(",");
 }
 
-$(".evidBtn").click(function() {
-   var index = layer.load(1, {
-          shade: [0.1, 'gray']
-		});
+$(".evidBtn").click(function(){
+   var index=layer.load(1,{shade: [0.1, 'gray']});
     var case_id = $("#myModalLabel").attr('class');
 	/*保存证据*/
 	var title = $(".evid_explain textarea").val();
@@ -484,13 +482,13 @@ $(".evidBtn").click(function() {
 	var mp3 = returnStr($('#file-4'), case_id);
 	var doc = returnStr($('#file-5'), case_id);
 
-	if(title!='') {
+	if(title!=''){
 		if((img.indexOf('samename')==-1)&&(mp3.indexOf('samename')==-1)&&(doc.indexOf('samename')==-1)){
 		
 		$.ajax({
 			type: "post",
 			url: "https://www.ls186.cn/law_api",
-			data: {
+			data:{
 				service: 'Case.add_evidence',
 				time: cur_timestamp,
 				token: md_token,
@@ -510,6 +508,8 @@ $(".evidBtn").click(function() {
 					$("input[type='text']").val('');
 					$("input[type='file']").val('');
 					$('textarea').val('');
+					$(".evidence_cont").hide();
+
 				} else {
 					layer.msg(data.msg);
 				};
@@ -539,8 +539,7 @@ $(".evidBtn").click(function() {
 var flag1 = 0;
 $(".evidCont .caret_icon").click(function() {
 	if(flag1 % 2 == 0) {
-
-		var cur_timestamp = Date.parse(new Date()) / 1000;
+       var cur_timestamp = Date.parse(new Date()) / 1000;
 		var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 		var case_id = $("#myModalLabel").attr('class');
 
@@ -823,6 +822,8 @@ $('.save_pro_btn').click(function() {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('添加成功');
+					$(".process_cont").hide();
+
 					$(".programe").children().eq(0).attr('selected', true);
 					$(".programeBox").children().hide();
 					$("input[type='text']").val('');
@@ -981,6 +982,8 @@ function save_doc(doc_id) {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('保存成功');
+					$(".process_cont").hide();
+
 					$(".programe").children().eq(0).attr('selected', true);
 					$(".programeBox").children().hide();
 					$('.pro_btn2').hide();
@@ -1109,6 +1112,8 @@ $('.save_cost_btn').click(function() {
 				var data = JSON.parse(data);
 				if(data.ret == 200) {
 					layer.msg('添加成功');
+					$(".cost_cont").hide();
+
 					$(".programe").children().eq(0).attr('selected', true);
 					$(".programeBox").children().hide();
 
@@ -1302,6 +1307,8 @@ new Vue({
 					var data = JSON.parse(data);
 					if(data.ret == 200) {
 						layer.msg('添加成功');
+						$(".contact_cont").hide();
+
 						$(".programe").children().eq(0).attr('selected', true);
 						$(".programeBox").children().hide();
 						$("input[type='text']").val('');
@@ -1478,6 +1485,8 @@ new Vue({
 					var data = JSON.parse(data);
 					if(data.ret == 200) {
 						layer.msg('添加成功');
+						$(".remind_cont").hide();
+
 						$(".programe").children().eq(0).attr('selected', true);
 						$(".programeBox").children().hide();
 						$("input[type='text']").val('');
@@ -1639,14 +1648,16 @@ $(".writCont .caret_icon").click(function() {
 //  ========== 
 
 $(".writ_btn").click(function(){
+	console.log('OK');
 			var cur_timestamp = Date.parse(new Date()) / 1000;
 			var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 			var case_id = $("#myModalLabel").attr('class');
 			var title = $('.writ_title').val();
-			if(title != '' && $('.writ_file').val() != '') {
-				var writ = returnImgStr($('#law_pic_file'), case_id);
-			if(writ='samename'){}else{
-			
+			if(title!= '') {
+			  var writ = returnImgStr($('#law_pic_file'), case_id);
+			if(writ.indexOf('samename')==-1){
+				
+		
 				$.ajax({
 						type: "post",
 						url: "https://www.ls186.cn/law_api",
@@ -1657,13 +1668,13 @@ $(".writ_btn").click(function(){
 							id:case_id,
 							title: title,
 							img:writ
-
 						},
 						success: function(data) {
 							
 							var data = JSON.parse(data);;
 							if(data.ret == 200) {
                                  layer.msg('提交成功');
+                                    $(".writ_cont").hide();
                                        $(".programe").children().eq(0).attr('selected', true);
 						                $(".programeBox").children().hide();
 					       	              $("input[type='text']").val('');
@@ -1679,6 +1690,7 @@ $(".writ_btn").click(function(){
 
 					});
 				    
+				}else{
 						
 			}
 				} else {
@@ -1880,6 +1892,8 @@ $(".logBtn").click(function() {
                  $('#Mylog1').attr('log_id',data.data)
                   $('#Mylog1').hide();
                 layer.msg('提交成功');
+
+ $(".log_cont").hide();
 			} else {
 				layer.msg(data.msg);
 			}
@@ -1941,14 +1955,15 @@ $(".logCont .caret_icon").click(function() {
 $(".log_cont").on('click',"li .link_log", function() {
 	$('.savelogBtn').show();
 	$('.logBtn').hide();
-                            $("input[type='text']").val('');
-                        $('textarea').val('');
-                        $('.log_ctime').html('');
+     $("input[type='text']").val('');
+     $('textarea').val('');
+      $('.log_ctime').html('');
     $('#Mylog1').show();
 	var index = layer.load(1, {
 		shade: [0.2, 'gray']
 	});
 	var case_log_id = $(this).parent().attr("case_log_id");
+	$('#Mylog1').attr('log_id',case_log_id);
 	var t1 = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(t1)) + "_law");
 	$.ajax({
@@ -2029,11 +2044,8 @@ $(".log_cont").delegate("li .del_log", "click", function() {
 $('.savelogBtn').hide();
 
 $(".savelogBtn").click(function() {
-                        $("input[type='text']").val('');
-                        $('textarea').val('');
-                        $('.log_ctime').html('');
-                        var index = layer.load(1, {
-		                 shade: [0.2, 'gray']
+     var index = layer.load(1, {
+	          shade: [0.2, 'gray']
 	              });
 	var log_id=$('#Mylog1').attr('log_id');
 	var t1 = Date.parse(new Date()) / 1000;
@@ -2063,7 +2075,9 @@ $(".savelogBtn").click(function() {
                   $('.log_loc').val('');
                   $('.log_content').val('');
                   $('#Mylog1').hide();
-                layer.msg('保存成功');
+                layer.msg('保存成功'); 
+
+ $(".log_cont").hide();
 			} else {
 				layer.msg(data.msg);
 			}
