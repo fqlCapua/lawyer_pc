@@ -644,7 +644,20 @@
 		<script type="text/javascript" src="js/getSession.js"></script>
 		<script type="text/javascript" src="js/load_news.js"></script>
 		<script>
-			//	$(":file").filestyle();
+			
+			  var index=layer.open({
+			  	    title:'app推广',
+			  	     skin: 'layui-layer-lan',
+                   type: 2,
+                   content:'promotion.html',
+                   area: ['100%', '100%'],
+                   maxmin: true,
+                   cancel:function(){
+                   	layer.close(index);
+                   }
+               });
+			
+			
 			$('.modal').modal({
 				backdrop: 'static',
 				show: false
