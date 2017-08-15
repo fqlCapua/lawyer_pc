@@ -33,7 +33,7 @@
 </html>
 	
 <script type="text/javascript">
-	function addMarker(lng,lat,law_msg){
+	function addMarker(lng,lat,username,phone){
 		
 	 var point = new BMap.Point(lng,lat);
 	 
@@ -47,7 +47,8 @@
 	  message:''
 	}
     //console.log(opts)
-    var infoWindow = new BMap.InfoWindow(law_msg, opts);
+   // var cont="<div class='form-inline'><label class='control-label col-md-2'>姓名：</label><div class='form-control-static col-md-10'>"+username+"</div></div><div class='form-inline'><label class='control-label col-md-2'>电话：</label><div class='form-control-static col-md-10'>"+phone+"</div></div>";
+    var infoWindow = new BMap.InfoWindow('<a>姓名：&nbsp;'+username+'</a><hr /><a>电话： &nbsp;  '+phone+'</a>', opts);
     marker.addEventListener("click", function(){          
 		map.openInfoWindow(infoWindow,point); //开启信息窗口
 	});
@@ -78,14 +79,15 @@
 				  var list=data.data;
 //				     console.log(list);
 				  $.each(list, function(i,ele){
+				  	console.log(ele)
 				     //console.log("OK");
 				  	if(ele.tag==0){
 				  	   
-				         addMarker(ele.user_lng,ele.user_lat,ele.user_desc);
+				         addMarker(ele.user_lng,ele.user_lat,ele.user_truename,ele.user_phone);
 				  	}else{
 				  		
 			        
-				        addMarker(ele.office_lng,ele.office_lat,ele.office_desc);
+				        addMarker(ele.office_lng,ele.office_lat,ele.office_title,ele.office_tel);
 				  	}
 				
 				  

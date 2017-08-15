@@ -645,7 +645,42 @@
 		<script type="text/javascript" src="js/load_news.js"></script>
 		<script>
 			
-			  var index=layer.open({
+			 
+			
+			$('.modal').modal({
+				backdrop: 'static',
+				show: false
+			});
+			 //检查cookie
+var key='capua'
+
+function setCookie(value){
+var Days = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + Days*24*60*60*1000);
+document.cookie = key + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+
+//function removeCookie(key) {
+//  setCookie(key, '', -1);//这里只需要把Cookie保质期退回一天便可以删除
+//}
+function getCookie(key) {
+    var cookieArr = document.cookie.split('; ');
+    for(var i = 0; i < cookieArr.length; i++) {
+        var arr = cookieArr[i].split('=');
+        if(arr[0] === key) {
+            return arr[1];
+        }
+    }
+    return false;
+}
+$(function(){
+	if(getCookie(key)){
+			console.log('有历史不设置cookie');
+			
+	}else{
+		console.log('无历史设置cookie');
+		 var index=layer.open({
 			  	    title:'app推广',
 			  	    scrollbar :false,
 			  	    skin: 'layui-layer-lan',
@@ -654,15 +689,15 @@
                    area: ['100%', '100%'],
                    maxmin: true,
                    cancel:function(){
+                   	setCookie(1);
                    	layer.close(index);
                    }
                });
 			
-			
-			$('.modal').modal({
-				backdrop: 'static',
-				show: false
-			});
+		
+	}
+})
+
 		</script>
 
 </html>

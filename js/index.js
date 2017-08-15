@@ -841,3 +841,4 @@ function sub_vertify2(){
 		}	
 	});
 }
+//第一次登陆推广 
