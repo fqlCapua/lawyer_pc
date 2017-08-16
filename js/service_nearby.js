@@ -29,18 +29,20 @@ function returnFloat(value){
 //  ========== 
 //  = 添加标记点 = 
 //  ========== 
-function addMarker(lng,lat,law_msg){
+function addMarker(lng,lat,username,phone){
 	var point = new BMap.Point(lng,lat);
 	  var marker = new BMap.Marker(point);
 	  map.addOverlay(marker);
     var opts = {
 	  width : 200,     // 信息窗口宽度
-	  height: 50,     // 信息窗口高度
+	  height: 100,     // 信息窗口高度
 	  title : '信息详情' , // 信息窗口标题
 	  enableMessage:true,//设置允许信息窗发送短息
 	  message:" "
 	}
-    var infoWindow = new BMap.InfoWindow(law_msg, opts);
+    var msg='<a>姓名：&nbsp;'+ username +'</a><p  /><a>电话： &nbsp;  '+phone+'</a>';
+   var infoWindow = new BMap.InfoWindow(msg,opts);
+    
     marker.addEventListener("click", function(){          
 		map.openInfoWindow(infoWindow,point); //开启信息窗口
 	});
@@ -77,14 +79,14 @@ function  load_nearBy_lawyer(lng,lat){
 				  		 var li=$("<li class='blog' lng='"+ele.user_lng+"' lat='"+ele.user_lat+"' tag='"+ele.tag+"' user_id='"+ele.user_id+"'><section class='userMsg' title='"+ele.user_desc+"'><div class='user_header_img'><img src='http://www.ls186.cn"+ele.user_head_img+"'/></div><div class='user_name'><div class='user_name1'>"+ele.user_truename+"</div><div class='user_des'>"+ele.user_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
 				         $("#content").append(li);
 				         
-				         addMarker(ele.user_lng,ele.user_lat,ele.user_phone);
+				         addMarker(ele.user_lng,ele.user_lat,ele.user_truename,ele.user_phone);
 				  	}else{
 				  		
 				  		var li=$("<li class='blog' tag='"+ele.tag+"' lng='"+ele.office_lng+"' lat='"+ele.office_lat+"'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+ele.office_desc+"'><div class='office_ad'><img src='"+ele.office_ad+"'/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='office_des'>"+ele.office_desc+"</div></div><div class='lawyer_distance text-muted pull-right'>"+returnFloat(ele.distance)+"km</div></section></li>");
 				        $("#content").append(li);
 				        var cont=ele.office_desc;
 				        
-				        addMarker(ele.office_lng,ele.office_lat,ele.office_tel);
+				        addMarker(ele.office_lng,ele.office_lat,ele.office_title,ele.office_tel);
 				  	}
 				
 				  
@@ -111,9 +113,9 @@ function  load_nearBy_lawyer(lng,lat){
 
 
 	// 百度地图API功能
-	var index = layer.load(1, {
-		shade: [0.1, "orange"],
-	});
+//	var index = layer.load(1, {
+//		shade: [0.1, "orange"],
+//	});
 	var map = new BMap.Map("allmap");
 	var point = new BMap.Point(116.331398,39.897445);
 	map.centerAndZoom(point,13);
@@ -122,10 +124,10 @@ function  load_nearBy_lawyer(lng,lat){
 	map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 	var geolocation = new BMap.Geolocation();
 	geolocation.getCurrentPosition(function(r){
-		layer.close(index);
+		//layer.close(index);
 		if(this.getStatus() == BMAP_STATUS_SUCCESS){
 			var mk = new BMap.Marker(r.point);
-			map.addOverlay(mk);
+			//map.addOverlay(mk);
 			map.panTo(r.point);
 			posArr.push(r.point.lng);
 			posArr.push(r.point.lat);
