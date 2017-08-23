@@ -30,10 +30,16 @@ var loadCase = function(n, s) {
 						icon: 5
 					});
 				} else {
+					var i1=0;
+					
 					//console.log(caseMainList)
 					$.each(caseMainList, function(index, ele) {
+						if(ele.case_type==2){
+							i1++;
+						}
+						console.log(i1)
 						var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-						$(".AJBox").append(case1);
+						//$(".AJBox").append(case1);
 					})
 				}
 			} else {

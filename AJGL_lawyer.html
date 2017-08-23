@@ -38,11 +38,10 @@
 	<style>
 		ol {
 			list-style-type: demical;
-		
 		}
 		
-		ol li{
-			list-style-position:outside;
+		ol li {
+			list-style-position: outside;
 		}
 	</style>
 
@@ -79,7 +78,7 @@
 							<a class="home" href="home.html">首页</a>
 						</li>
 						<li>
-							<a href="home.html#studyChat" id="studyChat1">法律咨询</a>
+							<a href="home.html#studyChat" id="studyChat1">法律论坛</a>
 						</li>
 						<li>
 							<a class="AJGL">案件管理</a>
@@ -104,28 +103,65 @@
 			</div>
 			<article style="width: 90%;margin:40px auto;">
 				<!--<div style="border-bottom:1px solid #EEEEEE;padding:0 0 20px 0" class="text-danger"><b>提示：</b> 某某诉某某伤害案定于2017年3月10日某某法院第*法庭开庭。</div>-->
+<style>
+	.AJBox li a:nth-child(1){
+		line-height:45px;
+	}
+	.AJBox li a:nth-child(2){
+		line-height:48px;
+	}	
+</style>
 
 				<section>
 					<ul class="AJBox" id='style-7'>
-						<!--<li style="" class="caseSingle">
-							  <div class="case_tit show_tit">张三起诉李四案</div>
-							  <div class="case_id">8</div>
-							  <div class="case_uid">71</div>
-								<div class="case_reason">1</div>
-								<div class="case_process">3</div>
-								<div class="case_ctime">1489396344</div>
-								<div class="case_type">1</div>
-								<div class="case_status">1</div>
+						<li class="ms">
+					        <a class="col-md-10">民事案件</a>
+							    <a  class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							<ul class="col-md-12 clearfix">
+                              <li>1111</li>
+                                <li>1111</li>
+                                  <li>1111</li>
+                                    <li>1111</li>
+                                      <li>1111</li>  
+                                        <li>1111</li> 
+                                          <li>1111</li>
+							</ul>
+						</li>
+						<li class="xs">
+							<a class="col-md-10">刑事案件</a>
+							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							
+							<ul>
+
+							</ul>
+							</li>
+						<li class="xz">
+							<a class="col-md-10">行政案件</a>
+							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							
+							<ul>
+
+							</ul>
+							
 						
-							<div class="userMSG">
-								<div class="AJName">张三起诉李四案</div>
-								<div class="userName">张三</div>
-								<div class="tel">13727829121</div>
-								<div class="userByuser">0</div>
-								<div class="thingType">3</div>
-								<div class="regTime">1490059507</div>
-							</div>
-						</li>-->
+						</li>
+						<li class="fl">
+							<a class="col-md-10">法律顾问</a>
+							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							
+							<ul>
+
+							</ul>
+							</li>
+						<li class="zc">
+							<a class="col-md-10">仲裁案件</a>
+							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							
+							<ul>
+
+							</ul>
+							</li>
+
 					</ul>
 				</section>
 
@@ -168,7 +204,7 @@
 												<option>被申请人</option>
 												<option>上诉人</option>
 												<option>被上诉人</option>
-												<option>其他</option>
+												<option>近亲属</option>
 											</select>
 										</div>
 
@@ -178,7 +214,7 @@
 												<option>民事案件</option>
 												<option>刑事案件</option>
 												<option>行政案件</option>
-												<option>法律咨询</option>
+												<option>法律顾问</option>
 												<option>仲裁案件</option>、
 												<option>执行案件</option>
 											</select>
@@ -216,15 +252,15 @@
 														</div>
 														<div class="form-group" style="display: flex;">
 															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;图片：</label>
-															<input id="file-3" type="file" multiple="multiple" >
+															<input id="file-3" type="file" multiple="multiple">
 														</div>
 														<div class="form-group" style="display: flex;">
 															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;音/视频：</label>
-															<input id="file-4" type="file" multiple  autoplay='false' />
+															<input id="file-4" type="file" multiple autoplay='false' />
 														</div>
 														<div class="form-group" style="display: flex;">
 															<label class="input_btn col-md-3"><a class="text-danger"></a>&nbsp;文档：</label>
-															<input id="file-5" multiple  type="file" />
+															<input id="file-5" multiple type="file" />
 														</div>
 														<input type="button" value="保存证据" class="btn btn-success  evidBtn">
 													</div>
@@ -378,7 +414,7 @@
 														</div>
 														<div class="form-group">
 															<!--<label><a class="text-danger">*</a>&nbsp;姓名：(&yen;)：</label>-->
-															<textarea class="contact_comment form-control" placeholder="备注信息..." >1.</textarea>
+															<textarea class="contact_comment form-control" placeholder="备注信息...">1.</textarea>
 														</div>
 														<input type="submit" class="btn btn-success save_contact_btn" value="保存" />
 													</div>
@@ -390,22 +426,21 @@
 													<div class="">
 														<br />
 														<div class="log_ctime">
-															
+
 														</div>
 														<div class="form-group">
 															<label>地点:</label>
 															<input class=" form-control log_loc" type="text" placeholder="地点" v-model="log.field" />
 														</div>
-                                                        <div class="form-group" >
+														<div class="form-group">
 															<label>内容:</label>
-													
-															   <textarea  style="height: 150px;overflow-y: scroll;"  class="form-control log_content"   v-model='log.content' placeholder=""></textarea>
-															
+
+															<textarea style="height: 150px;overflow-y: scroll;" class="form-control log_content" v-model='log.content' placeholder=""></textarea>
 
 														</div>
 
 														<input type="button" value="提交日志" class="btn btn-success  logBtn">
-														<input type="button"  value="保存日志" class="btn btn-success  savelogBtn">
+														<input type="button" value="保存日志" class="btn btn-success  savelogBtn">
 													</div>
 													<!--<div class="">
 												<input  type="button" class="btn btn-info evidBtn" value="提交证据">
@@ -517,7 +552,7 @@
 													<i class="fa fa-spinner fa-pulse load_icon"></i>
 
 													</span>
-													
+
 												</a>
 												<ul class="log_cont">
 
@@ -601,7 +636,7 @@
 											<option>被申请人</option>
 											<option>上诉人</option>
 											<option>被上诉人</option>
-											<option>其他</option>
+											<option>近亲属</option>
 										</select>
 									</div>
 									<div class="form-group">
@@ -610,7 +645,7 @@
 											<option>民事案件</option>
 											<option>刑事案件</option>
 											<option>行政案件</option>
-											<option>法律咨询</option>
+											<option>法律顾问</option>
 											<option>仲裁案件</option>、
 											<option>执行案件</option>
 										</select>
@@ -665,7 +700,12 @@
 	<script type="text/javascript" src="js/Laws_doc.js"></script>
 	<script type="text/javascript" src="js/casefile.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-
+<script>
+	$(".AJBox li a").click(function(){
+		console.log("OK");
+		$(this).siblings('ul').slideToggle();
+	})
+</script>
 	<script>
 		$("#file-6").fileinput({
 
