@@ -101,66 +101,116 @@
 
 				</div>
 			</div>
+
 			<article style="width: 90%;margin:40px auto;">
 				<!--<div style="border-bottom:1px solid #EEEEEE;padding:0 0 20px 0" class="text-danger"><b>提示：</b> 某某诉某某伤害案定于2017年3月10日某某法院第*法庭开庭。</div>-->
-<style>
-	.AJBox li a:nth-child(1){
-		line-height:45px;
-	}
-	.AJBox li a:nth-child(2){
-		line-height:48px;
-	}	
-</style>
+				<style>
+					.AJBox li a:nth-child(1) {
+						line-height: 55px;
+						font-size: 16px;
+						font-weight: bold;
+					}
+					.AJBox li a:nth-child(2) {
+						display: inline-block;
+						line-height: 55px;
+					}
+					
+					
+					.AJBox li>ul {
+						height: 200px;
+						overflow-y: scroll;
+						display: none;
+						border-left: 2px solid green;
+						border-bottom: 2px solid green;
+					}
+					.AJBox li>ul .case_ctime{
+						display: inline-block;
+						line-height: 45px;
+						font-size: 12px;
+						margin-right: 5px;
+					}
+					
+					.AJBox li>ul li .show_tit{
+						font-size: 13px;
+						font-weight: normal;
+					}
+					.AJBox li>ul li .dropdown a{
+					font-size: 13px;
+					font-weight: normal;
+					}
+				</style>
 
 				<section>
 					<ul class="AJBox" id='style-7'>
 						<li class="ms">
-					        <a class="col-md-10">民事案件</a>
-							    <a  class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							<ul class="col-md-12 clearfix">
-                              <li>1111</li>
-                                <li>1111</li>
-                                  <li>1111</li>
-                                    <li>1111</li>
-                                      <li>1111</li>  
-                                        <li>1111</li> 
-                                          <li>1111</li>
+							<a class="col-md-10">民事案件(0)</a>
+							<a class="pull-right fa fa-tags fa-2x col-md-2"></a>
+							<ul class="col-md-12" id="style-6">
+
+								<!--<li class='caseSingle'>
+									<div class='case_title show_tit'>1111</div>
+									<div class='case_id'>2222</div>
+									<div class='case_uid'>2222</div>
+									<div class='case_reason'>3333</div>
+									<div class='case_process'>3333</div>
+									<div class='case_ctime'>322323</div>
+									<div class='case_type'>332</div>
+									<div class='case_status'>33233</div>
+									<div class='dropdown'>
+										<a class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a>
+										<ul class='dropdown-menu'>
+											<li id='show_case'>
+												<a>浏览</a>
+											</li>
+											<li id='del_case'>
+												<a>删除</a>
+											</li>
+										</ul>
+									</div>
+								</li>-->
 							</ul>
 						</li>
 						<li class="xs">
-							<a class="col-md-10">刑事案件</a>
+							<a class="col-md-10">刑事案件(0)</a></span>
 							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							
-							<ul>
+
+							<ul class="col-md-12">
 
 							</ul>
-							</li>
+						</li>
 						<li class="xz">
-							<a class="col-md-10">行政案件</a>
+							<a class="col-md-10">行政案件(0)</a></span>
 							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							
-							<ul>
+
+							<ul class="col-md-12">
 
 							</ul>
-							
-						
+
 						</li>
 						<li class="fl">
-							<a class="col-md-10">法律顾问</a>
+							<a class="col-md-10">法律顾问(0)</a>
 							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							
-							<ul>
+
+							<ul class="col-md-12">
 
 							</ul>
-							</li>
+						</li>
 						<li class="zc">
-							<a class="col-md-10">仲裁案件</a>
+							<a class="col-md-10">仲裁案件(0)</a>
 							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							
-							<ul>
+
+							<ul class="col-md-12">
 
 							</ul>
-							</li>
+						</li>
+						<li class="zc">
+							<a class="col-md-10">执行案件(0)</a>
+							<a style="" class="pull-right fa fa-tags fa-2x col-md-2"></a>
+
+							<ul class="col-md-12">
+
+							</ul>
+						</li>
 
 					</ul>
 				</section>
@@ -700,12 +750,12 @@
 	<script type="text/javascript" src="js/Laws_doc.js"></script>
 	<script type="text/javascript" src="js/casefile.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-<script>
-	$(".AJBox li a").click(function(){
-		console.log("OK");
-		$(this).siblings('ul').slideToggle();
-	})
-</script>
+	<script>
+		$(".AJBox li a").click(function() {
+			$(this).siblings('ul').slideToggle();
+			$(this).css("color","#337AB7");
+		})
+	</script>
 	<script>
 		$("#file-6").fileinput({
 
