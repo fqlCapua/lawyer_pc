@@ -5,7 +5,7 @@ var loadCase = function(n, s) {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
 	});
-
+console.log(cur_timestamp+"___"+md_token);
 	$.ajax({
 		type: "post",
 		url: "https://www.ls186.cn/law_api",

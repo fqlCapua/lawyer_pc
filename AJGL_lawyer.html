@@ -120,8 +120,12 @@
 						height: 200px;
 						overflow-y: scroll;
 						display: none;
-						border-left: 2px solid green;
-						border-bottom: 2px solid green;
+						border-left:2px solid #337AB7;
+						border-bottom:2px solid #337AB7;
+						border-top:2px solid #337AB7;
+						background-color:#FFFFFF;
+						border-bottom-left-radius:10px;
+						border-top-left-radius:10px;
 					}
 					.AJBox li>ul .case_ctime{
 						display: inline-block;
@@ -134,9 +138,13 @@
 						font-size: 13px;
 						font-weight: normal;
 					}
-					.AJBox li>ul li .dropdown a{
-					font-size: 13px;
-					font-weight: normal;
+					.AJBox li>ul li .dropdown-menu li a{
+						
+					      font-size: 13px;
+					      font-weight: normal;
+					      line-height:30px;
+					      height: 30px;
+					      overflow: hidden;
 					}
 				</style>
 
@@ -145,7 +153,7 @@
 						<li class="ms">
 							<a class="col-md-10">民事案件(0)</a>
 							<a class="pull-right fa fa-tags fa-2x col-md-2"></a>
-							<ul class="col-md-12" id="style-6">
+							<ul class="col-md-12 style-6">
 
 								<!--<li class='caseSingle'>
 									<div class='case_title show_tit'>1111</div>

@@ -4,8 +4,8 @@
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();
 })
-$('.icon').click(function(){
-	window.location.href='http://www.ls186.cn'
+$('.icon').click(function() {
+	window.location.href = 'http://www.ls186.cn'
 })
 
 function user_ismoderator() {
@@ -31,7 +31,7 @@ function user_ismoderator() {
 			var data = JSON.parse(data);;
 			if(data.ret == 200) {
 				var userinfo = data.data;
-				if(userinfo.user_ismoderator =='') {
+				if(userinfo.user_ismoderator == '') {
 					$(".blog_menu").find('.set_blog').hide();;
 
 				} else {
@@ -40,9 +40,9 @@ function user_ismoderator() {
 					var redict_url = 'https://www.ls186.cn/index.php?g=Law&m=Post&a=hurt&user_ismoderator=' + userinfo.user_ismoderator;
 					//	var SetBtn="<section  class ='master' ><a href='"+redict_url+"' class ='caseIcon fa fa-cog fa-spin'></a><a  href='"+redict_url+"' class='text-center'>帖子管理 </a></section>";
 					//$("").append(SetBtn);
-					
-//					$('.set_blog').attr("onclick", "window.location.href='" + redict_url + "'");
-                         $('.set_blog').attr("href",redict_url);
+
+					//					$('.set_blog').attr("onclick", "window.location.href='" + redict_url + "'");
+					$('.set_blog').attr("href", redict_url);
 				}
 
 			} else {
@@ -403,14 +403,14 @@ $(".AJGL").click(function() {
 if(ls.getItem("law_sign")) {
 	var jsonTxt = JSON.parse(ls.getItem('law_sign'));
 	var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
-	       if(jsonStr.split("_")[3] =='1'){
-	              	       if($("#leftsead1 ul").children().length==6){
-	              		         var li=$("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
-							       $("#leftsead1 ul").append(li);
-	              	      }
-	              	}else{
-							
-						}
+	if(jsonStr.split("_")[3] == '1') {
+		if($("#leftsead1 ul").children().length == 6) {
+			var li = $("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
+			$("#leftsead1 ul").append(li);
+		}
+	} else {
+
+	}
 	if(jsonStr.split("_")[2] == 6) {
 		$("#showBox_tit b").html("附近律所");
 		$("#showBox").children("iframe").attr("src", "visitor.html");
@@ -425,7 +425,6 @@ if(ls.getItem("law_sign")) {
 		$("#slider").html(carousel);
 	}
 
-
 	$(".login,.login1").addClass("hide");
 	$(".Ylogin").removeClass("hide");
 
@@ -438,33 +437,33 @@ if(ls.getItem("law_sign")) {
 	$("#slider").html(carousel)
 }
 
-function pro_refresh(){
+function pro_refresh() {
 	if(ls.getItem("law_sign")) {
-	var jsonTxt = JSON.parse(ls.getItem('law_sign'));
-	var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
-	        if(jsonStr.split("_")[3] ==1){
-	        	    if( $("#leftsead1 ul").children().length==6){
-	              		     var li=$("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
-						      $("#leftsead1 ul").append(li);
-	              	   }
-	              };
-	               if(jsonStr.split("_")[4] ==1){
-	              		var newsNum=$("#leftsead1 ul").find('.master_news').length;
-	              		
-	              		if(newsNum==0){
-	              			var masterUrl='https://www.ls186.cn/index.php?g=Law&m=News&a=index&user_news='+jsonStr.split("_")[4];
-							var li=$("<li class='btn btn-primary btn-block master_news'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='"+masterUrl+"'>新闻管理</a></span></li>");
-						      $("#leftsead1 ul").append(li);
-	              		}else{
-	              			
-	              		}
-	              		
-						}
-	
+		var jsonTxt = JSON.parse(ls.getItem('law_sign'));
+		var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
+		if(jsonStr.split("_")[3] == 1) {
+			if($("#leftsead1 ul").children().length == 6) {
+				var li = $("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
+				$("#leftsead1 ul").append(li);
+			}
+		};
+		if(jsonStr.split("_")[4] == 1) {
+			var newsNum = $("#leftsead1 ul").find('.master_news').length;
+
+			if(newsNum == 0) {
+				var masterUrl = 'https://www.ls186.cn/index.php?g=Law&m=News&a=index&user_news=' + jsonStr.split("_")[4];
+				var li = $("<li class='btn btn-primary btn-block master_news'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + masterUrl + "'>新闻管理</a></span></li>");
+				$("#leftsead1 ul").append(li);
+			} else {
+
+			}
+
+		}
+
+	}
+
 }
-	             
-}
-setInterval('pro_refresh()',1000);
+setInterval('pro_refresh()', 1000);
 /*登录信息*/
 
 var cur_timestamp = Date.parse(new Date()) / 1000;
@@ -500,18 +499,43 @@ new Vue({
 					layer.close(index);
 					var data = JSON.parse(data);
 					if(data.ret == 200) {
+
+						//console.log(data);
 						layer.msg('登录成功', {
 							icon: 1
 						});
+						//	if(data.data.user_office_work||)
+						//	console.log(data.data.user_id)
+
+						if(data.data.is_office_manager == '1' && data.data.is_office_manager != '1') {
+							var case_url = "http://www.law.com/index.php?g=Law&m=Office&a=case_list&id=" + data.data.manage_office_id + "&is_office_manager=1";
+							var lawyer_url = "http://www.law.com/index.php?g=Law&m=Office&a=lawyer_list&id="+data.data.manage_office_id;
+						} else if(data.data.is_office_worker == '1' && data.data.is_office_manager == '1') {
+							var lawyer_url = "http://www.law.com/index.php?g=Law&m=Office&a=lawyer_list&id="+data.data.manage_office_id;
+							var case_url = "http://www.law.com/index.php?g=Law&m=Office&a=case_list&id=" + data.data.manage_office_id + "&is_office_manager=1";
+						} else if(data.data.is_office_worker != '1' && data.data.is_office_manager == '1') {
+							var lawyer_url = "http://www.law.com/index.php?g=Law&m=Office&a=lawyer_list&id="+data.data.user_office_work;
+							
+							var case_url = "http://www.law.com/index.php?g=Law&m=Office&a=case_list&id=" + data.data.user_office_work + "&is_office_worker=1";
+						} else if(data.data.is_office_worker != '1' && data.data.is_office_manager != '1') {
+                            var  lawyer_url='';
+                            var case_url='';
+						}
+						if((lawyer_url||case_url)!=''){
+							var li = $("<li class='btn btn-primary btn-block '><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + lawyer_url + "'>律所律师管理</a></span></li> <li class='btn btn-primary btn-block '><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + case_url + "'>律所案件管理</a></span></li>");
+						   
+						   
+						   $("#leftsead1 ul").append(li);
+						}
 						
-					//	console.log(data.data.user_id)
 						var userlist = {
-							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag+"_"+data.data.user_isexport+"_"+data.data.user_news,
+							law_law: data.data.user_id + "_" + md_token + "_" + data.data.user_tag + "_" + data.data.user_isexport + "_" + data.data.user_news,
 
 						};
-					//	setTimeout("ajaxreload()", 1000);
+
+						//	setTimeout("ajaxreload()", 1000);
 						//check user_type
-						
+
 						if(data.data.user_tag == 6) {
 							$("#showBox_tit b").html("附近律所");
 							$("#showBox").children("iframe").attr("src", "visitor.html");
@@ -537,9 +561,9 @@ new Vue({
 						law_sign.push(userlist);
 						var law_signStr1 = JSON.stringify(law_sign);
 						ls.setItem("law_sign", law_signStr1);
-                       user_ismoderator();
+						user_ismoderator();
 					} else {
-						
+
 						layer.msg(data.msg, {
 							icon: 2
 						})
@@ -559,65 +583,60 @@ new Vue({
 //  = 个人信息 = 
 //  ========== 
 
-
 //上传头像
-function upload_head(obj){
+function upload_head(obj) {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-    var file=obj[0].files[0];
-    var headData=new FormData();
-        headData.append("service", "User.upload_head_img");
-		headData.append("time", cur_timestamp);
-		headData.append("token", md_token);
-		headData.append("id", getSession(0));
-		headData.append("head_img", file);
-    $.ajax({
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var file = obj[0].files[0];
+	var headData = new FormData();
+	headData.append("service", "User.upload_head_img");
+	headData.append("time", cur_timestamp);
+	headData.append("token", md_token);
+	headData.append("id", getSession(0));
+	headData.append("head_img", file);
+	$.ajax({
 		type: "post",
 		url: "https://www.ls186.cn/law_api",
-		cache:false,
-		processData:false,
-		contentType:false,
-		data:headData,
+		cache: false,
+		processData: false,
+		contentType: false,
+		data: headData,
 		success: function(data) {
-			var  data=JSON.parse(data);
-			if(data.ret==200){
-				
-				var url='http://www.ls186.cn'+data.data;
-				
-				$(".head_show").attr("src",url);
+			var data = JSON.parse(data);
+			if(data.ret == 200) {
+
+				var url = 'http://www.ls186.cn' + data.data;
+
+				$(".head_show").attr("src", url);
 				layer.msg('更改成功')
-				
-			}else{
+
+			} else {
 				layer.msg(data.msg);
 			}
-			
+
 		},
-		error:function(data){}
-		})
+		error: function(data) {}
+	})
 }
 
-
-
-
-
-$(".headChange").click(function(){
+$(".headChange").click(function() {
 	//$(".head_img").removeClass('hide');
 	$(".head_img").click();
 })
-$(".head_img").change(function(){
+$(".head_img").change(function() {
 	upload_head($(".head_img"));
 })
 $(".user_set>div").click(function() {
-	 load_user();
+	load_user();
 	var name = $(this).attr('name');
 	var type = "#" + name;
-	
+
 	$(type).removeClass('hide');
 	//$(type).siblings().hide();
-	var userinfo=layer.open({
+	var userinfo = layer.open({
 		type: 1,
 		shade: false,
-		area:['500px','auto'],
+		area: ['500px', 'auto'],
 		title: false, //不显示标题
 		content: $(type), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
 		cancel: function() {
@@ -626,219 +645,215 @@ $(".user_set>div").click(function() {
 	});
 })
 //加载个人信息
-function load_user(){
-	var curtime=Math.round(new Date()/1000);
+function load_user() {
+	var curtime = Math.round(new Date() / 1000);
 	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
 	$.ajax({
-		type:"post",
-		url:"https://www.ls186.cn/law_api",
-		
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+
 		data: {
 			service: "User.get_user_info",
 			time: curtime,
 			token: md_token,
-			id:getSession(0)
-			
+			id: getSession(0)
+
 		},
-		success:function(data){
-			var data=JSON.parse(data);
-			if(data.ret==200){
-				var info=data.data;
-			//console.log(info)
-				var nickname=info.user_nickname;
-				    sex=info.user_sex;
-				    desc=info.user_desc;
-				    url='http://www.ls186.cn'+info.user_head_img;
-				    $(".head_show").attr('src',url);
-				   $(".nickname").val(nickname);
-				   $(".gender option").eq(sex).attr("selected",true);
-				   $(".intro").val(desc);
-				   $(".phone").html(info.user_phone);
-				   $(".email").html(info.user_email)
-				    
-			}else{
-				
+		success: function(data) {
+			var data = JSON.parse(data);
+			if(data.ret == 200) {
+				var info = data.data;
+				//console.log(info)
+				var nickname = info.user_nickname;
+				sex = info.user_sex;
+				desc = info.user_desc;
+				url = 'http://www.ls186.cn' + info.user_head_img;
+				$(".head_show").attr('src', url);
+				$(".nickname").val(nickname);
+				$(".gender option").eq(sex).attr("selected", true);
+				$(".intro").val(desc);
+				$(".phone").html(info.user_phone);
+				$(".email").html(info.user_email)
+
+			} else {
+
 			}
 		},
-		error:function(){
-			
+		error: function() {
+
 		}
 	})
-	}
+}
 
 //更新个人信息
-function update_info(userid){
-	
+function update_info(userid) {
+
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
- 	var nickname=$(".nickname").val();
-	var gender=$(".gender option:selected").index();
-	var desc=$(".intro").val();
-  $.ajax({
-		type:"post",
-		url:"https://www.ls186.cn/law_api",
-		
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var nickname = $(".nickname").val();
+	var gender = $(".gender option:selected").index();
+	var desc = $(".intro").val();
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+
 		data: {
 			service: "Index.update_user_center",
 			time: cur_timestamp,
 			token: md_token,
-			userid:userid,
-			des:desc,
-			sex:gender,
-			nickname:nickname
-			
+			userid: userid,
+			des: desc,
+			sex: gender,
+			nickname: nickname
+
 		},
-		success:function(data){
-			var data=JSON.parse(data);
-			if(data.ret==200){
-			 layer.msg('保存成功');
-		   
-			}else{
+		success: function(data) {
+			var data = JSON.parse(data);
+			if(data.ret == 200) {
+				layer.msg('保存成功');
+
+			} else {
 				layer.msg(data.msg);
 			}
 		},
-		error:function(){
-			
+		error: function() {
+
 		}
 	})
 }
-$("#info_sub").click(function(){
+$("#info_sub").click(function() {
 	update_info(getSession(0));
 })
 //实名认证
-function sub_vertify(){
-	var index=layer.load(1,{
-		shade:[0.1,'red'],
-		area:['100px','50px']
+function sub_vertify() {
+	var index = layer.load(1, {
+		shade: [0.1, 'red'],
+		area: ['100px', '50px']
 	});
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	var vertiData=new FormData();
-	var userid=getSession(0);
-	    truename=$(".truename").val();
-	    id=$('.id').val();
-	    lawyer_id=$('.lawyer_id').val();
-	    work_place=$('.work_place').val();
-	    lawyer_id_img=$('.lawyer_id_img')[0].files[0];
-	    id_img_front=$('.id_img_front')[0].files[0];
-	    id_img_back=$('.id_img_back')[0].files[0];
-	 vertiData.append('service','User.info_verify');
-	 vertiData.append('time',cur_timestamp);
-	 vertiData.append('token',md_token);
-	 vertiData.append('userid',userid);
-	 vertiData.append('truename',truename);
-	 
-	 vertiData.append('id',id);
-	 
-	 vertiData.append('lawyer_id',lawyer_id);
-	 
-	 vertiData.append('work_place',work_place);
-	 
-	 vertiData.append('lawyer_id_img',lawyer_id_img);
-	 
-	 vertiData.append('id_img_front',id_img_front);
-	 
-	 vertiData.append('id_img_back',id_img_back);
-	 
-	 
-	 
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var vertiData = new FormData();
+	var userid = getSession(0);
+	truename = $(".truename").val();
+	id = $('.id').val();
+	lawyer_id = $('.lawyer_id').val();
+	work_place = $('.work_place').val();
+	lawyer_id_img = $('.lawyer_id_img')[0].files[0];
+	id_img_front = $('.id_img_front')[0].files[0];
+	id_img_back = $('.id_img_back')[0].files[0];
+	vertiData.append('service', 'User.info_verify');
+	vertiData.append('time', cur_timestamp);
+	vertiData.append('token', md_token);
+	vertiData.append('userid', userid);
+	vertiData.append('truename', truename);
+
+	vertiData.append('id', id);
+
+	vertiData.append('lawyer_id', lawyer_id);
+
+	vertiData.append('work_place', work_place);
+
+	vertiData.append('lawyer_id_img', lawyer_id_img);
+
+	vertiData.append('id_img_front', id_img_front);
+
+	vertiData.append('id_img_back', id_img_back);
+
 	$.ajax({
-		type:"post",
-		url:"https://www.ls186.cn/law_api",
-		cache:false,
-		processData:false,
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		cache: false,
+		processData: false,
 		contentType: false,
-		data:vertiData,
-		success:function(data){
+		data: vertiData,
+		success: function(data) {
 			layer.close(index);
-			var data=JSON.parse(data)
-			if(data.ret==200){
-			
-				if(data.data=='1'){
-					 layer.msg('上传成功');
-				}else{
+			var data = JSON.parse(data)
+			if(data.ret == 200) {
+
+				if(data.data == '1') {
+					layer.msg('上传成功');
+				} else {
 					layer.msg('律师认证已经提交..');
 				}
-			   
-			}else{
+
+			} else {
 				layer.msg(data.msg)
-				
+
 			}
-			
+
 		},
-		error:function(data,status){
+		error: function(data, status) {
 			layer.close(index);
-			console.log(data+status);			
-		}	
+			console.log(data + status);
+		}
 	});
 }
 
 //  ========== 
 //  = 律所认证 = 
 //  ========== 
-function sub_vertify2(){
-	var index=layer.load(1,{
-		shade:[0.1,'gray'],
-		area:['100px','50px']
+function sub_vertify2() {
+	var index = layer.load(1, {
+		shade: [0.1, 'gray'],
+		area: ['100px', '50px']
 	});
 	var cur_timestamp = Date.parse(new Date()) / 1000;
-    var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	var vertiData=new FormData();
-	var userid=getSession(0);
-	    truename=$(".director_name").val();
-	    id=$('.director_id').val();
-	    lawyer_id=$('.license_id').val();
-	    work_place=$('.office_name').val();
-	    lawyer_id_img=$('.license_img')[0].files[0];
-	    id_img_front=$('.director_img_front')[0].files[0];
-	    id_img_back=$('.director_img_back')[0].files[0];
-	 vertiData.append('service','Office.office_verify');
-	 vertiData.append('time',cur_timestamp);
-	 vertiData.append('token',md_token);
-	 vertiData.append('user_id',userid);
-	 vertiData.append('director_name',truename);
-	 
-	 vertiData.append('director_id',id);
-	 
-	 vertiData.append('license_id',lawyer_id);
-	 
-	 vertiData.append('office_name',work_place);
-	 
-	 vertiData.append('license_img',lawyer_id_img);
-	 
-	 vertiData.append('director_img_front',id_img_front);
-	 
-	 vertiData.append('director_img_back',id_img_back);
-	 
-	 
-	 
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var vertiData = new FormData();
+	var userid = getSession(0);
+	truename = $(".director_name").val();
+	id = $('.director_id').val();
+	lawyer_id = $('.license_id').val();
+	work_place = $('.office_name').val();
+	lawyer_id_img = $('.license_img')[0].files[0];
+	id_img_front = $('.director_img_front')[0].files[0];
+	id_img_back = $('.director_img_back')[0].files[0];
+	vertiData.append('service', 'Office.office_verify');
+	vertiData.append('time', cur_timestamp);
+	vertiData.append('token', md_token);
+	vertiData.append('user_id', userid);
+	vertiData.append('director_name', truename);
+
+	vertiData.append('director_id', id);
+
+	vertiData.append('license_id', lawyer_id);
+
+	vertiData.append('office_name', work_place);
+
+	vertiData.append('license_img', lawyer_id_img);
+
+	vertiData.append('director_img_front', id_img_front);
+
+	vertiData.append('director_img_back', id_img_back);
+
 	$.ajax({
-		type:"post",
-		url:"https://www.ls186.cn/law_api",
-		cache:false,
-		processData:false,
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		cache: false,
+		processData: false,
 		contentType: false,
-		data:vertiData,
-		success:function(data){
+		data: vertiData,
+		success: function(data) {
 			layer.close(index);
-			var data=JSON.parse(data)
-			if(data.ret==200){
-			     if(data.data=='1'){
-					 layer.msg('律所认证上传成功');
-				  }else{
+			var data = JSON.parse(data)
+			if(data.ret == 200) {
+				if(data.data == '1') {
+					layer.msg('律所认证上传成功');
+				} else {
 					layer.msg('律所认证已经提交..');
-				   }
-			   
-			}else{
+				}
+
+			} else {
 				layer.msg(data.msg)
-				
+
 			}
-			
+
 		},
-		error:function(data,status){
+		error: function(data, status) {
 			layer.close(index);
-			console.log(data+status);			
-		}	
+			console.log(data + status);
+		}
 	});
 }
-//第一次登陆推广 
+//第一次登陆推广
