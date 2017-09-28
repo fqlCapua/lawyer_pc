@@ -442,7 +442,7 @@ function pro_refresh() {
 		var jsonTxt = JSON.parse(ls.getItem('law_sign'));
 		var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
 		if(jsonStr.split("_")[3] == 1) {
-			if($("#leftsead1 ul").children().length == 6) {
+			if($("#leftsead1 ul").children().length == 6){
 				var li = $("<li class='btn btn-primary btn-block fzren'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='https://www.ls186.cn/index.php?g=Law&m=Ext&a=export_index&user_isexport=1'>专家辅助人</a></span></li>");
 				$("#leftsead1 ul").append(li);
 			}
@@ -462,7 +462,7 @@ function pro_refresh() {
 		if(jsonStr.split("_")[5] == 1){
 			
 			var itemNum = $("#leftsead1 ul").find('.officeCheck').length;
-			var case_url = "http://www.ls186.cn/index.php?g=Law&m=Office&a=case_list&id=" +jsonStr.split("_")[6]+ "&is_office_manager=1";
+			var case_url = "http://www.ls186.cn/index.php?g=Law&m=Office&a=case_list&id=" +jsonStr.split("_")[6]+ "&is_office_manager=1"+"&user_id="+jsonStr.split("_")[0];
 			var lawyer_url = "http://www.ls186.cn/index.php?g=Law&m=Office&a=lawyer_list&id="+jsonStr.split("_")[6]+ "&is_office_manager=1";
 			if(itemNum==0){
 				var li = $("<li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + lawyer_url + "'>律所律师管理</a></span></li> <li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + case_url + "'>律所案件管理</a></span></li>");
