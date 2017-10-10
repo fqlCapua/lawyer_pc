@@ -5,7 +5,7 @@ var loadCase = function(n, s) {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
 	});
-console.log(cur_timestamp+"___"+md_token);
+  //console.log(cur_timestamp+"___"+md_token);
 	$.ajax({
 		type: "post",
 		url: "https://www.ls186.cn/law_api",
@@ -192,12 +192,11 @@ $(".AJBox li ul").delegate("li .show_tit", "click", function() {
 	case_detial(case_id);
 
 })
-//$(".AJBox li").on("click", "ul li #show_case", function() {
-//
-//	var case_id = $(this).parent().parent().siblings(".case_id").html();
-//	case_detial(case_id);
-//
-//})
+$(".AJBox li").on("click", "ul li #show_case", function() {
+    var case_id = $(this).parent().parent().siblings(".case_id").html();
+	case_detial(case_id);
+
+})
 
 //保存案件
 $("#save").on("click", function() {

@@ -1,6 +1,8 @@
 $('.icon').click(function(){
 	window.location.href='http://www.ls186.cn'
-})	
+})	;
+$('.search_office').hide();
+
 /*返回搜索城市*/
 	 function showArea(){
 			var Str1= $('#s_province').val()+$('#s_city').val()+$('#s_county').val();
@@ -72,7 +74,9 @@ function  load_nearBy_lawyer(lng,lat){
 			
 				  var list=data.data;
               $.each(list, function(i,ele){
-              	console.log(ele)
+              	$('.search_office').show();
+
+              	//console.log(ele)
 //				     console.log(ele)
 				  	if(ele.tag==0){
 				  		 //addMarker(ele.user_lng,ele.user_lat);
@@ -290,4 +294,72 @@ $(".blog_box #content").on('click','.blog',function(){
 	
 	
 	      
+})
+//查找律所
+
+new Vue({
+ el:'#search_office',
+ data:{
+ 	  user:{
+ 		service:'Index.search_office',
+ 		time:Date.parse(new Date())/1000,
+ 		token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
+ 		key_word:''
+ 	  }
+ },
+ methods:{
+ 	  Fn_search:function(){
+ 		 var index = layer.load(1, {
+				shade: [0.1, "#EEEEEE"],
+                area:'100px',
+                offset:'50%',
+			});
+			$.ajax({
+				type:"post",
+				url:"http://www.ls186.cn/law_api",
+				data:this.user,
+				success:function(res){
+					
+					layer.close(index);
+					var data=JSON.parse(res);
+					if(data.ret==200){
+						 $("#content").empty();
+						 console.log(data.data);
+						 var list=data.data;
+						 $.each(list, function(i,ele) {
+						 	 var li=$("<li class='blog search_data'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+'名称：'+ele.office_title+',\n描述：'+ele.office_desc+',\n地址：'+ele.office_address+',\n负责人：'+ele.office_director_name+',\n电话：'+ele.office_tel+"'><div class='user_header_img hide'><img src=''/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='user_des'>"+ele.office_desc+"</div></div></section></li>");
+				               $("#content").append(li);
+						 });
+						          
+					}else{
+						layer.msg(data.msg);
+					}
+				},
+				fail:function(err){
+					
+				}
+			});
+ 	}
+ }
+ 
+});
+
+//绑定点击详情事件、
+$('#content').on('click','.search_data',function(){
+	var con=String($(this).find('.userMsg').attr('title'));
+	var conArr=con.split(",");
+	var conStr='';
+	$.each(conArr,function(i,ele){
+	   var el="<div>"+ele+"</div>";
+	   conStr+=el;
+	})
+	console.log(conStr);
+	layer.open({
+		skin: 'layui-layer-molv',
+		title:'律所详情',
+		content:"<div style='padding:15px'>"+conStr+"</div>",
+		area:['300px','320px'],
+		
+		
+	})
 })

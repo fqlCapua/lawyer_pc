@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="css/office_nearby.css">
 		<script type="text/javascript" src="js/md5.js"></script>
 		<link rel="stylesheet" href="css/kkPageCss.css" />
+		<script type="text/javascript" src="js/vue.js"></script>
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src='js/getSession.js'></script>
 		<script type="text/javascript" src="js/layer.js"></script>
@@ -18,7 +19,6 @@
 		<script type="text/javascript" src="js/jquery.kkPages.js"></script>
 
 		<script type="text/javascript" src="js/layer.js"></script>
-
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -34,53 +34,58 @@
 				margin: 0;
 				font-family: "微软雅黑";
 			}
-				.header_img{
-			width:70px;
-			height:70px;
-			position:relative;
 			
-		}
-		
-		.head_img{
-			width:70px;
-			height:70px;
-			position: absolute;
-			z-index:1;
-			border-radius: 50%;
+			.header_img {
+				width: 70px;
+				height: 70px;
+				position: relative;
 			}
-			.head_img img{
-				width:70px;
-			    height:70px;
+			
+			.head_img {
+				width: 70px;
+				height: 70px;
+				position: absolute;
+				z-index: 1;
+				border-radius: 50%;
+			}
+			
+			.head_img img {
+				width: 70px;
+				height: 70px;
 				border-radius: 50%;
 				width: 100%;
 			}
-		.vip{
-			position: absolute;
-			right:-7px;
-			bottom:-7px;
-			background-color: #FFFFFF;
-			border-radius:50% ;
-			background-image:url(img/home/rz1.png);
-			background-size: 100%;
-			width:25px;
-			height:25px;
-			z-index: 2;
-		}
-			.level1{
-			width:10px;
-			height:10px;
-			background-image: url(img/home/level.png);	
-			background-size: 100% 100%;	
-			display: inline-block;	
-		}
-        .level{
-        	width: 80px;
-        	height: 10px;
-        	padding:2px 13px;
-        }
+			
+			.vip {
+				position: absolute;
+				right: -7px;
+				bottom: -7px;
+				background-color: #FFFFFF;
+				border-radius: 50%;
+				background-image: url(img/home/rz1.png);
+				background-size: 100%;
+				width: 25px;
+				height: 25px;
+				z-index: 2;
+			}
+			
+			.level1 {
+				width: 10px;
+				height: 10px;
+				background-image: url(img/home/level.png);
+				background-size: 100% 100%;
+				display: inline-block;
+			}
+			
+			.level {
+				width: 80px;
+				height: 10px;
+				padding: 2px 13px;
+			}
 		</style>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=l0Kego2yXhd7tdv45RUT0vsQExnF1VZ2"></script>
-		<title>附近律所</title><link rel="stylesheet" href="css/animate.css" />
+		<title>附近律所</title>
+		<link rel="stylesheet" href="css/animate.css" />
 	</head>
 
 	<body>
@@ -241,7 +246,7 @@
 		<!--  ==========  -->
 		<!--  = 个人设置模态框 =  -->
 		<!--  ==========  -->
-<!--
+		<!--
 		<div class="mySet hide" id="userInfo">
 			    <div class="Myheader text-center  bg-primary" >
 					信息设置
@@ -396,10 +401,48 @@
 			</div>-->
 
 			<div id="allmap" class=""></div>
-
+			<style>
+				
+				.search_office div{
+					
+				}
+				
+				.search_office div {
+				  width: 80%;
+				  margin:20px auto;
+				}
+				#content .search_data{
+					
+					width: 90%;
+					margin: 0 auto;
+				}
+				.user_name{
+					
+				}
+				.search_data div{
+					
+					
+				}
+				
+				*.search_data{
+					padding-bottom: 0;
+					list-style-position:inside;
+				    list-style: decimal;
+			}
+			</style>
+			<div class="search_office" id='search_office'>
+				
+				<div class="input-group input-group-lg">
+					
+					<input type="text" v-model="user.key_word" class="form-control " placeholder="查找律所">
+					<span class="input-group-addon" @click="Fn_search">
+						<span class="fa fa-search" ></span>
+					</span>
+				</div>
+			</div>
 			<article class="blog_box">
 				<ol id="content" style="">
-
+                    
 				</ol>
 
 				<!--附近律所分页内容-->
