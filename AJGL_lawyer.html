@@ -254,7 +254,7 @@
 										</div>
 
 										<div class="form-group" style="display: flex;margin-right:20px;">
-											<label for="ServerID" class="control-label col-md-3">委托人：</label>
+											<label for="ServerID" class="control-label col-md-3">委托人身份：</label>
 											<select id="userType" class="custom-select form-control col-md-8">
 												<option>原告</option>
 												<option>被告</option>
@@ -669,21 +669,55 @@
 							</div>
 							<form role="form">
 								<div class="modal-body">
-
+                                    
 									<div class="form-group">
-										<label class="control-label">真实姓名：</label>
-										<input id="djcase_uname" type="text" class="form-control" />
+										<label class="control-label">案件当事人:</label>
+										<input id="djcase_uname" type="text" placeholder="支持多个用   ,  隔开" class="form-control" />
 									</div>
 									<div class="form-group">
-										<label class="control-label">联系电话：</label>
+										<label class="control-label">案件对方:</label>
+										<input id="opponame" type="text" placeholder="支持多个用   ,  隔开" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label class="control-label">联系电话:</label>
+										<input id="djcase_tel" type="text" class="form-control" placeholder="" />
 										<div class="input-group">
-											<input id="djcase_tel" type="text" class="form-control" placeholder="" />
-											<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>
+											<!--<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>-->
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">案件名称：</label>
-										<input id="djcase_name" type="text" class="form-control" />
+										<input id="djcase_name" type="text" class="form-control"  placeholder="案件名称"/>
+									</div>
+									<div class="form-group">
+										<input id="handle_lawyer_name" type="text" placeholder="经办律师，默认为空(选填)" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label class="control-label"></label>
+										<textarea "case_des" type="text" rows="2" placeholder="案件简介:" class="form-control" ></textarea>
+									</div>
+									<div class="form-group">
+										<label class="control-label">岗位级别：</label>
+										<select id="user_lid" class="custom-select form-control user_lid">
+											
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">所属部门级别：</label>
+										<select id="user_did" class="custom-select form-control user_did">
+											
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">案源：</label>
+										<select id="case_sid" class="custom-select form-control case_sid">
+											
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">付款方式：</label>
+										<select id="case_charge_style_id" class="custom-select form-control case_charge_style_id">
+											
+										</select>
 									</div>
 									<div class="form-group">
 										<label class="control-label">委托人身份：</label>
