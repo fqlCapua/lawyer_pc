@@ -708,6 +708,9 @@
 										</select>
 									</div>
 									<div class="form-group">
+										<input id="case_janame" type="text" placeholder="管辖机构名称" class="form-control case_janame" />
+									</div>
+									<div class="form-group">
 										<label class="control-label">案源：</label>
 										<select id="case_sid" class="custom-select form-control case_sid">
 											
@@ -720,7 +723,13 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<label class="control-label">委托人身份：</label>
+										<input id="case_ctarget" type="text" placeholder="业务标的" class="form-control case_ctarget" />
+									</div>
+									<div class="form-group">
+										<input id="case_expect_cost" type="text" placeholder="案件预期费用" class="form-control case_expect_cost" />
+									</div>
+									<div class="form-group">
+										<label class="control-label">当事人身份：</label>
 										<select id="djcase_utype" class="custom-select form-control">
 											<option>原告</option>
 											<option>被告</option>
@@ -743,7 +752,23 @@
 											<option>执行案件</option>
 										</select>
 									</div>
-
+                                    <div class="form-group">
+										<input id="case_record" type="text" placeholder="备案号(选填)" class="form-control case_record" />
+									</div>
+									<div class="form-group">
+										<input id="case_user_id" type="text" placeholder="当事人的身份证号" class="form-control case_user_id" />
+									</div>
+									<div class="form-group">
+										<label class="control-label">客户状态：</label>
+										<select id="case_user_status" class="custom-select form-control case_user_status">
+											<option name='1'>正式客户</option>
+											<option name='2'>风险代理</option>
+										</select>
+									</div>
+									 <div class="form-group">
+									 	<label class="control-label">案件协议照片(全文)：</label>
+										<input id="case_agreement_pics" multiple="multiple"  type="file" class="form-control case_agreement_pics" />
+									</div>
 									<div class="programeBox">
 
 									</div>
