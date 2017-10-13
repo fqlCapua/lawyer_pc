@@ -53,7 +53,7 @@ function addMarker(lng,lat,username,phone){
 function  load_nearBy_lawyer(lng,lat){
 	var curtime=Math.round(new Date()/1000);
 	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
-	
+	console.log(curtime+"/"+md_token);
 	$.ajax({
 		type:"post",
 		url:"https://www.ls186.cn/law_api",
