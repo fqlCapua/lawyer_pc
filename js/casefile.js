@@ -1,3 +1,110 @@
+//加载案件
+var loadCase = function(n, s) {
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var index = layer.load(2, {
+		shade: [0.1, "#EEEEEE"],
+		offset: ['50%', '50%']
+	});
+	//console.log(cur_timestamp+"___"+md_token);
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		data: {
+			service: "Case.case_list",
+			time: cur_timestamp,
+			token: md_token,
+			userid: getSession(0),
+			page: n,
+			rule: s,
+			type: 1
+		},
+		success: function(data) {
+			layer.close(index);
+			var data = JSON.parse(data);
+
+			if(data.ret == 200) {
+				var caseMainList = data.data;
+
+				if(caseMainList == '') {
+					layer.msg("没有数据了", {
+						icon: 5
+					});
+				} else {
+					//					                            <option>民事案件</option>
+					//												<option>刑事案件</option>
+					//												<option>行政案件</option>
+					//												<option>法律顾问</option>
+					//												<option>仲裁案件</option>
+					//												<option>执行案件</option>
+					var ms = 0;
+					var xs = 0;
+					var xz = 0;
+					var fl = 0;
+					var zc = 0;
+					var zx = 0;
+
+					//console.log(caseMainList)
+					$.each(caseMainList, function(index, ele) {
+						if(ele.case_type == 1) {
+							ms++;
+							$(".ms a").eq(0).html('民事案件(' + ms + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+							$(".ms>ul").append(case1);
+						} else
+						if(ele.case_type == 2) {
+							xs++;
+							$(".xs a").eq(0).html('刑事案件(' + xs + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+
+							$(".xs>ul").append(case1);
+						} else
+						if(ele.case_type == 3) {
+							xz++;
+							$(".xz a").eq(0).html('行政案件(' + xz + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+
+							$(".xz>ul").append(case1);
+						} else
+						if(ele.case_type == 4) {
+							fl++;
+							$(".fl a").eq(0).html('法律案件(' + fl + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+
+							$(".ms>ul").append(case1);
+						} else
+						if(ele.case_type == 5) {
+							zc++;
+							$(".zc a").eq(0).html('仲裁案件(' + zc + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+							$(".zc>ul").append(case1);
+						} else {
+							zx++;
+
+							$(".zx a").eq(0).html('执行案件(' + zx + ')');
+							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
+							$(".zx>ul").append(case1);
+						}
+
+						//$(".AJBox").append(case1);
+					})
+				}
+			} else {
+				layer.msg(data.msg, {
+					icon: 3
+				});
+			}
+		},
+		error: function(data) {
+			layer.close(index);
+			layer.msg("数据加载失败", {
+				icon: 5
+			})
+		}
+
+	});
+};
+loadCase('1', 'time');
 //返回照片Str
 function returnImgStr(obj, case_id) {
 
@@ -59,22 +166,21 @@ function get_newCase_id() {
 			service: "Case.get_new_id",
 			time:cur_timestamp,
 			token:md_token,
+			//async:false,
 		    id: getSession(0),
 			ispc: 1
 		},
 		success: function(res) {
 			var data = JSON.parse(res);
 			if(data.ret == 200) {
-			     flag=true;
-			   new_id=data.data;
-			   console.log(new_id);
-			 //  $('.dj_caseid').val(new_id);
-			    return new_id;
+			     //flag=true;
+			     new_id=data.data;
+			  //  console.log(new_id);
+		     $('.new_case_id').html(new_id);	
 			    
-			   
-			 
+			  	 
 			} else {
-				 flag=false;
+				// flag=false;
 				layer.msg(data.msg);
 			}
 		},
@@ -82,14 +188,15 @@ function get_newCase_id() {
 			layer.msg(error)
 		}
 	});
-	//return flag;
+	
 			    
-  
+  return new_id;
 };
 function showDjModal(){
-	
 	get_newCase_id();
-	setTimeout("if(flag){$('#myDJ').modal('show');}else{layer.msg('请刷新页面')}",1500);
+	$('#myDJ').modal('show');
+	//get_newCase_id();
+	//setTimeout("if(1){}else{layer.msg('请刷新页面')}",1500);
 
 }
 
@@ -102,49 +209,61 @@ new Vue({
  		time:Date.parse(new Date())/1000,
  		token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
  		id:'',
- 		truename:"这个伞",
- 		opponame:"李四",
- 		telphone:"13523450460",
- 		handle_lawyer_name:"李四",
- 		case_des:"李四",
- 		user_id:'10025',
- 		case_janame:'郑州',
- 		case_ctarget:"321",
- 		case_expect_cost:"311",
+ 		truename:"",
+ 		opponame:"",
+ 		telphone:"13523450468",
+ 		handle_lawyer_name:"",
+ 		case_des:"",
+ 		user_id:getSession(0),
+ 		case_janame:'',
+ 		case_ctarget:"",
+ 		case_expect_cost:"",
  		case_title:"",
- 		case_record:"2113",
- 		case_user_id:'410329133645612316',
- 		user_lid:"1", //岗位级别ID
- 		user_did:"1", //所属部门id
- 		case_sid:"1", //案源id
- 		case_charge_style_id:"1", //付款方式ID
- 		client_tag:"1",
- 		case_type:"1",
- 		case_agreement_pics:"",
- 		case_user_status:'1',
+ 		case_record:"",
+ 		case_user_id:'410329199310126666',
+ 		user_lid:"", //岗位级别ID
+   		user_did:"", //所属部门id
+   		case_sid:"", //案源id
+   		case_charge_style_id:"", //付款方式ID
+   		client_tag:"",
+   		case_type:"",
+   		case_user_status:'',
+   		case_agreement_pics:"",
+ 		
 // 		user_lid:$('#user_lid').children('option:selected').attr('name'), //岗位级别ID
 // 		user_did:$('#user_did').children('option:selected').attr('name'), //所属部门id
-// 		user_sid:$('#case_sid').children('option:selected').attr('name'), //案源id
+// 		case_sid:$('#case_sid').children('option:selected').attr('name'), //案源id
 // 		case_charge_style_id:$('#case_charge_style_id').children('option:selected').attr('name'), //付款方式ID
 // 		client_tag:$("#djcase_utype").children("option:selected").index() + 1,
 // 		case_type:$("#djcase_type").children("option:selected").index() + 1,
 //      case_user_status:$('#case_user_status').children('option:selected').attr('name'), 
-// 		case_agreement_pics:""
+// 		case_agreement_pics:"",
  	  }
  },
  methods:{
+ 	
  	  addCase:function(){
+ 	  	//console.log(this);
+ 	     this.user.id=$(".new_case_id").html();
+ 	     this.user.user_lid=$('#user_lid').children('option:selected').attr('name');
+ 	     this.user.user_did=$('#user_did').children('option:selected').attr('name');//所属部门id
+   		 this.user.case_sid=$('#case_sid').children('option:selected').attr('name'); //案源id
+   		 this.user.case_charge_style_id=$('#case_charge_style_id').children('option:selected').attr('name'); //付款方式ID
+   		 this.user.client_tag=$("#djcase_utype").children("option:selected").index() + 1;
+   		 this.user.case_type=$("#djcase_type").children("option:selected").index() + 1;
+         this.user.case_user_status=$('#case_user_status').children('option:selected').attr('name'); 
+   		 this.user.case_agreement_pics="";
  	  	 $.ajax({
 				type:"POST",
 				url:"http://www.ls186.cn/law_api",
 				data:this.user,
 				success:function(res){
-					
 					var data=JSON.parse(res);
 					if(data.ret==200){
-						// $("#content").empty();
-						 console.log(data.data);
-						         
+					   //console.log(data.data);
+						    $('#myDJ').modal('hide');
+						    layer.msg('登记成功');
+						    loadCase('1', 'time');
 					}else{
 						layer.msg(data.msg);
 					}
@@ -313,112 +432,7 @@ get_TypeId("#case_charge_style_id", 'Index.charge_style_list', 'charge_style');
 //	add_case(case_id);
 //	
 //})
-var loadCase = function(n, s) {
-	var cur_timestamp = Date.parse(new Date()) / 1000;
-	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	var index = layer.load(2, {
-		shade: [0.1, "#EEEEEE"],
-		offset: ['50%', '50%']
-	});
-	//console.log(cur_timestamp+"___"+md_token);
-	$.ajax({
-		type: "post",
-		url: "https://www.ls186.cn/law_api",
-		data: {
-			service: "Case.case_list",
-			time: cur_timestamp,
-			token: md_token,
-			userid: getSession(0),
-			page: n,
-			rule: s,
-			type: 1
-		},
-		success: function(data) {
-			layer.close(index);
-			var data = JSON.parse(data);
 
-			if(data.ret == 200) {
-				var caseMainList = data.data;
-
-				if(caseMainList == '') {
-					layer.msg("没有数据了", {
-						icon: 5
-					});
-				} else {
-					//					                            <option>民事案件</option>
-					//												<option>刑事案件</option>
-					//												<option>行政案件</option>
-					//												<option>法律顾问</option>
-					//												<option>仲裁案件</option>
-					//												<option>执行案件</option>
-					var ms = 0;
-					var xs = 0;
-					var xz = 0;
-					var fl = 0;
-					var zc = 0;
-					var zx = 0;
-
-					//console.log(caseMainList)
-					$.each(caseMainList, function(index, ele) {
-						if(ele.case_type == 1) {
-							ms++;
-							$(".ms a").eq(0).html('民事案件(' + ms + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-							$(".ms>ul").append(case1);
-						} else
-						if(ele.case_type == 2) {
-							xs++;
-							$(".xs a").eq(0).html('刑事案件(' + xs + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-
-							$(".xs>ul").append(case1);
-						} else
-						if(ele.case_type == 3) {
-							xz++;
-							$(".xz a").eq(0).html('行政案件(' + xz + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-
-							$(".xz>ul").append(case1);
-						} else
-						if(ele.case_type == 4) {
-							fl++;
-							$(".fl a").eq(0).html('法律案件(' + fl + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-
-							$(".ms>ul").append(case1);
-						} else
-						if(ele.case_type == 5) {
-							zc++;
-							$(".zc a").eq(0).html('仲裁案件(' + zc + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-							$(".zc>ul").append(case1);
-						} else {
-							zx++;
-
-							$(".zx a").eq(0).html('执行案件(' + zx + ')');
-							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
-							$(".zx>ul").append(case1);
-						}
-
-						//$(".AJBox").append(case1);
-					})
-				}
-			} else {
-				layer.msg(data.msg, {
-					icon: 3
-				});
-			}
-		},
-		error: function(data) {
-			layer.close(index);
-			layer.msg("数据加载失败", {
-				icon: 5
-			})
-		}
-
-	});
-};
-loadCase('1', 'time');
 /*排序*/
 var pageNum = 1;
 

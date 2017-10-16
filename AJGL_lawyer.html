@@ -672,7 +672,7 @@
 								<div class="modal-body">
                                   
 									<div class="form-group">
-										  <input class="dj_caseid form-control" type="text"  v-model="user.id" />
+										<div class="hide new_case_id"></div>
 									   <input id="djcase_uname" v-model="user.truename" type="text" placeholder="案件当事人支持多个用   ,  隔开" class="form-control" />
 									</div>
 									<div class="form-group">
@@ -729,14 +729,14 @@
 									</div>
 									<div class="form-group">
 										<label class="control-label">案源：</label>
-										<select id="case_sid" class="custom-select form-control case_sid">
+										<select id="case_sid"   class="custom-select form-control case_sid">
 											
 										</select>
 									</div>
 									
 									<div class="form-group">
 										<label class="control-label">付款方式：</label>
-										<select id="case_charge_style_id" class="custom-select form-control case_charge_style_id">
+										<select id="case_charge_style_id"  class="custom-select form-control case_charge_style_id">
 											
 										</select>
 									</div>
