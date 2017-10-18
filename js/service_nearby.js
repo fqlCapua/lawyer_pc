@@ -324,10 +324,10 @@ new Vue({
 					var data=JSON.parse(res);
 					if(data.ret==200){
 						 $("#content").empty();
-						 console.log(data.data);
+						// console.log(data.data);
 						 var list=data.data;
 						 $.each(list, function(i,ele) {
-						 	 var li=$("<li class='blog search_data'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+'名称：'+ele.office_title+',\n描述：'+ele.office_desc+',\n地址：'+ele.office_address+',\n负责人：'+ele.office_director_name+',\n电话：'+ele.office_tel+"'><div class='user_header_img hide'><img src=''/></div><div class='user_name'><div class='user_name1'>"+ele.office_title+"</div><div class='user_des'>"+ele.office_desc+"</div></div></section></li>");
+						 	 var li=$("<li class='blog search_data'  office_id='"+ele.office_id+"'><section class='userMsg' title='"+'名称：'+ele.office_title+',\n描述：'+ele.office_desc+',\n地址：'+ele.office_address+',\n负责人：'+ele.office_director_name+',\n电话：'+ele.office_tel+"'><div class='user_header_img hide'><img src=''/></div><div class='user_name'><div class='user_name1'>"+eval(i+1)+"."+ele.office_title+"</div><div class='user_des'>"+ele.office_desc+"</div></div></section><section><button type='button' class='btn btn-success pull-right join_office'>加入律所 </button></section></li>");
 				               $("#content").append(li);
 						 });
 						          
@@ -345,21 +345,60 @@ new Vue({
 });
 
 //绑定点击详情事件、
-$('#content').on('click','.search_data',function(){
-	var con=String($(this).find('.userMsg').attr('title'));
+$('#content').on('click','.search_data section:nth-child(1)',function(){
+	var con=String($(this).attr('title'));
 	var conArr=con.split(",");
 	var conStr='';
 	$.each(conArr,function(i,ele){
 	   var el="<div>"+ele+"</div>";
 	   conStr+=el;
 	})
-	console.log(conStr);
+	//console.log(conStr);
 	layer.open({
 		skin: 'layui-layer-molv',
 		title:'律所详情',
 		content:"<div style='padding:15px'>"+conStr+"</div>",
 		area:['300px','320px'],
-		
-		
 	})
-})
+});
+
+
+//加入律所
+
+$('#content').on('click','.join_office',function(){
+  $(this).html('请求已发送');  
+    var  office_id=$(this).parent().parent().attr('office_id');
+	  //console.log(office_id);
+	     $.ajax({
+				type:"post",
+				url:"http://www.ls186.cn/law_api",
+				data:{
+					service:'User.join_office',
+					time:Date.parse(new Date())/1000,
+					token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
+					user_id:getSession(0),
+					office_id:office_id
+				},
+				success:function(res){
+					
+				
+					var data=JSON.parse(res);
+					if(data.ret==200){
+						 
+					   //layer.msg('请求已发送');
+					     
+						
+						          
+					}else{
+						layer.msg(data.msg);
+					}
+				},
+				fail:function(err){
+					
+				}
+			});
+	
+});
+
+
+

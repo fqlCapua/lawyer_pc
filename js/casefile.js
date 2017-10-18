@@ -1,3 +1,38 @@
+//加载个人信息
+
+function load_user() {
+	var curtime = Math.round(new Date() / 1000);
+	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+        
+		data: {
+			service: "User.get_user_info",
+			time: curtime,
+			token: md_token,
+			async:false,
+			id: getSession(0)
+
+		},
+		success: function(data) {
+			var data = JSON.parse(data);
+			if(data.ret == 200) {
+				
+				$('.UserInfo').html(data.data);
+                 
+              
+			}else{
+
+			}
+		},
+		error: function() {
+
+		}
+	});
+
+}
+load_user();
 //加载案件
 var loadCase = function(n, s) {
 	$('.AJBox li ul').empty();

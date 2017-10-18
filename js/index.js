@@ -515,12 +515,12 @@ new Vue({
 					var data = JSON.parse(data);
 					if(data.ret == 200) {
 
-						console.log(data);
+						//console.log(data);
 						layer.msg('登录成功', {
 							icon: 1
 						});
 						//	if(data.data.user_office_work||)
-						console.log(data.data.user_id)
+						console.log(data.data)
 var Ismanage=data.data.is_office_manager;
 var Isworker=data.data.is_office_worker;
 var m_officeId=data.data.manage_office_id;
