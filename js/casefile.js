@@ -1,38 +1,4 @@
-//加载个人信息
 
-function load_user() {
-	var curtime = Math.round(new Date() / 1000);
-	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
-	$.ajax({
-		type: "post",
-		url: "https://www.ls186.cn/law_api",
-        
-		data: {
-			service: "User.get_user_info",
-			time: curtime,
-			token: md_token,
-			async:false,
-			id: getSession(0)
-
-		},
-		success: function(data) {
-			var data = JSON.parse(data);
-			if(data.ret == 200) {
-				
-				$('.UserInfo').html(data.data);
-                 
-              
-			}else{
-
-			}
-		},
-		error: function() {
-
-		}
-	});
-
-}
-load_user();
 //加载案件
 var loadCase = function(n, s) {
 	$('.AJBox li ul').empty();
@@ -108,13 +74,12 @@ var loadCase = function(n, s) {
 							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
 
 							$(".ms>ul").append(case1);
-						} else
-						if(ele.case_type == 5) {
+						} else if(ele.case_type == 5) {
 							zc++;
 							$(".zc a").eq(0).html('仲裁案件(' + zc + ')');
 							var case1 = $("<li class='caseSingle'><div class='case_title show_tit'>" + ele.case_title + "</div><div class='case_id'>" + ele.case_id + "</div><div class='case_uid'>" + ele.case_uid + "</div><div class='case_reason'>" + ele.case_reason + "</div><div class='case_process'>" + ele.case_process + "</div><div class='case_ctime'>" + new Date(parseInt(ele.case_ctime) * 1000).toLocaleString().split(" ")[0] + "</div><div class='case_type'>" + ele.case_type + "</div><div class='case_status'>" + ele.case_status + "</div><div class='dropdown'><a  class='dropdown-toggle' data-toggle='dropdown'>操作<b class='caret'></b></a><ul class='dropdown-menu'><li id='show_case'><a>浏览</a></li><li id='del_case'><a>删除</a></li></ul></div></li>");
 							$(".zc>ul").append(case1);
-						} else {
+						} else if(ele.case_type == 6){
 							zx++;
 
 							$(".zx a").eq(0).html('执行案件(' + zx + ')');
@@ -142,7 +107,68 @@ var loadCase = function(n, s) {
 };
 loadCase('1', 'time');
 //返回图片元素
+var flag;
+function conflict_check(card_id,case_id,name){
+ flag=false;
+	$.ajax({
+		type: "POST",
+		url:'https://www.ls186.cn/law_api',
+		data: {
+			service: "Case.conflict_check",
+			time:cur_timestamp,
+			token:md_token,
+			async:false,
+			name:name,
+			user_id:getSession(0),
+		    case_id:case_id,
+			id_num:card_id,
+		},
+		success: function(res) {
+			var data = JSON.parse(res);
+			if(data.ret == 200) {
+				console.log(data);
+			   
+			     
+			    //return flag=true; 
+			  	 
+			} else if(data.ret== 401){
+				
+				console.log(data);
+			    //return  flag=0;
+				
+			}else{
+				console.log(data);
+			}
+		},
+		error: function(error) {
+	         console.log(error);
+			//return flag=0;
+		}
+	});
+	//return flag;
+};
 
+$('#case_user_id').blur(function(){
+	
+	var name=$('#djcase_uname').val();
+	var case_id= $('.new_case_id').html();
+	var card_id=$(this).val();
+	if(conflict_check(card_id,case_id,name)==1){
+		console.log(conflict_check(card_id,case_id,name));
+	}else if(conflict_check(card_id,case_id,name)==0){
+		console.log(conflict_check(card_id,case_id,name));
+	      alert('不好, 可能存在利益冲突!');
+	}
+})
+$('#s_case_user_id').blur(function(){
+	
+	var name=$('#s_case_uname').val();
+	
+	var case_id= $("#myModalLabel").attr('class');
+	console.log(case_id)
+	var card_id=$(this).val();
+	conflict_check(card_id,case_id,name);
+})
 function appendImg(imgArr) {
 	//var imgArr=imgStr.split(",");
 	var objArr = [];
