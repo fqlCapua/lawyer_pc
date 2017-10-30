@@ -191,6 +191,7 @@ function load_user() {
 function send_to_export(caseString) {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	console.log(cur_timestamp+"——————————————————"+md_token);
 	var index = layer.load(2, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
@@ -206,6 +207,7 @@ function send_to_export(caseString) {
 			id: caseString,
 		},
 		success: function(data) {
+			
 			layer.close(index);
 			var data = JSON.parse(data);;
 			if(data.ret == 200) {
@@ -261,17 +263,18 @@ var idArr = new Array();
 //选中单个案件
 
 $('.send_export').click(function() {
-	var tr = $(this).siblings('.table').find('.paCase');
 
-	for(var i = 0; i < tr.length; i++) {
+	var tr = $(this).parents().siblings('.table').find('.paCase');
+     for(var i = 0; i < tr.length; i++) {
 		if($(tr[i]).find('.childcase').is(':checked')) {
 			var id = $(tr[i]).attr('case_id');
-			idArr.push(id)
-
+			idArr.push(id);
+            
 		}
-
+    
 	}
 	var caseString = idArr.join(',');
+	   console.log(caseString);
 	send_to_export(caseString);
 
 })
@@ -279,7 +282,7 @@ $('.send_export').click(function() {
 $('.send_office').click(function() {
 
 	if(load_user().office_title!=undefined) {
-	var tr = $(this).siblings('.table').find('.paCase');
+	var tr = $(this).parents().siblings('.table').find('.paCase');
 
 	for(var i = 0; i < tr.length; i++) {
 		if($(tr[i]).find('.childcase').is(':checked')) {
