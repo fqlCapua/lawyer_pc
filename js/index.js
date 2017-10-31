@@ -1,6 +1,44 @@
 //$(".login a").eq(2).hide();
 //$(".login1 a").eq(2).hide();
 /*自适应菜单*/
+function load_user_info() {
+	if(getSession(0)!=undefined){
+		
+	
+	var userObj = {};
+	var curtime = Math.round(new Date() / 1000);
+	var md_token = hex_md5("law_" + hex_md5(String(curtime)) + "_law");
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		async: false,
+		data: {
+			service: "User.get_user_info",
+			time: curtime,
+			token: md_token,
+			async: false,
+			id: getSession(0)
+
+		},
+		success: function(data) {
+			var data = JSON.parse(data);
+			if(data.ret == 200) {
+
+				var userObj = data.data;
+				$('.office_title_lg').html('');
+				$('.office_title_lg').html(userObj.office_title);
+
+			} else {
+         layer.msg(data.msg)
+			}
+		},
+		error: function() {
+
+		}
+	});
+	}
+	//return userObj;
+}
 $("#menuBtn").click(function() {
 	$(".header_nav").slideToggle();
 })
@@ -439,6 +477,7 @@ if(ls.getItem("law_sign")) {
 
 function pro_refresh() {
 	if(ls.getItem("law_sign")) {
+     load_user_info();		
 		var jsonTxt = JSON.parse(ls.getItem('law_sign'));
 		var jsonStr = jsonTxt[jsonTxt.length - 1].law_law;
 		if(jsonStr.split("_")[3] == 1) {
@@ -465,9 +504,9 @@ function pro_refresh() {
 			var case_url = "http://www.ls186.cn/index.php?g=Law&m=Office&a=case_list&id=" +jsonStr.split("_")[6]+ "&is_office_manager=1"+"&user_id="+jsonStr.split("_")[0];
 			var lawyer_url = "http://www.ls186.cn/index.php?g=Law&m=Office&a=lawyer_list&id="+jsonStr.split("_")[6]+ "&is_office_manager=1";
 			if(itemNum==0){
-				var li = $("<li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + lawyer_url + "'>律所律师管理</a></span></li> <li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + case_url + "'>律所案件管理</a></span></li>");
+				var li = $("<li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + lawyer_url + "'>律师管理</a></span></li> <li class='btn btn-primary btn-block officeCheck'><span><i  class='fa fa-copy fa-2x'></i><a target='_blank' href='" + case_url + "'>案件管理</a></span></li>");
 		    $("#leftsead1 ul").append(li);
-			}else{}
+			}else{}   
 			
 			
 			
@@ -478,7 +517,7 @@ function pro_refresh() {
 	}
 
 }
-setInterval('pro_refresh()', 1000);
+setInterval('pro_refresh()', 3000);
 /*登录信息*/
 var show_officeCheck;
 var cur_timestamp = Date.parse(new Date()) / 1000;
@@ -520,7 +559,7 @@ new Vue({
 							icon: 1
 						});
 						//	if(data.data.user_office_work||)
-				
+				//load_user_info();
 var Ismanage=data.data.is_office_manager;
 var Isworker=data.data.is_office_worker;
 var m_officeId=data.data.manage_office_id;

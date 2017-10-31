@@ -185,7 +185,11 @@ function load_user() {
 
 		}
 	});
-	return userObj;
+	if(userObj.office_title){
+		
+	}else{
+		
+	}
 }
 
 function send_to_export(caseString) {

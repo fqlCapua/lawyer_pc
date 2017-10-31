@@ -6,6 +6,10 @@
 	font-family: "微软雅黑";
 	
 }
+.storeBox{
+	
+	position: relative;
+};
 .container{
 	width: 60%;
 }

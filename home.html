@@ -92,161 +92,163 @@
 	<body>
 
 		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+			        <span class="office_title_lg"></span>
 					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
 		</span>
 
-			<div class="logo">
-				<div>
-					<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
-                    <span class="login pull-right">
+		<div class="logo">
+			<div>
+				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
+				
+				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
 						
 							<a class="btn  btn-info btn-lg"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
 				    </span>
-					<span class="login1 pull-right hide">
+				<span class="login1 pull-right hide">
 							<a class="btn  btn-success btn"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
 							<a class="btn  btn-info btn"  data-toggle="modal" data-target="#myRegs" style="font-size:1.1em;">注册</a>
 				</span>
-					<span class="pull-right Ylogin hide">
+				<span class="pull-right Ylogin hide">
 				           <a id="YloginBtn" class="btn  btn-success"  style="width:110px;height:40px;margin-bottom:2px;font-size:1.2em;font-weight: bold;">
 								<span class="login_icon">User</span>
-					</a>
-					<a id="clearUser" class="btn  btn-info" style="height:40px;font-size:1.2em;font-weight: bold;">
-						注销
-					</a>
-					<div class="user_set">
-						<!--<div onclick="window.location.href='user_page.html'" name='homeInfo' class=" btn  btn-success">
+				</a>
+				<a id="clearUser" class="btn  btn-info" style="height:40px;font-size:1.2em;font-weight: bold;">
+					注销
+				</a>
+				<div class="user_set">
+					<!--<div onclick="window.location.href='user_page.html'" name='homeInfo' class=" btn  btn-success">
 						<span class="fa fa-home fa-fw"></span>
 						<b>个人主页</b>
 					</div>-->
 
-						<div name='userInfo' class="userInfo btn  btn-success">
-							<span class="fa fa-cog fa-fw"></span>
-							<b>个人设置</b>
-						</div>
-
-						<div name="vertifyInfo" class="vertifyInfo btn  btn-success">
-							<span class="fa fa-drivers-license-o fa-fw"></span>
-							<b>律师认证</b>
-						</div>
-						<div name="vertifyInfo2" class="vertifyInfo btn  btn-success">
-							<span class="fa fa-drivers-license-o fa-fw"></span>
-							<b>律所认证</b>
-						</div>
-						<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
-							<span class="fa fa-key fa-fw"></span>
-							<b>修改密码</b>
-						</div>
+					<div name='userInfo' class="userInfo btn  btn-success">
+						<span class="fa fa-cog fa-fw"></span>
+						<b>个人设置</b>
 					</div>
 
+					<div name="vertifyInfo" class="vertifyInfo btn  btn-success">
+						<span class="fa fa-drivers-license-o fa-fw"></span>
+						<b>律师认证</b>
+					</div>
+					<div name="vertifyInfo2" class="vertifyInfo btn  btn-success">
+						<span class="fa fa-drivers-license-o fa-fw"></span>
+						<b>律所认证</b>
+					</div>
+					<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
+						<span class="fa fa-key fa-fw"></span>
+						<b>修改密码</b>
+					</div>
 				</div>
 
-				<div class="btn btn-info menuBtn pull-right" id="menuBtn">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
 			</div>
-			<!--作者：fql
+
+			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		<!--作者：fql
 	                       时间：2017-03-07
 	                      描述：登录弹窗-->
 
-			<div class="modal fade" id="myLogin">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content" id="app">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
+		<div class="modal fade" id="myLogin">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content" id="app">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
 		 					<span>&times;</span>
 		 				</button>
-							<h4 class="modal-title" id="myModalLabel">登录界面</h4>
-						</div>
-						<form @submit.prevent="submit">
-							<div class="modal-body">
-
-								<div class="form-group">
-									<label class="control-label">账号：</label>
-									<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
-								</div>
-								<div class="form-group">
-									<label class="control-label">密码：</label>
-									<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
-
-								<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
-							</div>
-						</form>
+						<h4 class="modal-title" id="myModalLabel">登录界面</h4>
 					</div>
+					<form @submit.prevent="submit">
+						<div class="modal-body">
+
+							<div class="form-group">
+								<label class="control-label">账号：</label>
+								<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$|^[A-Za-z]\w{1,}$" placeholder="手机号" class="form-control" id="LoginName" v-model="user.username" required/>
+							</div>
+							<div class="form-group">
+								<label class="control-label">密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPwd" v-model="user.password" required/>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<input id="LoginBtn" type="submit" class="btn btn-info" value="登录">
+
+							<a style="font-size:12px;" href="forgotPwd.html">忘记密码？</a>
+						</div>
+					</form>
 				</div>
 			</div>
+		</div>
 
-			<!--
+		<!--
             	作者：fql
             	时间：2017-03-07
             	描述：注册弹窗
             	  -->
-			<div class="modal fade" id="myRegs">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
+		<div class="modal fade" id="myRegs">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
 		 					<span>&times;</span>
 		 				</button>
-							<h4 class="modal-title" id="myModalLabel">注册界面</h4>
-						</div>
-						<form>
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="j_phone" class="control-label">手机号：</label>
-									<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$" class="form-control phone" id="j_phone" required/>
-								</div>
-								<div class="form-group">
-									<label for="userPhone" class="control-label">验证码：</label>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="" required />
-										<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="userPWD" class="control-label">密码：</label>
-									<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPWD" required/>
-								</div>
-								<div class="form-group">
-									<label for="userPWD2" class="control-label">确认密码：</label>
-									<input type="password" oninput="this.setCustomValidity('')" pattern="^\S{6,}$" class="form-control" id="userPWD2" required/>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label">你的身份：</label>
-									<select class="custom-select-sm form-control">
-										<option>主任律师</option>
-										<option>正式律师</option>
-										<option>实习律师</option>
-										<option>律所内勤</option>
-										<option>法律工作者</option>
-										<option>当事人</option>
-									</select>
-								</div>
-								<div class="form-check" style="border:none">
-									<input type="checkbox" />
-									<label class="control-label">已阅读并同意<a href="secret_law.html">《协议与帮助》</a></label>
-
-								</div>
-							</div>
-							<div class="modal-footer">
-								<input type="button" id="regBtn" class="btn btn-info" value="注册">
-							</div>
-						</form>
+						<h4 class="modal-title" id="myModalLabel">注册界面</h4>
 					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="j_phone" class="control-label">手机号：</label>
+								<input type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('手机号格式输入不正确')" pattern="^1[3-9]\d{9}$" class="form-control phone" id="j_phone" required/>
+							</div>
+							<div class="form-group">
+								<label for="userPhone" class="control-label">验证码：</label>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="" required />
+									<span class="input-group-addon getYzCode" id="j_getVerifyCode" style="cursor: pointer;">获取验证码</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="userPWD" class="control-label">密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('密码不少于6位')" pattern="^\S{6,}$" class="form-control" id="userPWD" required/>
+							</div>
+							<div class="form-group">
+								<label for="userPWD2" class="control-label">确认密码：</label>
+								<input type="password" oninput="this.setCustomValidity('')" pattern="^\S{6,}$" class="form-control" id="userPWD2" required/>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label">你的身份：</label>
+								<select class="custom-select-sm form-control">
+									<option>主任律师</option>
+									<option>正式律师</option>
+									<option>实习律师</option>
+									<option>律所内勤</option>
+									<option>法律工作者</option>
+									<option>当事人</option>
+								</select>
+							</div>
+							<div class="form-check" style="border:none">
+								<input type="checkbox" />
+								<label class="control-label">已阅读并同意<a href="secret_law.html">《协议与帮助》</a></label>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="button" id="regBtn" class="btn btn-info" value="注册">
+						</div>
+					</form>
 				</div>
 			</div>
+		</div>
 
 		</div>
 
@@ -634,69 +636,64 @@
 
 		</div>
 		<iframe class="footer_iframe" src="footer.html" frameborder="0" scrolling="no" width="100%" height="300"></iframe>
-		</body>
+	</body>
 
-		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="js/layer.js"></script>
-		<script src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script src="js/bootstrap.js"></script>
 
-		<script type="text/javascript" src="js/index.js"></script>
-		<script type="text/javascript" src="js/getSession.js"></script>
-		<script type="text/javascript" src="js/load_news.js"></script>
-		<script>
-			
-			 
-			
-			$('.modal').modal({
-				backdrop: 'static',
-				show: false
-			});
-			 //检查cookie
-var key='capua'
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/getSession.js"></script>
+	<script type="text/javascript" src="js/load_news.js"></script>
+	<script>
+		$('.modal').modal({
+			backdrop: 'static',
+			show: false
+		});
+		//检查cookie
+		var key = 'capua'
 
-function setCookie(value){
-var Days = 30;
-var exp = new Date();
-exp.setTime(exp.getTime() + Days*24*60*60*1000);
-document.cookie = key + "="+ escape (value) + ";expires=" + exp.toGMTString();
-}
+		function setCookie(value) {
+			var Days = 30;
+			var exp = new Date();
+			exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+			document.cookie = key + "=" + escape(value) + ";expires=" + exp.toGMTString();
+		}
 
-//function removeCookie(key) {
-//  setCookie(key, '', -1);//这里只需要把Cookie保质期退回一天便可以删除
-//}
-function getCookie(key) {
-    var cookieArr = document.cookie.split('; ');
-    for(var i = 0; i < cookieArr.length; i++) {
-        var arr = cookieArr[i].split('=');
-        if(arr[0] === key) {
-            return arr[1];
-        }
-    }
-    return false;
-}
-$(function(){
-	if(getCookie(key)){
-		//console.log('有历史不设置cookie');
-	}else{
-		//console.log('无历史设置cookie');
-		 var index=layer.open({
-			  	    title:'app推广',
-			  	    scrollbar :false,
-			  	    skin: 'layui-layer-lan',
-                   type: 2,
-                   content:'promotion.html',
-                   area: ['100%', '100%'],
-                   maxmin: true,
-                   cancel:function(){
-                   	setCookie(1);
-                   	layer.close(index);
-                   }
-               });
-			
-		
-	}
-})
+		//function removeCookie(key) {
+		//  setCookie(key, '', -1);//这里只需要把Cookie保质期退回一天便可以删除
+		//}
+		function getCookie(key) {
+			var cookieArr = document.cookie.split('; ');
+			for(var i = 0; i < cookieArr.length; i++) {
+				var arr = cookieArr[i].split('=');
+				if(arr[0] === key) {
+					return arr[1];
+				}
+			}
+			return false;
+		}
+		$(function() {
+			if(getCookie(key)) {
+				//console.log('有历史不设置cookie');
+			} else {
+				//console.log('无历史设置cookie');
+				var index = layer.open({
+					title: 'app推广',
+					scrollbar: false,
+					skin: 'layui-layer-lan',
+					type: 2,
+					content: 'promotion.html',
+					area: ['100%', '100%'],
+					maxmin: true,
+					cancel: function() {
+						setCookie(1);
+						layer.close(index);
+					}
+				});
 
-		</script>
+			}
+		})
+	</script>
 
 </html>

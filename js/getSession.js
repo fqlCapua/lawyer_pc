@@ -9,7 +9,7 @@
 		//0为  userid  2位用户身份
 		return jsonStr.split("_")[i];
   } else {
-    layer.msg('请先登录');
+     //layer.msg('请先登录');
 
   }
  	   

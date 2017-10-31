@@ -9,6 +9,25 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+.office_title_lg{
+	position: absolute;
+	
+	left:38%;
+	top:30px;
+	display: inline-block;
+	
+	text-align:center;
+	color:#337AB7;
+	font:bold 3.4em "楷体";
+
+}
+
+@media only screen and (max-width:1200px){
+.office_title_lg{
+	display: none;
+}
+}
 body {
   margin: 0;
 }
