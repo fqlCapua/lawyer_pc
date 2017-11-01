@@ -13,13 +13,12 @@ html {
 .office_title_lg{
 	position: absolute;
 	
-	left:38%;
-	top:30px;
+	left:35%;
+	top:25px;
 	display: inline-block;
-	
 	text-align:center;
 	color:#337AB7;
-	font:bold 3.4em "楷体";
+	font:bold 4em "微软雅黑";
 
 }
 
