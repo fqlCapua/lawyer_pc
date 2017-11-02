@@ -11,11 +11,13 @@ html {
 }
 
 .office_title_lg{
-	position: absolute;
-	
-	left:35%;
+
+	position:absolute;
+	left:30%;
 	top:25px;
-	display: inline-block;
+	width:40%;
+	overflow:hidden;
+	display:inline-block;
 	text-align:center;
 	color:#337AB7;
 	font:bold 4em "微软雅黑";
