@@ -93,15 +93,15 @@
 
 		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 			        <span class="office_title_lg"></span>
-					<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
-					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-					<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
+		<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
+		&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+		<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
 		</span>
 
 		<div class="logo">
 			<div>
 				<span class="icon text-info" style="font:bold 30px '宋体';"><img src="img/home/logo.png" alt=""/></span>
-				
+
 				<span class="login pull-right">
 							<a class="btn  btn-success btn-lg"  data-toggle="modal"   data-target="#myLogin" style="font-size: 1.1em;">登录</a>
 							<a>&nbsp;</a>
@@ -624,8 +624,8 @@
 						<span><i style="" class="fa fa-map-o fa-2x"></i><a target="_blank"  href="Laws_pact.html">合同范本</a></span>
 					</li>
 
-					<li class="btn btn-primary btn-block" onclick="alert('请先登录');window.location.href='http://ha.lawyeredu.com/common/index.pl'">
-						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师培训</a></span>
+					<li class="btn btn-primary btn-block" onclick="window.location.href='http://www.zfwx.com/wxqt/'">
+						<span><i style="" class="fa fa-laptop fa-2x"></i><a>律师学习</a></span>
 					</li>
 					<li class="btn btn-primary btn-block" onclick="window.location.href='count.html'">
 						<span><i style=""  class="fa fa-balance-scale fa-2x"></i><a>计算工具</a></span>
@@ -646,6 +646,27 @@
 	<script type="text/javascript" src="js/getSession.js"></script>
 	<script type="text/javascript" src="js/load_news.js"></script>
 	<script>
+		console.log(window.location.hostname);
+		console.log(document.domain)
+		console.log(window.location.href)
+
+//		function TolawyerEdu() {
+//			var settings = {
+//				"async": true,
+//				"crossDomain": true,
+//				"url": "http://120.25.253.197/common/index.pl",
+//				"method": "GET",
+//				"headers": {
+//					"host": "ha.lawyeredu.com",
+//					"cache-control": "no-cache",
+//					"postman-token": "3768ffcc-92ee-675f-7c14-ae97af1ef00f"
+//				}
+//			}
+//
+//			$.ajax(settings).done(function(response) {
+//				console.log(response);
+//			});
+//		}
 		$('.modal').modal({
 			backdrop: 'static',
 			show: false
