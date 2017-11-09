@@ -90,13 +90,15 @@
 	</div>
 
 	<body>
-
-		<span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
+  <div>
+  	    <span class="storeBox clearfix" style="display: inline-block;font-size:12px;line-height:14px; width:100%;padding:0 8em;text-align:end;color: #BABABA;">
 			        <span class="office_title_lg"></span>
 		<a href="javascript:void(0)" onclick="SetHome(this,window.location.href);">设为首页</a>
 		&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 		<a href="javascript:void(0)" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
 		</span>
+  </div>
+		
 
 		<div class="logo">
 			<div>
@@ -147,11 +149,7 @@
 
 			</div>
 
-			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
+			
 		</div>
 		<!--作者：fql
 	                       时间：2017-03-07
@@ -650,23 +648,23 @@
 		console.log(document.domain)
 		console.log(window.location.href)
 
-//		function TolawyerEdu() {
-//			var settings = {
-//				"async": true,
-//				"crossDomain": true,
-//				"url": "http://120.25.253.197/common/index.pl",
-//				"method": "GET",
-//				"headers": {
-//					"host": "ha.lawyeredu.com",
-//					"cache-control": "no-cache",
-//					"postman-token": "3768ffcc-92ee-675f-7c14-ae97af1ef00f"
-//				}
-//			}
-//
-//			$.ajax(settings).done(function(response) {
-//				console.log(response);
-//			});
-//		}
+		function TolawyerEdu() {
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "http://120.25.253.197/common/index.pl",
+				"method": "GET",
+				"headers": {
+					"host": "ha.lawyeredu.com",
+					"cache-control": "no-cache",
+					"postman-token": "3768ffcc-92ee-675f-7c14-ae97af1ef00f"
+				}
+			}
+
+			$.ajax(settings).done(function(response) {
+				window.location.redirect='http://ha.lawyeredu.com/common/index.pl'
+			});
+		}
 		$('.modal').modal({
 			backdrop: 'static',
 			show: false

@@ -10,9 +10,7 @@
 	
 	position: relative;
 };
-.container{
-	width: 60%;
-}
+
 .login1{
 	display: none;
 }
@@ -327,15 +325,10 @@ textarea{
 	#leftsead,#leftsead1{
 		display: none;
 	}
-	.container{
-		width: 100%;
-	}
+	
 }
 @media only screen  and (max-width:414px) {
- .container{
-	width:100%;
-	margin:0 auto;
-}
+ 
 .Ylogin{
 	margin-top:10px;
 	
@@ -373,10 +366,10 @@ textarea{
 	border-bottom:1px solid #FFFFFF;
 }
 
-  #container img{
-  	width:100vw;
+  /*#container img{
+  	width:70vw;
   	height:30vh;
-  }
+  }*/
   
   /*new_mobile*/
 .News_right div{
