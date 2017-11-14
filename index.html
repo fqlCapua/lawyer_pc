@@ -14,41 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
     
-    <script type="text/javascript">
-
-
-        function is_iPad() {
-            var ua = navigator.userAgent.toLowerCase();
-            if (ua.match(/iPad/i) == "ipad") {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        //平台、设备和操作系统
-
-        if (!is_iPad()) {
-            var system = {
-                win: false,
-                mac: false,
-                xll: false
-            };
-
-            //检测平台
-            var p = navigator.platform;
-            system.win = p.indexOf("Win") == 0;
-            system.mac = p.indexOf("Mac") == 0;
-            system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-
-            //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-            if (system.win || system.mac || system.xll) {
-            } else {
-                window.location.href = "http://www.ls186.cn";
-            }
-        }
-    </script>
-    <script type="text/javascript" src="src/baidureport.js"></script>
+    
 </head>
 <body >
     <div class="header skrollable skrollable-between" data-0="opacity: 0.9;" data-500="opacity:0.3;" style="opacity: 0.9;">
