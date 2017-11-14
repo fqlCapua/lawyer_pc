@@ -47,9 +47,9 @@ body{background:#fff;
 .col-table{ display: block; width:100%; clear: both;}
 .col-table .col{ display: table-cell; padding-right: 20px;}
 .justified-box{ clear:both; width:100%;overflow:hidden; margin: 30px 0;}
-.justified-item{ width: 126%;}
-.wrapper{ width: 1200px;margin:0 auto; clear: both;}
-.wrapper-small{ width:960px; height: auto; overflow: hidden; text-align: left;}
+
+
+
 
 .color-box{ border-radius:4px;background:red; display: block; padding: 20px; margin: 10px 0;}
 
@@ -72,12 +72,10 @@ body{background:#fff;
 .footer{ background:#282e3b;color:#999a9d; padding: 20px 0;text-align:left;}
 
 
-.logo{ float:left; margin-right: 64px;margin-top:5px;}
-.login-bar{ float:right; margin-left: 0; width: 231px;}
-.login-bar a{ display:inline-block;*display:inline;*zoom:1; font-size:18px; margin-top: 18px; margin-left: 14px;}
-.loginbar-ico{ display:inline-block;*display:inline;*zoom:1;width:88px;height:35px;background:url("../img/loginbar-ico.gif") no-repeat;}
-.login-ico{ background-position:0 0;}
-.reg-ico{ width: 110px; background-position:-88px 0;}
+
+
+
+
 
 
 
@@ -96,10 +94,8 @@ a.reg:hover { color:#fff; text-decoration:none;background:url(../img/reg_bg2.gif
 
 .nav li{ float:left;}
 
-.rukou .color-box{ float:left; width: 280px; margin-right: 74px; height: auto; line-height: 40px; acccolor: #fff;}
 
-.timeline .color-box{ width: 412px; height: auto; float: left; margin-right: 123px; font-size: 19px; text-align: left;line-height: 1.2; word-wrap: break-word;background-color: #f4f4f4; color: #545454; border-radius: 8px;}
-.timeline li{ clear:both; position: relative;}
+
 
 
 .nav{ line-height: 70px;}
@@ -151,7 +147,7 @@ a.reg:hover { color:#fff; text-decoration:none;background:url(../img/reg_bg2.gif
 .xiazai-list span{ color:#8d8d8d;}
 
 
-.wrapper2{ width:1027px; }
+
 
 
 .common-ico{ display:inline-block;*display:inline;*zoom:1; background:url("../img/common-ico.png") no-repeat;}
