@@ -186,7 +186,7 @@ function load_user() {
 		}
 	});
 	if(userObj.office_title){
-		
+		return userObj;
 	}else{
 		
 	}
@@ -195,7 +195,7 @@ function load_user() {
 function send_to_export(caseString) {
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
-	console.log(cur_timestamp+"——————————————————"+md_token);
+	//console.log(cur_timestamp+"———"+md_token);
 	var index = layer.load(2, {
 		shade: [0.1, "#EEEEEE"],
 		offset: ['50%', '50%']
@@ -238,13 +238,12 @@ function send_to_office(caseString) {
 	$.ajax({
 		type: "post",
 		url: "http://www.ls186.cn/law_api",
-		
 		data: {
 			service: "Case.submit_for_check",
 			time: cur_timestamp,
 			token: md_token,
-			id: caseString,
-
+			id:caseString,
+           
 		},
 		success: function(data) {
 			layer.close(index);
@@ -252,7 +251,7 @@ function send_to_office(caseString) {
 			if(data.ret == 200) {
 				layer.msg('已发送');
 			} else {
-				layer.msg(data.msg);
+				console.log(data.msg);
 			}
 		},
 		error: function(data) {
@@ -278,13 +277,13 @@ $('.send_export').click(function() {
     
 	}
 	var caseString = idArr.join(',');
-	   console.log(caseString);
+	//   console.log(caseString);
 	send_to_export(caseString);
 
 })
 //发送审批事件
 $('.send_office').click(function() {
-
+          
 	if(load_user().office_title!=undefined) {
 	var tr = $(this).parents().siblings('.table').find('.paCase');
 
@@ -297,6 +296,7 @@ $('.send_office').click(function() {
 
 	}
 	var caseString = idArr.join(',');
+     
 	send_to_office(caseString);
 	} else {
 		layer.msg('你还未加入任何律所');
