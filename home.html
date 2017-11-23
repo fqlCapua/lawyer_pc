@@ -141,6 +141,11 @@
 						<span class="fa fa-drivers-license-o fa-fw"></span>
 						<b>律所认证</b>
 					</div>
+					<div name='worker_Info' class="btn  btn-success">
+						<span class="fa fa-key fa-fw"></span>
+						<b>内勤认证</b>
+					</div>
+					
 					<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
 						<span class="fa fa-key fa-fw"></span>
 						<b>修改密码</b>
@@ -388,6 +393,42 @@
 				</div>
 				<div class="Myfooter text-center">
 					<input id="vertify_sub2" onclick="sub_vertify2()" type="button" class="btn btn-info" value="提交">
+				</div>
+			</form>
+
+		</div>
+		<div class="mySet hide" id="worker_Info">
+
+			<div class="Myheader text-center  bg-primary">
+				内勤认证
+			</div>
+			<form id="workForm">
+				<div class="Mybody">
+
+					<div class="form-group">
+						<label class="control-label">真实姓名：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')" name="worker_name" class="form-control worker_name" required/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">身份证号：</label>
+						<input type="text" placeholder="" oninput="this.setCustomValidity('')" name="worker_id" class="form-control worker_id" required/>
+					</div>
+				    <div class="form-group">
+						<label class="control-label">工作单位：</label>
+						<input type="text" oninput="this.setCustomValidity('')" name="worker_place" class="form-control worker_place" required/>
+					</div>
+					<div class="form-inline">
+						<label class="control-label">身份证正面：</label>
+						<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="worker_img_front" class=" worker_img_front" required/>
+					</div>
+					<div class="form-inline">
+						<label class="control-label">身份证反面：</label>
+						<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="worker_img_back" class="worker_img_back" required/>
+					</div>
+
+				</div>
+				<div class="Myfooter text-center">
+					<input id="vertify_sub" onclick="worker_vertify()" type="button" class="btn btn-info" value="提交">
 				</div>
 			</form>
 

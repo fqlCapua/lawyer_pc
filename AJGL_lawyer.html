@@ -747,14 +747,14 @@
 				   </span>
 
 				</div>
-
+				
 				<!--
                 	作者：13523450460@sina.cn
-                	时间：2017-05-19
-                	描述：登记案件开始
+                	时间：2017-11-22
+                	描述：登记案件
                 -->
-               
-				<div class="modal fade" id="myDJ">
+                
+                <div class="modal fade" id="myDJ">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -762,6 +762,82 @@
 		 					          <span>&times;</span>
 		 				            </button>
 								<h4 class="modal-title">登记案件</h4>
+
+							</div>
+							<form role="form">
+								<div class="modal-body">
+
+									<div class="form-group">
+										<div class="hide new_case_id"></div>
+										<input id="djcase_uname" v-model="user.truename" type="text" placeholder="案件当事人支持多个用   ,  隔开" class="form-control" />
+									</div>
+								   <div class="form-group">
+									
+										<input id="djcase_uname" v-model="user.case_title" type="text" placeholder="案件名称" class="form-control" />
+									</div>
+
+									<div class="form-group">
+										<input id="case_janame" v-model="user.case_janame" type="text" placeholder="管辖机构名称" class="form-control case_janame" />
+									</div>
+
+									<div class="form-group">
+										<label class="control-label">当事人身份：</label>
+										<select id="djcase_utype" class="custom-select form-control">
+											<!--<option>原告</option>
+											<option>被告</option>
+											<option>第三人</option>
+											<option>申请人</option>
+											<option>被申请人</option>
+											<option>上诉人</option>
+											<option>被上诉人</option>
+											<option>近亲属</option>-->
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">案件类型：</label>
+										<select id="djcase_type" class="custom-select form-control">
+											<!--<option>民事案件</option>
+											<option>刑事案件</option>
+											<option>行政案件</option>
+											<option>法律顾问</option>
+											<option>仲裁案件</option>
+											<option>执行案件</option>-->
+										</select>
+									</div>
+
+									
+
+									<div class="programeBox">
+
+									</div>
+
+								</div>
+								<div class="modal-footer">
+									<input type="button" @click="newCase" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+                
+                
+                
+                
+
+				<!--
+                	作者：13523450460@sina.cn
+                	时间：2017-05-19
+                	描述：登记表开始
+                -->
+               
+				<div class="modal fade" id="mySaveTable">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+		 					          <span>&times;</span>
+		 				            </button>
+								<h4 class="modal-title">登记表</h4>
 
 							</div>
 							<form role="form">

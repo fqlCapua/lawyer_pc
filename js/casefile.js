@@ -307,53 +307,55 @@ new Vue({
  el:'#myDJ',
  data:{
  	  user:{
- 		service:'Case.save_case',
+ 		service:'Case.submit_office',
  		time:Date.parse(new Date())/1000,
  		token:hex_md5("law_" + hex_md5(String(Date.parse(new Date()) / 1000)) + "_law"),
  		id:'',
- 		truename:"",
- 		opponame:"",
- 		telphone:"",
- 		handle_lawyer_name:"",
- 		case_des:"",
  		user_id:getSession(0),
- 		case_janame:'',
- 		case_ctarget:"",
- 		case_expect_cost:"",
- 		case_title:"",
- 		case_record:"",
- 		case_user_id:'',
- 		user_lid:"", //岗位级别ID
-   		user_did:"", //所属部门id
-   		case_sid:"", //案源id
-   		case_charge_style_id:"", //付款方式ID
+   		truename:"",
+   		case_janame:'',
    		client_tag:"",
-   		case_type:"",
-   		case_user_status:'',
-   		case_agreement_pics:"",
+     	case_type:"",
+        case_title:"",
+// 		opponame:"",
+// 		telphone:"",
+// 		handle_lawyer_name:"",
+// 		case_des:"",
+// 		case_ctarget:"",
+// 		case_expect_cost:"",
+
+// 		case_record:"",
+// 		case_user_id:'',
+// 		user_lid:"", //岗位级别ID
+// 		user_did:"", //所属部门id
+// 		case_sid:"", //案源id
+// 		case_charge_style_id:"", //付款方式ID
+// 		
+// 		case_user_status:'',
+// 		case_agreement_pics:"",
  		
 
  	  }
  },
  methods:{
  	
- 	  addCase:function(){
+ 	  newCase:function(){
  	  	//console.log(this);
- 	     this.user.id=$(".new_case_id").html();
- 	     
- 	     
- 	     this.user.user_lid=$('#user_lid').children('option:selected').attr('name');
- 	      this.user.user_did=$('#user_did').children('option:selected').attr('name');//所属部门id
-   		 this.user.case_sid=$('#case_sid').children('option:selected').attr('name'); //案源id
-   		
-   		 this.user.case_charge_style_id=$('#case_charge_style_id').children('option:selected').attr('name'); //付款方式ID
-   		 this.user.client_tag=$("#djcase_utype").children("option:selected").index() + 1;
+ 	  	 this.user.client_tag=$("#djcase_utype").children("option:selected").index() + 1;
    		 this.user.case_type=$("#djcase_type").children("option:selected").index() + 1;
-         this.user.case_user_status=$('#case_user_status').children('option:selected').attr('name'); 
-         
-         var imgUrl=returnImgStr($("#case_agreement_pics"), $(".new_case_id").html());
-   		 this.user.case_agreement_pics=imgUrl;
-   		 console.log(imgUrl);
+ 	     this.user.id=$(".new_case_id").html();
+ 	   
+ 	   
+// 	     this.user.user_lid=$('#user_lid').children('option:selected').attr('name');
+// 	     this.user.user_did=$('#user_did').children('option:selected').attr('name');//所属部门id
+// 		 this.user.case_sid=$('#case_sid').children('option:selected').attr('name'); //案源id
+// 		 this.user.case_charge_style_id=$('#case_charge_style_id').children('option:selected').attr('name'); //付款方式ID
+// 		
+//       //this.user.case_user_status=$('#case_user_status').children('option:selected').attr('name'); 
+//       
+//       var imgUrl=returnImgStr($("#case_agreement_pics"), $(".new_case_id").html());
+//   		 this.user.case_agreement_pics=imgUrl;
+   		
    		 
    		 
  	  	 $.ajax({
@@ -386,10 +388,49 @@ new Vue({
 
 
 
+function get_clientType(obj, port) {
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	$.ajax({
+		type: "post",
+		url: 'https://www.ls186.cn/law_api',
+		data: {
+			service: port,
+			time:cur_timestamp,
+			token: md_token,
+		},
+		success: function(res) {
+			var res = JSON.parse(res);
+			if(res.ret == 200) {
+				var list = res.data;
+				
+				$.each(list, function(i, ele) {
 
+					var option = $("<option></option>");
+					for(var prop in ele) {
+                       option.html(ele[prop]);
+					}
 
+					$(obj).append(option);
+				});
+
+			} else {
+				console.log(res.msg)
+			}
+		},
+		fail: function(err) {
+			layer.msg(err)
+		}
+	});
+
+}
+
+get_clientType("#djcase_utype","Index.get_user_tag");
+get_clientType("#djcase_type","Index.get_case_type");
 //返回岗位级别ID,所属部门id案源id
 function get_TypeId(obj, port, part) {
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	$.ajax({
 		type: "post",
 		url: 'https://www.ls186.cn/law_api',

@@ -892,4 +892,66 @@ function sub_vertify2() {
 		}
 	});
 }
+
+//  ========== 
+//  = 内勤认证 = 
+//  ========
+
+function worker_vertify() {
+	var index = layer.load(1, {
+		shade: [0.1, 'gray'],
+		area: ['100px', '50px']
+	});
+	var cur_timestamp = Date.parse(new Date()) / 1000;
+	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
+	var vertiData = new FormData();
+	var userid = getSession(0);
+	worker_name = $(".worker_name").val();
+    worker_id = $('.worker_id').val();
+	worker_place = $('.worker_place').val();
+	
+	worker_img_front = $('.worker_img_front')[0].files[0];
+    worker_img_back = $('.worker_img_back')[0].files[0];
+	vertiData.append('service', 'User.worker_verify');
+	vertiData.append('time', cur_timestamp);
+	vertiData.append('token', md_token);
+	
+	vertiData.append('userid', userid);
+	 vertiData.append('truename', worker_name);
+     vertiData.append('id', worker_id);
+	vertiData.append('work_place', worker_place);
+
+	vertiData.append('id_img_front', worker_img_front);
+
+	vertiData.append('id_img_back', worker_img_back);
+console.log()
+	$.ajax({
+		type: "post",
+		url: "https://www.ls186.cn/law_api",
+		cache: false,
+		processData: false,
+		contentType: false,
+		data: vertiData,
+		success: function(data) {
+			layer.close(index);
+			var data = JSON.parse(data)
+			if(data.ret == 200) {
+			
+					layer.msg(data.msg);
+			
+
+			} else {
+				layer.msg(data.msg)
+
+			}
+
+		},
+		error: function(data, status) {
+			layer.close(index);
+			console.log(data + status);
+		}
+	});
+}
+
+
 //第一次登陆推广

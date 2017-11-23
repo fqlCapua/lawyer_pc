@@ -91,34 +91,11 @@
 				<a id="clearUser" class="btn  btn-info" style="height:40px;font-size:1.2em;font-weight: bold;">
 					注销
 				</a>
-				<div class="user_set">
-					<!--<div onclick="window.location.href='user_page.html'" name='homeInfo' class=" btn  btn-success">
-						<span class="fa fa-home fa-fw"></span>
-						<b>个人主页</b>
-					</div>-->
-
-					<div name='userInfo' class="userInfo btn  btn-success">
-						<span class="fa fa-cog fa-fw"></span>
-						<b>个人设置</b>
-					</div>
-
-					<div name="vertifyInfo" class="vertifyInfo btn  btn-success">
-						<span class="fa fa-drivers-license-o fa-fw"></span>
-						<b>实名认证</b>
-					</div>
-					<div onclick="window.location.href='forgotPwd.html'" class="btn  btn-success">
-						<span class="fa fa-key fa-fw"></span>
-						<b>修改密码</b>
-					</div>
-				</div>
+				
 
 			</div>
 
-			<div class="btn btn-info menuBtn pull-right" id="menuBtn">
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
+			
 		</div>
 		<!--作者：fql
 	                       时间：2017-03-07
@@ -223,101 +200,7 @@
 		<!--  = 个人设置模态框 =  -->
 		<!--  ==========  -->
 
-		<div class="mySet hide" id="userInfo">
-			    <div class="Myheader text-center  bg-primary" >
-					信息设置
-				</div>
-				<form>
-					<div class="Mybody">
-                        <div class="form-inline">
-							<label class="control-label">头像：</label>
-							<img class="head_show" style="width: 50px;height: 50px;" />
-							<input type="button" class="btn btn-default btn-sm headChange" value="更改"  />
-							<input type="file" accept="png,jpg"   class="head_img hide"  />
-						</div><p />
-						<div class="form-group">
-							<label class="control-label">手机：</label>
-							<span style="border: none;" class="form-control phone"></span>
-						</div>
-						<div class="form-group">
-							<label class="control-label">邮箱：</label>
-							<span style="border: none;" class="form-control email"></span>
-						</div>
-						<div class="form-group">
-							<label class="control-label">昵称：</label>
-							<input type="text"  placeholder="新昵称" class="form-control nickname"   required/>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label">性别</label>
-						   <select class="form-control  gender">
-						      <option>男</option>
-						   	  <option>女</option>
-						   </select>
-			             </div>
-                        <div class="form-group">
-							<label class="control-label">简介：</label>
-							<textarea  type="text"  placeholder="请一句话描述自己..." class="form-control intro" ></textarea>
-			             </div>
-					</div>
-					<div class="Myfooter text-center">
-						<input id="info_sub" type="button" class="btn btn-info" value="提交">
-                    </div>
-				</form>
 		
-
-		</div>
-		<!--  ==========  -->
-		<!--  = 身份认证 =  -->
-		<!--  ==========  -->
-
-		<div class="mySet hide" id="vertifyInfo">
-			
-				<div class="Myheader text-center  bg-primary" >
-					实名认证
-				</div>
-				<form id="vertify">
-					<div class="Mybody">
-                       
-						<div class="form-group">
-							<label class="control-label">真实姓名：</label>
-							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="truename" class="form-control truename"    required/>
-						</div>
-						<div class="form-group">
-							<label class="control-label">身份证号：</label>
-							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="id" class="form-control id"    required/>
-			             </div>
-			             <div class="form-group">
-							<label class="control-label">律师证号：</label>
-							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name='lawyer_id' class="form-control lawyer_id"    required/>
-			             </div>
-			             <div class="form-group">
-							<label class="control-label">工作单位：</label>
-							<input type="text"  placeholder="" oninput="this.setCustomValidity('')" name="work_place" class="form-control work_place"    required/>
-			             </div>
-			            
-			             <div class="form-inline">
-							<label class="control-label">执业证照：</label>
-							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="lawyer_id_img"   class="lawyer_id_img"  required/>
-						</div>
-			             <div class="form-inline">
-							<label class="control-label">身份证正面：</label>
-							<input type="file" accept="png,jpg"  oninput="this.setCustomValidity('')" name="id_img_front"  class="id_img_front"  required/>
-						</div>
-						<div class="form-inline">
-							<label class="control-label">身份证反面：</label>
-							<input type="file" accept="png,jpg" oninput="this.setCustomValidity('')" name="id_img_back"   class="id_img_back"  required/>
-						</div>
-			             
-                        
-					</div>
-					<div class="Myfooter text-center">
-						<input id="vertify_sub" onclick="sub_vertify()" type="button" class="btn btn-info" value="提交">
-                    </div>
-				</form>
-		
-
-		</div>
 		<!-- header -->
 		<div class="container">
 			<div class="header-bottom">
