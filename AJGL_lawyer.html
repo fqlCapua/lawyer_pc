@@ -245,139 +245,52 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">
+										
 		 					               <span>&times;</span>
 		 				           </button>
 									<h4 class="" id="myModalLabel" >案件详情</h4>
+									<div class="form-group" style="">
+											<button class="btn btn-success pull-right" data-toggle="modal" data-target="#mySaveCase"  id="addCaseDetials">案件登记表</button>
+									</div>
 								</div>
 								<div class="modal-body">
 									<form class="form-horizontal" role="form">
+										
+									
 										<div class="form-group">
 											<label class="control-label">当事人姓名：</label>
 											<input id="s_case_uname" v-model="user.truename" type="text" placeholder="案件当事人支持多个用   ,  隔开" class="form-control" />
 										</div>
-										<div class="form-group">
-											<label class="control-label">当事人身份证号：</label>
-											<input id="s_case_user_id" v-model="user.case_user_id" type="text" placeholder="当事人的身份证号" class="form-control case_user_id" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">对方姓名：</label>
-											<input id="s_opponame" type="text" v-model="user.opponame" placeholder="案件对方支持多个用   ,  隔开" class="form-control" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">联系电话：</label>
-											<input id="s_djcase_tel" type="text" v-model="user.telphone" class="form-control" placeholder="当事人联系电话" />
-
-										</div>
-										<div class="form-group">
+                                        <div class="form-group">
 											<label class="control-label">案件名称：</label>
 											<input id="s_djcase_name" v-model="user.case_title" type="text" class="form-control" placeholder="案件名称" />
 										</div>
 										<div class="form-group">
-											<label class="control-label">备案号：</label>
-											<input id="s_case_record" v-model="user.case_record" type="text" placeholder="备案号(选填)" class="form-control case_record" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">经办律师：</label>
-											<input id="s_handle_lawyer_name" v-model="user.handle_lawyer_name" type="text" placeholder="经办律师，默认为空(选填)" class="form-control" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">案件简介：</label>
-											<textarea id="s_case_des" type="text" v-model="user.case_des" rows="2" placeholder="案件简介:" class="form-control"></textarea>
-										</div>
-										<div class="form-group">
-											<label class="control-label">业务标的：</label>
-
-											<input id="s_case_ctarget" type="text" v-model="user.case_ctarget" placeholder="业务标的" class="form-control case_ctarget" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">预期费用：</label>
-											<input id="s_case_expect_cost" type="text" v-model="user.case_expect_cost" placeholder="案件预期费用" class="form-control case_expect_cost" />
-										</div>
-
-										<div class="form-group">
 											<label class="control-label">管辖机构名称：</label>
 											<input id="s_case_janame" v-model="user.case_janame" type="text" placeholder="管辖机构名称" class="form-control case_janame" />
 										</div>
-										<div class="form-group">
+										<!--<div class="form-group">
 											<label class="control-label">案件协议照片：</label>
 											<div class="s_show_pics"></div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">案件协议(新增照片)：</label>
-											<input id="s_case_agreement_pics" multiple="multiple" type="file" class="form-control case_agreement_pics" />
-										</div>
-										<div class="form-group">
-											<label class="control-label">岗位级别：</label>
-											<select id="s_user_lid" class="custom-select form-control user_lid">
-												<option name='1'>提成律师</option>
-												<option name='2'>实习律师</option>
-												<option name='3'>正式律师</option>
-												<option name='4'>资深律师</option>
-
-											</select>
-										</div>
-										<div class="form-group">
-											<label class="control-label">所属部门级别：</label>
-											<select id="s_user_did" class="custom-select form-control user_did">
-												<option name='1'>执业律师部</option>
-												<option name='2'>专家律师部</option>
-
-											</select>
-										</div>
-										<div class="form-group">
-											<label class="control-label">案源：</label>
-											<select id="s_case_sid" class="custom-select form-control case_sid">
-												<option name='1'>律所案源</option>
-												<option name='2'>个人案源</option>
-
-											</select>
-										</div>
-
-										<div class="form-group">
-											<label class="control-label">付款方式：</label>
-											<select id="s_case_charge_style_id" class="custom-select form-control case_charge_style_id">
-												<option name='1'>固定金额</option>
-												<option name='2'>浮动金额</option>
-
-											</select>
-										</div>
-										<div class="form-group">
-											<label class="control-label">客户状态：</label>
-											<select id="s_case_user_status" class="custom-select form-control case_user_status">
-												<option name='1'>正式客户</option>
-												<option name='2'>风险代理</option>
-											</select>
-										</div>
+										</div>-->
 										<div class="form-group">
 											<label class="control-label">当事人身份：</label>
 											<select id="s_case_utype" class="custom-select form-control">
-												<option>原告</option>
-												<option>被告</option>
-												<option>第三人</option>
-												<option>申请人</option>
-												<option>被申请人</option>
-												<option>上诉人</option>
-												<option>被上诉人</option>
-												<option>近亲属</option>
+												
 											</select>
 										</div>
 										<div class="form-group">
 											<label class="control-label">案件类型：</label>
 											<select id="s_case_type" class="custom-select form-control">
-												<option>民事案件</option>
-												<option>刑事案件</option>
-												<option>行政案件</option>
-												<option>法律顾问</option>
-												<option>仲裁案件</option>、
-												<option>执行案件</option>
+												
 											</select>
 										</div>
+										
 										<!--
                                         	作者：13523450460@sina.cn
                                         	时间：2017-10-17
                                         	描述：案件详情
-                                        -->
-
+                                       -->
 										<div class="form-group" style="">
 											<label class="control-label">新增项目：</label>
 											<select class="custom-select form-control programe">
@@ -783,25 +696,13 @@
 									<div class="form-group">
 										<label class="control-label">当事人身份：</label>
 										<select id="djcase_utype" class="custom-select form-control">
-											<!--<option>原告</option>
-											<option>被告</option>
-											<option>第三人</option>
-											<option>申请人</option>
-											<option>被申请人</option>
-											<option>上诉人</option>
-											<option>被上诉人</option>
-											<option>近亲属</option>-->
+											
 										</select>
 									</div>
 									<div class="form-group">
 										<label class="control-label">案件类型：</label>
 										<select id="djcase_type" class="custom-select form-control">
-											<!--<option>民事案件</option>
-											<option>刑事案件</option>
-											<option>行政案件</option>
-											<option>法律顾问</option>
-											<option>仲裁案件</option>
-											<option>执行案件</option>-->
+										
 										</select>
 									</div>
 
@@ -830,41 +731,24 @@
                 	描述：登记表开始
                 -->
                
-				<div class="modal fade" id="mySaveTable">
+				<div class="modal fade" id="mySaveCase">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
 		 					          <span>&times;</span>
 		 				            </button>
-								<h4 class="modal-title">登记表</h4>
+								<h4 class="modal-title">案件登记表</h4>
 
 							</div>
 							<form role="form">
 								<div class="modal-body">
-
-									<div class="form-group">
-										<div class="hide new_case_id"></div>
-										<input id="djcase_uname" v-model="user.truename" type="text" placeholder="案件当事人支持多个用   ,  隔开" class="form-control" />
-									</div>
-									<div class="form-group">
-										<input id="case_user_id" v-model="user.case_user_id" type="text" placeholder="当事人的身份证号" class="form-control case_user_id" />
-									</div>
+                                    
 									<div class="form-group">
 										<input id="opponame" type="text" v-model="user.opponame" placeholder="案件对方支持多个用   ,  隔开" class="form-control" />
 									</div>
 									<div class="form-group">
-
-										<input id="djcase_tel" type="text" v-model="user.telphone" class="form-control" placeholder="当事人联系电话" />
-										<div class="input-group">
-											<!--<span class="input-group-addon addPhone"><span class="fa fa-address-book"></span></span>-->
-										</div>
-									</div>
-									<div class="form-group">
-										<input id="djcase_name" v-model="user.case_title" type="text" class="form-control" placeholder="案件名称" />
-									</div>
-									<div class="form-group">
-										<input id="case_record" v-model="user.case_record" type="text" placeholder="备案号(选填)" class="form-control case_record" />
+										<input id="djcase_tel" type="text" v-model="user.telphone" class="form-control" placeholder="当事人联系电话" />										
 									</div>
 									<div class="form-group">
 										<input id="handle_lawyer_name" v-model="user.handle_lawyer_name" type="text" placeholder="经办律师，默认为空(选填)" class="form-control" />
@@ -872,20 +756,7 @@
 									<div class="form-group">
 										<textarea id="case_des" type="text" v-model="user.case_des" rows="2" placeholder="案件简介:" class="form-control"></textarea>
 									</div>
-									<div class="form-group">
-										<input id="case_ctarget" type="text" v-model="user.case_ctarget" placeholder="业务标的" class="form-control case_ctarget" />
-									</div>
-									<div class="form-group">
-										<input id="case_expect_cost" type="text" v-model="user.case_expect_cost" placeholder="案件预期费用" class="form-control case_expect_cost" />
-									</div>
-
-									<div class="form-group">
-										<input id="case_janame" v-model="user.case_janame" type="text" placeholder="管辖机构名称" class="form-control case_janame" />
-									</div>
-									<div class="form-group">
-										<label class="control-label">案件协议全文(照片上传)：</label>
-										<input id="case_agreement_pics" multiple="multiple" type="file" class="form-control case_agreement_pics" />
-									</div>
+									
 									<div class="form-group">
 										<label class="control-label">岗位级别：</label>
 										<select id="user_lid" class="custom-select form-control user_lid">
@@ -898,45 +769,37 @@
 
 										</select>
 									</div>
+									
+									<div class="form-group">
+										<label class="control-label">案件诉由：</label>
+										<select id="dj_case_reason" class="custom-select form-control dj_case_reason">
+
+										</select>
+									</div>
 									<div class="form-group">
 										<label class="control-label">案源：</label>
 										<select id="case_sid" class="custom-select form-control case_sid">
 
 										</select>
 									</div>
-
 									<div class="form-group">
 										<label class="control-label">付款方式：</label>
 										<select id="case_charge_style_id" class="custom-select form-control case_charge_style_id">
 
 										</select>
 									</div>
-
 									<div class="form-group">
-										<label class="control-label">当事人身份：</label>
-										<select id="djcase_utype" class="custom-select form-control">
-											<option>原告</option>
-											<option>被告</option>
-											<option>第三人</option>
-											<option>申请人</option>
-											<option>被申请人</option>
-											<option>上诉人</option>
-											<option>被上诉人</option>
-											<option>近亲属</option>
-										</select>
+										<input id="case_ctarget" type="text" v-model="user.case_ctarget" placeholder="业务标的" class="form-control case_ctarget" />
 									</div>
 									<div class="form-group">
-										<label class="control-label">案件类型：</label>
-										<select id="djcase_type" class="custom-select form-control">
-											<option>民事案件</option>
-											<option>刑事案件</option>
-											<option>行政案件</option>
-											<option>法律顾问</option>
-											<option>仲裁案件</option>、
-											<option>执行案件</option>
-										</select>
+										<input id="case_expect_cost" type="text" v-model="user.case_expect_cost" placeholder="案件预期费用" class="form-control case_expect_cost" />
 									</div>
-
+									<div class="form-group">
+										<input id="case_record" v-model="user.case_record" type="text" placeholder="备案号(选填)" class="form-control case_record" />
+									</div>
+									<div class="form-group">
+										<input id="case_user_id" v-model="user.case_user_id" type="text" placeholder="当事人的身份证号" class="form-control case_user_id" />
+									</div>
 									<div class="form-group">
 										<label class="control-label">客户状态：</label>
 										<select id="case_user_status" class="custom-select form-control case_user_status">
@@ -944,20 +807,24 @@
 											<option name='2'>风险代理</option>
 										</select>
 									</div>
-
-									<div class="programeBox">
-
+									<div class="form-group img_show">
+										 <img src='' />
 									</div>
-
+									<div class="form-group">
+										<label class="control-label">案件协议全文(照片上传)：</label>
+										<input id="case_agreement_pics" multiple="multiple" type="file" class="form-control case_agreement_pics" />
+									</div>
+									
+									
 								</div>
 								<div class="modal-footer">
-									<input type="button" @click="addCase" id="DjSubBtn" style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
+									<input type="button" @click="addCaseDetials()"  style="font-size: 14px;font-weight:normal;color: #FFFFFF;" class="btn  btn-info" value="提交保存">
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				<!--登记案件模态框结束-->
+				<!--登记案件详情模态框结束-->
 
 			</article>
 		</div>
