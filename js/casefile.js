@@ -239,7 +239,7 @@ function returnImgStr(obj, case_id) {
 
 				} else {
 
-					console.log(data.msg);
+					layer.msg(data.msg);
 					fileArr.push('samename');
 					return;
 				}
@@ -275,7 +275,7 @@ function get_newCase_id() {
 			if(data.ret == 200) {
 			     //flag=true;
 			     new_id=data.data;
-			  //  console.log(new_id);
+			
 		     $('.new_case_id').html(new_id);	
 			    
 			  	 
@@ -327,7 +327,7 @@ new Vue({
  methods:{
  	
  	  newCase:function(){
- 	  	//console.log(this);
+
  	  	 this.user.client_tag=$("#djcase_utype").children("option:selected").index() + 1;
    		 this.user.case_type=$("#djcase_type").children("option:selected").index() + 1;
  	     this.user.id=$(".new_case_id").html();	   
@@ -339,7 +339,7 @@ new Vue({
 				success:function(res){
 					var data=JSON.parse(res);
 					if(data.ret==200){
-					   //console.log(data.data);
+					  
 						    $('#myDJ').modal('hide');
 						    $('#myDJ').find("input[type=text]").val('');
 						    layer.msg('登记成功');
@@ -392,7 +392,7 @@ new Vue({
  	    addCaseDetials:function(){
  	  	
  	  	 var case_id=$('#myModalLabel').attr('class');
- 	  	  console.log(case_id);
+ 	  	 
  	     this.user.id=case_id;	   
    	     this.user.user_lid=$('#user_lid').children('option:selected').attr('name');
    	     this.user.user_did=$('#user_did').children('option:selected').attr('name');//所属部门id
@@ -414,7 +414,7 @@ new Vue({
 				success:function(res){
 					var data=JSON.parse(res);
 					if(data.ret==200){
-					   //console.log(data.data);
+					 
 						    $('#myDJ').modal('hide');
 						    $('#myDJ').find("input[type=text]").val('');
 						    layer.msg('登记表成功');
@@ -463,7 +463,7 @@ function get_clientType(obj, port) {
 				});
 
 			} else {
-				console.log(res.msg)
+				layer.msg(res.msg)
 			}
 		},
 		fail: function(err) {
@@ -495,8 +495,7 @@ function get_TypeId(obj, port, part) {
 		success: function(res) {
 
 			var idNum = part + '_id';
-			var name = part + '_name';
-			//console.log(idNum+"/       "+name);
+			var name = part + '_name';			
 			var res = JSON.parse(res);
 			if(res.ret == 200) {
 				var list = res.data;
@@ -595,7 +594,7 @@ function case_detialFn(case_id){
               
 				$("#myCaseDetail").modal('show');
 				var case_detail = data.data;
-		         console.log(case_detail);
+		     
 				$('#addCaseDetails').attr(name,case_detail);
 				$("#myModalLabel").attr('class',case_id);
 				$("#case_user_id").val(case_detail.case_user_id);
@@ -619,8 +618,13 @@ function case_detialFn(case_id){
 				$("#case_sid").children().eq(case_detail.case_sid-1).attr("selected", "");
 				$("#case_charge_style_id").children().eq(case_detail.case_charge_style_id-1).attr("selected", "");
 			    $("#case_user_status").children().eq(case_detail.s_case_user_status-1).attr("selected", "");
-			    console.log(case_detail.case_agreement_pics);
-                 $(".img_show img").attr('src','http://www.ls186.cn'+case_detail.case_agreement_pics);
+			   // console.log(case_detail.case_agreement_pics);
+			   if(case_detail.case_agreement_pics=='samename'){
+			   	
+			   }else{
+			   	$(".img_show img").attr('src','http://www.ls186.cn'+case_detail.case_agreement_pics);
+			   }
+                 
               //五项
                 $("#s_case_uname").val(case_detail.case_uname);
                  $("#s_djcase_name").val(case_detail.case_title);
@@ -713,7 +717,7 @@ $("#save").on("click", function() {
 		error: function(xhr, status) {
 			layer.close(index);
 
-			console.log(xhr.status + status)
+			//console.log(xhr.status + status)
 		}
 	});
 
@@ -813,7 +817,7 @@ $("#case_sync").on("click", function() {
 				loadCase(1, 'time');
 			} else {
 				layer.msg("同步失败" + data.msg)
-				console.log(data.msg)
+				//console.log(data.msg)
 			}
 		},
 	});
@@ -1108,7 +1112,7 @@ $(".evidence_cont").delegate("li .del_evid", "click", function() {
 			},
 			error: function(data) {
 				layer.close(index);
-				console.log(data)
+				//console.log(data)
 			}
 		})
 	}, function() {
@@ -1189,7 +1193,7 @@ $('.save_pro_btn').click(function() {
 
 	} else {
 		name = $(pro_txt).attr('tit');
-		console.log(name);
+		//console.log(name);
 	}
 
 	$.ajax({
@@ -1278,7 +1282,7 @@ $('.pro_btn2').hide();
 $(".process_cont").delegate("li .link_doc", "click", function() {
 
 	$(".pro_doc").removeClass('hide');
-	console.log($(this).attr('name'));
+	//console.log($(this).attr('name'));
 	var doc_arr = String($(this).attr('name')).split('/')
 	var load_name = doc_arr[doc_arr.length - 1];
 	$('.pro_name').html(load_name);
@@ -2035,7 +2039,7 @@ $(".writCont .caret_icon").click(function() {
 //  ========== 
 
 $(".writ_btn").click(function() {
-	console.log('OK');
+	//console.log('OK');
 	var cur_timestamp = Date.parse(new Date()) / 1000;
 	var md_token = hex_md5("law_" + hex_md5(String(cur_timestamp)) + "_law");
 	var case_id = $("#myModalLabel").attr('class');
@@ -2315,7 +2319,7 @@ $(".logCont .caret_icon").click(function() {
 				if(data.ret == 200) {
 					$(".log_cont").empty();
 					var list = data.data;
-					console.log(list);
+					
 					$.each(list, function(i, ele) {
 						var li = $("<li class='list-group-item ' case_log_id='" + ele.case_log_id + "'><a href='#' class='link_log'>预览</a>&nbsp;&nbsp;<span>" + ele.case_log_field + "</span><i  class='text-danger fa fa-trash pull-right del_log'></i></li>");
 						$(".log_cont").append(li);
