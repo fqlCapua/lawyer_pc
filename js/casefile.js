@@ -131,7 +131,7 @@ function conflict_check(card_id,case_id,name){
 			     
 			    //return flag=true; 
 			  	 
-			} else if(data.ret== 401){
+			} else if(data.ret== 401){ 
 				
 				console.log(data);
 			    //return  flag=0;

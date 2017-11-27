@@ -95,8 +95,9 @@ function user_ismoderator() {
 }
 /*iframe高度*/
 
-function reinitIframe() {
-	var iframe = document.getElementById("test");
+function reinitIframe(obj) {
+	var iframe = document.getElementById(obj);
+	
 	try {
 		var bHeight = iframe.contentWindow.document.body.scrollHeight;
 		var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
@@ -105,8 +106,8 @@ function reinitIframe() {
 		iframe.height = height;
 	} catch(e) {}
 }
-window.setInterval("reinitIframe()", 200);
-
+window.setInterval("reinitIframe('test')", 200);
+window.setInterval("reinitIframe('footer')", 200);
 /*设置首页*/
 //设为首页
 function SetHome(obj, url) {

@@ -317,9 +317,7 @@ textarea{
 			
     
 
-  .footer_iframe{
-  	height:200px;
-  }
+
 @media only screen and (min-width: 414px) and (max-width: 768px) {
 	
 	#leftsead,#leftsead1{
@@ -419,9 +417,8 @@ textarea{
 .FLFG ul li dl dt{
 	line-height:3em;
 }
-.footer_iframe{
-	height:300px;
-}
+
+
 #leftsead,#leftsead1{
 	display: none;
 }
