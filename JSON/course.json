@@ -1,0 +1,85 @@
+{
+  "title": "律所在线使用教程", 
+  "id": 9999,  
+  "start": 0, 
+  "data": [  
+    {
+      "alt": "使用指南",
+      "pid": 0,  
+      "src": " img/course/step0.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "注册认证",
+      "pid": 1,  
+      "src": " img/course/step1.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "案件管理",
+      "pid": 2,  
+      "src": " img/course/step2.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "新增项目",
+      "pid": 3,  
+      "src": " img/course/step3.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "新增项目",
+      "pid": 4,  
+      "src": " img/course/step4.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "新增项目",
+      "pid": 5,  
+      "src": " img/course/step5.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "案件备案",
+      "pid": 6,  
+      "src": " img/course/step6.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "管理端案件管理",
+      "pid": 7,  
+      "src": " img/course/step7.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "管理端案件管理",
+      "pid": 8,  
+      "src": " img/course/step8.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "管理端律师管理",
+      "pid": 9,  
+      "src": " img/course/step9.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "PC注册认证",
+      "pid": 10,  
+      "src": " img/course/step10.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "PC案件管理",
+      "pid": 11,  
+      "src": " img/course/step11.png",  
+      "thumb": ""  
+    },
+    {
+      "alt": "PC新增项目",
+      "pid": 12,  
+      "src": " img/course/step12.png",  
+      "thumb": ""  
+    }
+  ]
+}

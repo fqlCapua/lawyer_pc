@@ -13,27 +13,29 @@
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
+    <script type="text/javascript" src="js/layer.js" ></script>
     
     
 </head>
 <body >
-    <div class="header skrollable skrollable-between" data-0="opacity: 0.9;" data-500="opacity:0.3;" style="opacity: 0.9;">
+	
     <div class="wrapper header" >
-       
-        <div class="logo">
+    	<div class="logo">
             <a href=""><img src="img/home/logo.png" alt=""/></a>
         </div>
        
-       
 
-        <!--<div class="nav">
+        <div class="nav">
             <ul id="toptab">
-                <li id="index" style="margin-left:70px" ><a class="nav-title" href="http://www.ls186.cn/ls/home.html">首页</a></li>
-                <li id="product" class=""><a class="nav-title" href="#introdution">产品介绍</a></li>
-                <li id="update" class=""><a class="nav-title" href="#update">更新日志</a></li>
-                <li id="service" class=""><a class="nav-title" href="#link_us">联系我们</a></li>
+                <li  style="margin-left:70px" ></li>
+                <li  class=""><a class="nav-title" href="#download">APP下载</a></li>
+                <li   class=""><a class="nav-title" href="#introdution">产品介绍</a></li>
+                <li   id="userStep" class=""><a class="nav-title" href="#">使用教程</a></li>
+                <li  class=""><a class="nav-title" href="#introdution">软件介绍</a></li>
+                <li  class=""><a class="nav-title" href="#link_us">联系我们</a></li>
+                <li  class=""><a class="nav-title" href="#link_us">关于我们</a></li>
             </ul>
-        </div>-->
+        </div>
         
     </div>
 </div>
@@ -49,8 +51,10 @@
 	  
 	   <!--banner-->
 	   <!--step1-->
+	   <a  id='download'></a>
 	   <div class="justified-box rukou" >
-			        <div class="color-box bg-success">
+	   	
+			        <div class="color-box bg-success" >
 						<a target="_blank" href="http://www.ls186.cn/ls/home.html" style="color: #fff;"><i class="fa fa-tv fa-3x"></i><i class="icon_tit">网页版</i></a>
 					</div>
 					<div class="color-box bg-info" ><a target='_blank' href="http://www.ls186.cn/apps/律所在线1.0.apk" style="color: #fff;"><i class="fa fa-android fa-3x"></i><i class="icon_tit">安卓版</i></a></div>
@@ -170,6 +174,7 @@
                 <li class="">
                     <h5>联系我们</h5>
                     <p>官网：<a href="http://www.ls186.cn/ls/home.html">http://www.ls186.cn</a></p>
+                    <p>电话：<a href="">186 3946 7801</a></p>
                     <p>
                         <a href="https://weibo.com/u/5103922973" title="官方微博" target="_blank" class="fa fa-weibo fa-2x"></a>&nbsp;&nbsp;
                         <a href="javascript:void(0)" title="扫描二维码关注" id="weixin" class="fa fa-weixin fa-2x"></a><br />
@@ -225,4 +230,22 @@
 
 
 
-<a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span>To Top</a></body></html>
+
+</body>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js" ></script>
+<script>
+	
+	$('#userStep').click(function(){
+		
+		  $.getJSON('JSON/course.json',function(json){
+		  	console.log(json)
+               layer.photos({
+               photos: json,
+               anim: 5
+        });
+	});
+	});
+
+	
+</script>
+</html>

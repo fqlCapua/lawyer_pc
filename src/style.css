@@ -1,10 +1,10 @@
 .header {
-	margin-top: 5px;
+	margin-top: 15px;
 	display: flex;
 }
 
 .logo {
-	margin-right: 150px;
+    margin-right:300px;
 	margin-left: 17%;
 }
 
@@ -162,11 +162,14 @@
 	
 }
 
-@media only screen and (max-width:1100px) {
+@media only screen and (max-width:1200px) {
 	.banner-index {
 		height: 300px;
 	}
-	.toptab {
+	.nav{
+		display: none;
+	}
+	#toptab {
 		display: none;
 	}
 	.rukou>div {

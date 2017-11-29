@@ -679,7 +679,7 @@ blockquote small {
     position: absolute;
     width: 32px;
     height: 32px;
-    background: url('../images/quote-left.png') center center no-repeat;
+    background: url(' images/quote-left.png') center center no-repeat;
     left: 5%;
     top: 10px;
 }
@@ -689,7 +689,7 @@ blockquote small {
     position: absolute;
     width: 32px;
     height: 32px;
-    background: url('../images/quote-right.png') center center no-repeat;
+    background: url(' images/quote-right.png') center center no-repeat;
     right: 5%;
     top: 10px;
 }
